@@ -1,0 +1,108 @@
+
+body{
+    background-color: $primary-l;
+    @include textStyle(NotoSans-R,14px, $black,1px);
+
+    //測試可以拿掉
+    height: 2000px;
+}
+
+p{
+    @include textStyle(KozGoPr6N-R, 16px , $black , unset, 0.8);
+}
+
+.card{
+    @include card( 40px 20px,white ,20px)
+}
+
+
+//no color botton
+.nc-btn{
+    @include textStyle(NotoSans-B,14px, $black,1px);
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+//line botton
+.l-btn{
+    @include textStyle(NotoSans-R,14px, $black,1px);
+    cursor: pointer;
+    padding: $u-p $u-p*2;
+    outline: none;
+    border: 1px solid lighten($black,20);
+    border-radius: 100px;
+    margin: $u-m;
+    opacity: .8;
+    background-color: transparent;
+}
+
+.l-aside{
+    @include card($u-p ,$red-l, 0px 50px 0px 0px , 0);
+    position: sticky;
+    //下面可以變更 但aisde 要sticky 
+    top: 100px;
+    width: 30%;
+    height: 300px;
+    margin-top:  $u-m*5;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+ 
+.r-aside{
+    @include card($u-p , $primary, 50px 0px 0px 0px , 0);
+    position: sticky;
+    
+    //下面可以變更 但aisde 要sticky 
+    top: 100px;
+    width: 30%;
+    height: 300px;
+    margin-top: $u-m*5;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}
+
+
+.w-hr{
+    width: 100%;
+    height: 1px;
+    margin:  $u-m 0;
+    background-color: $white;
+}
+
+.b-hr{
+    width: 100%;
+    height: 1px;
+    margin:  $u-m 0;
+    background-color: $black;
+}
+
+ 
+
+
+@each $n ,$bgc in $btnColor {
+    .#{$n}-btn {
+        @include btnStyle($bgc)
+    }
+}
+
+@each $fn,$url in$fontFamily{
+    @font-face {
+        font-family: $fn;
+        src: url($url);
+    } 
+};
+
+
+@each $f,$s in $fontLevel{
+    #{$f}, .#{$f}{
+        font-size: $s;
+        font-family: NotoSans-L;
+        color: $black;
+        margin:0;
+        line-height: $s * 1.3;
+        letter-spacing: $s / 5.5;
+        font-weight: bold;
+    }
+};
