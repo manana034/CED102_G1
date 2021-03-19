@@ -1,14 +1,14 @@
 
 body{
     background-color: $primary-l;
-    @include textStyle(NotoSans-R,14px, $black,1px);
+    @include textStyle("NotoSans-R",14px, $black,1px);
 
     //測試可以拿掉
     height: 2000px;
 }
 
 p{
-    @include textStyle(KozGoPr6N-R, 16px , $black , unset, 0.8);
+    @include textStyle("KozGoPr6N-R", 16px , $black , unset, 0.8);
 }
 
 .card{
@@ -18,7 +18,7 @@ p{
 
 //no color botton
 .nc-btn{
-    @include textStyle(NotoSans-B,14px, $black,1px);
+    @include textStyle("NotoSans-B",14px, $black,1px);
     cursor: pointer;
     outline: none;
     border: none;
@@ -98,7 +98,7 @@ p{
 @each $f,$s in $fontLevel{
     #{$f}, .#{$f}{
         font-size: $s;
-        font-family: NotoSans-L;
+        font-family: "NotoSans-L";
         color: $black;
         margin:0;
         line-height: $s * 1.3;
