@@ -32,7 +32,7 @@ function moveJS() {
 }
 
 function commonStyle() {
-    return src('./dev/sass/all.scss')
+    return src('./dev/sass/*.scss')
         .pipe(sourcemaps.init())
         .pipe(
             sass({
