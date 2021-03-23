@@ -1,0 +1,289 @@
+.containor.Cal_Dairy{
+    display: grid;
+    grid-template-columns: 20% 80%;
+//===============Aside=============
+.l-aside.Cal_Dairy{
+    display: block;
+    width:250px;
+    height:700px;
+    .cal_aside {
+        // height: 40px;
+        .aside_title{
+            width: 75%;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin:20px 0px 0px 20px;
+            padding: 0px 0px 5px 15px ;
+            border-bottom: 1px solid #ffffff;
+        }
+        .aside_inf{
+            width: 100%;
+            text-align:center;
+            padding: 10px 0px 10px 0px;
+            .person_inf{
+                display: flex;
+                margin: 5PX;
+                p{
+                    color: #ffffff;
+                    margin-left: 28px;
+                }
+                .gender,.hight,.age{
+                    text-align:right;
+                    color: #ffffff;
+                }
+            }
+            .aside_inf_title{
+                font-size: 12px;
+                color: #ffffff;
+                margin: 10px;
+            }
+             .aside_inf_data{
+                font-size: 30px;
+                color: #ffffff;
+                margin: 10px 0px 20px 0px;
+            }
+        }
+    }
+    .w-btn.Cal_Dairy{
+        width: 100px;
+        text-align: center;
+        font-size: 14px;
+        background-color: #AAAAAA;
+        color: #ffffff;
+        margin:0px auto;
+    }
+}
+//=============CENTER===========
+.center.Cal_Dairy{
+    .top_area{
+        display: grid;
+        margin-top: 50px;
+        grid-template-columns: 49% 49%;
+        .card.CurGoal{
+            padding: 20px;
+            width: 520px;
+            margin: 0px auto;
+            .CurGoal_title{
+                img{
+                    height: 20px;
+                    width: 20px;
+                    vertical-align: middle;
+                    padding-bottom: 3px;
+                }
+                width: 100%;
+                border-bottom: 2px solid #DDDDDD;
+                vertical-align: middle;
+                font-weight: bold;
+            }
+            .CurGoal_content{
+                display: grid;
+                grid-template-columns: 50% 50%;
+                .rest_cal{
+                    margin-top: 20px;
+                    border-right: 2px solid #DDDDDD;
+                    P{
+                        margin:10px;
+                    }
+                    .rest_cal_content{
+                        display: grid;
+                        grid-template-columns: 55% 45%;
+                        img{
+                            margin: 20px 20px 10px 25px;
+                            width: 90px;
+                        }
+                        .rest_cal_inf{
+                            padding-right: 20px;
+                            p{
+                                text-align: center;
+                                margin:0px;
+                            }
+                            .rest_cal_data{
+                                text-align: center;
+                                font-size: 32px;
+                                font-weight: bold;
+                                margin: 60px 0px 10px 0px;
+                            }
+                            .rest_cal_unit{
+                               border-bottom: 2px solid #888888;
+                            }
+                            .daily_cal_data{
+                                text-align: center;
+                                font-size: 16px;
+                                font-weight: bold;
+                                margin: 20px 0px 10px 0px;
+                            }
+                            .daily_cal_unit,.rest_cal_unit{
+                                font-size: 14px;
+                                padding-bottom:10px ;
+                                color: #AAAAAA;
+                            }
+                        }
+                    }
+                }
+                .rest_day{
+                    margin-top: 20px;
+                    margin-left: 10px;
+                    P{
+                        margin:10px;
+                    }
+                    .rest_day_item{
+                        display: flex;
+                        .rest_day_value{
+                            font-size: 42px;
+                            padding: 20px 40px 20px 50px;
+                        }
+                        .rest_day_unit{
+                            margin: 30px 0px 0px 0px;
+                        }
+                    }
+                    .sch_title{
+                        display: flex;
+                        p{
+                            color: #666666;
+                            font-size: 4px;
+                            font-weight: bolder;
+                        }
+                        .sch_start{
+                            padding-right: 55px;
+                        }
+                        
+
+                    }
+                    .sch{
+                        width: 100%;
+                        height:8px;
+                        background-color: #dddddd;
+                        border-radius: 10px;
+                    }
+                    .sch_date{
+                        display: flex;
+                        .date_start{
+                            margin-right: 55px;
+                        }
+                    }
+                    
+                           
+                }
+            }
+
+        }
+        .card.report{
+            width: 520px;
+            margin: 0px auto;
+            padding: 20px;
+            .CurGoal_title{
+                select{
+                    border:none;
+                    margin-left: 60%;
+                    color: #888888;
+                    cursor: pointer;
+                }
+                img{
+                    height: 20px;
+                    width: 20px;
+                    vertical-align: middle;
+                    padding-bottom: 3px;
+                }
+                width: 100%;
+                border-bottom: 2px solid #DDDDDD;
+                vertical-align: middle;
+                font-weight: bold;
+            }
+            .report_title{
+                margin: 10px;
+                color: #AAAAAA;
+            }
+            .chart_select{
+                height: 80px;
+                display: grid;
+                grid-template-columns: 25% 25% 35%;
+                .chart_weight,.chart_cal,.chart_excercie{
+                    border: 1px solid #AAAAAA;
+                    height: 48px;
+                    border-radius: 18px;
+                    margin: 10px;
+                    padding: 5px;
+                    transition: 0.1s;
+                    // text-align: center;
+                    p{
+                        margin-left: 5px;
+                    }
+                    .chart_data{
+                        display: flex;
+                        img{
+                            width: 10px;
+                            height: 10px;
+                            padding: 8px 1px 0px 10px;
+                        }
+                        .w_persan,.cal_persan,.ex_persan{
+                            font-size: 5px;
+                            color: #888888;
+                        }
+                    }
+                }
+                .chart_weight:hover,.chart_cal:hover,.chart_excercie:hover{
+                    cursor: pointer;
+                    border: 2px solid #666666;
+                    font-weight: bolder;
+                    transform:scale(1.02,1.02);
+                }
+            }
+            .report_chart{
+                width: 500px;
+                padding-top: 5px;
+                img{
+                    width: 100%;
+                }
+            }
+
+
+        }
+        
+    }
+    .bot_area{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        margin: 40px 0px 0px 5px;
+        .cal_input{
+            position:relative;
+            .cal_input_select{
+                display: flex;
+                position:absolute;
+                top:-20px;
+                left:10px;
+                .s_food,.s_exercise{
+                    width: 100px;
+                    height: 30px;
+                    border-top-left-radius:10px;
+                    border-top-right-radius:10px;
+                    font-weight: bold;
+                    background-color: #ffffff;
+                    text-align: center;
+                    p{
+                        padding: 5px;
+                    }
+                }
+                .s_food:hover,.s_exercise:hover{
+                    cursor: pointer;
+                    background-color: #666666;
+                    P{
+                        color: #dddddd;
+                    }
+                }
+                .s_food{
+                    background-color: #666666;
+                    P{
+                        color: #dddddd;
+                    }
+                }
+                
+            }
+            .card.cal_input_table{
+                border-top-left-radius:0px;
+               
+            }
+        }
+    }
+}
+}
