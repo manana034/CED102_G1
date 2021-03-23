@@ -4,7 +4,7 @@ body{
     @include textStyle("NotoSans-R",14px, $black,1px);
 
     //測試可以拿掉
-    height: 2000px;
+    // height: 2000px;
 }
 
 p{
@@ -26,7 +26,7 @@ p{
 
 //line botton
 .l-btn{
-    @include textStyle(NotoSans-R,14px, $black,1px);
+    @include textStyle("NotoSans-R",14px, $black,1px);
     cursor: pointer;
     padding: $u-p $u-p*2;
     outline: none;

@@ -16,11 +16,11 @@ function moveFont(){
 exports.movefont = moveFont;
 
 function moveImg() {
-    return src('./dev/icon/*').pipe(dest('dist/img/'));
+    return src('./dev/img/*').pipe(dest('dist/img/'));
 }
 
 function moveIcon(){
-    return src('dev/img/*').pipe(dest('dist/icon/'))
+    return src('dev/icon/*').pipe(dest('dist/icon/'))
 }
 
 function concatJSAndMove() {

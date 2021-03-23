@@ -4,12 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/all.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/shop.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <title>SHOP</title>
 </head>
 <body>
-    <h1>fjlskmcs</h1>
-    <h2>dlskmc</h2>
-    <h1>小腫</h1>
+    <div class="banner">
+        <h5>Fitness starts with what you eat.</h5>
+        <img src="./img/banner.jpeg">
+    </div>
+    
+    <div class="productAll">
+        <div class="filterAll">
+            <form>
+            <p>TYPE</p>
+                <div class="filter">
+                    <input type="checkbox" name="type" id="gain">
+                    <label for="gain">GAIN WEIGHT</label>
+            </div>
+            <div class="filter">
+                    <input type="checkbox" name="type" id="lose">
+                    <label for="lose">LOSE WEIGHT</label>
+            </div>
+            <div class="filter">
+                    <input type="checkbox" name="type" id="regimen">
+                    <label for="regimen">REGIMEN</label>
+            </div>
+            </form>
+
+            <form>
+                <p>OUR PRODUCTS</p>
+                <div class="filter1">
+                    <input type="checkbox" name="type" id="cereal">
+                    <label for="cereal">CEREAL</label>
+                </div>
+                <div class="filter1">
+                    <input type="checkbox" name="type" id="crackers">
+                    <label for="crackers">CRACKERS</label>
+                </div>
+                <div class="filter1">
+                    <input type="checkbox" name="type" id="energy">
+                    <label for="energy">ENERGY BAR</label>
+                </div>
+            </form> 
+            </div>
+
+            <div class="products" id="app">
+                <ul>
+                    <li class="prod1" v-for="item in products" v-bind:style="item"> 
+                        <a href="./product.html">   
+                            <div class="bg">
+                                <img v-bind:src="item.img">
+                            </div>
+                            <div class="prodinfo">
+                                <p>{{item.name}}</p>
+                                <p>{{item.price}}</p>
+                                <button>BUY NOW</button>  
+                            </div>
+                        </a>   
+                    </li>
+                </ul>
+            </div>
+   </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                products: [{
+                    img: "./img/prod1.png",
+                    backgroundColor: "#2d6ca6",
+                    name: "ALMONDS BAR",
+                    price:"NT$250",
+                },
+                {
+                    img: "./img/prod2.png",
+                    backgroundColor: "#f9c530",
+                    name: "BANANA BAR",
+                    price:"NT$300",
+                },
+                {
+                    img: "./img/prod3.png",
+                    backgroundColor: "#bf4659",
+                    name: "STRABERRY BITES",
+                    price:"NT$230",
+                },
+                {
+                    img: "./img/prod4.png",
+                    backgroundColor: "#009cba",
+                    name: "COCO ALMONDS",
+                    price:"NT$250",
+                },
+                {
+                    img: "./img/prod5.png",
+                    name: "ENERGY BALL",
+                    backgroundColor: "#56A8DC",
+                    price:"NT$200",
+                },
+                {
+                    img: "./img/prod1.png",
+                    name: "ALMONDS BAR",
+                    backgroundColor: "#2d6ca6",
+                    price:"NT$250",
+                },]
+                }
+        });
+    </script>
 </body>
 </html>
