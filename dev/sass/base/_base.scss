@@ -1,28 +1,81 @@
 
 body{
     background-color: $primary-l;
+    transition: all 1s;
+    overflow-x: hidden;
     @include textStyle("NotoSans-R",14px, $black,1px);
+<<<<<<< HEAD
+=======
 
     //測試可以拿掉
     // height: 2000px;
+>>>>>>> alison
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $primary-l; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $gray4; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $gray5; 
+  }
+
 
 p{
     @include textStyle("KozGoPr6N-R", 16px , $black , unset, 0.8);
+
 }
 
 .card{
-    @include card( 40px 20px,white ,20px)
+    @include card( 40px 20px,$white ,20px)
+}
+
+img{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%
+}
+
+input[type=text]{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid $gray5;
+    outline: none;
+    &::placeholder{
+        color: $gray5;
+    }
 }
 
 
+*{
+    box-sizing: border-box;
+}
+
 //no color botton
-.nc-btn{
+.nc-btn, .a{
     @include textStyle("NotoSans-B",14px, $black,1px);
     cursor: pointer;
     outline: none;
     border: none;
+    background-color: transparent;
+    text-decoration: none;
 }
+
+
+
+
 
 //line botton
 .l-btn{
@@ -104,5 +157,13 @@ p{
         line-height: $s * 1.3;
         letter-spacing: $s / 5.5;
         font-weight: bold;
+
     }
 };
+
+
+@each $opacity,$val in $opacity {
+    .#{$opacity}{
+        opacity: $val;
+    }
+}

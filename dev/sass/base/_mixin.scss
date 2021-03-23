@@ -53,3 +53,9 @@
 //     padding: $u-p $u-p*2;
 
 // }
+
+    @mixin circle ($w){
+        width: $w;
+        padding-top: $w;
+        border-radius: 100%;
+    }
