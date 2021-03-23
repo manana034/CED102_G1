@@ -1,0 +1,22 @@
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    // border: 1px solid black;
+    justify-content: center;
+    border-top: 1px solid $gray4;
+
+    >div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: $u-m*5;
+        img{
+            width: 60px;
+        }
+    }
+    p{
+        font-size: 1px;
+        margin-top: $u-m*3;
+        margin-bottom: $u-m*5;
+    }
+}
