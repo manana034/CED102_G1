@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Froum</title>
-    <link rel="stylesheet" type="text/css" href="../css/forum.css">
+    <link rel="stylesheet" type="text/css" href="./css/page/forum.css">
+    <script src="./js/header.js" defer></script>
+    <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
+    <!-- <script src="../dist/js/header.js"></script> -->
 </head>
 <body>
-    <header>
-        ft
-    </header>
+    @@include('./layout/header.html')
 
     <main>
         
@@ -21,9 +22,91 @@
                 <li>Report</li>
             </ul>
         </div>
+
+
+
         <div class="middle">
-            2
+            <div class="gallery" id="gallery">
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,care" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,studied" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,substance" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,choose" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,past" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,lamp" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,yet" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,eight" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,crew" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,event" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,instrument" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,practical" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,pass" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,bigger" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,number" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,feature" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,line" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,railroad" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,pride" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,too" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,bottle" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,base" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,cell" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,bag" alt=""></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="content"><img src="https://source.unsplash.com/random/?tech,card" alt=""></div>
+                </div>
+            </div>
         </div>
+
+
+
         <div class="right">
             <div class="join">
                <p>
@@ -40,9 +123,50 @@
 
     </main>
 
-    <!-- <footer>
-        ft
-    </footer> -->
+
+
+    @@include('./layout/footer.html')
+
+
+
+
+
+    <script>
+        var gallery = document.querySelector('#gallery');
+        var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+        var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
+        var resizeAll = function () {
+            var altura = getVal(gallery, 'grid-auto-rows');
+            var gap = getVal(gallery, 'grid-row-gap');
+            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                var el = item;
+                el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+            });
+        };
+        gallery.querySelectorAll('img').forEach(function (item) {
+            item.classList.add('byebye');
+            if (item.complete) {
+                console.log(item.src);
+            }
+            else {
+                item.addEventListener('load', function () {
+                    var altura = getVal(gallery, 'grid-auto-rows');
+                    var gap = getVal(gallery, 'grid-row-gap');
+                    var gitem = item.parentElement.parentElement;
+                    gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                    item.classList.remove('byebye');
+                });
+            }
+        });
+        window.addEventListener('resize', resizeAll);
+        // gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+        //     item.addEventListener('click', function () {        
+        //         item.classList.toggle('full');        
+        //     });
+        // });
+    </script>
+
+
 
 </body>
 </html>

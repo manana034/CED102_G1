@@ -1,5 +1,6 @@
 body {
   background-color: #F5F2EB;
+  border: box-sizing;
 }
 
 header {
@@ -12,7 +13,6 @@ footer {
 
 main {
   display: flex;
-  justify-content: space-around;
 }
 
 div.left {
