@@ -9,6 +9,7 @@ const clean = require('gulp-clean');
 const browserSync = require('browser-sync').create();
 const reload = browserSync.reload; //browser的方法 更新後~
 
+
 function moveFont(){
     return src('./dev/font/*').pipe(dest('./dist/font'))
 }
@@ -16,11 +17,11 @@ function moveFont(){
 exports.movefont = moveFont;
 
 function moveImg() {
-    return src('./dev/icon/*').pipe(dest('dist/img/'));
+    return src('./dev/img/*').pipe(dest('dist/img/'));
 }
 
 function moveIcon(){
-    return src('dev/img/*').pipe(dest('dist/icon/'))
+    return src('dev/icon/*').pipe(dest('dist/icon/'))
 }
 
 function concatJSAndMove() {
@@ -32,7 +33,7 @@ function moveJS() {
 }
 
 function commonStyle() {
-    return src('./dev/sass/all.scss')
+    return src('./dev/sass/*.scss')
         .pipe(sourcemaps.init())
         .pipe(
             sass({
@@ -40,11 +41,13 @@ function commonStyle() {
             }).on('error', sass.logError)
         )
         .pipe(sourcemaps.write())
-        .pipe(dest('dist/css/'));
+        .pipe(dest('dist/css/common/'));
 }
 
+
+
 function pageStyle() {
-    return src('dev/sass/pages/*.scss')
+    return src('./dev/sass/page/*.scss')
         .pipe(sourcemaps.init())
         .pipe(
             sass({
@@ -52,8 +55,10 @@ function pageStyle() {
             }).on('error', sass.logError)
         )
         .pipe(sourcemaps.write())
-        .pipe(dest('dist/css/pages/'));
+        .pipe(dest('./dist/css/page/'));
 }
+
+// exports.page = pageStyle;
 
 function includeHTML() {
     return src('dev/*.html') 
@@ -75,8 +80,12 @@ function killDist() {
 }
 
 exports.kill = killDist;
-exports.u = series(killDist, parallel(moveImg, moveIcon, moveJS, commonStyle, pageStyle, includeHTML));
 
+//rewnew
+exports.u = series(killDist, parallel(moveFont, pageStyle, moveImg, moveIcon, moveJS, commonStyle, includeHTML))
+
+
+//browser
 exports.browser = function browsersync() {
     browserSync.init({
         // files: "**",
@@ -85,26 +94,32 @@ exports.browser = function browsersync() {
         // browser: "chrome",
         server: {
             baseDir: './dist', //跟目錄設定
-            index: 'shop.html', //需更改成自己頁面的名稱
+            index: 'index.html', //需更改成自己頁面的名稱
             injectChanges: false,
         },
     });
     //與browser同步
-    watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle).on('change', reload);
-    watch('./dev/sass/pages/*.scss', pageStyle).on('change', reload);
+    // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle).on('change', reload);
+    watch('./dev/sass/**/*.scss', commonStyle).on('change', reload);
+    watch('./dev/sass/page/*.scss', pageStyle).on('change', reload);
     watch('./dev/**/*.html', includeHTML).on('change', reload);
     watch('./dev/img/*', moveImg).on('change', reload);
-
+    watch('./dev/icon/*', moveIcon).on('change',reload)
     watch('./dev/js/*.js', moveJS).on('change', reload);
+    watch('./dev/font/*',moveFont).on('change',reload);
 };
 
+//watch
 exports.w = function watchFiles() {
-    watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle);
-    watch('./dev/sass/pages/*.scss', pageStyle);
+    // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle);
+    watch('./dev/sass/**/*.scss', commonStyle);
+    watch('./dev/sass/**/*.scss', pageStyle);
+    // watch('./dev/sass/page/*', pageStyle);
     watch('./dev/*.html', includeHTML);
     watch('./dev/img/*', moveImg);
     watch('./dev/icon/*', moveIcon)
     watch('./dev/js/*.js', moveJS);
+    watch('./dev/font/*',moveFont);
 };
 
 
