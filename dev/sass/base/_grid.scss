@@ -60,7 +60,7 @@
         }
       }
     }
-  }
+  }  
   
 @mixin makeCol($breakpoint: null,$gutter:40px,$grid-column:12) {
       @for $i from 0 through $grid-column {
@@ -98,22 +98,36 @@
       @include makeCol(lg-,$gutter-lg,$grid-lg-column);
     };
 
+    @include rwd-md {
+      @include makeCol(lg-,$gutter-md,$grid-md-column);
+    };
+
+
   @include rwd-sm {
       @include makeCol(sm-,$gutter-sm,$grid-sm-column);
     };
   
     
     .container {
-      max-width: $container-max-widths;
-      margin: 0 auto;
-        @include rwd(1400px){
+      // margin: 0 auto;
+
         width: 100%;
         padding-right: $container-padding;
         padding-left: $container-padding;
-      }
+        padding-top: 20px;
+        padding-bottom: 20px;
+        
+
       @include rwd-lg{
         padding-right: $container-lg-padding;
         padding-left: $container-lg-padding;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      @include rwd-md{
+        padding-right: $container-md-padding;
+        padding-left: $container-md-padding;
       }
 
       @include rwd-sm {
@@ -123,19 +137,19 @@
     }
   
     .row {
-      margin-left: -$gutter / 2;
-      margin-right: -$gutter / 2;
+      // margin-left: -$gutter / 2;
+      // margin-right: -$gutter / 2;
       display: flex;
       flex-flow: row wrap;
-        @include rwd-lg {
-            margin-left: -$gutter-lg / 2;
-            margin-right: -$gutter-lg / 2;
-      }
+      //   @include rwd-lg {
+      //       margin-left: -$gutter-lg / 2;
+      //       margin-right: -$gutter-lg / 2;
+      // }
 
-      @include rwd-sm {
-        margin-left: -$gutter-sm / 2;
-        margin-right: -$gutter-sm / 2;
-      } 
+      // @include rwd-sm {
+      //   margin-left: -$gutter-sm / 2;
+      //   margin-right: -$gutter-sm / 2;
+      // } 
     }
     
   .row.no-gutter{

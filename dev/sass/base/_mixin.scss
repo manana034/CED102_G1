@@ -3,7 +3,7 @@
 
 
 //textStyle(字體名, 尺寸, 顏色, 間距, 透明度, margin,行距)
-@mixin textStyle ($n:NotoSans-L, $s:14px , $c:$black, $l-s:unset , $o:1, $m:0, $l-h:$s * 1.5) {
+@mixin textStyle ($n:"NotoSans-L", $s:14px , $c:$black, $l-s:unset , $o:1, $m:0, $l-h:$s * 1.5) {
     font-family: $n;
     font-size: $s;
     color: $c;
@@ -25,13 +25,13 @@
 //使用 顏色變數 來帶入
 @mixin btnStyle ( $b-color:$white ){
     @if $b-color == $white  {
-        @include textStyle(NotoSans-R,14px, $black,1px);
+        @include textStyle("NotoSans-R",14px, $black,1px);
     }
     @else if $b-color == $primary {
-        @include textStyle(NotoSans-R,14px, $black,1px);
+        @include textStyle("NotoSans-R",14px, $black,1px);
     }
     @else {
-        @include textStyle(NotoSans-R,14px, $white,1px);
+        @include textStyle("NotoSans-R",14px, $white,1px);
     }
     background-color: $b-color;
     padding: $u-p $u-p*2;
@@ -53,3 +53,9 @@
 //     padding: $u-p $u-p*2;
 
 // }
+
+    @mixin circle ($w){
+        width: $w;
+        padding-top: $w;
+        border-radius: 100%;
+    }

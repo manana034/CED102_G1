@@ -4,10 +4,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/all.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/product.css">
+    <title>Product</title>
 </head>
 <body>
-    
+    <div class="prodContent">
+        <div class="prod_desc">
+            <h6> ALMONDS SALTED CHOCOLATE BAR</h6>
+            <p>2448kj / 585kcal per 100g</p>
+            <p>Ingredients
+                dark chocolate (49%)<br>
+                (cacao mass, coconut sugar,cacao butter),<br>
+                roasted almonds (49%),
+                cocoa powder, salt.for allergens,
+                including cereals containing gluten,
+                see ingredients in bold.</p>
+        </div>
+        <div class="productDetail">
+            <div class="prodimg">
+                <img src="./img/prod1.png">
+            </div>
+            <div class="prod1Info">
+                <p>NT$250</p>
+                <form>
+                    <label for="quantity">QUANTITY : </label>
+                    <div class="btn_number">
+                        <span class="btn_minus"> &minus; </span>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="10">
+                        <span class="btn_add">  &plus; </span>
+                    </div>
+                  
+                    
+                </form>
+                <button>ADD TO CART</button>
+                <button class="wishlist"> WISH LIST</button>
+            </div>
+        </div>
+        <div class="prod_infoall">
+            <h6>ENJOY IT!</h6>
+            <p>Vegan friendly. High in fibre. Store in a cool, dry place.<br>
+            We’re so excited to have a brand new look. We don’t want to send our previous packaging to waste so your order might contain both old and new pack designs whilst we’re making this switch</p>
+            <div class="prod1_pic">
+                <img src="./img/prod1_1.jpg">
+                <img src="./img/prod1_2.jpg">
+            </div>
+        </div>
+       
+    </div>
+   
+    <section class="moreproduct">
+        <h6>MORE FITNESS?</h6>
+        <ul>
+            <li class="prod1">
+                <a href="./product.html">   
+                    <img src="./img/prod1.png">
+                    <div class="prodinfo">
+                        <p>ALMONDS BAR</p>
+                        <p>NT$250</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                 </a>   
+            </li>
+           <li class="prod2">
+                <a href="./product.html">      
+                    <img src="./img/prod2.png">       
+                    <div class="prodinfo">
+                        <p>BANANA BAR</p>
+                        <p>NT$300</p>           
+                        <button>BUY NOW</button>    
+                    </div>
+                </a>     
+            </li>
+            <li class="prod3">
+                <a href="./product.html">
+                <img src="./img/prod3.png">
+                </a>
+                <a href="./product.html">
+                <div class="prodinfo">
+                    <p>STRABERRY BITES</p>
+                    <p>NT$230</p>
+                 
+                    <button>BUY NOW</button> 
+                </div> 
+             </a>  
+            </li>
+            <li class="prod4">
+                <a href="./product.html">
+                    <img src="./img/prod4.png">
+                    <div class="prodinfo">
+                        <p>COCO ALMONDS</p>
+                        <p>NT$250</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                </a>
+            </li>
+            <li class="prod5">
+                <a href="./product.html">
+                    <img src="./img/prod5.png">
+                    <div class="prodinfo">
+                        <p>ENERGY BALL</p>
+                        <p>NT$200</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <script src="./js/quantity.js"></script>
 </body>
 </html>
