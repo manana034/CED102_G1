@@ -1,0 +1,65 @@
+body {
+  background-color: #F5F2EB;
+}
+
+header {
+  font-size: 80px;
+}
+
+footer {
+  font-size: 80px;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.left {
+  border: 1px solid black;
+  border-right: 1px solid grey;
+  width: 10%;
+  height: 100%;
+  position: fixed;
+  left: 0%;
+}
+
+.left ul {
+  list-style: none;
+  padding: 0px;
+}
+
+div.middle {
+  border: 1px solid black;
+  width: 70%;
+}
+
+div.right {
+  border: 1px solid black;
+  width: 20%;
+  height: 100%;
+  border-top-left-radius: 50px;
+  background-color: #FFDA9B;
+  position: fixed;
+  right: 0%;
+}
+
+div.right .join p {
+  font-family: NotoSans-Regular;
+  font-size: 14px;
+  color: #9D9D9D;
+  letter-spacing: unset;
+  line-height: 21px;
+  opacity: 1;
+  margin: 0;
+}
+
+div.join {
+  display: flex;
+  justify-self: center;
+}
+
+div.join p {
+  text-align: center;
+}
+/*# sourceMappingURL=forum.css.map */
