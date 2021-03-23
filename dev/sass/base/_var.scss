@@ -3,8 +3,8 @@
 $primary-l: #f4f1ec; //背景色
 $primary: #EAA565; //主色; 主按鈕
 
-$green-l: #95b17c; //亮綠色
-$green-d: #517432; //綠色
+$green-l: #c1d4b0; //亮綠色
+$green-d: #95b17c; //綠色 
 
 $red-l: #D25541; //info/warning
 $red-d: #9F1600; //danger//error
@@ -40,21 +40,31 @@ $btnColor: (
     "b": $blue-d,
 );
 
-//NotoSans 為標題,按鈕使用 ; KozGoPr6N-EL 為中文,內文使用
-$fontFamily: (
-    "NotoSans-L": '../font/NotoSans-Light.ttf',
-    "NotoSans-R": '../font/NotoSans-Regular.ttf',
-    "NotoSans-B": '../font/NotoSans-Bold.ttf',
 
-    "KozGoPr6N-EL": '../font/KozGoPr6N-ExtraLight.otf',
-    "KozGoPr6N-R": '../font/KozGoPr6N-Regular.otf',
+$opacity :(
+    "o-10": 1,
+    "o-8": 0.8,
+    "o-5": 0.5,
+    "o-3": 0.3,
 );
 
 
 
+//NotoSans 為標題,按鈕使用 ; KozGoPr6N-EL 為中文,內文使用
+$fontFamily: (
+    "NotoSans-L": '../../font/NotoSans-Light.ttf',
+    "NotoSans-R": '../../font/NotoSans-Regular.ttf',
+    "NotoSans-B": '../../font/NotoSans-Bold.ttf',
+
+    "KozGoPr6N-EL": '../../font/KozGoPr6N-ExtraLight.otf',
+    "KozGoPr6N-R": '../../font/KozGoPr6N-Regular.otf',
+); 
+
+
+//margin 單位
 $u-m: 10px;
 
-
+//padding 單位
 $u-p: 10px;
 
 
@@ -72,24 +82,38 @@ $break-point-xs: 414px;  //mobile-xs
 
 
 // grid------------------------------------------------------------------
-$gutter: 40px;
-$grid-column : 12;
+$gutter: 0px;
+$grid-column : 12; 
+//992 以上一共12格
 
-$gutter-lg: 28px; //pad-pro
-$grid-lg-column : 6; 
+
+$gutter-lg: 0px; //pad-pro
+$grid-lg-column : 8; 
+//768~992 一共八格
+
+
+$gutter-md: 0px;
+$grid-md-column : 6; 
+//576~768 一共六格
+
+
 
 $gutter-sm: 12px; //mobile
 $grid-sm-column : 4;
+//576以下 一共四格
+
+
 
 // container
 // ----------------------------------------------------------------------
-$container-max-widths: 1400px;
-$container-padding: 40px;
+// $container-max-widths: 1400px;
+$container-padding: 50px;
 
 
 
 $container-lg-padding: 20px;
-$container-sm-padding: 16px;
+$container-md-padding: 16px;
+$container-sm-padding: 10px;
 
 //------------------
 $break-points: (
