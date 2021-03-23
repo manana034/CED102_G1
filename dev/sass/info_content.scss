@@ -1,0 +1,67 @@
+@import './all.scss';
+
+main {
+    margin: auto;
+    max-width: 1200px;
+    // position: relative;
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+        color: $black;
+        padding: 10px 0;
+    }
+    .date {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        div {
+            // position: absolute;
+            display: flex;
+            justify-content: flex-end;
+            .bookmark{
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+                align-self: center;
+            }
+            p{
+                display: inline-block;
+                padding: 7px;       
+            }
+        }
+    }
+    img {
+        max-width: 100%;
+    }
+    p {
+        padding: 30px;
+    }
+    section.top {
+        margin: auto;
+        // background-color: blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+            width: 40%;
+        }
+        p {
+            width: 50%;
+            font-size: 16px;
+        }
+    }
+    section.bottom {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+            width: 40%;
+        }
+        p {
+            width: 50%;
+            font-size: 16px;
+        }
+
+    }
+}

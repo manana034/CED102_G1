@@ -1,0 +1,125 @@
+@import './all.scss';
+
+div.banner {
+    margin: 0 auto;
+    width: 100%;
+    height: 600px;
+    background-image: url(../dev/img/info1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    h5 {
+        color: $white;
+        position: absolute;
+        bottom: 35%;
+        left: 7%;
+    }
+}
+
+div.filter {
+    margin: 50px;
+    ul {
+        margin: auto;
+        max-width: 400px;
+        display: flex;
+        justify-content: space-around;
+        li {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+    select {
+        height: 30px;
+        width: 130px;
+        border-radius: 30px;
+        padding: 0 0 0 25px;
+        cursor: pointer;
+        option {
+            height: 200px;
+            width: 200px;
+            border-radius: 30px;  
+        }
+    }
+}
+
+div.main {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    justify-content: space-around;
+    div.AAA {
+        background-color: $white;
+        width: 465px;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 15px;
+        position: relative;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        .bookmark {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            cursor: pointer;
+        }
+        .text{
+            margin: auto;
+            height: 100%;
+            width: 240px;
+            // background-color: blue;
+            position: absolute;
+            right: 0%;
+            top: 10%;
+            display: block;
+            .title {
+                margin: auto;
+                width: 200px;
+                font-size: 20px;
+                font-weight: bold;
+                color: $black;
+                padding: 25px;
+                hyphens: none;
+            }
+            .content {
+                margin: auto;
+                width: 200px;
+                font-size: 16px;
+                color: $black;
+            }
+            .arrow {
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                right: 15%;
+                bottom: 20%;
+                cursor: pointer;
+            }
+
+        }
+        .infophoto1 {
+            clip-path: polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%);
+            max-width: 100%;
+            display: block;
+        }
+        #infovideo1 {
+            margin: 0;
+            clip-path: polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%);
+            width: 100%;
+            display: block;
+        }
+    }
+    div:nth-child(odd){
+        margin-top: 50px;
+        margin-bottom: 150px;
+    }
+    div:nth-child(even){
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+}
+
+
+
