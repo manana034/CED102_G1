@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1477" height="847" viewBox="0 0 1477 847">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.944" y1="-0.205" x2="-0.276" y2="1.262" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#c38498"/>
+      <stop offset="0.075" stop-color="#ba7288"/>
+      <stop offset="0.18" stop-color="#b86e85"/>
+      <stop offset="0.733" stop-color="#a03c5c"/>
+      <stop offset="0.952" stop-color="#c38498"/>
+      <stop offset="1" stop-color="#a03c5c"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="0.27" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d4dfe6"/>
+      <stop offset="1" stop-color="#6a7073"/>
+    </linearGradient>
+    <clipPath id="clip-Artboard_1">
+      <rect width="1477" height="847"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard – 1" clip-path="url(#clip-Artboard_1)">
+    <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(49 56)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient)">
+      <rect width="1292" height="765" rx="76" stroke="none"/>
+      <rect x="0.5" y="0.5" width="1291" height="764" rx="75.5" fill="none"/>
+    </g>
+    <g id="Rectangle_223" data-name="Rectangle 223" transform="translate(125 145)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient-2)">
+      <rect width="176" height="119" rx="25" stroke="none"/>
+      <rect x="0.5" y="0.5" width="175" height="118" rx="24.5" fill="none"/>
+    </g>
+    <text id="CARD_HOLDER" data-name="CARD HOLDER" transform="translate(159 606)" fill="#cbcbcb" font-size="32" font-family="Roboto-Regular, Roboto" letter-spacing="0.03em"><tspan x="0" y="0">CARD HOLDER</tspan></text>
+    <text id="EXPIRES" transform="translate(1124 606)" fill="#cbcbcb" font-size="32" font-family="Roboto-Regular, Roboto" letter-spacing="0.03em"><tspan x="0" y="0">EXPIRES</tspan></text>
+  </g>
+</svg>

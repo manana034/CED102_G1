@@ -4,13 +4,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/shop.css">
+    <link rel="stylesheet" type="text/css" href="./css/common/shop.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <script src="./js/header.js" defer></script>
     <title>SHOP</title>
 </head>
 <body>
+    <header class="container ">
+
+
+    <div class="row">
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 logo">
+                <a href="">
+                    <img src="../img/logo.png" >
+                </a>
+            </div>
+            
+            <form id="searchBar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                <div class="row">
+                    
+                    <div class="search-input">
+                        <input type="text" placeholder="SERACH">
+                        <div class="suggest-items">
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            
+                            <a class="custom-item" href="">customize food
+                                <img src="../icon/cart.png" >
+                            </a>
+                        </div>
+                    </div>
+                    <div class="custom-select">
+                        <select name="sType">
+                          <option value="0">ALL</option>
+                          <option value="1">DESSERT</option>
+                          <option value="2">FRIED</option>
+                          <option value="3">NOODLES</option>
+                          <option value="4">RICE</option>
+                          <option value="5">DRNK</option>
+                          <option value="6">REPLACEMENT</option>
+                          <option value="7">FAST FOOD</option>
+                          <option value="8">FRUITS & VEG</option>
+                          <option value="9">CUSTOM</option>
+                        </select>
+                    </div>
+                    <button class="nc-btn o-5">
+                        <img src="../icon/magnifier.png" alt="">
+                    </button>
+                </div>
+
+            </form>
+    
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 row" >
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <a href="" class=" a"> MEMBER
+                        <img src="../icon/member.png" alt="">
+                    </a>
+                </div>
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1 nc">
+                    <button class="nc-btn"> CART
+                        <img src="../icon/cart.png" alt="">
+                    </button>
+                </div>
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <button class="nc-btn menuIcon"> MENU
+                        <img src="../icon/hamburger.png" alt="">
+                    </button>
+                </div>
+            </div>
+
+    </div>
+
+    
+    <div class="menuBody" data-state="0">
+        <button class="nc-btn">
+            <img src="../icon/cart.png">
+        </button>
+        <ul>
+            <li>
+                <a href="">Calories diary</a>
+            </li>
+            <li>
+                <a href="">Calories search</a>
+            </li>
+            <li>
+                <a href="">ft. shop</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">health news</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">member</a>
+            </li>
+        </ul>
+    </div>
+
+
+</header>
     <div class="banner">
-        <h5>Fitness starts with what you eat.</h5>
+        <h4>Fitness starts with what you eat.</h4>
         <img src="./img/banner.jpeg">
     </div>
     
@@ -31,7 +133,7 @@
                     <label for="regimen">REGIMEN</label>
             </div>
             </form>
-
+            
             <form>
                 <p>OUR PRODUCTS</p>
                 <div class="filter1">
@@ -47,13 +149,16 @@
                     <label for="energy">ENERGY BAR</label>
                 </div>
             </form> 
-            </div>
-
+            </div>   
             <div class="products" id="app">
+                <div class="sort">
+                    <p>SORT BY </p>
+                    <img src="./img/arrow-down-sign-to-navigate.png">
+               </div>  
                 <ul>
-                    <li class="prod1" v-for="item in products" v-bind:style="item"> 
+                    <li class="prod1" v-for="item in products"> 
                         <a href="./product.html">   
-                            <div class="bg">
+                            <div class="bg" v-bind:style="item">
                                 <img v-bind:src="item.img">
                             </div>
                             <div class="prodinfo">
@@ -73,7 +178,7 @@
                 products: [{
                     img: "./img/prod1.png",
                     backgroundColor: "#2d6ca6",
-                    name: "ALMONDS BAR",
+                    name: "ALMONDS BAR (consume 0.8 cal)",
                     price:"NT$250",
                 },
                 {

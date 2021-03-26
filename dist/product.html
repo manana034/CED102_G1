@@ -4,15 +4,118 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/product.css">
+    <link rel="stylesheet" type="text/css" href="./css/common/product.css">
+    <script src="./js/header.js" defer></script>
     <title>Product</title>
 </head>
 <body>
+    <header class="container ">
+
+
+    <div class="row">
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 logo">
+                <a href="">
+                    <img src="../img/logo.png" >
+                </a>
+            </div>
+            
+            <form id="searchBar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                <div class="row">
+                    
+                    <div class="search-input">
+                        <input type="text" placeholder="SERACH">
+                        <div class="suggest-items">
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            
+                            <a class="custom-item" href="">customize food
+                                <img src="../icon/cart.png" >
+                            </a>
+                        </div>
+                    </div>
+                    <div class="custom-select">
+                        <select name="sType">
+                          <option value="0">ALL</option>
+                          <option value="1">DESSERT</option>
+                          <option value="2">FRIED</option>
+                          <option value="3">NOODLES</option>
+                          <option value="4">RICE</option>
+                          <option value="5">DRNK</option>
+                          <option value="6">REPLACEMENT</option>
+                          <option value="7">FAST FOOD</option>
+                          <option value="8">FRUITS & VEG</option>
+                          <option value="9">CUSTOM</option>
+                        </select>
+                    </div>
+                    <button class="nc-btn o-5">
+                        <img src="../icon/magnifier.png" alt="">
+                    </button>
+                </div>
+
+            </form>
+    
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 row" >
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <a href="" class=" a"> MEMBER
+                        <img src="../icon/member.png" alt="">
+                    </a>
+                </div>
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1 nc">
+                    <button class="nc-btn"> CART
+                        <img src="../icon/cart.png" alt="">
+                    </button>
+                </div>
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <button class="nc-btn menuIcon"> MENU
+                        <img src="../icon/hamburger.png" alt="">
+                    </button>
+                </div>
+            </div>
+
+    </div>
+
+    
+    <div class="menuBody" data-state="0">
+        <button class="nc-btn">
+            <img src="../icon/cart.png">
+        </button>
+        <ul>
+            <li>
+                <a href="">Calories diary</a>
+            </li>
+            <li>
+                <a href="">Calories search</a>
+            </li>
+            <li>
+                <a href="">ft. shop</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">health news</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">member</a>
+            </li>
+        </ul>
+    </div>
+
+
+</header>
     <div class="prodContent">
         <div class="prod_desc">
-            <h6> ALMONDS SALTED CHOCOLATE BAR</h6>
+            <h5> ALMONDS SALTED CHOCOLATE BAR </h5>
             <p>2448kj / 585kcal per 100g</p>
-            <p>Ingredients
+            <p> The calories you consume of the meal gets 10% discount.<p>
+            <p> Ingredients
                 dark chocolate (49%)<br>
                 (cacao mass, coconut sugar,cacao butter),<br>
                 roasted almonds (49%),
@@ -52,64 +155,72 @@
        
     </div>
    
-    <section class="moreproduct">
-        <h6>MORE FITNESS?</h6>
-        <ul>
-            <li class="prod1">
-                <a href="./product.html">   
-                    <img src="./img/prod1.png">
-                    <div class="prodinfo">
-                        <p>ALMONDS BAR</p>
-                        <p>NT$250</p>
-                        <button>BUY NOW</button>  
-                    </div>
-                 </a>   
-            </li>
-           <li class="prod2">
-                <a href="./product.html">      
-                    <img src="./img/prod2.png">       
-                    <div class="prodinfo">
-                        <p>BANANA BAR</p>
-                        <p>NT$300</p>           
-                        <button>BUY NOW</button>    
-                    </div>
-                </a>     
-            </li>
-            <li class="prod3">
-                <a href="./product.html">
-                <img src="./img/prod3.png">
-                </a>
-                <a href="./product.html">
+    <section class="moreproduct">  
+    <h6>MORE FITNESS?</h6>  
+    <ul>
+        <li class="prod1">
+            <a href="./product.html">   
+                <div class="bg">
+                     <img src="./img/prod1.png">
+                </div>
+                <div class="prodinfo">
+                    <p>ALMONDS BAR</p>
+                    <p>NT$250</p>
+                    <button>BUY NOW</button>     
+                </div>
+             </a>   
+        </li>
+       <li class="prod2">
+            <a href="./product.html">
+                <div class="bg">   
+                     <img src="./img/prod2.png">    
+                </div>   
+                <div class="prodinfo">
+                    <p>BANANA BAR</p>
+                    <p>NT$300</p>           
+                    <button>BUY NOW</button>    
+                </div>
+            </a>     
+        </li>
+        <li class="prod3">
+            <a href="./product.html">
+                <div class="bg"> 
+                    <img src="./img/prod3.png">
+                </div>
                 <div class="prodinfo">
                     <p>STRABERRY BITES</p>
                     <p>NT$230</p>
-                 
+                
                     <button>BUY NOW</button> 
                 </div> 
-             </a>  
-            </li>
-            <li class="prod4">
-                <a href="./product.html">
-                    <img src="./img/prod4.png">
-                    <div class="prodinfo">
-                        <p>COCO ALMONDS</p>
-                        <p>NT$250</p>
-                        <button>BUY NOW</button>  
-                    </div>
-                </a>
-            </li>
-            <li class="prod5">
-                <a href="./product.html">
+            </a>  
+        </li>
+        <li class="prod4">
+            <a href="./product.html">
+                <div class="bg">
+                     <img src="./img/prod4.png">
+                </div>
+                <div class="prodinfo">
+                    <p>COCO ALMONDS</p>
+                    <p>NT$250</p>
+                    <button>BUY NOW</button>  
+                </div>
+            </a>
+        </li>
+        <li class="prod5">
+            <a href="./product.html">
+                <div class="bg">
                     <img src="./img/prod5.png">
-                    <div class="prodinfo">
-                        <p>ENERGY BALL</p>
-                        <p>NT$200</p>
-                        <button>BUY NOW</button>  
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </section>
+                </div>
+                <div class="prodinfo">
+                    <p>ENERGY BALL</p>
+                    <p>NT$200</p>
+                    <button>BUY NOW</button>  
+                </div>
+            </a>
+        </li>
+    </ul>
+</section>
     <script src="./js/quantity.js"></script>
 </body>
 </html>

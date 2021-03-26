@@ -1,0 +1,90 @@
+ .cart{
+     background-color:#D25541;
+     max-width: 400px;
+     height:100vh;
+     position: absolute;
+     right:-100%;
+     transition: all 1s;
+
+     *{
+         color: white;
+     }
+     .yourcart{
+         display: flex;
+         h5{
+            margin: 20px 35px;
+            // border: 1px solid #000;
+        }
+        p{
+            font-size: 20px;
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            cursor: pointer;
+        }
+     }
+        
+        .prod{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 0;
+
+            .prodcart{
+                width: 50%;
+                // border: 1px solid #000;
+                p{
+                    // width: 150px;
+                    margin: 15px 20px;
+                }    
+                .qty{
+                    display: flex;
+                }  
+            }
+            .cartimg{
+                width:20%;
+                // border: 1px solid #000;
+                text-align: center;
+                img{
+                    width: 100%;
+                }
+            }
+            img{
+                width: 20px;
+                cursor: pointer;
+            }
+         
+        }    
+        .allprice{
+            text-align: center;
+            .line{
+                border: 1px solid rgba(238, 238, 238, 0.349);
+                width: 100%;
+            }
+            p{ 
+                margin: 20px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+        .checkout{
+            text-align: center;
+            button {
+                @include btnStyle();
+                width: 150px;
+                text-align: center;
+             }
+        }
+  }
+.opencart{  //新增class展開購物車
+    right: 0;
+    transition: all 0.8s;
+} 
+
+
+@media (max-width: 992px) {
+    .cart{
+        max-width: 100%;
+        width: 100%;
+    }
+}

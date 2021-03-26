@@ -1,0 +1,166 @@
+// @import "./all.scss";
+@import "./base/reset";
+@import "./base/var";
+@import "./base/mixin";
+@import "./base/base";
+@import "./base/grid";
+@import "./base/rwd";
+
+
+
+@import"./component/footer";
+@import "./component/header";
+@import "./component/cart";
+
+.cartall{
+    max-width: 1200px;
+    margin: 0 auto;
+    h5{ 
+        margin: 20px;
+    }
+    .steps{
+        margin-bottom: 50px;
+        p{
+            margin: 10px;
+            position: relative;
+            padding-left: 30px;
+            // border: 1px solid #000;
+             &:nth-child(1)::before{
+                content:"";
+                border-radius: 50%;
+                border: 1px solid #EAA565;
+                background-color: #EAA565;
+                height: 15px;
+                width: 15px;
+                position: absolute;
+                left: 0;
+                bottom: 5px;
+            }  
+        }    
+    }
+    .orderinfo{
+        .ordertitle{
+            display: flex;
+            justify-content: center;
+            margin: 25px 0 10px 0;
+            font-weight: bold;
+            p{
+                width: 35%;
+                // border: 1px solid #000;
+                text-align: center;
+
+            }
+            p:nth-child(1){
+               width: 100%;
+               text-align: center;
+               padding-left: 0;
+            //    border: 1px solid #000;
+            }
+        }
+          .line{
+              border: 1px solid rgba(128, 128, 128, 0.192);
+              margin-bottom: 20px;
+          }
+          .orders{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.192);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            p{
+                justify-content:flex-start;
+                // border: 1px solid #000;
+                width: 14%;
+                text-align: center;
+                &:nth-child(3){
+                    width: 6%;
+                }    
+                &:nth-child(4){
+                    cursor: pointer;
+                } 
+            }
+            .orderbg{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+             //    border: 1px solid #000;
+                 img{
+                     width: 30%;
+                 }
+                 p{
+                     width: 80%;
+                 }
+             }
+        }
+    }
+    .points{
+        // border: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        background-color: #EAA565;
+        border-radius:100px;
+        height: 100px;
+        margin-bottom: 30px;
+        h6{
+            color: white;
+            span{
+                margin-left: 30px;
+                // border: 1px solid #000;
+
+            }
+        }
+        .apply{
+            margin-left: 50px;
+            button {
+                @include btnStyle();
+                width: 150px;
+                text-align: center;
+                margin: 0;
+             }
+        }
+    }
+    .subtotal{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        // border: 1px solid #000;
+        p{
+            // border: 1px solid #000;
+            width: 45%;
+            margin: 10px;
+            justify-content: space-between;
+            padding-left: 18%;
+            margin-left: 10px;
+        }
+        h6{
+            width: 45%;
+            margin: 10px 0 50px 0;
+            padding-left: 18%;
+        }
+        .line{
+            border: 1px solid rgba(128, 128, 128, 0.192);
+             margin-top: 10px;
+            //  height: 1px ;
+             width: 100%;
+        }
+    }
+    .back{
+        // border: 1px solid #000;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        a{
+            font-size:16px;
+            // border-bottom: 1px solid gray;
+        }
+        button {
+            @include btnStyle();
+            width: 250px;
+            text-align: center;
+            margin-right: 50px;
+         }
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/common/mycart.css">
+    <script src="./js/header.js" defer></script>
+    <title>My Cart</title>
+</head>
+<body>
+    @@include('./layout/header.html')
+    @@include('./layout/cart.html')
+    <div class="cartall">
+         <h5>MY CART</h5>
+         <div class="steps">
+             <p>1. CHECK ORDER</p>
+             <p>2. PAYMENT</p>
+             <p>3. CONFIRM ORDER</p>
+         </div>
+         <div class="orderinfo">
+             <div class="ordertitle">
+                 <p>PRODUCT</p>
+                 <p>QTY</p>
+                 <p>PRICE</p>
+                 <p>DELETE</p>
+             </div>
+             <div class="line"></div>
+             <div class="orders">
+                 <a href="./product.html">
+                    <div class="orderbg">
+                        <img src="./img/prod1.png">
+                        <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                    </div>
+                 </a>
+                 <p>1</p>
+                 <p>NT$250</p>
+                 <p>&times;</p>
+             </div>
+             <div class="orders">
+                <a href="./product.html">
+                   <div class="orderbg">
+                       <img src="./img/prod1.png">
+                       <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                   </div>
+                </a>
+                <p>1</p>
+                <p>NT$250</p>
+                <p>&times;</p>
+            </div>
+         </div>
+         <div class="points">
+             <h6>POINTS:<span>200</span></h6>
+             <div class="apply">
+                 <button>APPLY!</button>
+             </div>
+         </div>
+         <div class="subtotal">
+             <p>SUBTOTAL</p>
+             <p>NT$500</p>
+             <p>SHIPPING</p>
+             <p>NT$ 0 </p>
+             <p>POINTS</p>
+             <p>- NT$200</p>
+             <div class="line"></div>
+             <h6>TOTAL</h6>
+             <h6>NT$300</h6>
+         </div>
+         <div class="back">
+             <a href="./shop.html"> &lt; CONTINUE SHOPPING</a>
+             <button>PROCESS TO PAYMENT</button>
+        </div>
+    </div>
+    @@include('./layout/footer.html')
+    <script src="./js/cart.js"></script>
+</body>
+</html>
