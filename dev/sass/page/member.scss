@@ -263,6 +263,37 @@
  
     }
 
+    >:nth-child(2){
+        .goal{
+            >p{
+                text-transform: uppercase;
+                margin-bottom: 10px;
+            }
+            >.goalBody{
+                margin: 0;
+                >div{
+                    display: flex;
+                    align-items: center;
+                    >p{
+                        text-transform: uppercase;
+                        margin: 0px 5px;
+                    }
+                    >.dateLine{
+                        flex-grow: 2;
+                        background-color: $gray3;
+                        border-radius: 100px;
+                        height: 10px;
+                        >.crrentLine{
+                            height: 100%;
+                            width: 80%;
+                            background-color: $primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     >:last-child{
         height: 2000px;
         >.r-aside{
