@@ -1,242 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
 
+        <!-- <link rel="stylesheet" href="./css/common/all.css"> -->
+        <link rel="stylesheet" href="./css/page/index.css" />
+        <script src="./js/header.js" defer></script>
+        <script src="./js/index.js" defer></script>
+    </head>
+    <body>
+        @@include('./layout/header.html')
 
-    <!-- <link rel="stylesheet" href="./css/common/all.css"> -->
-    <link rel="stylesheet" href="./css/page/index.css">
-    <script src="./js/header.js" defer></script>
-    <script src="./js/index.js" defer></script>
-</head>
-<body>
-    @@include('./layout/header.html')
-
-    <div class="mainVision">
-        <img src="./img/main_vision.jpg" alt="">
-    </div>
-
-    <main class="mainContent container">
-        <div class="title">
-            <h1>MORE FITNESS</h1>
-            <h1>LESS FATNESS</h1>
+        <div class="mainVision">
+            <img src="./img/main_vision.jpg" alt="" />
         </div>
-        <div>
-            <div class="scrollDown">
-                <img src="./icon/cart.png">
-            </div>
-            <div id="chatRobot">
-                <img src="./img/logo.png">
-                <div class="card chatRoomBody bodynone">
-                    <div>
-                        <p>FT. CHAT ROOM</p>
-                        <button class="nc-btn">X</button>
-                    </div>
 
-                    <div>
-                        <div class="admin">
-                            <img src="./img/logo.png">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-
-                        <div class="visitor">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-                        <div class="admin">
-                            <img src="./img/logo.png">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-
-                        <div class="visitor">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-                        <div class="admin">
-                            <img src="./img/logo.png">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-
-                        <div class="visitor">
-                            <div class="message">
-                                <p>今天很適合控制飲食的一天, 如果
-                                    有甚麼疑問可以問我</p>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <form>
-                        <textarea name="chatInput" id="chatInput" placeholder="輸入內容"></textarea>
-                        <button class="p-btn">
-                            submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <section class="steps">
-        <div class="container">
+        <main class="mainContent container">
             <div class="title">
-                <h3>See the following steps</h3>
-                <h3>for archie your goal</h3>
+                <h1>MORE FITNESS</h1>
+                <h1>LESS FATNESS</h1>
             </div>
-    
-            <div class="stepSlider">
-                <div>
-                    <span>
-                        1
-                    </span>
-                    <div class="tilt goal card">
-                        <h4>
-                            goal
-                        </h4>
-                        <p>ENTER YOUR TARGET WEIGHT</p>
-                        <div class="fInput"></div>
-                        <p>SET up the deadline</p>
-                        <div class="fInput"></div>
+            <div>
+                <a class="scrollDown" href="">
+                    <img src="./icon/scrollDown.png" />
+                </a>
+                <div id="chatRobot">
+                    <img src="./img/logo.png" />
+                    <div class="card chatRoomBody bodynone">
                         <div>
-                            <div class="l-btn">
-                                create goal
+                            <p>FT. CHAT ROOM</p>
+                            <button class="nc-btn">
+                                <img src="./icon/close.svg">
+                            </button>
+                        </div>
+
+                        <div>
+                            <div class="admin">
+                                <img src="./img/logo.png" />
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+
+                            <div class="visitor">
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+                            <div class="admin">
+                                <img src="./img/logo.png" />
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+
+                            <div class="visitor">
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+                            <div class="admin">
+                                <img src="./img/logo.png" />
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+
+                            <div class="visitor">
+                                <div class="message">
+                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form>
+                            <textarea name="chatInput" id="chatInput" placeholder="輸入內容"></textarea>
+                            <button class="p-btn">submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="steps">
+            <div class="container">
+                <div class="title">
+                    <h3>Goal record report</h3>
+                    <h3>let you more fittness</h3>
+                </div>
+
+                <div class="stepSlider">
+                    <div>
+                        <span> 1 </span>
+                        <div class="tilt goal card">
+                            <h4>goal</h4>
+                            <p>ENTER YOUR TARGET WEIGHT</p>
+                            <div class="fInput"></div>
+                            <p>SET up the deadline</p>
+                            <div class="fInput"></div>
+                            <div>
+                                <div class="l-btn">create goal</div>
                             </div>
                         </div>
                     </div>
+
+                    <div>
+                        <div class="change">
+                            <hr />
+                            <div>
+                                <button class="nc-btn active">1. goal</button>
+                            </div>
+                            <div>
+                                <button class="nc-btn">2. record</button>
+                            </div>
+                            <div>
+                                <button class="nc-btn">3. report</button>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h4>set up your goal</h4>
+                            <p>
+                                填入目標的時間日期和你的理想體重,可以得出你每日最多攝取的卡路里多寡,可以藉由飲食,運動來達到你的目標體重,就由從今開始往你的目標邁進。
+                                要想減重談何容易！這一點我們瞭解。不過只要成為 ft 會員，
+                                您便握有成功減重而且不復胖的工具。
+                                出爐的研究一再地證實，維持追蹤所吃的食物和所做的活動確實有益。道理很簡單，攝食情形追蹤得越一致，您越可能減重。無怪乎每套成功的體重管理計畫都會建議記錄食品日記及/或活動日誌。但沒有適當工具把所吃的每樣食物都記下來，少說繁瑣枯燥，甚至無法辦到。
+                            </p>
+                        </div>
+                        <div>
+                            <a class="g-btn" href=""> join us &rarr; </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="postWall container">
+            <div>
+                <div class="circle person">
+                    <!-- <div class="card comment">
+                        <div class="topBody">
+                            <div>
+                                <div class="face">
+                                    <img src="./img/info3.jpg" alt="" />
+                                </div>
+                                <div>
+                                    <p class="name">Jose Young</p>
+                                    <p class="releaseDate">2021-3-23</p>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="nc-btn report">
+                                    <img src="./icon/report.svg" alt="" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="middleBody">
+                            <article>
+                                <img src="./img/info3.jpg" />
+                            </article>
+                            <div class="commentNum">
+                                <p>100</p>
+                                <p>&ensp;comment</p>
+                            </div>
+                        </div>
+
+                        <div class="bottomBody">
+                            <button class="nc-btn comment"><img src="./icon/comment.svg" /> comment</button>
+                            <div class="share">
+                                <button class="nc-btn">
+                                    <img src="./icon/share.svg" /> 
+                                    share
+                                </button>
+                                <div class="social ">
+                                    <div>
+                                        <img src="./icon/twitter.svg">
+                                    </div>
+                                    <div>
+                                        <img src="./icon/ig.svg">
+                                    </div>
+                                    <div>
+                                        <img src="./icon/facebook.svg">
+                                    </div>
+                                </div>
+                            </div>
+  
+                        </div>
+                    </div> -->
+
+                    @@include('./layout/comment.html')
+                </div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="col-5 card">
+                <h4>Share your report</h4>
+                <p>
+                    將你每天所吃的卡路里,
+                    所運動的消耗的卡路里記錄起來,分享你的卡路里報表,讓你往你的目標邁進。不過只要成為 ft 會員，
+                    您便握有成功減重而且不復胖的工具。
+                    出爐的研究一再地證實，維持追蹤所吃的食物和所做的活動確實有益。道理很簡單，攝食情形追蹤得越一致，您越可能減重。無怪乎每套成功的體重管理計畫都會建議記錄食品日記及/或活動日誌。但沒有適當工具把所吃的每樣食物都記下來，少說繁瑣枯燥，甚至無法辦到。
+                </p>
+                <div class="col-5">
+                    <button class="nc-btn">&lt;</button>
+
+                    <span>1</span>
+                    <span>/</span>
+                    <span>3</span>
+
+                    <button class="nc-btn">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="product container">
+            <div class="top">
+                <div class="content">
+                    <h3>eat and fit</h3>
+                    <p>
+                        使用點數可以折抵商品的所有花費,食用FT.商品可以讓下次餐點,卡路里吸收加倍或是遞減，
+                        讓瘦身減重好輕鬆,可以輕鬆達到你想要的目標體重,趕快下訂。不過只要成為 ft 會員， 您便握有成功減重而且不復胖的工具。 出爐的研究一再地證實，維持追蹤所吃的食物和所做的活動確實有益。道理很簡單，攝食情形追蹤得越一致，您越可能減重。無怪乎每套成功的體重管理計畫都會建議記錄食品日記及/或活動日誌。但沒有適當工具把所吃的每樣食物都記下來，少說繁瑣枯燥，甚至無法辦到。
+                    </p>
                 </div>
 
                 <div>
-                    <div class="change">
-                        <div>
-                            <span>step</span>
-                            <span>1</span>
-                            <span>/</span>
-                            <span>3</span>
-                        </div>
-                        <div>
-                            <button class="nc-btn">&lt;
-                            </button>
-                            <button class="nc-btn">&gt;
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <h4>
-                            set up your goal
-                        </h4>
-                        <p>
-                            八氣接！數一年或洲元不未以馬名：小喜定有一話來筆；飛處體帶還年員親再作有說境。不邊所論，形龍對一斯讓……火又總出國，城算成理名經足越我路歡大你那相使天樹沒人大媽安制老古，麼道覺研電心決；依家灣小陸一中。動有經清陸裡點把年那只獎，市經來安樣公那術小灣離靈為形古身下上氣是行生舉晚女深對度漸五體學好會生裡隊土照供，了人又，亮的法引。家人心管法史倒點不童屋形道在道目破我實說、拿工車精上利出、雄理媽葉回？義如致、馬不年。
-                        </p>
-                    </div>
-                    <div>
-                        <a class="g-btn" href="">
-                            join us &rarr;
-                        </a>
-                    </div>
-                </div>
-            
-            </div>
-        </div>
-    </section>
-
-
-    <section class="postWall container">
-        <div>
-            <div class="circle">
-                <div class="card">
-
+                    <button class="nc-btn">&lt;</button>
+                    <span>1</span>
+                    <span>/</span>
+                    <span>10</span>
+                    <button class="nc-btn">&gt;</button>
                 </div>
             </div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>         
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-        <div class="col-5 card">
-            <h4>Share your daily</h4>
-            <p>八氣接！數一年或洲元不未以馬名：小喜定有一話來筆；飛處體帶還年員親再作有說境。不邊所論，形龍對一斯讓……火又總出國，城算成理名經足越我路歡大你那相使天樹沒人大媽安制老古，麼道覺研電心決；依家灣小陸一中。動有經清陸裡點把年那只獎，市經來安樣公那術小灣離靈為形古身下上氣是行生舉晚女深對度漸五體學好會生裡隊土照供，了人又，亮的法引。家人心管法史倒點不童屋形道在道目破我實說、拿工車精上利出、雄理媽葉回？義如致、馬不年。</p>
-            <div class="col-5">
-                <button class="nc-btn">&lt;
-                </button>
 
-                <span>1</span>
-                <span>/</span>
-                <span>3</span>
+            <div class="bottom"></div>
+        </section>
 
-                <button class="nc-btn">&gt;
-                </button>
-            </div>
-        </div>
-    </section>
-
-    @@include('./layout/footer.html')
-</body>
+        @@include('./layout/footer.html')
+    </body>
 </html>

@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>information</title>
-    <link rel="stylesheet" href="../css/information.css">
+    <link rel="stylesheet" href="../dist/css/common/all.css">
+    <link rel="stylesheet" href="../dist/css/common/information.css">
+    <script src="./js/header.js" defer></script>
 </head>
 <body>
+    @@include('./layout/header.html')
+
     <div class="banner">
         <div class="banner_img">
             <h5>More Fitness,<br>Less Fatness!</h5>
@@ -21,81 +25,87 @@
             <li>EXERCISE</li>
             <li>REGIMEN</li>
         </ul>
-        <select>
-            <option value="" selected>ALL</option>
-            <option value="">FOOD</option>
-            <option value="">EXERCISE</option>
-            <option value="">REGIMEN</option>
-        </select>
+        <div class="custom-select">
+            <select name="sType">
+                <option value="0">ALL</option>
+                <option value="1">FOOD</option>
+                <option value="2">EXERCISE</option>
+                <option value="3">REGIMEN</option>
+            </select>
+        </div>
     </div>
     <div class="main">
-        <div class="AAA">
+        <div class="info_card">
+            <img class="bookmark" src="./img/bookmark-white.png">
+            <div class="text">
+                <p class="title">Nutrition facts and health benefits of buckwheat.</p>
+                <p class="content">Buckwheat belongs to a group of foods commonly called pseudocereals...</p>
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
+            </div>
+            <img class="infophoto1" src="./img/info1_2.jpg">
+        </div>
+        <div class="info_card">
+            <img class="bookmark" src="./img/bookmark-white.png">
+            <video width="480" height="270" controls id="infovideo1">
+                <source src="./img/info2_1.mp4" type="video/mp4">
+            </video>
+            <div class="text">
+                <p class="title">Buckwheat can reduce weight and blood lipids.</p>
+                <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其...</p>
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
+            </div>
+        </div>
+        <!-- ==============================================刪除 -->
+        <div class="info_card">
             <img class="bookmark" src="./img/bookmark-white.png">
             <div class="text">
                 <p class="title">Buckwheat can reduce weight and blood lipids.</p>
                 <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
             </div>
-            <img class="infophoto1" src="./img/info4.jpg">
+            <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
-<!-- ==============================================刪除 -->
-        <div class="AAA">
-            <video id="infovideo1" width="465" height="300" controls src="./img/info1.mp4"></video>
-            <div class="text">
-                <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
-            </div>
-            <img class="infophoto1" src="./img/info4.jpg">
-        </div>
-        <div class="AAA">
+        <div class="info_card">
             <img class="bookmark" src="./img/bookmark-white.png">
             <div class="text">
                 <p class="title">Buckwheat can reduce weight and blood lipids.</p>
                 <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
             </div>
-            <img class="infophoto1" src="./img/info4.jpg">
+            <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
-        <div class="AAA">
+        <div class="info_card">
             <img class="bookmark" src="./img/bookmark-white.png">
             <div class="text">
                 <p class="title">Buckwheat can reduce weight and blood lipids.</p>
                 <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
             </div>
-            <img class="infophoto1" src="./img/info4.jpg">
+            <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
-        <div class="AAA">
+        <div class="info_card">
             <img class="bookmark" src="./img/bookmark-white.png">
             <div class="text">
                 <p class="title">Buckwheat can reduce weight and blood lipids.</p>
                 <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
+                <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
             </div>
-            <img class="infophoto1" src="./img/info4.jpg">
-        </div>
-        <div class="AAA">
-            <img class="bookmark" src="./img/bookmark-white.png">
-            <div class="text">
-                <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                <img class="arrow" src="./img/right-arrow.png">
-            </div>
-            <img class="infophoto1" src="./img/info4.jpg">
+            <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
 <!-- ============================= -->
 
     </div>
+
+    @@include('./layout/footer.html')
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            var infovideo = Document.getElementById('infovideo1');
-            if(infovideo.paused = false){
-                $(this).attr('clipPath','polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)');
-            }else{
-                $(this).attr('clipPath','polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%)');
-            }
+            $('#infovideo1').hover(function(){
+				$(this).css('clip-path','polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%')
+			},function(){
+				$(this).css('clip-path','polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%')
+			});
         });
     </script>
 </body>

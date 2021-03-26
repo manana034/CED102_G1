@@ -4,42 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/info_content.css">
+    <title>info_content</title>
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/info_content.css">
+    <script src="./js/header.js" defer></script>
+
 </head>
 <body>
+    @@include('./layout/header.html')
     <main>
         <p class="title">Buckwheat can reduce weight and blood lipids.</p>
         <div class="date">
             <div>2021-03-10</div>
-            <div>
+            <div class="bookmark">
                 <img class="bookmark" src="./img/bookmark-white.png">
                 <p>KEEP</p>
             </div>
         </div>    
-        <img src="./img/info1.jpg" alt="">
-        <p>蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中，蕎麥可以改善心臟健康、促進減肥、並幫助控制糖尿病。蕎麥是蛋白質、纖維和能量的良好來源。蕎麥不含麩質，因此對於患有乳糜瀉或麩質不耐受的人來說，蕎麥和蕎麥粉是極佳的膳食替代品。
-            <br>根據外媒《medicalnewstoday》報導，蕎麥是一種榖類作物，它與穀物具有許多相似的特性，但並不像大多數其他穀物那樣來自草。蕎麥是許多日常食品中的成分，例如早餐食品，麵粉和麵條。農民也將它用於牲畜飼料。
-            <br>以下部分介紹了在飲食中添加蕎麥可能帶來健康益處的證據。</p>
+        <video width="1200" height="675" controls poster="./img/info_logo.png" id="infovideo1">
+            <source src="./img/info2_1.mp4" type="video/mp4">
+        </video>
+        <p>蕎麥含維生素B1、維生素B2、維生素E、膳食纖維、鉀、鈣、磷等，其中維生素B1、B2含量比白米來得高，身體代謝、修護時不可缺的營養素，且鉀含量也是白米的４倍，有助於改善水腫，穩定血壓。<br>
+            常見的蕎麥有兩種，一種是俗稱「甜蕎」的普通蕎麥；另一種韃靼蕎麥具有苦味，也稱作「苦蕎」。蕎麥主要功能性成分為：芸香苷、槲皮素、異槲皮素、兒茶素等。<br>
+            芸香苷(Rutin)在醫學上已被確定對視網膜出血、毛血管中風及冠狀動脈阻塞有顯著療效，另外，對血管具擴張強化作用。</p>
         
         <section class="top">
-            <div><img src="./img/info2.jpg"></div>
-            <p>1.促進心臟健康<br>
-            作為一種全穀物，蕎麥可以有益於心臟健康。美國心臟協會建議，一個人飲食中至少有一半的穀物應該是全穀物。全麥食品含有對心臟健康很重要的營養素，包括纖維和菸鹼酸。<br>
-            2015年的一項系統評價發現，全穀物食品中的膳食與心臟病風險較低之間存在聯繫。動物研究發現，蕎麥可以降低血壓，也可以改善心臟健康。將蕎麥加入飲食中作為含有全穀物的替代品可以提供這些益處。<br>
-            蕎麥是一種很好的纖維來源。根據美國心臟協會，膳食纖維有助於改善血液中的膽固醇水平，從而降低患心臟病、糖尿病、中風和肥胖的風險。
+            <div><img src="./img/info2_2.jpg"></div>
+            <p>蕎麥這樣吃最對味<br>
+                蕎麥脫殼後，可分為蕎麥粒和蕎麥粉。蕎麥粒通常加入餅乾或麵包中；蕎麥粉則因不含麩質，不像一般麵粉可直接形成有彈性的麵糰，所以蕎麥粉需要搭配一定比例的麵粉才能製成相關產品，例如蕎麥麵條。有麩質過敏的民眾，可選擇蕎麥比例較高的產品當作主食。
             </p>
         </section>
 
         <section class="bottom">
-            <p>2.改善消化<br>蕎麥富含纖維。膳食纖維是一種基於植物的碳水化合物，人體在消化過程中不會分解。纖維有助於腸道有效消化食物，也幫助食物通過消化道。它還可能具有其他益處，例如促進體重減輕和預防心血管疾病。<br>
-                一杯蕎麥還含有1.58毫克推薦的14至16毫克成人菸鹼酸。菸鹼酸或維生素B-3對於將碳水化合物，脂肪和蛋白質轉化為能量供身體細胞使用至關重要。作為纖維和菸鹼酸的良好來源，蕎麥是消化健康的良好選擇。<br>
-                蕎麥有可能引起蕎麥過敏症患者的反應。在食用蕎麥時，他們可能會出現症狀，例如口腔腫脹或蕁麻疹。然而，有關蕎麥過敏的報導並不常見。
+            <p>現代飲食過於精緻，膳食纖維攝取不足，六大類食物中的主食也強調「全穀雜糧類」，建議可以在白米中添加蕎麥，補充膳食纖維，適量的全穀類主食，對於糖尿病患者的血糖上升幅度也會相對穩定，但是有腸胃道潰瘍的民眾，可先諮詢營養師確認是否可食用。<br>
+                除了豐富的膳食纖維，蕎麥當中的磷和鉀含量也相對較高，腎臟病患者於食用前應詢問醫師或營養師，避免增加腎臟負擔。
             </p>
-            <div><img src="./img/info3.jpg"></div>
+            <div><img src="./img/info2_3.jpg"></div>
         </section>
+        <div>
+            <button>VIEW MORE</button>
+        </div>
             
     </main>
+    @@include('./layout/footer.html')
 
 </body>
 </html>

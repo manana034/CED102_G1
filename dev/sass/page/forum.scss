@@ -1,0 +1,66 @@
+@import "../base/mixin";
+
+body{
+    background-color: #F5F2EB;
+}
+
+
+header{
+    font-size: 80px;
+}
+footer{
+    font-size: 80px;
+}
+main{
+    display: flex;
+     justify-content: space-around;
+}
+
+
+div.left{
+    border: 1px solid black;
+    border-right: 1px solid grey;
+    width: 10%;
+    height: 100%;
+    position: fixed;
+    left: 0%;
+}
+
+.left ul{
+    list-style: none;
+    padding: 0px;
+}
+
+div.middle{
+    border: 1px solid black;
+    width: 70%;
+}
+ 
+div.right{
+
+    .join{
+        p{
+            @include textStyle(NotoSans-Regular,14px,#9D9D9D,);
+            }     
+    }
+    border: 1px solid black;
+    width: 20%;
+    height: 100%;
+    border-top-left-radius: 50px;
+    background-color:#FFDA9B;
+    // font-family: 'NotoSans-Regular.ttf';
+    // src: local( "NotoSans-R" '../font/NotoSans-Regular.ttf');
+    position:fixed;
+    right: 0%;
+    
+}
+
+div.join{
+    display: flex;
+    // align-items: center;
+    justify-self: center;
+}
+
+div.join p{
+    text-align: center;
+}

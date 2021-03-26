@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="32" viewBox="0 0 28 32">
+  <defs>
+    <clipPath id="clip-Artboard_3">
+      <rect width="28" height="32"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_3" data-name="Artboard – 3" clip-path="url(#clip-Artboard_3)">
+    <path id="Icon_material-sim-card-alert" data-name="Icon material-sim-card-alert" d="M18.5,3H11.356L6.018,8.356,6,19.069a1.791,1.791,0,0,0,1.785,1.785H18.5a1.791,1.791,0,0,0,1.785-1.785V4.785A1.791,1.791,0,0,0,18.5,3ZM14.034,16.391H12.249V14.605h1.785Zm0-3.571H12.249V8.356h1.785Z" transform="translate(0.783 4.479)"/>
+  </g>
+</svg>

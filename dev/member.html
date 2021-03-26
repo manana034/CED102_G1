@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/page/member.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+    <script src="./js/member.js" defer></script>
+    <script src="./js/header.js" defer></script>
+</head>
+<body>
+    @@include('./layout/header.html')
+
+    <!-- <section class="logIn_signUp">
+        <div class="container card">
+
+            <div class="under">
+                <div class="login">
+
+                    <h4>log in</h4>
+                    <form action="">
+                        <label class="userid">
+                            <p>userid <span></span> </p>
+                            <input type="text" name="userid">
+                        </label>
+                        <label class="psd">
+                            <p>password <span></span></p>
+                            <input type="text" name="psd">
+                        </label>
+                       <div>
+                           <button class="nc-btn o-5" type="button">
+                               forget your password ? 
+                           </button>
+                       </div>
+                       <div>
+                           <button class="g-btn" id="login" type="button">
+                               log in
+                           </button>
+                       </div>
+                    </form>
+
+
+                </div>
+
+                <div class="signup">
+                    <h4>sign up</h4>
+
+                    <form action="">
+                        <label class="fristName">
+                            <p>frist name  <span>*</span></p>
+                            <input type="text" name="fristName">
+                        </label>
+
+                        <label class="lastName">
+                            <p>last name  <span>*</span></p>
+                            <input type="text" name="lastName">
+                        </label>
+
+                        <label class="email">
+                            <p>email  <span>*</span></p>
+                            <input type="text" name="email">
+                        </label>              
+
+                        <label class="userid">
+                            <p>userid  <span>*</span></p>
+                            <input type="text" name="userid">
+                        </label>              
+          
+                        <label class="psd">
+                            <p>password  <span>*</span></p>
+                            <input type="text" name="psd">
+                        </label>              
+                        
+                        <label class="cfmPsd">
+                            <p>confirm password  <span>*</span></p>
+                            <input type="text" name="cfmPsd">
+                        </label>
+
+                        <div>
+                            <button class="p-btn" id="signup" type="button">
+                                sign up 
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="upper">
+                <div>
+                    <h4>Hello, Friend !</h4>
+                    <p>
+                        Enter your personal details and start journey with us
+                    </p>
+                    <div>
+                        <button class="w-btn" id="toggleMemberbtn" data-state="login">
+                            sing up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <main class="row myAccount">
+  
+            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
+                <div>
+                    <div class="personInfo container">
+
+                        <div class="portrait">
+                            <img src="./img/prod1_1.jpg">
+                        </div>
+    
+                        <div class="mainInfo">
+                            <section class="one-info">
+                                <p>level <span>1</span></p>
+                                <h6 class="name">Dorothy Weber</h6>
+                                <p>
+                                    <span>1996</span> / 
+                                    <span>02</span> / 
+                                    <span>21</span>
+                                </p>
+                            </section>
+    
+                            <section class="two-info">
+                                <div class="age">
+                                    <div>
+                                        <img src="./icon/close.svg">
+                                        <p>age</p>
+                                    </div>
+                                    <p>20</p>
+                                </div>
+                                <div class="gender">
+                                    <div>
+                                        <img src="./icon/close.svg">
+                                        <p>gender</p>
+                                    </div>
+                                    <p>male</p>
+                                </div>
+                                <div class="height">
+                                    <div>
+                                        <img src="./icon/close.svg">
+                                        <p>height(cm)</p>
+                                    </div>
+                                    <p>180</p>
+                                </div>
+                                <div class="weight">
+                                    <div>
+                                        <img src="./icon/close.svg">
+                                        <p>weight(kg)</p>
+                                    </div>
+                                    <p>100</p>
+                                </div>
+                                <div class="bmr">
+                                    <div>
+                                        <img src="./icon/close.svg">
+                                        <p>bmr</p>
+                                    </div>
+                                    <p>22000</p>
+                                </div>
+                            </section>
+    
+                            <hr>
+    
+                            <section class="three-info">
+                                <p class="email">diana.griffin@mail.com</p>
+                                <p class="phone">(486)510-1545</p>
+                                <p class="intro">Sed a magna semper, porta purus eu, ullamcorper ligula. Nam sit amet consectetur sapien.  Fusce libero dolor, venenatis eget enim sed, commodo efficitur arcu. </p>
+                            </section>
+    
+    
+                            <section class="edit-signout-button">
+                                <div>
+                                    <button class="l-btn">sign up</button>
+                                </div>
+                                <div>
+                                    <button class="l-btn">edit
+                                        <img src="./icon/close.svg" >
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+    
+                    </div>
+    
+                    <div class="level container">
+                        <p>Member Level</p>
+
+                        <div class="levelBar">
+                            <div class="currentBar"></div>
+                        </div>
+
+                        <div>
+                            <h6 id="levelPointer">80</h6>
+                            /
+                            <span>100</span>
+                        </div>
+
+                    </div>
+                </div>
+           
+            </div>
+
+            <div class="col-6 col-lg-8 col-md-6 col-sm-4">
+                test
+            </div>
+
+            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
+                <aside class="r-aside">
+                    test
+                </aside>
+            </div>
+   
+    </main>
+<!-- 
+    <div id="app">
+        <login-signup></login-signup>
+    </div> -->
+
+
+    @@include('./layout/footer.html')
+</body>
+</html>
