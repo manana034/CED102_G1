@@ -42,8 +42,36 @@ chatRobotCloseIcon.addEventListener('click',(e)=>{
     const body2 = document.querySelector('.chatRoomBody')
     body2.classList.add('bodynone')
     
-
 })
 
 
+const share = document.querySelector('.comment .share>button')
+const social = document.querySelector('.comment .social')
 
+share.addEventListener('click',(e)=>{
+    e.stopPropagation()
+    const state = getComputedStyle(social).display
+    // console.log(state)
+    if (state =="none"){
+        social.style.display = 'flex'
+    } else {
+        social.style.display = 'none'
+    }
+    
+});
+
+const closeSocial = (e)=>{
+    // e.stopPropagation();
+    let ta = e.target
+
+    if (ta.matches('.comment .share>button')) {
+        return
+    } else if (ta.matches('.comment .social') || ta.matches('.comment .social>button') || ta.matches('.comment .social>button>img')) {
+        return
+    } else {
+        social.style.display = 'none'
+    }
+}
+
+
+document.addEventListener('click', closeSocial)

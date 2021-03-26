@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="32" viewBox="0 0 38 32">
+  <defs>
+    <clipPath id="clip-Artboard_1">
+      <rect width="38" height="32"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard – 1" clip-path="url(#clip-Artboard_1)">
+    <path id="Icon_awesome-comment-alt" data-name="Icon awesome-comment-alt" d="M13.826,0H1.975A1.977,1.977,0,0,0,0,1.975v8.888a1.977,1.977,0,0,0,1.975,1.975H4.938v2.592a.371.371,0,0,0,.589.3l3.855-2.892h4.444A1.977,1.977,0,0,0,15.8,10.863V1.975A1.977,1.977,0,0,0,13.826,0Z" transform="translate(10.923 8.022)"/>
+  </g>
+</svg>

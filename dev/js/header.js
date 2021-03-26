@@ -85,40 +85,38 @@ document.addEventListener('click', closeAllSelect)
 
 // -------------------------客製化select↑↑↑↑↑↑↑↑↑↑↑↑
 
-
-let menuIcon = document.querySelector('.menuIcon');
-let menuBody = document.querySelector('.menuBody');
-let menuCIcon = menuBody.children[0];
+let menuIcon = document.querySelector('.menuIcon')
+let menuBody = document.querySelector('.menuBody')
+let menuCIcon = menuBody.children[0]
 
 const menuMove = () => {
     if (menuBody.dataset.state == '0') {
         menuBody.dataset.state = '1'
-        menuBody.style.transform = 'translate(0,2%)'
+        menuBody.style.transform = 'translate(0,0)'
     } else {
         menuBody.dataset.state = '0'
-        menuBody.style.transform = 'translate(100%,2%)'
+        menuBody.style.transform = 'translate(100%,0)'
     }
 }
 
 //element.matches(selectorString) 只能用在element 身上
-const closeMenu = (elmnt) =>{
+const closeMenu = (elmnt) => {
     let ta = elmnt.target
-    //要 點集 在menuIcon 上會變true 
+    //要 點集 在menuIcon 上會變true
     if (ta.matches('.menuIcon') || ta.matches('.menuIcon>img')) {
-        return;
+        return
     } else if (ta.matches('.menuBody')) {
-        return;
+        return
     } else {
         // console.log('is out')
         menuBody.dataset.state = '0'
-        menuBody.style.transform = 'translate(100%,2%)'
+        menuBody.style.transform = 'translate(100%,0)'
     }
 }
 
-menuIcon.addEventListener('click',menuMove);
-menuCIcon.addEventListener('click', menuMove);
-document.addEventListener('click', closeMenu);
-
+menuIcon.addEventListener('click', menuMove)
+menuCIcon.addEventListener('click', menuMove)
+document.addEventListener('click', closeMenu)
 
 // -------------------------menu open↑↑↑↑↑↑↑↑↑↑↑↑
 
@@ -143,7 +141,6 @@ const closeSugItem = (elmnt) => {
         sugItems.style.display = 'none'
     }
 }
-
 
 searchInput.addEventListener('focus', showSugItem)
 document.addEventListener('click', closeSugItem)
