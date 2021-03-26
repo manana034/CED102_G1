@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum</title>
-    <link rel="stylesheet" type="text/css" href="./css/page/forum.css">
+    <link rel="stylesheet" type="text/css" href="./css/page/inforum.css">
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
@@ -116,8 +116,39 @@
 </header>
 
     <main>
-        
+        <!-- 左邊介紹區 -->
         <div class="left">
+            <div class="box_in_left">
+                <div class="profile_pic"><img src="./img/selfie.png" alt=""></div>
+                <div class="edit_btn"><i class="fas fa-pencil-alt"></i></div>
+                <div class="level">Level 10</div>
+                <div class="member_name">Dorothy Weber</div>
+                <div class="follower"><button class="l-btn">following</button></div>
+                <div class="following"><button class="l-btn"><pre>follower </pre></button></div> 
+                    
+                    
+
+                
+                <div class="self_intro">
+                    Sed a magna semper, leo  
+                    ullamcorper 
+                    ligula.  sit amet 
+                    consectetur sapien. Etiam 
+                    dui ipsum, viverra vel 
+                     dapibus auctor leo
+                    scelerisque. Aenean at  
+                    tellus. Morbi eu sapien.
+                    Sed a magna semper, leo  
+                    ullamcorper 
+                    ligula.  sit amet 
+                    consectetur sapien. Etiam 
+                    dui ipsum, viverra vel 
+                     dapibus auctor leo
+                    scelerisque. Aenean at  
+                    tellus. Morbi eu sapien.
+                </div>
+            </div>
+
             <ul>
                 <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
                 <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
@@ -140,12 +171,16 @@
                                 <div class="xsr">Report<i class="fas fa-chart-bar"></i></div>
                             </div>
 
-                            <form class="post_form" action="">
-                                    <div class="issue">
-                                        <div class="radius_icon"></div>
-                                        <input type="text" style="border:none;"placeholder="What's on your mind?">
-                                    </div>
+                            <form class="post_form" action=""> <!-- form裡面有issue 和create_post -->
 
+
+                                    <div class="outer_upload">
+                                        <div class="pic_preview"></div>
+                                        <div class="issue">
+                                            <div class="radius_icon"></div>
+                                            <input type="text" style="border:none;"placeholder="Click buttons above to upload file...">
+                                        </div>
+                                    </div>
 
                                     <div class="create_post">
                                         <div class="ptime">
@@ -334,35 +369,41 @@
         </div>  <!-- class="middle" -->
 
 
-
+        <!-- 右邊報告區 -->
         <div class="right">
             <div class="join">
-               <p>
-                    join us ! <br>
-                    let'S get fitness! <br>
-                    record daily Calories <br>
-                    made you <br>
-                    easily to achieve your <br>
-                    goal with report 
-               </p>
-                <div class="l-btn">
-                    create goal
-                </div>
-            </div>
-        </div>
+                <div class="your_report">Your Report<i class="fas fa-caret-down"></i></div>
+               
+                <div class="report_card">
+                    <div class="this_month"> <button class="l-btn">This month<i class="fas fa-caret-down"></i></button></div>
+                    <!-- <div id="chartdiv02">2000cal</div> -->
+                    
 
+
+                </div>
+
+                <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
+                <div class="report_card"></div>
+                    
+                
+
+
+            </div>  <!-- join -->
+            
+        </div> <!-- right -->
+        
     </main>
 
 
 
     <footer class="container ">
-    <div>
-        <img src="./img/logo.png" alt="">
-    </div>
-    <p class="o-5">
-        Copyright © 2021  ft. All rights reserved.
-    </p>
-</footer>
+        <div>
+            <img src="./img/logo.png" alt="">
+        </div>
+        <p class="o-5">
+            Copyright © 2021  ft. All rights reserved.
+        </p>
+    </footer>
 
 
 

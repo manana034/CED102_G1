@@ -47,7 +47,53 @@ div.left{
     margin-top: 1%;
     margin-right: 22px;
     width: 15%;
+    display: flex;
+    flex-direction: column;
 }
+
+
+.left .box_in_left{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20%;
+    padding-top: 10%;
+    text-transform:uppercase;
+    position:sticky;
+    top: 10%;
+    left: 0%
+}
+
+
+.profile_pic{
+    border: 2px solid white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: $gray5;
+    align-self: center;
+}
+
+.edit_btn{
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+    background-color: #ffffff;
+}
+
+
+.left .l-btn{
+    margin-left: 0%;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding-left:15% ;
+    padding-right:15% ;
+  }
+
+
 
 .left ul{
     list-style: none;
@@ -55,7 +101,7 @@ div.left{
     padding-top: 10%;
     text-transform:uppercase;
     position:sticky;
-    top: 10%;
+    top: 80%;
     left: 0%;
 }
 
@@ -88,38 +134,87 @@ div.right{
     background-color:#FFDA9B;
 }
 
-div.join{
-    display: flex;
-    justify-self: center;
-    padding-left: 14%;
-    padding-top: 20%;
-    display: flex;
-    flex-direction: column;
-    position:sticky;
-    top: 10%;
-    left: 0%;
+.your_report{  //下拉選單的字
+    color:$gray5;
+    text-transform:uppercase;
+    cursor: pointer;
+    margin-top: 15%;
+    margin-left: 10%;
+    margin-bottom: 4%;
 }
 
-div.join p{
-    text-align: center;
-    text-transform:uppercase;
+.this_month{
+    color:$gray5;   
+    margin-top: -7%;
+    margin-left: -9%;
+    margin-bottom: 4%;
 }
+
+.this_month .l-btn{
+    text-transform:uppercase;
+    cursor: pointer;
+    background-color:#FFDA9B;
+    border: transparent;
+}
+
+.report_card{ //白色圓角卡片
+    padding: 30px 35px;
+    background-color: #ffffff;
+    border-radius: 35px;
+    margin-left: 9%;
+    margin-right: 9%;
+}
+
+// div.join{
+//     display: flex;
+//     justify-self: center;
+//     padding-left: 14%;
+//     padding-top: 20%;
+//     display: flex;
+//     flex-direction: column;
+//     position:sticky;
+//     top: 10%;
+//     left: 0%;
+// }
+
+// div.join p{
+//     text-align: center;
+//     text-transform:uppercase;
+// }
+// .right .join{
+//     border: 1px solid red;
+//     width: 100%;
+// }
+
+#chartdiv02 { //圓餅   
+    width: 100%;
+    height: 300px;
+  
+  }
+
+
+  //長條
+// #chartdiv01 { 
+//     width: 100%;
+//     height: 300px;
+//   }  
 
 
 //"中間middle"裡 上面的區塊midbox(內含outcard和popular) 下面才是瀑布流
 .midbox{
-  // border: 1px solid deeppink;
+  border: 1px solid deeppink;
   display: flex;
   // justify-content: space-around;
 }
 
 .outcard{
-  // border: 1px solid darkgreen;
+  border: 1px solid darkgreen;
   width: 60%;
 }
 
 .outcard .card{
-  padding: 20px 20px;
+  padding: 14px 14px;
+  margin-top: 3%;
 }
 // .card .post{
 //   border: 1px solid red;
@@ -128,58 +223,89 @@ div.join p{
 .xsbutton{
   display: flex;
   text-transform:uppercase;
+  margin-left: 3%;
 }
 .post .xsl{
   margin-right: 5%;
 }
 
-.issue{
-  border-bottom:1px solid black;
-  margin-top: 5%;
-  margin-bottom: 2%;
-  display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 4%;
-}
-.issue input{
-  width: 350px;
-  margin-right: 22%;
-  margin-left: 4%;
-  // margin-bottom: 10%;
+
+
+.post_form{
+    border: 1px solid blue;
 }
 
+
+.outer_upload{
+    border: 1px solid orange;
+    display: flex;
+}
+
+.pic_preview{  //圓角正方形預覽
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+    background-color: $gray4;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 4%;
+    margin-left: 3%;
+    display: flex;
+    padding-bottom: 4%;
+  }
+  
+
+
+
+
+.issue{
+//   border-bottom:1px solid black;
+  border: 1px solid black;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.radius_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+    background-color: $gray5;
+  }
+
+.issue input{
+  width: 420px;
+  height: 40px;
+  margin-left: 0%;
+}
 
 .issue input::-webkit-input-placeholder {
   /* placeholder字体大小 */
   font-size: 24px;
   color: $gray4;
-//   $fontFamily: (
-//     "NotoSans-L": '../../font/NotoSans-Light.ttf',
-// ); 
+}
 
-}
-.radius_icon {
-  width: 50px;
-  height: 50px;
-	border-radius: 50px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-  background-color: $gray5;
-}
+
 
 
 .create_post{
   display: flex;
+  align-items: baseline;
 }
 
 .ptime{
   margin-top: 5%;
-  margin-right: 28%;
+  margin-right: 30%;
+  margin-left: 3%;
   color: $gray5 ;
 }
 
 .popular{
   color:$gray5;
-  // border: 1px solid blue;
+  border: 1px solid blue;
   width: 40%;
   margin-left: 2%;
 }
@@ -192,8 +318,10 @@ div.join p{
   text-transform:uppercase;
   cursor: pointer;
   margin-top: 4%;
-  margin-bottom: 8%;
+  margin-bottom: 5%;
 }
+
+
 
 
 
@@ -255,7 +383,7 @@ div.join p{
     transform: scale(1.025);
   }
 
-  div.load{
+   div.load{
     border-bottom: 1px solid black;
     margin-left: 49%;
     margin-right: 40%;
@@ -278,12 +406,12 @@ div.join p{
   }
 
 
-  .join .l-btn{
-    margin-top: 50%;
-    text-align: center;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
+//   .join .l-btn{
+//     margin-top: 50%;
+//     text-align: center;
+//     cursor: pointer;
+//     text-transform: uppercase;
+//   }
 
 
 
