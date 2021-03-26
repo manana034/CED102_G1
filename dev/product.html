@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/common/product.css">
-    <script src="./js/header.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/css/product.css">
     <title>Product</title>
 </head>
 <body>
-    @@include('./layout/header.html')
     <div class="prodContent">
         <div class="prod_desc">
-            <h5> ALMONDS SALTED CHOCOLATE BAR </h5>
+            <h6> ALMONDS SALTED CHOCOLATE BAR</h6>
             <p>2448kj / 585kcal per 100g</p>
-            <p> The calories you consume of the meal gets 10% discount.<p>
-            <p> Ingredients
+            <p>Ingredients
                 dark chocolate (49%)<br>
                 (cacao mass, coconut sugar,cacao butter),<br>
                 roasted almonds (49%),
@@ -55,7 +52,64 @@
        
     </div>
    
-    @@include('./layout/moreproduct.html')
+    <section class="moreproduct">
+        <h6>MORE FITNESS?</h6>
+        <ul>
+            <li class="prod1">
+                <a href="./product.html">   
+                    <img src="./img/prod1.png">
+                    <div class="prodinfo">
+                        <p>ALMONDS BAR</p>
+                        <p>NT$250</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                 </a>   
+            </li>
+           <li class="prod2">
+                <a href="./product.html">      
+                    <img src="./img/prod2.png">       
+                    <div class="prodinfo">
+                        <p>BANANA BAR</p>
+                        <p>NT$300</p>           
+                        <button>BUY NOW</button>    
+                    </div>
+                </a>     
+            </li>
+            <li class="prod3">
+                <a href="./product.html">
+                <img src="./img/prod3.png">
+                </a>
+                <a href="./product.html">
+                <div class="prodinfo">
+                    <p>STRABERRY BITES</p>
+                    <p>NT$230</p>
+                 
+                    <button>BUY NOW</button> 
+                </div> 
+             </a>  
+            </li>
+            <li class="prod4">
+                <a href="./product.html">
+                    <img src="./img/prod4.png">
+                    <div class="prodinfo">
+                        <p>COCO ALMONDS</p>
+                        <p>NT$250</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                </a>
+            </li>
+            <li class="prod5">
+                <a href="./product.html">
+                    <img src="./img/prod5.png">
+                    <div class="prodinfo">
+                        <p>ENERGY BALL</p>
+                        <p>NT$200</p>
+                        <button>BUY NOW</button>  
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
     <script src="./js/quantity.js"></script>
 </body>
 </html>
