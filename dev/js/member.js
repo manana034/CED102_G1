@@ -277,7 +277,7 @@ function getPosition(element) {
 
 const postion = getPosition(aside)
 
-console.log(postion)
-console.log(aside.getBoundingClientRect().y)
+// console.log(postion)
+// console.log(aside.getBoundingClientRect().y)
 
 // aside.style.top = `${aside.getBoundingClientRect().y}px`
