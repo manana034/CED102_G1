@@ -1,8 +1,6 @@
 @import './all.scss';
-@import './component/header.scss';
-@import './component/footer.scss';
 
-main { 
+main {
     margin: auto;
     max-width: 1200px;
     // position: relative;
@@ -16,12 +14,11 @@ main {
         display: flex;
         justify-content: space-between;
         font-size: 14px;
-        div.bookmark {
+        div {
             // position: absolute;
             display: flex;
             justify-content: flex-end;
-            cursor: pointer;
-            img.bookmark{
+            .bookmark{
                 width: 15px;
                 height: 15px;
                 display: inline-block;
@@ -29,8 +26,7 @@ main {
             }
             p{
                 display: inline-block;
-                padding: 7px;
-                letter-spacing: 2px;    
+                padding: 7px;       
             }
         }
     }
@@ -39,45 +35,33 @@ main {
     }
     p {
         padding: 30px;
-        font-size: 16px;
-        letter-spacing: 2px;    
-        line-height: 26px;
     }
     section.top {
-        margin: 70px auto;
+        margin: auto;
         // background-color: blue;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         div {
             width: 40%;
         }
         p {
-            width: 40%;
-            // letter-spacing: 2px;    
-            // line-height: 26px;
+            width: 50%;
+            font-size: 16px;
         }
     }
     section.bottom {
-        margin: 70px auto;
+        margin: auto;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         div {
             width: 40%;
         }
         p {
-            width: 40%;
+            width: 50%;
+            font-size: 16px;
         }
 
-    }
-    div {
-        display: flex;
-        justify-content: flex-end;
-        button {
-            @include btnStyle($b-color:$primary);
-            text-align: center;
-            margin-left: 30px;
-        }
     }
 }

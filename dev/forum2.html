@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froum</title>
+    <link rel="stylesheet" type="text/css" href="./css/page/forum.css">
+    <script src="./js/header.js" defer></script>
+    <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
+    <!-- <script src="../dist/js/header.js"></script> -->
+</head>
+<body>
+    @@include('./layout/header.html')
+
+    <main>
+        
+        <div class="left">
+            <ul>
+                <li>news feed</li>  <br>
+                <li>Photo / Video</li> <br>
+                <li>Report</li>
+            </ul>
+        </div>
+
+
+
+        <div class="middle">
+            <div class="gallery" id="gallery">
+                <!-- <div class="gallery-item"> -->
+                    <!-- <div class="card"> 
+                        <div class="figure">
+                            <img style="border-radius: 50%;" src="https://source.unsplash.com/200X200/?avatar">
+                            <span>花橘子</span>
+                        </div> -->
+
+                        <!-- <article>
+
+                            
+                            <img src="https://source.unsplash.com/featured/?cal" alt="">
+                            <section>
+                                <p>join us !
+                                    let'S get fitness!
+                                    record daily Calories
+                                    made you
+                                    easily to achieve your
+                                    goal with report
+                                </p>
+                            </section>
+                        </article> -->
+       
+
+               
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?food" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>                               
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?organic" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?fitness" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?diet" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?fruit" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?protein" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?vegetable" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?health" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?meal" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?weight" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div> 
+
+            </div>   <!-- class="gallery" id="gallery" -->
+        </div>  <!-- class="middle" -->
+
+
+
+        <div class="right">
+            <div class="join">
+               <p>
+                    join us ! <br>
+                    let'S get fitness! <br>
+                    record daily Calories <br>
+                    made you <br>
+                    easily to achieve your <br>
+                    goal with report 
+                    
+               </p>
+            </div>
+        </div>
+
+    </main>
+
+
+
+    @@include('./layout/footer.html')
+
+
+
+
+
+    <script>
+        var gallery = document.querySelector('#gallery');
+        var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+        var getHeight = function (item) { return item.querySelector('.card').getBoundingClientRect().height; };
+        var resizeAll = function () {
+            var altura = getVal(gallery, 'grid-auto-rows');
+            var gap = getVal(gallery, 'grid-row-gap');
+            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                var el = item;
+                el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+            });
+        };
+        gallery.querySelectorAll('img').forEach(function (item) {
+            item.classList.add('byebye');
+            if (item.complete) {
+                console.log(item.src);
+            }
+            else {
+                item.addEventListener('load', function () {
+                    var altura = getVal(gallery, 'grid-auto-rows');
+                    var gap = getVal(gallery, 'grid-row-gap');
+                    var gitem = item.parentElement.parentElement;
+                    gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                    item.classList.remove('byebye');
+                });
+            }
+        });
+        window.addEventListener('resize', resizeAll);
+        // gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+        //     item.addEventListener('click', function () {        
+        //         item.classList.toggle('full');        
+        //     });
+        // });
+    </script>
+
+
+
+</body>
+</html>

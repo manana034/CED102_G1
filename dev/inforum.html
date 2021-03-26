@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" type="text/css" href="./css/page/inforum.css">
+    <script src="./js/header.js" defer></script>
+    <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
+    <!-- <script src="../dist/js/header.js"></script> -->
+</head>
+<body>
+    <header class="container ">
+
+
+    <div class="row">
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 logo">
+                <a href="">
+                    <!-- <img src="./dev/layout/dist/img/logo.png" > -->
+                    <img src="./img/logo.png">
+                </a>
+            </div>
+            
+            <form id="searchBar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                <div class="row">
+                    
+                    <div class="search-input">
+                        <input type="text" placeholder="SERACH">
+                        <div class="suggest-items">
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item" href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            <a class="search-item"href="">麥香魚餐</a>
+                            
+                            <a class="custom-item" href="">customize food
+                                <img src="./icon/cart.png" >
+                            </a>
+                        </div>
+                    </div>
+                    <div class="custom-select">
+                        <select name="sType">
+                          <option value="0">ALL</option>
+                          <option value="1">DESSERT</option>
+                          <option value="2">FRIED</option>
+                          <option value="3">NOODLES</option>
+                          <option value="4">RICE</option>
+                          <option value="5">DRNK</option>
+                          <option value="6">REPLACEMENT</option>
+                          <option value="7">FAST FOOD</option>
+                          <option value="8">FRUITS & VEG</option>
+                          <option value="9">CUSTOM</option>
+                        </select>
+                    </div>
+                    <button class="nc-btn o-5">
+                        <img src="./icon/magnifier.png" alt="">
+                    </button>
+                </div>
+
+            </form>
+    
+            <div class="col-4 col-lg-2 col-md-2 col-sm-1 row" >
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <a href="" class=" a"> MEMBER
+                        <img src="./icon/member.png" alt="">
+                    </a>
+                </div>
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1 ">
+                    <button class="nc-btn"> CART
+                        <img src="./icon/cart.png" alt="">
+                    </button>
+                </div>
+
+                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <button class="nc-btn menuIcon"> MENU
+                        <img src="./icon/hamburger.png" alt="">
+                    </button>
+                </div>
+            </div>
+
+    </div>
+
+    
+    <div class="menuBody" data-state="0">
+        <button class="nc-btn">
+            <img src="./icon/cart.png">
+        </button>
+        <ul>
+            <li>
+                <a href="">Calories diary</a>
+            </li>
+            <li>
+                <a href="">Calories search</a>
+            </li>
+            <li>
+                <a href="">ft. shop</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">health news</a>
+            </li>
+            <li>
+                <a href="">post board</a>
+            </li>
+            <li>
+                <a href="">member</a>
+            </li>
+        </ul>
+    </div>
+
+
+</header>
+
+    <main>
+        <!-- 左邊介紹區 -->
+        <div class="left">
+            <div class="box_in_left">
+                <div class="profile_pic"><img src="./img/selfie.png" alt=""></div>
+                <div class="edit_btn"><i class="fas fa-pencil-alt"></i></div>
+                <div class="level">Level 10</div>
+                <div class="member_name">Dorothy Weber</div>
+                <div class="follower"><button class="l-btn">following</button></div>
+                <div class="following"><button class="l-btn"><pre>follower </pre></button></div> 
+                    
+                    
+
+                
+                <div class="self_intro">
+                    Sed a magna semper, leo  
+                    ullamcorper 
+                    ligula.  sit amet 
+                    consectetur sapien. Etiam 
+                    dui ipsum, viverra vel 
+                     dapibus auctor leo
+                    scelerisque. Aenean at  
+                    tellus. Morbi eu sapien.
+                    Sed a magna semper, leo  
+                    ullamcorper 
+                    ligula.  sit amet 
+                    consectetur sapien. Etiam 
+                    dui ipsum, viverra vel 
+                     dapibus auctor leo
+                    scelerisque. Aenean at  
+                    tellus. Morbi eu sapien.
+                </div>
+            </div>
+
+            <ul>
+                <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
+                <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
+                <li><a href=""><i class="fas fa-chart-bar"></i>Report</a></li>
+            </ul>
+        </div>
+
+
+
+        <div class="middle">
+
+
+            <div class="midbox">
+                <div class="outcard">
+                    <div class="card">
+                        <div class="post">
+
+                            <div class="xsbutton">
+                                <div class="xsl">Photo / Video<i class="fas fa-image"></i></div>
+                                <div class="xsr">Report<i class="fas fa-chart-bar"></i></div>
+                            </div>
+
+                            <form class="post_form" action=""> <!-- form裡面有issue 和create_post -->
+
+
+                                    <div class="outer_upload">
+                                        <div class="pic_preview"></div>
+                                        <div class="issue">
+                                            <div class="radius_icon"></div>
+                                            <input type="text" style="border:none;"placeholder="Click buttons above to upload file...">
+                                        </div>
+                                    </div>
+
+                                    <div class="create_post">
+                                        <div class="ptime">
+                                            <script type="text/javascript">
+                                                var Today=new Date();
+                                                document.write("DATE:",  "&nbsp");
+                                                document.write(Today.getFullYear()+"/");
+                                                document.write(Today.getMonth()+1 +"/");
+                                                document.write(Today.getDate());
+                                                document.write("&nbsp", "TIME:",  "&nbsp");
+                                                
+                                                document.write(Today.getHours()+":");
+                                                document.write(Today.getMinutes());             
+                                            </script>
+                                        </div>
+                            
+                                        <button class="l-btn"><i class="fas fa-pencil-alt"></i>Create Post</button>
+                                    </div>  <!-- create_post-->    
+                            </form>       
+
+                        </div> <!-- post -->
+                    </div> <!-- card -->
+                </div> <!-- outcard -->
+
+                <div class="popular">
+
+                    <div class="recommend">most popular<i class="fas fa-caret-down"></i></div>
+                    <div>
+                        <img src="./img/portrait.png" alt="">
+                        <img src="./img/portrait.png" alt="">
+                        <img src="./img/portrait.png" alt="">
+                     </div>
+                </div>
+            </div>
+
+
+
+            <div class="gallery" id="gallery">
+                <!-- <div class="gallery-item"> -->
+                    <!-- <div class="card"> 
+                        <div class="figure">
+                            <img style="border-radius: 50%;" src="https://source.unsplash.com/200X200/?avatar">
+                            <span>花橘子</span>
+                        </div> -->
+
+                        <!-- <article>
+
+                            
+                            <img src="https://source.unsplash.com/featured/?cal" alt="">
+                            <section>
+                                <p>join us !
+                                    let'S get fitness!
+                                    record daily Calories
+                                    made you
+                                    easily to achieve your
+                                    goal with report
+                                </p>
+                            </section>
+                        </article> -->
+       
+
+               
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?food" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>                               
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?organic" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?fitness" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?diet" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?fruit" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?protein" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?vegetable" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?health" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?meal" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="card">     
+                            <img src="https://source.unsplash.com/featured/?weight" alt="">
+                            <p>join us !
+                                let'S get fitness!
+                                record daily Calories
+                                made you
+                                easily to achieve your
+                                goal with report</p>
+                    </div>
+                </div> 
+
+            </div>   <!-- class="gallery" id="gallery" -->
+            <div class="load">load more +</div>
+        </div>  <!-- class="middle" -->
+
+
+        <!-- 右邊報告區 -->
+        <div class="right">
+            <div class="join">
+                <div class="your_report">Your Report<i class="fas fa-caret-down"></i></div>
+               
+                <div class="report_card">
+                    <div class="this_month"> <button class="l-btn">This month<i class="fas fa-caret-down"></i></button></div>
+                    <!-- <div id="chartdiv02">2000cal</div> -->
+                    
+
+
+                </div>
+
+                <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
+                <div class="report_card"></div>
+                    
+                
+
+
+            </div>  <!-- join -->
+            
+        </div> <!-- right -->
+        
+    </main>
+
+
+
+    <footer class="container ">
+        <div>
+            <img src="./img/logo.png" alt="">
+        </div>
+        <p class="o-5">
+            Copyright © 2021  ft. All rights reserved.
+        </p>
+    </footer>
+
+
+
+
+
+
+
+    <script>
+        var gallery = document.querySelector('#gallery');
+        var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+        var getHeight = function (item) { return item.querySelector('.card').getBoundingClientRect().height; };
+        var resizeAll = function () {
+            var altura = getVal(gallery, 'grid-auto-rows');
+            var gap = getVal(gallery, 'grid-row-gap');
+            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                var el = item;
+                el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+            });
+        };
+        gallery.querySelectorAll('img').forEach(function (item) {
+            item.classList.add('byebye');
+            if (item.complete) {
+                console.log(item.src);
+            }
+            else {
+                item.addEventListener('load', function () {
+                    var altura = getVal(gallery, 'grid-auto-rows');
+                    var gap = getVal(gallery, 'grid-row-gap');
+                    var gitem = item.parentElement.parentElement;
+                    gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                    item.classList.remove('byebye');
+                });
+            }
+        });
+        window.addEventListener('resize', resizeAll);
+        // gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+        //     item.addEventListener('click', function () {        
+        //         item.classList.toggle('full');        
+        //     });
+        // });
+    </script>
+
+
+
+</body>
+</html>

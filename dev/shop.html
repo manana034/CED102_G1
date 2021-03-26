@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/common/shop.css">
+    <link rel="stylesheet" type="text/css" href="./css/shop.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-    <script src="./js/header.js" defer></script>
     <title>SHOP</title>
 </head>
 <body>
-    @@include('./layout/header.html')
     <div class="banner">
-        <h4>Fitness starts with what you eat.</h4>
+        <h5>Fitness starts with what you eat.</h5>
         <img src="./img/banner.jpeg">
     </div>
     
@@ -33,7 +31,7 @@
                     <label for="regimen">REGIMEN</label>
             </div>
             </form>
-            
+
             <form>
                 <p>OUR PRODUCTS</p>
                 <div class="filter1">
@@ -49,16 +47,13 @@
                     <label for="energy">ENERGY BAR</label>
                 </div>
             </form> 
-            </div>   
+            </div>
+
             <div class="products" id="app">
-                <div class="sort">
-                    <p>SORT BY </p>
-                    <img src="./img/arrow-down-sign-to-navigate.png">
-               </div>  
                 <ul>
-                    <li class="prod1" v-for="item in products"> 
+                    <li class="prod1" v-for="item in products" v-bind:style="item"> 
                         <a href="./product.html">   
-                            <div class="bg" v-bind:style="item">
+                            <div class="bg">
                                 <img v-bind:src="item.img">
                             </div>
                             <div class="prodinfo">
@@ -78,7 +73,7 @@
                 products: [{
                     img: "./img/prod1.png",
                     backgroundColor: "#2d6ca6",
-                    name: "ALMONDS BAR (consume 0.8 cal)",
+                    name: "ALMONDS BAR",
                     price:"NT$250",
                 },
                 {
