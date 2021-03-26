@@ -17,7 +17,7 @@ function moveFont(){
 exports.movefont = moveFont;
 
 function moveImg() {
-    return src('./dev/img/*').pipe(dest('dist/img/'));
+    return src('./dev/img/**').pipe(dest('dist/img/'));
 }
 
 function moveIcon(){
