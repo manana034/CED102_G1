@@ -19,7 +19,7 @@
         <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
         <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
         <tr><td colspan="2" align="center">
-                <input type="button" id="btnLogin" value="登入">
+                <input type="button" id="btnLogin" value="FOLLOWING">
                 <input type="button" id="btnCancel" value="取消">
             </td></tr>
         </table>
@@ -40,10 +40,10 @@
                 <div class="member_level">Level 10</div>
                 <div class="member_name">Dorothy Weber</div>
                     
-                <div class="follower"><button class="l-btn">following</button></div>
-                <div class="following"><button class="l-btn"><pre>follower </pre></button></div> 
+                <div class="follower"><button class="l-btn">follower</button></div>
+                <div class="following"><button class="l-btn"><span id="spanLogin">FOLLOWING</span></button></div> 
   
-                    
+                
 
                 
                 <div class="self_intro">
@@ -291,14 +291,14 @@
             <img src="大頭照.jpg" id="pic" title="頭貼">
             <div id="bar" style="position: absolute;top:0;right: 20px">
             <span id="memName">&nbsp;</span>
-            <span id="spanLogin">登入</span>
+            <!-- <span id="spanLogin">登入</span> -->
             </div>
             
             <div id="content">
             <center><h1>這是首頁</h1></center>
             </div>
             
-            <div id="footer"></div>
+            <!-- <div id="footer"></div> -->
             
             </div><!-- wrapper -->
 
@@ -314,13 +314,13 @@
                 function showLoginForm(){
                   var spanLogin = document.getElementById("spanLogin");
                 
-                  if(spanLogin.innerText == "登入"){
+                  if(spanLogin.innerText == "FOLLOWING"){
                     document.getElementById("lightBox").style.display = "";
                     // document.getElementById("pic").style.display = "none";
                 
                   }else{
                     var obj = document.getElementById("spanLogin");
-                    obj.innerText = "登入";
+                    obj.innerText = "FOLLOWING";
                     var obj = document.getElementById("memName");
                     obj.innerText = "";
                     var obj = document.getElementById("memPsw");
