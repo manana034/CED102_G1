@@ -42,7 +42,7 @@ main{
 
 //左邊 left
 div.left{
-    // border: 1px solid black;
+    border: 1px solid black;
     border-right: 1px solid #c5bfbf;
     margin-top: 1%;
     margin-right: 22px;
@@ -53,36 +53,68 @@ div.left{
 
 
 .left .box_in_left{
+    margin-left: 22%;
+    background-color: indianred;
+    // border: 1px solid deeppink ;
     display: flex;
     flex-direction: column;
-    padding-left: 20%;
-    padding-top: 10%;
     text-transform:uppercase;
     position:sticky;
-    top: 10%;
+    top: 14%;
     left: 0%
 }
 
 
+
 .profile_pic{
-    border: 2px solid white;
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    background-color: $gray5;
-    align-self: center;
-}
-
-.edit_btn{
+    background-color: khaki;
     display: flex;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-    border-radius: 50px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-    background-color: #ffffff;
+    width: 100%;
 }
 
+.profile_pic img{
+  border: 2px solid white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: $gray5;
+  margin-left: 14%;
+  cursor: pointer;
+}
+
+
+
+.edit_btn_outer{
+    background-color: lightcoral;
+    width: 100%;
+}
+
+ .fa-pencil-alt{
+  border-radius: 50px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+  background-color: #ffffff;
+}
+
+// .edit_btn{
+//     display: flex;
+//     justify-content: center;
+//     width: 25px;
+//     height: 25px;
+//     border-radius: 50px;
+//     box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+//     background-color: #ffffff;
+//     cursor: pointer;
+// }
+
+.member_level{
+    text-transform: capitalize;
+}
+
+.member_name{
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 20px;
+}
 
 .left .l-btn{
     margin-left: 0%;
@@ -91,18 +123,16 @@ div.left{
     text-transform: uppercase;
     padding-left:15% ;
     padding-right:15% ;
+    margin-bottom: -0.5%;
+    
   }
 
 
 
-.left ul{
-    list-style: none;
-    padding-left: 20%;
-    padding-top: 10%;
-    text-transform:uppercase;
-    position:sticky;
-    top: 80%;
-    left: 0%;
+
+.self_intro{
+  border: 1px solid deeppink;
+  width: 80%;
 }
 
 //本頁標記
@@ -131,8 +161,22 @@ div.right{
     margin-left: 22px;
     width: 20%;
     border-top-left-radius: 50px;
-    background-color:#FFDA9B;
+    // background-color:#FFDA9B;
+    background-color: indigo;
+    position: sticky;
+    top:0%;
+    right: 0%;
 }
+
+
+div.join{
+    background-color: indianred;
+    border-top-left-radius: 50px;
+    // position: sticky;
+    // top:0%;
+    // right: 0%;
+}
+
 
 .your_report{  //下拉選單的字
     color:$gray5;
@@ -166,124 +210,12 @@ div.right{
 }
 
 //切換報表頁籤
-ul.tabs {
-	margin: 0;
-	padding: 0;
-	// float: left;
-	list-style: none;
-	height: 32px;
-	border-bottom: 1px solid #333;
-	width: 100%;
-	  @media screen and (min-width: 769px) {
-	display:table;
-  }
-	table-layout: fixed;
-	position: relative;
-}
 
-ul.tabs li {
-	// float: left;
-	margin: 0;
-	cursor: pointer;
-	padding: 0px 21px;
-	height: 31px;
-	line-height: 31px;
-	border-top: 1px solid #333;
-	border-left: 1px solid #333;
-	border-bottom: 1px solid #333;
-	background-color: #666;
-	color: #ccc;
-	overflow: hidden;
-	// position: relative;
-	display: table-cell;
-	transition:.3s;
-}
-
-.tab_last { border-right: 1px solid #333; }
-
-ul.tabs li:hover {
-	background-color: #ccc;
-	color: #333;
-}
-
-ul.tabs li.active {
-	background-color: #fff;
-	color: #333;
-	border-bottom: 1px solid #fff;
-	display: block;
-
-}
-
-.tab_container {
-	border: 1px solid #333;
-	border-top: none;
-	clear: both;
-	float: left;
-	width: 100%;
-	background: #fff;
-	overflow: auto;
-	box-sizing: border-box;
-}
-
-.tab_content {
-	padding: 20px;
-	display: none;
-}
-
-.tab_drawer_heading { display: none;  transition:.3s;}
-
-@media screen and (max-width: 768px) {
-	.tabs {
-		display: none;
-	}
-	.tab_drawer_heading {
-		background-color: #ccc;
-		color: #fff;
-		border-top: 1px solid #333;
-		margin: 0;
-		padding: 5px 20px;
-		display: block;
-		cursor: pointer;
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-khtml-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-	}
-	.d_active {
-		background-color: #666;
-		color: #fff;
-	}
-}
 
 //切換報表頁籤
 
 
 
-
-
-
-// div.join{
-//     display: flex;
-//     justify-self: center;
-//     padding-left: 14%;
-//     padding-top: 20%;
-//     display: flex;
-//     flex-direction: column;
-//     position:sticky;
-//     top: 10%;
-//     left: 0%;
-// }
-
-// div.join p{
-//     text-align: center;
-//     text-transform:uppercase;
-// }
-// .right .join{
-//     border: 1px solid red;
-//     width: 100%;
-// }
 
 #chartdiv02 { //圓餅   
     width: 100%;
@@ -301,13 +233,13 @@ ul.tabs li.active {
 
 //"中間middle"裡 上面的區塊midbox(內含outcard和popular) 下面才是瀑布流
 .midbox{
-  border: 1px solid deeppink;
+  // border: 1px solid deeppink;
   display: flex;
   // justify-content: space-around;
 }
 
 .outcard{
-  border: 1px solid darkgreen;
+  // border: 1px solid darkgreen;
   width: 60%;
 }
 
@@ -330,13 +262,13 @@ ul.tabs li.active {
 
 
 
-.post_form{
-    border: 1px solid blue;
-}
+// .post_form{
+    
+// }
 
 
 .outer_upload{
-    border: 1px solid orange;
+    // border: 1px solid orange;
     display: flex;
 }
 
@@ -359,8 +291,8 @@ ul.tabs li.active {
 
 
 .issue{
-//   border-bottom:1px solid black;
-  border: 1px solid black;
+  border-bottom:1px solid $gray4;
+  // border: 1px solid black;
   margin-top: 2%;
   margin-bottom: 2%;
   display: flex;
@@ -397,14 +329,14 @@ ul.tabs li.active {
 
 .ptime{
   margin-top: 5%;
-  margin-right: 30%;
+  margin-right: 33%;
   margin-left: 3%;
   color: $gray5 ;
 }
 
 .popular{
   color:$gray5;
-  border: 1px solid blue;
+  // border: 1px solid blue;
   width: 40%;
   margin-left: 2%;
 }
@@ -485,7 +417,7 @@ ul.tabs li.active {
    div.load{
     border-bottom: 1px solid black;
     margin-left: 49%;
-    margin-right: 40%;
+    margin-right: 42%;
     color: black;
     text-transform:uppercase;
     font-weight: bold;
