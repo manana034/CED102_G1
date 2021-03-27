@@ -42,7 +42,7 @@ main{
 
 //左邊 left
 div.left{
-    border: 1px solid black;
+    // border: 1px solid black;
     border-right: 1px solid #c5bfbf;
     margin-top: 1%;
     margin-right: 22px;
@@ -54,8 +54,8 @@ div.left{
 
 .left .box_in_left{
     margin-left: 22%;
-    background-color: indianred;
-    // border: 1px solid deeppink ;
+    // background-color: indianred;
+    // border: 10px solid deeppink ;
     display: flex;
     flex-direction: column;
     text-transform:uppercase;
@@ -67,7 +67,7 @@ div.left{
 
 
 .profile_pic{
-    background-color: khaki;
+    // background-color: khaki;
     display: flex;
     width: 100%;
 }
@@ -85,7 +85,7 @@ div.left{
 
 
 .edit_btn_outer{
-    background-color: lightcoral;
+    // background-color: lightcoral;
     width: 100%;
 }
 
@@ -131,8 +131,10 @@ div.left{
 
 
 .self_intro{
-  border: 1px solid deeppink;
+  // border: 1px solid deeppink;
   width: 80%;
+  margin-bottom: 20%;
+  margin-top: 15%;
 }
 
 //本頁標記
@@ -157,24 +159,29 @@ div.right{
     //         }       
     // }
     // border: 1px solid black;
-    margin-top: 1%;
     margin-left: 22px;
     width: 20%;
     border-top-left-radius: 50px;
-    // background-color:#FFDA9B;
-    background-color: indigo;
-    position: sticky;
-    top:0%;
-    right: 0%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 
-div.join{
-    background-color: indianred;
+.right .join{
+  // border: 1px solid black;
+  background-color: indianred;
+    // background-color: #FFDA9B;
     border-top-left-radius: 50px;
+    width: 20%;
+    height: 90%;
+    z-index: -1;
+    //border: 10px solid deeppink ;
+    display: flex;
+    flex-direction: column;
     // position: sticky;
-    // top:0%;
-    // right: 0%;
+    position: fixed;
+    right: 0%;
 }
 
 
@@ -182,16 +189,16 @@ div.join{
     color:$gray5;
     text-transform:uppercase;
     cursor: pointer;
-    margin-top: 15%;
+    //margin-top: 6%;
     margin-left: 10%;
-    margin-bottom: 4%;
+    //margin-bottom: 4%;
 }
 
 .this_month{
     color:$gray5;   
-    margin-top: -7%;
-    margin-left: -9%;
-    margin-bottom: 4%;
+    //margin-top: -7%;
+    //margin-left: -9%;
+    //margin-bottom: 4%;
 }
 
 .this_month .l-btn{
@@ -202,7 +209,7 @@ div.join{
 }
 
 .report_card{ //白色圓角卡片
-    padding: 30px 35px;
+    //padding: 30px 35px;
     background-color: #ffffff;
     border-radius: 35px;
     margin-left: 9%;
@@ -539,3 +546,56 @@ div.join{
     }
   }
   
+
+
+
+
+  #lightBox{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(66,66,66,.6);
+  }
+  #tableLogin{
+    position: absolute;
+    width: 300px;
+    top: 0;
+    right: 0;
+    bottom: 25%;
+    left: 0;
+    margin:auto;
+    background-color:#FFCCDD;
+    border:1px dotted deepPink;
+  }
+
+  #tableLogin  td{
+    padding:2px 2px;
+    height:20px;
+    border-style:none;
+    border-bottom:1px dotted deeppink;
+  }
+
+  #tableLogin  input{
+    background-color:#FFCCDD;
+    font-size:16px;
+    padding-left:2px;
+  }
+
+  #btnLogin,#btnLoginCancel{
+    margin-left:5px;
+    padding:2px;
+    font-size: h1;
+  }
+
+  #spanLogin:hover{
+    cursor:pointer;
+    text-decoration:underline;
+    margin-left:20px;
+  }
+
+  #memName{
+    font-size: 500px;
+  }
+  #spanLogin{
+    font-size: 500px;
+  }

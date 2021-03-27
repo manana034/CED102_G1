@@ -36,20 +36,13 @@
                 <div class="self_intro">
                     Sed a magna semper, leo  
                     ullamcorper 
-                    ligula.  sit amet 
+                    ligula.   
                     consectetur sapien. Etiam 
                     dui ipsum, viverra vel 
                      dapibus auctor leo
                     scelerisque. Aenean at  
                     tellus. Morbi eu sapien.
-                    Sed a magna semper, leo  
-                    ullamcorper 
-                    ligula.  sit amet 
-                    consectetur sapien. Etiam 
-                    dui ipsum, viverra vel 
-                     dapibus auctor leo
-                    scelerisque. Aenean at  
-                    tellus. Morbi eu sapien.
+            
                 </div>
 
 
@@ -272,9 +265,153 @@
                                 goal with report</p>
                     </div>
                 </div> 
-
+                
             </div>   <!-- class="gallery" id="gallery" -->
             <div class="load">load more +</div>
+
+
+
+
+
+
+            
+
+
+
+
+
+
+            <div id="lightBox" style="display:none">
+                <table border="1" align="center" cellspacing="0" id="tableLogin">
+                <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
+                <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
+                <tr><td colspan="2" align="center">
+                        <input type="button" id="btnLogin" value="登入">
+                        <input type="button" id="btnCancel" value="取消">
+                    </td></tr>
+                </table>
+            </div> <!-- #lightBox -->
+
+
+            <!-- wrapper -->
+            <div id="wrapper">
+            <!-- 登入bar -->
+            <img src="大頭照.jpg" id="pic" title="頭貼">
+            <div id="bar" style="position: absolute;top:0;right: 20px">
+            <div id="memName">&nbsp;</div>
+            <div id="spanLogin">登入</div>
+            </div>
+            
+            <div id="content">
+            <center><h1>這是首頁</h1></center>
+            </div>
+            
+            <div id="footer"></div>
+            
+            </div><!-- wrapper -->
+
+
+
+
+
+
+
+
+            
+            <script>
+                function showLoginForm(){
+                  var spanLogin = document.getElementById("spanLogin");
+                
+                  if(spanLogin.innerText == "登入"){
+                    document.getElementById("lightBox").style.display = "";
+                    // document.getElementById("pic").style.display = "none";
+                
+                  }else{
+                    var obj = document.getElementById("spanLogin");
+                    obj.innerText = "登入";
+                    var obj = document.getElementById("memName");
+                    obj.innerText = "";
+                    var obj = document.getElementById("memPsw");
+                    obj.innerText = "";
+                    document.getElementById("lightBox").style.display = "hidden";
+                    document.getElementById("pic").style.display = "none";
+                
+                  }
+                
+                  //檢查登入bar面版上 spanLogin 的字是登入或登出
+                  //如果是登入，就顯示登入用的燈箱(lightBox)
+                
+                  //如果是登出
+                        //將登入bar面版上，登入者資料清空
+                        //spanLogin的字改成登入
+                        //將頁面上的使用者資料清掉
+                }//showLoginForm
+                
+                function sendForm(){
+                   var username = document.getElementById('memId').value;
+                   var password = document.getElementById('memPsw').value;
+                
+                   if(username == "Sara" && password == "111"){
+                      var obj = document.getElementById("spanLogin");
+                      obj.innerText = "登出";
+                      var obj = document.getElementById("memName");
+                      obj.innerText = "董董";
+                      document.getElementById("pic").style.display = "";
+                
+                      document.getElementById('memId').value="";
+                      document.getElementById('memPsw').value="";
+                      document.getElementById("lightBox").style.display="none";
+                
+                   }
+                   else{
+                      window.alert("帳密錯誤");
+                   }
+                  //帳號必須是 Sara , 密碼是 111
+                
+                  //帳密錯誤
+                    //顯示 帳密錯誤 訊息
+                
+                  //登入成功
+                    //登入bar面版上 memName 的字改成會員匿稱   inner
+                
+                    //登入bar面版上 spanLogin 的字改成登出
+                
+                    //將登入表單上的資料清空，並隱藏起來
+                }
+                
+                function cancelLogin(){
+                  //將登入表單上的資料清空，並將燈箱隱藏起來
+                  document.getElementById("lightBox").style.display="none";
+                  document.getElementById('memId').value="";
+                  document.getElementById('memPsw').value="";
+                }
+                
+                
+                function init(){
+                
+                  //===設定spanLogin.onclick 事件處理程序是 showLoginForm
+                  document.getElementById("spanLogin").onclick = showLoginForm;
+                
+                  //===設定btnLogin.onclick 事件處理程序是 sendForm
+                  document.getElementById("btnLogin").onclick = sendForm;
+                
+                  //===設定btnCancel.onclick 事件處理程序是 cancelLogin
+                  document.getElementById("btnCancel").onclick = cancelLogin;
+                
+                  document.getElementById("pic").style.display = "none";
+                
+                }; //window.onload
+                
+                window.addEventListener("load", init, false);
+                </script>
+
+
+
+
+
+
+
+
         </div>  <!-- class="middle" -->
 
 
@@ -286,25 +423,14 @@
 
                 <div class="report_card">
                     <div class="this_month"> <button class="l-btn">This month<i class="fas fa-caret-down"></i></button></div>
-                    <!-- <div id="chartdiv02">2000cal</div> -->
 
 
-
-
-
-                    <!-- 切換報表頁籤 -->
-                   
-                       <!-- 切換報表頁籤 -->
-
-                     
-                    
-
-
+  
                 </div> 
 
                 <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
                 <div class="report_card"></div>
-                    
+                
                 
 
 
@@ -358,6 +484,8 @@
         //     });
         // });
     </script>
+
+
 
 
 
