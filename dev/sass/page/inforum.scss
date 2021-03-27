@@ -159,12 +159,17 @@ div.right{
     //         }       
     // }
     // border: 1px solid black;
-    margin-left: 22px;
+    margin-top: 1%;
+    // margin-left: 22px;
     width: 20%;
     border-top-left-radius: 50px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
+    // background-color:#FFDA9B;
+    background-color: indigo;
+    // position: sticky;
+    // top:0%;
+    // right: 0%;
+    margin-right: 22px;
+    width: 15%;
 }
 
 
@@ -173,15 +178,12 @@ div.right{
   background-color: indianred;
     // background-color: #FFDA9B;
     border-top-left-radius: 50px;
-    width: 20%;
-    height: 90%;
-    z-index: -1;
-    //border: 10px solid deeppink ;
-    display: flex;
-    flex-direction: column;
-    // position: sticky;
-    position: fixed;
-    right: 0%;
+    position: sticky;
+    margin-top: 50%;
+
+    position:sticky;
+    top: 14%;
+    left: 0%
 }
 
 
@@ -189,7 +191,7 @@ div.right{
     color:$gray5;
     text-transform:uppercase;
     cursor: pointer;
-    //margin-top: 6%;
+    // margin-top: 15%;
     margin-left: 10%;
     //margin-bottom: 4%;
 }
