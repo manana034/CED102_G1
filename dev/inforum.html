@@ -13,11 +13,24 @@
     <!-- <script src="../dist/js/header.js"></script> -->  
 </head>
 <body>
+
+    <div id="lightBox" style="display:none">
+        <table border="1" align="center" cellspacing="0" id="tableLogin">
+        <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
+        <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
+        <tr><td colspan="2" align="center">
+                <input type="button" id="btnLogin" value="登入">
+                <input type="button" id="btnCancel" value="取消">
+            </td></tr>
+        </table>
+    </div> <!-- #lightBox -->
     
-        @@include('./layout/header.html')
+    @@include('./layout/header.html')
+        
  
    
     <main>
+
         <!-- 左邊介紹區 -->
         <div class="left">
             <div class="box_in_left">
@@ -270,27 +283,6 @@
             <div class="load">load more +</div>
 
 
-
-
-
-
-            
-
-
-
-
-
-
-            <div id="lightBox" style="display:none">
-                <table border="1" align="center" cellspacing="0" id="tableLogin">
-                <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
-                <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
-                <tr><td colspan="2" align="center">
-                        <input type="button" id="btnLogin" value="登入">
-                        <input type="button" id="btnCancel" value="取消">
-                    </td></tr>
-                </table>
-            </div> <!-- #lightBox -->
 
 
             <!-- wrapper -->
