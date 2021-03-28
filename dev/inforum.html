@@ -113,7 +113,7 @@
                 <div class="member_level">Level 10</div>
                 <div class="member_name">Dorothy Weber</div>
                     
-                <div class="follower"><button class="l-btn">follower</button></div>
+                <div class="follower"><button class="l-btn"><span id="sp_follower">FOLLOWER</span></button></div>
                 <div class="following"><button class="l-btn"><span id="spanLogin">FOLLOWING</span></button></div> 
   
                 
@@ -358,10 +358,8 @@
 
             
            <script>
-                function showLoginForm(){
-                  var spanLogin = document.getElementById("spanLogin");
-                
-                  if(spanLogin.innerText == "FOLLOWING"){
+                function showLoginForm(){            
+                  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
                     document.getElementById("lightBox").style.display = "";
                   }
 
@@ -370,12 +368,13 @@
                 function cancelLogin(){
                   document.getElementById("lightBox").style.display="none";
                 }
-                
-                
+
                 function init(){
-                
+                    
                   //===設定spanLogin.onclick 事件處理程序是 showLoginForm
+                  document.getElementById("sp_follower").onclick = showLoginForm;
                   document.getElementById("spanLogin").onclick = showLoginForm;
+                  
                                 
                   //===設定btnCancel.onclick 事件處理程序是 cancelLogin
                   document.getElementById("btnCancel").onclick = cancelLogin;
