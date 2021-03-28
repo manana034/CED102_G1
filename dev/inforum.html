@@ -16,11 +16,13 @@
 
     <div id="lightBox" style="display:none">
         <table border="1" align="center" cellspacing="0" id="tableLogin">
-        <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
+
+            <input type="button" id="btnCancel" value="X">
+        <!-- <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
         <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
-        <tr><td colspan="2" align="center">
-                <input type="button" id="btnLogin" value="FOLLOWING">
-                <input type="button" id="btnCancel" value="取消">
+        <tr><td colspan="2" align="center"> -->
+                <!-- <input type="button" id="btnLogin" value="FOLLOWING"> -->
+                
             </td></tr>
         </table>
     </div> <!-- #lightBox -->
@@ -294,9 +296,9 @@
             <!-- <span id="spanLogin">登入</span> -->
             </div>
             
-            <div id="content">
+            <!-- <div id="content">
             <center><h1>這是首頁</h1></center>
-            </div>
+            </div> -->
             
             <!-- <div id="footer"></div> -->
             
@@ -318,15 +320,15 @@
                     document.getElementById("lightBox").style.display = "";
                     // document.getElementById("pic").style.display = "none";
                 
-                  }else{
-                    var obj = document.getElementById("spanLogin");
-                    obj.innerText = "FOLLOWING";
-                    var obj = document.getElementById("memName");
-                    obj.innerText = "";
-                    var obj = document.getElementById("memPsw");
-                    obj.innerText = "";
-                    document.getElementById("lightBox").style.display = "hidden";
-                    document.getElementById("pic").style.display = "none";
+                //   }else{
+                //     var obj = document.getElementById("spanLogin");
+                //     obj.innerText = "FOLLOWING";
+                    // var obj = document.getElementById("memName");
+                    // obj.innerText = "";
+                    // var obj = document.getElementById("memPsw");
+                    // obj.innerText = "";
+                    // document.getElementById("lightBox").style.display = "hidden";
+                    // document.getElementById("pic").style.display = "none";
                 
                   }
                 
@@ -339,25 +341,25 @@
                         //將頁面上的使用者資料清掉
                 }//showLoginForm
                 
-                function sendForm(){
-                   var username = document.getElementById('memId').value;
-                   var password = document.getElementById('memPsw').value;
+                // function sendForm(){
+                //    var username = document.getElementById('memId').value;
+                //    var password = document.getElementById('memPsw').value;
                 
-                   if(username == "Sara" && password == "111"){
-                      var obj = document.getElementById("spanLogin");
-                      obj.innerText = "登出";
-                      var obj = document.getElementById("memName");
-                      obj.innerText = "董董";
-                      document.getElementById("pic").style.display = "";
+                //    if(username == "Sara" && password == "111"){
+                //       var obj = document.getElementById("spanLogin");
+                //       obj.innerText = "登出";
+                //       var obj = document.getElementById("memName");
+                //       obj.innerText = "董董";
+                //       document.getElementById("pic").style.display = "";
                 
-                      document.getElementById('memId').value="";
-                      document.getElementById('memPsw').value="";
-                      document.getElementById("lightBox").style.display="none";
+                //       document.getElementById('memId').value="";
+                //       document.getElementById('memPsw').value="";
+                //       document.getElementById("lightBox").style.display="none";
                 
-                   }
-                   else{
-                      window.alert("帳密錯誤");
-                   }
+                //    }
+                //    else{
+                //       window.alert("帳密錯誤");
+                //    }
                   //帳號必須是 Sara , 密碼是 111
                 
                   //帳密錯誤
@@ -369,13 +371,13 @@
                     //登入bar面版上 spanLogin 的字改成登出
                 
                     //將登入表單上的資料清空，並隱藏起來
-                }
+                
                 
                 function cancelLogin(){
                   //將登入表單上的資料清空，並將燈箱隱藏起來
                   document.getElementById("lightBox").style.display="none";
-                  document.getElementById('memId').value="";
-                  document.getElementById('memPsw').value="";
+                //   document.getElementById('memId').value="";
+                //   document.getElementById('memPsw').value="";
                 }
                 
                 
@@ -385,7 +387,7 @@
                   document.getElementById("spanLogin").onclick = showLoginForm;
                 
                   //===設定btnLogin.onclick 事件處理程序是 sendForm
-                  document.getElementById("btnLogin").onclick = sendForm;
+                //   document.getElementById("btnLogin").onclick = sendForm;
                 
                   //===設定btnCancel.onclick 事件處理程序是 cancelLogin
                   document.getElementById("btnCancel").onclick = cancelLogin;

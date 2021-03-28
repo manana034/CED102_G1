@@ -548,6 +548,10 @@ div.right{
 
 
 
+
+
+
+  //燈箱設定
   #lightBox{
     position: fixed;
     width: 100%;
@@ -556,23 +560,30 @@ div.right{
     z-index: 500;
   }
   #tableLogin{
+    border-radius: 25px;
     position: absolute;
-    width: 300px;
+    width:35%;
+    height: 50%;
     top: 0;
     right: 0;
     bottom: 25%;
     left: 0;
     margin:auto;
-    background-color:#FFCCDD;
-    border:1px dotted deepPink;
+    background-color:$white;
+    // border:1px dotted deepPink;
   }
 
   #tableLogin  td{
     padding:2px 2px;
     height:20px;
-    border-style:none;
-    border-bottom:1px dotted deeppink;
+    border: 1px 1px dotted deeppink;;
+    // border-style:none;
+    // border-bottom:1px dotted deeppink;
   }
+  // #tableLogin  tr{
+
+  // }
+
 
   #tableLogin  input{
     background-color:#FFCCDD;
@@ -580,7 +591,7 @@ div.right{
     padding-left:2px;
   }
 
-  #btnLogin,#btnLoginCancel{
+#btnLoginCancel{ //X
     margin-left:5px;
     padding:2px;
     font-size: h1;
@@ -592,9 +603,11 @@ div.right{
     margin-left:20px;
   }
 
-  #memName{
-    font-size: 500px;
-  }
+  // #memName{
+  //   font-size: 500px;
+  // }
   // #spanLogin{
   //   font-size: 500px;
   // }
+
+   //燈箱設定
