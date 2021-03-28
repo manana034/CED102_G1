@@ -1,191 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/page/member.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
-    <script src="./js/member.js" defer></script>
-    <script src="./js/header.js" defer></script>
-</head>
-<body>
-    @@include('./layout/header.html')
-
-    <!-- <section class="logIn_signUp">
-        <div class="container card">
-
-            <div class="under">
-                <div class="login">
-
-                    <h4>log in</h4>
-                    <form action="">
-                        <label class="userid">
-                            <p>userid <span></span> </p>
-                            <input type="text" name="userid">
-                        </label>
-                        <label class="psd">
-                            <p>password <span></span></p>
-                            <input type="text" name="psd">
-                        </label>
-                       <div>
-                           <button class="nc-btn o-5" type="button">
-                               forget your password ? 
-                           </button>
-                       </div>
-                       <div>
-                           <button class="g-btn" id="login" type="button">
-                               log in
-                           </button>
-                       </div>
-                    </form>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/page/member.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+        <script src="./js/member.js" defer></script>
+        <script src="./js/header.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+    </head>
+    <body>
 
 
-                </div>
-
-                <div class="signup">
-                    <h4>sign up</h4>
-
-                    <form action="">
-                        <label class="fristName">
-                            <p>frist name  <span>*</span></p>
-                            <input type="text" name="fristName">
-                        </label>
-
-                        <label class="lastName">
-                            <p>last name  <span>*</span></p>
-                            <input type="text" name="lastName">
-                        </label>
-
-                        <label class="email">
-                            <p>email  <span>*</span></p>
-                            <input type="text" name="email">
-                        </label>              
-
-                        <label class="userid">
-                            <p>userid  <span>*</span></p>
-                            <input type="text" name="userid">
-                        </label>              
-          
-                        <label class="psd">
-                            <p>password  <span>*</span></p>
-                            <input type="text" name="psd">
-                        </label>              
-                        
-                        <label class="cfmPsd">
-                            <p>confirm password  <span>*</span></p>
-                            <input type="text" name="cfmPsd">
-                        </label>
-
-                        <div>
-                            <button class="p-btn" id="signup" type="button">
-                                sign up 
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="upper">
-                <div>
-                    <h4>Hello, Friend !</h4>
-                    <p>
-                        Enter your personal details and start journey with us
-                    </p>
-                    <div>
-                        <button class="w-btn" id="toggleMemberbtn" data-state="login">
-                            sing up
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <main class="row myAccount">
-  
-            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
+        @@include('./layout/header.html') @@include('./layout/cart.html')
+    
+        <main class="row myAccount">
+            <div class="col-2 col-lg-8 col-md-6 col-sm-4">
                 <div>
                     <div class="personInfo container">
-
                         <div class="portrait">
-                            <img src="./img/prod1_1.jpg">
+                            <img src="./img/prod1_1.jpg" />
                         </div>
-    
+
                         <div class="mainInfo">
                             <section class="one-info">
                                 <p>level <span>1</span></p>
                                 <h6 class="name">Dorothy Weber</h6>
                                 <p>
-                                    <span>1996</span> / 
-                                    <span>02</span> / 
+                                    <span>1996</span> / <span>02</span> /
                                     <span>21</span>
                                 </p>
                             </section>
-    
+
                             <section class="two-info">
                                 <div class="age">
                                     <div>
-                                        <img src="./icon/close.svg">
+                                        <img src="./icon/close.svg" />
                                         <p>age</p>
                                     </div>
                                     <p>20</p>
                                 </div>
                                 <div class="gender">
                                     <div>
-                                        <img src="./icon/close.svg">
+                                        <img src="./icon/close.svg" />
                                         <p>gender</p>
                                     </div>
                                     <p>male</p>
                                 </div>
                                 <div class="height">
                                     <div>
-                                        <img src="./icon/close.svg">
+                                        <img src="./icon/close.svg" />
                                         <p>height(cm)</p>
                                     </div>
                                     <p>180</p>
                                 </div>
                                 <div class="weight">
                                     <div>
-                                        <img src="./icon/close.svg">
+                                        <img src="./icon/close.svg" />
                                         <p>weight(kg)</p>
                                     </div>
                                     <p>100</p>
                                 </div>
                                 <div class="bmr">
                                     <div>
-                                        <img src="./icon/close.svg">
+                                        <img src="./icon/close.svg" />
                                         <p>bmr</p>
                                     </div>
                                     <p>22000</p>
                                 </div>
                             </section>
-    
-                            <hr>
-    
+
+                            <hr />
+
                             <section class="three-info">
                                 <p class="email">diana.griffin@mail.com</p>
                                 <p class="phone">(486)510-1545</p>
-                                <p class="intro">Sed a magna semper, porta purus eu, ullamcorper ligula. Nam sit amet consectetur sapien.  Fusce libero dolor, venenatis eget enim sed, commodo efficitur arcu. </p>
+                                <p class="intro">
+                                    Sed a magna semper, porta purus eu, ullamcorper ligula. Nam sit amet consectetur
+                                    sapien. Fusce libero dolor, venenatis eget enim sed, commodo efficitur arcu.
+                                </p>
                             </section>
-    
-    
+
                             <section class="edit-signout-button">
                                 <div>
-                                    <button class="l-btn">sign up</button>
+                                    <button class="l-btn">sign out</button>
                                 </div>
                                 <div>
-                                    <button class="l-btn">edit
-                                        <img src="./icon/close.svg" >
+                                    <button class="l-btn">
+                                        edit
+                                        <img src="./icon/close.svg" />
                                     </button>
                                 </div>
                             </section>
                         </div>
-    
                     </div>
-    
+
                     <div class="level container">
                         <p>Member Level</p>
 
@@ -198,46 +109,648 @@
                             /
                             <span>100</span>
                         </div>
-
                     </div>
                 </div>
-           
             </div>
 
-            <div class="col-6 col-lg-8 col-md-6 col-sm-4">
+            <div class="col-8 col-lg-8 col-md-6 col-sm-4">
                 <div class="container">
                     <div class="goal">
-                        <p>goal</p>
-                        <div class="card goalBody">
-                            <div>
+                        <h6>your goal</h6>
+                        <form class="card goalBody">
+                            <div class="goal-row-1">
                                 <p>start Date</p>
                                 <div class="dateLine">
-                                    <div class="crrentLine"></div>
+                                    <div class="crrentLine">
+                                        <p id="moveDate">
+                                            <span>2020</span>
+                                            /
+                                            <span>03</span>
+                                            /
+                                            <span>07</span>
+                                        </p>
+                                    </div>
                                 </div>
+
                                 <p>end date</p>
-
-
-                                
                             </div>
 
+                            <div class="goal-row-2">
+                                <p class="starDate">
+                                    <span>2020</span>
+                                    /
+                                    <span>03</span>
+                                    /
+                                    <span>07</span>
+                                </p>
+
+                                <p class="endDate">
+                                    <span>2020</span>
+                                    /
+                                    <span>03</span>
+                                    /
+                                    <span>07</span>
+                                </p>
+                            </div>
+
+                            <div class="goal-row-3">
+                                <div class="durationTime">
+                                    <p>duration time of goal</p>
+                                    <div>
+                                        <label>
+                                            <input type="radio" name="durationTime" value="30" hidden />
+                                            <p>30</p>
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="durationTime" value="60" hidden />
+                                            <p>60</p>
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="durationTime" value="90" hidden />
+                                            <p>90</p>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="durationTime" value="180" hidden />
+                                            <p>180</p>
+                                        </label>
+                                        <label class="enterDurTime">
+                                            <input type="text" name="durationTime" />
+                                            <p><img src="./icon/add.svg" /></p>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="customDate">
+                                    <p>Custom end date</p>
+                                    <div>
+                                        <input type="text" placeholder="YYYY" />
+                                        <input type="text" placeholder="MM" />
+                                        <input type="text" placeholder="DD" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="goal-row-4">
+                                <div class="block currentState">
+                                    <p>current state</p>
+                                    <div>
+                                        <div class="l-side">
+                                            <div>
+                                                <img src="./icon/comment.svg" />
+                                                <p>male</p>
+                                            </div>
+
+                                            <div>
+                                                <img src="./icon/comment.svg" />
+                                                <p><span>20</span> y</p>
+                                            </div>
+                                            <div>
+                                                <img src="./icon/comment.svg" />
+                                                <p><span>180</span> cm</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="r-side">
+                                            <div>
+                                                <img src="./icon/facebook.svg" />
+                                                <p><span>100</span> kg</p>
+                                            </div>
+                                            <div>
+                                                <img src="./icon/share.svg" />
+                                                <p><span>2200</span> cal</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block goalWeight">
+                                    <p>goal weight</p>
+                                    <label>
+                                        <input type="text" />
+                                        <img src="./icon/twitter.svg" />
+                                    </label>
+                                </div>
+                                <div class="block restCal">
+                                    <p>rest Calories</p>
+                                    <div>
+                                        <div class="peopleInfoGraphic">
+                                            <div class="tookCal"></div>
+                                            <p>0 <span>%</span></p>
+                                        </div>
+
+                                        <div class="infoNum">
+                                            <div class="row-1">
+                                                <p>12000</p>
+                                                <span>rest cal</span>
+                                            </div>
+                                            <div class="hr"></div>
+                                            <div class="row-2">
+                                                <p>24000</p>
+                                                <span>daliy cal</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block">
+                                    <div>
+                                        <button class="l-btn">
+                                            <img src="./icon/report.svg" />
+                                            create goal
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="statusOrder">
+                        <button class="nc-btn">Status of the Order
+                            <img src="./icon/comment.svg">
+                        </button>
+                        <div class="listBody">
+                            <div class="card ">
+        
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Number</th>
+                                            <th>Time</th>
+                                            <th>detail</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td data-label="ID">32898843</td>
+                                        <td data-label="TIME">
+                                            <span>2020</span>-
+                                           <span>01</span>-
+                                           <span>01</span> 
+                                        </td>
+                                        <td data-label="DETAIL">
+                                            <span>vegetables</span>--
+                                           <span>2</span> 
+                                        </td>
+                                        <td data-label="PRICE">
+                                            <span>200</span>  
+                                             NT$
+                                        </td>
+                                        <td data-label="STATUS">ARRIVAL</td>
+                                       
+                                    </tr>
+                                </table>
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="favPoster">
+                        <button class="nc-btn">Favorites poster
+                            <img src="./icon/comment.svg">
+                        </button>
+                        <div class="listBody">
+                            <div class="card">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>poster type</th>
+                                            <th>poster name</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="TYPE">health</td>
+                                        <td data-label="NAME">Eat and Fit</td>
+                                        <td><button class="l-btn">CHECK POST</button></td>
+                                        <td><button class="l-btn">DELETE</button></td>
+                                    </tr>
+                                </table>
+    
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 col-lg-8 col-md-6 col-sm-4">
+                <aside class="r-aside">test</aside>
+            </div>
+        </main>
+
+        <section class="logIn_signUp">
+            <div class="container card">
+                <div class="under">
+                    <div class="login">
+                        <h4>log in</h4>
+                        <form action="">
+                            <label class="userid">
+                                <p>userid <span></span></p>
+                                <input type="text" name="userid" />
+                            </label>
+                            <label class="psd">
+                                <p>password <span></span></p>
+                                <input type="text" name="psd" />
+                            </label>
+                            <div>
+                                <button class="nc-btn o-5" type="button">forget your password ?</button>
+                            </div>
+                            <div>
+                                <button class="g-btn" id="login" type="button">log in</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="signup">
+                        <h4>sign up</h4>
+                        <form action="">
+                            <label class="fristName">
+                                <p>frist name <span>*</span></p>
+                                <input type="text" name="fristName" />
+                            </label>
+
+                            <label class="lastName">
+                                <p>last name <span>*</span></p>
+                                <input type="text" name="lastName" />
+                            </label>
+
+                            <label class="email">
+                                <p>email <span>*</span></p>
+                                <input type="text" name="email" />
+                            </label>
+
+                            <label class="userid">
+                                <p>userid <span>*</span></p>
+                                <input type="text" name="userid" />
+                            </label>
+
+                            <label class="psd">
+                                <p>password <span>*</span></p>
+                                <input type="text" name="psd" />
+                            </label>
+
+                            <label class="cfmPsd">
+                                <p>confirm password <span>*</span></p>
+                                <input type="text" name="cfmPsd" />
+                            </label>
+
+                            <div>
+                                <button class="p-btn" id="signup" type="button">sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="upper">
+                    <div>
+                        <h4>Hello, Friend !</h4>
+                        <p>Enter your personal details and start journey with us</p>
+                        <div>
+                            <button data-state="login" class="w-btn">sing up</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
-                <aside class="r-aside">
-                    test
-                </aside>
-            </div>
-   
-    </main>
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" >
+            <clipPath id="svgPath">
+                <path
+                    d="M-7145.3-6315.064v-36.465h-3.1v36.389c-.184,5.09-3.564,7.771-7.307,7.771-3.721,0-6.977-2.709-6.977-7.852l.26-71.687H-7165v27.115a6.275,6.275,0,0,1-1.65,4.727,5.456,5.456,0,0,1-3.926,1.654,5.394,5.394,0,0,1-3.926-1.654,6.229,6.229,0,0,1-1.654-4.727v-31.4a14.915,14.915,0,0,1,3.563-9.918,13.192,13.192,0,0,1,10.076-4.646h9.221v-4.1a11.684,11.684,0,0,1-5.3-9.768,11.731,11.731,0,0,1,11.752-11.7,11.731,11.731,0,0,1,11.752,11.7,11.529,11.529,0,0,1-3.436,8.264,11.663,11.663,0,0,1-1.768,1.469v4.139h9.361a13.124,13.124,0,0,1,10.074,4.674,14.866,14.866,0,0,1,3.564,9.891v31.4a6.126,6.126,0,0,1-1.709,4.727,5.682,5.682,0,0,1-4,1.6,5.678,5.678,0,0,1-4-1.6,6.122,6.122,0,0,1-1.7-4.727v-27.115h-2.326v71.688c0,5.088-3.461,7.852-7.182,7.852C-7141.678-6307.369-7145.01-6309.769-7145.3-6315.064Z"
+                    transform="translate(7186.143 6432.456)"
+                />
+            </clipPath>
+        </svg>
 
-    <div id="app">
-        <login-signup></login-signup>
-    </div>
-
-
-    @@include('./layout/footer.html')
-</body>
+        @@include('./layout/footer.html')
+    </body>
 </html>

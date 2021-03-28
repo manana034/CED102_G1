@@ -4,6 +4,7 @@ const cart = document.querySelector('.cart');
 const close = document.querySelector('.close');
 
 ncBtn.addEventListener('click',function(){
+
     cart.classList.toggle('opencart');
 })
 
