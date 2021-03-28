@@ -9,22 +9,93 @@
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
-    <!-- <script src="../dist/js/header.js"></script> -->  
 </head>
 <body>
 
     <div id="lightBox" style="display:none">
-        <table border="1" align="center" cellspacing="0" id="tableLogin">
+        <div id="tableLogin">
+            <div class="pop_inside">
 
-            <input type="button" id="btnCancel" value="X">
-        <!-- <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
-        <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
-        <tr><td colspan="2" align="center"> -->
-                <!-- <input type="button" id="btnLogin" value="FOLLOWING"> -->
-                
-            </td></tr>
-        </table>
+
+                <div class="above_pop">
+
+                    <div class="follow_select"> 
+                        <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                        <button id="btnCancel">X</button>
+                    </div>
+                    
+                    <table class="follow_list">
+                        <tr> <!-- 第一列 -->
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第一列 -->
+
+                        <tr> <!-- 第二列 -->
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第二列 -->
+
+                        <tr> <!-- 第三列 --> 
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第三列 -->                      
+                    </table> <!-- .follow_list -->
+                                  
+                </div>
+
+
+
+                <div class="under_pop">
+                        <pre class="load">load more +</pre>                          
+                </div>
+            </div>
+            
+            
+
+        </div>
     </div> <!-- #lightBox -->
     
     @@include('./layout/header.html')
@@ -84,8 +155,8 @@
                         <div class="post">
 
                             <div class="xsbutton">
-                                <div class="xsl">Photo / Video<i class="fas fa-image"></i></div>
-                                <div class="xsr">Report<i class="fas fa-chart-bar"></i></div>
+                                <div class="xsl"><i class="fas fa-image"></i>Photo / Video</div>
+                                <div class="xsr"><i class="fas fa-chart-bar"></i>Report</div>
                             </div>
 
                             <form class="post_form" action=""> <!-- form裡面有issue 和create_post -->
@@ -282,102 +353,22 @@
                 </div> 
                 
             </div>   <!-- class="gallery" id="gallery" -->
-            <div class="load">load more +</div>
-
-
-
-
-            <!-- wrapper -->
-            <div id="wrapper">
-            <!-- 登入bar -->
-            <img src="大頭照.jpg" id="pic" title="頭貼">
-            <div id="bar" style="position: absolute;top:0;right: 20px">
-            <span id="memName">&nbsp;</span>
-            <!-- <span id="spanLogin">登入</span> -->
-            </div>
-            
-            <!-- <div id="content">
-            <center><h1>這是首頁</h1></center>
-            </div> -->
-            
-            <!-- <div id="footer"></div> -->
-            
-            </div><!-- wrapper -->
-
-
-
-
-
-
+            <div class="middle_load"><pre class="load">load more +</pre></div>
 
 
             
-            <script>
+           <script>
                 function showLoginForm(){
                   var spanLogin = document.getElementById("spanLogin");
                 
                   if(spanLogin.innerText == "FOLLOWING"){
                     document.getElementById("lightBox").style.display = "";
-                    // document.getElementById("pic").style.display = "none";
-                
-                //   }else{
-                //     var obj = document.getElementById("spanLogin");
-                //     obj.innerText = "FOLLOWING";
-                    // var obj = document.getElementById("memName");
-                    // obj.innerText = "";
-                    // var obj = document.getElementById("memPsw");
-                    // obj.innerText = "";
-                    // document.getElementById("lightBox").style.display = "hidden";
-                    // document.getElementById("pic").style.display = "none";
-                
                   }
-                
-                  //檢查登入bar面版上 spanLogin 的字是登入或登出
-                  //如果是登入，就顯示登入用的燈箱(lightBox)
-                
-                  //如果是登出
-                        //將登入bar面版上，登入者資料清空
-                        //spanLogin的字改成登入
-                        //將頁面上的使用者資料清掉
+
                 }//showLoginForm
-                
-                // function sendForm(){
-                //    var username = document.getElementById('memId').value;
-                //    var password = document.getElementById('memPsw').value;
-                
-                //    if(username == "Sara" && password == "111"){
-                //       var obj = document.getElementById("spanLogin");
-                //       obj.innerText = "登出";
-                //       var obj = document.getElementById("memName");
-                //       obj.innerText = "董董";
-                //       document.getElementById("pic").style.display = "";
-                
-                //       document.getElementById('memId').value="";
-                //       document.getElementById('memPsw').value="";
-                //       document.getElementById("lightBox").style.display="none";
-                
-                //    }
-                //    else{
-                //       window.alert("帳密錯誤");
-                //    }
-                  //帳號必須是 Sara , 密碼是 111
-                
-                  //帳密錯誤
-                    //顯示 帳密錯誤 訊息
-                
-                  //登入成功
-                    //登入bar面版上 memName 的字改成會員匿稱   inner
-                
-                    //登入bar面版上 spanLogin 的字改成登出
-                
-                    //將登入表單上的資料清空，並隱藏起來
-                
-                
+
                 function cancelLogin(){
-                  //將登入表單上的資料清空，並將燈箱隱藏起來
                   document.getElementById("lightBox").style.display="none";
-                //   document.getElementById('memId').value="";
-                //   document.getElementById('memPsw').value="";
                 }
                 
                 
@@ -385,10 +376,7 @@
                 
                   //===設定spanLogin.onclick 事件處理程序是 showLoginForm
                   document.getElementById("spanLogin").onclick = showLoginForm;
-                
-                  //===設定btnLogin.onclick 事件處理程序是 sendForm
-                //   document.getElementById("btnLogin").onclick = sendForm;
-                
+                                
                   //===設定btnCancel.onclick 事件處理程序是 cancelLogin
                   document.getElementById("btnCancel").onclick = cancelLogin;
                 

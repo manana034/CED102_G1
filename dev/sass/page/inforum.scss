@@ -194,9 +194,6 @@ div.right{
 
 .this_month{
     color:$gray5;   
-    //margin-top: -7%;
-    //margin-left: -9%;
-    //margin-bottom: 4%;
 }
 
 .this_month .l-btn{
@@ -406,9 +403,6 @@ div.right{
   }
 
 
-  // .gallery .content {
-  //   padding: 4px;
-  // }
   .gallery .gallery-item {
     transition: grid-row-start 300ms linear;
     transition: transform 300ms ease;
@@ -419,16 +413,19 @@ div.right{
     transform: scale(1.025);
   }
 
-   div.load{
+
+
+  .middle_load{  //pre.load父容器
+    display: flex;
+    justify-content: center;
+  }
+
+
+  pre.load{ 
     border-bottom: 1px solid black;
-    margin-left: 49%;
-    margin-right: 42%;
     color: black;
     text-transform:uppercase;
     font-weight: bold;
-    padding-bottom:5px;
-    margin-bottom: 8%;
-    margin-top: 5%;
     cursor: pointer;
   }
 
@@ -440,17 +437,6 @@ div.right{
     cursor: pointer;
     text-transform: uppercase;
   }
-
-
-//   .join .l-btn{
-//     margin-top: 50%;
-//     text-align: center;
-//     cursor: pointer;
-//     text-transform: uppercase;
-//   }
-
-
-
 
 
 
@@ -560,54 +546,111 @@ div.right{
     z-index: 500;
   }
   #tableLogin{
+    z-index: 501;
     border-radius: 25px;
     position: absolute;
-    width:35%;
-    height: 50%;
+    width:40%;
+    height: 65%;
     top: 0;
     right: 0;
     bottom: 25%;
     left: 0;
     margin:auto;
     background-color:$white;
-    // border:1px dotted deepPink;
+    // background-color:transparent;
   }
 
-  #tableLogin  td{
-    padding:2px 2px;
-    height:20px;
-    border: 1px 1px dotted deeppink;;
-    // border-style:none;
-    // border-bottom:1px dotted deeppink;
+  .pop_inside{
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 75%;
+    // border: 1px solid orange;
+    z-index: 502;
+    display: flex;
+    flex-direction: column;
   }
-  // #tableLogin  tr{
 
+  // .above_pop{
+  //   background-color: hotpink;
   // }
 
 
-  #tableLogin  input{
-    background-color:#FFCCDD;
-    font-size:16px;
-    padding-left:2px;
+  .follow_select{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    // background-color:yellow;
   }
 
-#btnLoginCancel{ //X
-    margin-left:5px;
-    padding:2px;
-    font-size: h1;
+  
+  #btnCancel{ 
+    background-color: transparent;
+    border: none;
+    margin-right: 5%;
   }
+
+
+
+  .follow_list{
+    // border: 1px solid black;
+    width: 100%;
+    height: 100%;
+  }
+
+  .follow_list tr{
+    // border: 1px solid black;
+    display: flex;
+    margin-bottom: 5%;
+  }
+
+  .follow_list td{
+    // border: 1px solid red;
+    display: flex;
+    margin-left: 3%;
+    width: 50%;
+  }
+
+  .follow_list img{
+    // border: 2px solid white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: $gray5;
+    margin-right: 7%;
+    cursor: pointer;
+  }
+
+  .follow_list ul{
+    // background-color: blue;
+    width: 100%;
+  }
+
+
 
   #spanLogin:hover{
     cursor:pointer;
-    text-decoration:underline;
     margin-left:20px;
   }
 
-  // #memName{
-  //   font-size: 500px;
-  // }
-  // #spanLogin{
-  //   font-size: 500px;
-  // }
+
+  .follow_list .l-btn{
+    padding-left: 25%;
+    padding-right: 25%;
+    text-transform: uppercase;
+  }
+
+
+
+  .under_pop{  //pre.load父容器
+    // background-color: green;
+    display: flex;
+    justify-content: center;
+  }
+
 
    //燈箱設定
+
+
+
+
+   
