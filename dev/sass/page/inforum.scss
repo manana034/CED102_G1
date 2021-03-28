@@ -235,9 +235,7 @@ div.right{
 
 //"中間middle"裡 上面的區塊midbox(內含outcard和popular) 下面才是瀑布流
 .midbox{
-  // border: 1px solid deeppink;
   display: flex;
-  // justify-content: space-around;
 }
 
 .outcard{
@@ -257,10 +255,15 @@ div.right{
   display: flex;
   text-transform:uppercase;
   margin-left: 3%;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 .post .xsl{
-  margin-right: 5%;
+  margin-right: 0%;
 }
+
+
 
 
 
@@ -289,18 +292,6 @@ div.right{
   }
   
 
-
-
-
-.issue{
-  border-bottom:1px solid $gray4;
-  // border: 1px solid black;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  display: flex;
-  align-items: center;
-}
-
 .radius_icon {
     width: 50px;
     height: 50px;
@@ -309,10 +300,19 @@ div.right{
     background-color: $gray5;
   }
 
+.issue{
+    border-bottom:1.5px solid $gray4;
+    width: 80%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+  }
+
 .issue input{
   width: 420px;
   height: 40px;
-  margin-left: 0%;
+  margin-left: 2%;
 }
 
 .issue input::-webkit-input-placeholder {
@@ -321,20 +321,17 @@ div.right{
   color: $gray4;
 }
 
-
-
-
 .create_post{
   display: flex;
-  align-items: baseline;
+  justify-content: flex-end;
 }
 
-.ptime{
-  margin-top: 5%;
-  margin-right: 33%;
-  margin-left: 3%;
-  color: $gray5 ;
-}
+// .ptime{  
+//   margin-top: 5%;
+//   margin-right: 33%;
+//   margin-left: 3%;
+//   color: $gray5 ;
+// }
 
 .popular{
   color:$gray5;
@@ -356,8 +353,6 @@ div.right{
 
 
 
-
-
 //中間瀑布流內容
   .gallery {
     display: grid;
@@ -366,41 +361,23 @@ div.right{
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     grid-auto-rows: 8px;
   }
-  // .gallery img {
-  //   max-width: 100%;
-  //   border-radius: 8px;
-  //   box-shadow: 0 0 16px #333;
-  //   transition: all 1.5s ease;
-  // }
 
-//   .mescard {
-//     padding: 40px 20px;
-//     background-color: #ffffff; 
-//     border-radius: 20px; 
-//     margin-bottom: 5%;
-//     margin-right: 5%;
-//     margin-top: 5%;
-// }
-
-// figure{
-//   height: 100%;
-// }
 .figure img{
     width: 5%;
     height: 5%;
     border-radius: 50px;
 }
 
-  .gallery .img {  
+  .gallery .article {  
     max-width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 16px #333;
     transition: all 1.5s ease;
   }
 
-  .gallery img:hover {
-    box-shadow: 0 0 32px #333;
-  }
+  // .gallery img:hover {
+  //   box-shadow: 0 0 32px #333;
+  // }
 
 
   .gallery .gallery-item {
@@ -532,6 +509,7 @@ div.right{
 
 // 卡片內
 .topBody {
+  margin-bottom: 2%;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -568,26 +546,38 @@ div.right{
           opacity: .5;
       }
   }
-}
+} //.topbody
+
+
 .middleBody {
   border-bottom: 1px solid $gray5;
   margin-top: 15px;
-  article {
-      width: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-  }
-  .commentNum {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-      p {
-          font-size: 12px;
-          color: $gray5;
-          text-transform: uppercase;
-      }
-  }
+} //.middleBody
+
+.article { //寫在裡面吃不到
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 }
+
+
+.commentNum{ //寫在裡面吃不到
+  display: flex;
+  justify-content: flex-end;
+  border-bottom:1px solid $gray4;
+}
+
+.commentNum span {
+  font-size: 12px;
+  color: $gray5;
+  text-transform: uppercase;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+
+
+
 
 .bottomBody {
   display: flex;

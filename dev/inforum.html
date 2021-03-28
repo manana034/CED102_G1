@@ -171,7 +171,7 @@
                                     </div>
 
                                     <div class="create_post">
-                                        <div class="ptime">
+                                        <!-- <div class="ptime">
                                             <script type="text/javascript">
                                                 var Today=new Date();
                                                 document.write("DATE:",  "&nbsp");
@@ -183,8 +183,7 @@
                                                 document.write(Today.getHours()+":");
                                                 document.write(Today.getMinutes());             
                                             </script>
-                                        </div>
-                            
+                                        </div> -->
                                         <button class="l-btn"><i class="fas fa-pencil-alt"></i>Create Post</button>
                                     </div>  <!-- create_post-->    
                             </form>       
@@ -205,8 +204,8 @@
             </div>
 
 
-
-            <div class="gallery" id="gallery"> <!-- 一張白色圓角卡片class="gallery" id="gallery" -->
+<!--vvvvvvvv以下一張白色圓角卡片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->
+            <div class="gallery" id="gallery">
                 <div class="gallery-item">
                     
                     <div class="card"> 
@@ -226,17 +225,15 @@
                                 </button>
                             </div>
                         </div>  <!-- .topBody -->
-                        <img src="https://source.unsplash.com/featured/?food" alt="">
-                        <p>join us !
-                            let'S get fitness!
-                            record daily Calories
-                            made you
-                            easily to achieve your
-                            goal with report</p>
+
+                      
+                        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
+                        
+
                         <div class="commentNum">
-                            <p>100</p>
-                            <p>&ensp;comment</p>
+                            <span>100</span> <span>&ensp;comments</span>
                         </div>
+                        
                         <div class="bottomBody">
                             <button class="nc-btn comment"><img src="./icon/comment.svg" /> comment</button>
                             <div class="share">
@@ -260,7 +257,8 @@
                     </div> <!-- .card -->
                 </div> <!-- .gallery-item -->
                 
-            </div>   <!-- 一張白色圓角卡片class="gallery" id="gallery" -->
+            </div> <!-- ."gallery" id="gallery" -->         
+<!--^^^^^^^^以上一張白色圓角卡片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
             
 
             <div class="middle_load"><pre class="load">load more +</pre></div>
@@ -348,10 +346,10 @@
         var resizeAll = function () {
             var altura = getVal(gallery, 'grid-auto-rows');
             var gap = getVal(gallery, 'grid-row-gap');
-            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-                var el = item;
-                el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-            });
+            // gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+            //     var el = item;
+            //     el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+            // });
         };
         gallery.querySelectorAll('img').forEach(function (item) {
             item.classList.add('byebye');
