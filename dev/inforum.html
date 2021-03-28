@@ -13,49 +13,62 @@
     <!-- <script src="../dist/js/header.js"></script> -->  
 </head>
 <body>
+
+    <div id="lightBox" style="display:none">
+        <table border="1" align="center" cellspacing="0" id="tableLogin">
+        <tr><td>帳號</td><td><input type="text" name="memId" id="memId"></td></tr>
+        <tr><td>密碼</td><td><input type="password" name="memPsw" id="memPsw"></td></tr>
+        <tr><td colspan="2" align="center">
+                <input type="button" id="btnLogin" value="FOLLOWING">
+                <input type="button" id="btnCancel" value="取消">
+            </td></tr>
+        </table>
+    </div> <!-- #lightBox -->
     
-        @@include('./layout/header.html')
+    @@include('./layout/header.html')
+        
  
    
     <main>
+
         <!-- 左邊介紹區 -->
         <div class="left">
             <div class="box_in_left">
                 <div class="profile_pic"><img src="./img/selfie.png" alt=""></div>
-                <div class="edit_btn"><i class="fas fa-pencil-alt"></i></div>
-                <div class="level">Level 10</div>
+                <div class="edit_btn_outer"><div class="edit_btn"><i class="fas fa-pencil-alt"></i></div></div>
+                
+                <div class="member_level">Level 10</div>
                 <div class="member_name">Dorothy Weber</div>
-                <div class="follower"><button class="l-btn">following</button></div>
-                <div class="following"><button class="l-btn"><pre>follower </pre></button></div> 
                     
-                    
+                <div class="follower"><button class="l-btn">follower</button></div>
+                <div class="following"><button class="l-btn"><span id="spanLogin">FOLLOWING</span></button></div> 
+  
+                
 
                 
                 <div class="self_intro">
                     Sed a magna semper, leo  
                     ullamcorper 
-                    ligula.  sit amet 
+                    ligula.   
                     consectetur sapien. Etiam 
                     dui ipsum, viverra vel 
                      dapibus auctor leo
                     scelerisque. Aenean at  
                     tellus. Morbi eu sapien.
-                    Sed a magna semper, leo  
-                    ullamcorper 
-                    ligula.  sit amet 
-                    consectetur sapien. Etiam 
-                    dui ipsum, viverra vel 
-                     dapibus auctor leo
-                    scelerisque. Aenean at  
-                    tellus. Morbi eu sapien.
+            
                 </div>
+
+
+                <ul>
+                    <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
+                    <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
+                    <li><a href=""><i class="fas fa-chart-bar"></i>Report</a></li>
+                </ul>
             </div>
 
-            <ul>
-                <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
-                <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
-                <li><a href=""><i class="fas fa-chart-bar"></i>Report</a></li>
-            </ul>
+
+
+
         </div>
 
 
@@ -265,9 +278,132 @@
                                 goal with report</p>
                     </div>
                 </div> 
-
+                
             </div>   <!-- class="gallery" id="gallery" -->
             <div class="load">load more +</div>
+
+
+
+
+            <!-- wrapper -->
+            <div id="wrapper">
+            <!-- 登入bar -->
+            <img src="大頭照.jpg" id="pic" title="頭貼">
+            <div id="bar" style="position: absolute;top:0;right: 20px">
+            <span id="memName">&nbsp;</span>
+            <!-- <span id="spanLogin">登入</span> -->
+            </div>
+            
+            <div id="content">
+            <center><h1>這是首頁</h1></center>
+            </div>
+            
+            <!-- <div id="footer"></div> -->
+            
+            </div><!-- wrapper -->
+
+
+
+
+
+
+
+
+            
+            <script>
+                function showLoginForm(){
+                  var spanLogin = document.getElementById("spanLogin");
+                
+                  if(spanLogin.innerText == "FOLLOWING"){
+                    document.getElementById("lightBox").style.display = "";
+                    // document.getElementById("pic").style.display = "none";
+                
+                  }else{
+                    var obj = document.getElementById("spanLogin");
+                    obj.innerText = "FOLLOWING";
+                    var obj = document.getElementById("memName");
+                    obj.innerText = "";
+                    var obj = document.getElementById("memPsw");
+                    obj.innerText = "";
+                    document.getElementById("lightBox").style.display = "hidden";
+                    document.getElementById("pic").style.display = "none";
+                
+                  }
+                
+                  //檢查登入bar面版上 spanLogin 的字是登入或登出
+                  //如果是登入，就顯示登入用的燈箱(lightBox)
+                
+                  //如果是登出
+                        //將登入bar面版上，登入者資料清空
+                        //spanLogin的字改成登入
+                        //將頁面上的使用者資料清掉
+                }//showLoginForm
+                
+                function sendForm(){
+                   var username = document.getElementById('memId').value;
+                   var password = document.getElementById('memPsw').value;
+                
+                   if(username == "Sara" && password == "111"){
+                      var obj = document.getElementById("spanLogin");
+                      obj.innerText = "登出";
+                      var obj = document.getElementById("memName");
+                      obj.innerText = "董董";
+                      document.getElementById("pic").style.display = "";
+                
+                      document.getElementById('memId').value="";
+                      document.getElementById('memPsw').value="";
+                      document.getElementById("lightBox").style.display="none";
+                
+                   }
+                   else{
+                      window.alert("帳密錯誤");
+                   }
+                  //帳號必須是 Sara , 密碼是 111
+                
+                  //帳密錯誤
+                    //顯示 帳密錯誤 訊息
+                
+                  //登入成功
+                    //登入bar面版上 memName 的字改成會員匿稱   inner
+                
+                    //登入bar面版上 spanLogin 的字改成登出
+                
+                    //將登入表單上的資料清空，並隱藏起來
+                }
+                
+                function cancelLogin(){
+                  //將登入表單上的資料清空，並將燈箱隱藏起來
+                  document.getElementById("lightBox").style.display="none";
+                  document.getElementById('memId').value="";
+                  document.getElementById('memPsw').value="";
+                }
+                
+                
+                function init(){
+                
+                  //===設定spanLogin.onclick 事件處理程序是 showLoginForm
+                  document.getElementById("spanLogin").onclick = showLoginForm;
+                
+                  //===設定btnLogin.onclick 事件處理程序是 sendForm
+                  document.getElementById("btnLogin").onclick = sendForm;
+                
+                  //===設定btnCancel.onclick 事件處理程序是 cancelLogin
+                  document.getElementById("btnCancel").onclick = cancelLogin;
+                
+                  document.getElementById("pic").style.display = "none";
+                
+                }; //window.onload
+                
+                window.addEventListener("load", init, false);
+                </script>
+
+
+
+
+
+
+
+
         </div>  <!-- class="middle" -->
 
 
@@ -279,56 +415,14 @@
 
                 <div class="report_card">
                     <div class="this_month"> <button class="l-btn">This month<i class="fas fa-caret-down"></i></button></div>
-                    <!-- <div id="chartdiv02">2000cal</div> -->
 
 
-
-
-
-                    <!-- 切換報表頁籤 -->
-                    <ul class="tabs">
-                        <li class="active" rel="tab1">Tab 1</li>
-                        <li rel="tab2">Tab 2</li>
-                        <li rel="tab3">Tab 3</li>
-                       </ul>
-                       
-                       
-                       <div class="tab_container">
-                        <h3 class="d_active tab_drawer_heading" rel="tab1">Tab 1</h3>
-                        <div id="tab1" class="tab_content">
-                         <h2>Tab 1 content</h2>
-                         A
-                        </div><!-- #tab1 -->
-                       
-                       
-                        <h3 class="tab_drawer_heading" rel="tab2">Tab 2</h3>
-                        <div id="tab2" class="tab_content">
-                         <h2>Tab 2 content</h2>
-                         B
-                       
-                         </p>
-                        </div><!-- #tab2 -->
-                       
-                       
-                        <h3 class="tab_drawer_heading" rel="tab3">Tab 3</h3>
-                        <div id="tab3" class="tab_content">
-                         <h2>Tab 3 content</h2>
-                         
-                         C
-                        </div><!-- #tab3 -->
-                       
-                       </div><!-- .tab_container -->
-                       <!-- 切換報表頁籤 -->
-
-                     
-                    
-
-
+  
                 </div> 
 
                 <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
                 <div class="report_card"></div>
-                    
+                
                 
 
 
@@ -382,6 +476,8 @@
         //     });
         // });
     </script>
+
+
 
 
 

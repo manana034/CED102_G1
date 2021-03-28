@@ -11,7 +11,64 @@
 //放置component
 @import '../component/header';
 @import '../component/footer';
+@import '../component/cart.scss';
 
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    thead{
+        border-bottom: 1px solid $black;
+        th{
+            text-transform: uppercase;
+            padding: 20px 10px;
+            font-weight: 900;
+            font-size: 16;
+        }
+    }
+    td{
+        padding: 10px;
+        >button{
+            padding: 3px 10px;
+            margin: 0;
+        }
+    }
+    tbody{
+        >tr{
+            border-bottom: 1px solid #d4d4d4;
+        }
+    }
+ 
+}
+
+@include rwd(1000px){
+    .table thead{
+        display: none;
+    }
+    .table, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%;
+    }
+    .table tr{
+        margin-bottom: 15px;
+    }
+    .table td{
+        // text-align: right;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+    }
+    .table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        text-align: left;
+        font-weight: 900;
+    }
+}
 
 
 
@@ -133,9 +190,10 @@
 
 
 .myAccount{
-    display: flex;
+    // display: flex;
+    display: none;
+
     flex-wrap: wrap;
-    margin-top: 30px;
     align-items: flex-start;
 
     >:first-child{
@@ -145,8 +203,7 @@
         // height: 2000px;
 
 
-        top: 112px;
-        margin-left: 1px solid $black;
+        top: 81px;
         
         position: sticky;
         height: 90vh;
@@ -264,43 +321,350 @@
     }
 
     >:nth-child(2){
-        .goal{
-            >p{
-                text-transform: uppercase;
-                margin-bottom: 10px;
-            }
-            >.goalBody{
-                margin: 0;
-                >div{
-                    display: flex;
-                    align-items: center;
-                    >p{
-                        text-transform: uppercase;
-                        margin: 0px 5px;
+        >div{
+            padding: 20px;
+            >.goal{
+                >h6{
+                    text-transform: uppercase;
+                    margin-bottom: 10px;
+                    // font-size: 16px;
+                }
+                >.goalBody{
+                    margin: 0;
+                    >.goal-row-1{
+                        display: flex;
+                        align-items: center;
+                        >p{
+                            text-transform: uppercase;
+                            margin: 0px 5px;
+                        }
+                        >.dateLine{
+                            flex-grow: 2;
+                            background-color: $gray3;
+                            border-radius: 100px;
+                            height: 10px;
+                            
+    
+                            >.crrentLine{
+                                height: 100%;
+                                width: 80%;
+                                background-color: $primary;
+                                border-radius: 100px;
+                                position: relative;
+                                display: flex;
+                                justify-content: flex-end;
+                                #moveDate{
+                                    position: absolute;
+                                    // z-index: 10;
+                                    top: 10px;
+                                    // right: -10;
+                                    // transform: translate(-100%,0);
+                                    span{
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                         
+                        }
+    
+                 
                     }
-                    >.dateLine{
-                        flex-grow: 2;
-                        background-color: $gray3;
-                        border-radius: 100px;
-                        height: 10px;
-                        >.crrentLine{
-                            height: 100%;
-                            width: 80%;
-                            background-color: $primary;
+    
+                    >.goal-row-2{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        p{
+                            font-size: 14px;
+                        }
+                        // .starDate{
+    
+                        // }
+                        
+                        // .endDate{
+    
+                        // }
+                    }
+    
+                    >.goal-row-3{
+                        margin-top: 20px;
+                        display: flex;
+                        justify-content: space-between;
+                        div{
+                            text-transform: uppercase;
+                            font-size: 14px;
+                        }
+                        >.durationTime{
+                            >div{
+                                display: flex;
+                                >label{
+                                    >p{
+                                        padding: 5px 10px;
+                                        margin: 10px;
+                                        background-color: $gray3;
+                                        border-radius: 5px;
+                                    }
+                                    >input:checked~p{
+                                        background-color: $primary;
+                                    }
+                                }
+                                >.enterDurTime{
+                                    margin: 10px;
+                                    padding: 5px;
+                                    position: relative;
+                                    display: inline-flex;
+                                    align-items: flex-end;
+                                    background-color: $gray3;
+                                    justify-content: center;
+                                    border-radius: 5px;
+                                    input{
+                                        width: 50px;
+                                    }
+                                    p{
+                                        padding: 0;
+                                        margin: 0;
+                                        background-color: transparent;
+                                        position: absolute;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                            
+                        }
+    
+                        >.customDate{
+                            // display: flex;
+                            // flex-wrap: wrap;
+    
+                            >div{
+                                width: 100%;
+                                display: flex;
+                                >input{
+                                    margin: 10px;
+                                    width: 100px;
+                                    text-align: center;
+                                }
+                            }
+                            
+                        }
+                    }
+    
+                    >.goal-row-4{
+                        margin-top: 20px;
+                        display: flex;
+
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        >.block{
+                            >p{
+                                text-transform: uppercase;
+                            }
+                        }
+                        >.currentState{
+                            >div{
+                                display: flex;
+                                >div{
+                                   >div{
+                                    background-color: $gray3;
+                                    border-radius: 5px;
+                                    margin: 5px;
+                                    padding: 5px;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    >img{
+                                        margin-right: 5px;
+                                    }
+                                    >p{
+                                        margin-right: 10px;
+                                    }
+                                   }
+                                }
+                                >.r-side{
+                                    >div{
+                                       height: calc(50% - 5px);
+                                       img{
+                                           width: 30px;
+                                           object-fit: contain;
+                                       }
+                                    }
+                                }
+                            }
+                        }
+    
+                        >.goalWeight{
+                            position: relative;
+                            // >p{
+                            //     margin-bottom: 20px;
+                            // }
+                            >label{
+                                background-color: $gray3;
+                                border-radius: 5px;
+                                height: 80%;
+                                margin: 5px;
+                                position: relative;
+                                padding: 35px;
+                                display: flex;
+                                // align-items: center;
+                                justify-content: center;
+                                >img{
+                                    top: 50%;
+                                    left: 50%;
+                                    position: absolute;
+                                    transform: translate(-50%,-50%);
+                                }
+                                >input{
+                                    width: 80%;
+                                    font-size: 16px;
+                                    text-align: center;
+                                }
+                                
+                            }
+                        }
+
+                        >.restCal{
+                            >div{
+                                display: flex;
+                                height: 80%;
+                                width: 100%;
+                                
+                                >.peopleInfoGraphic{
+                                    background-color: $gray3;
+                                    width: 100px;
+                                    height: 100%;
+                                    position: relative;
+                                    display: flex;
+                                    align-items: flex-end;
+                                   
+
+                                    clip-path: url(#svgPath);
+
+
+                                    >.tookCal{
+                                        width: 100%;
+                                        height: 50%;
+                                        background-color: $primary;
+                                    }
+                                    >p{
+                                        font-size: 12px;
+                                        position: absolute;
+                                        top: 35%;
+                                        left: 50%;
+                                        transform: translate(-70%,0);
+                                    }
+                                }
+                               
+                                >.infoNum{
+                                    padding: 10px;
+                                    vertical-align:middle;
+                                    // display: flex;
+                                    // flex-wrap: wrap;
+                                    // align-content: space-between;
+                                    >div{
+                                        width: 100%;
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        text-align: center;
+
+                                        >p,span{
+                                            width: 100%;
+                                            text-transform: uppercase;
+                                            margin: 2px;
+                                        }
+                                        
+                                    }
+                                    >.row-1{
+                                        >:first-child{
+                                            font-size: 20px;
+                                        }
+                                    }
+                                    >.hr{
+                                        height: 1px;
+                                        margin-bottom: 5px;
+                                        background-color: $black;
+                                    }
+
+                                }
+                            }
+                        }
+
+                        >:last-child{
+                            div{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100%;
+                                button{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    text-transform: uppercase;
+                                }
+                            }
                         }
                     }
                 }
             }
+
+
+            >.statusOrder,.favPoster{
+                margin-top: 30px;
+               
+                >button{
+                    display: flex;
+                    align-items: center;
+                    text-transform: uppercase;
+                    
+                }
+
+                >.listBody{
+                    overflow: hidden;
+                    // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                    transition: all .5s;
+                    // max-height: 500px;
+                    
+                    >div.card{
+                        padding: 0;
+                        margin: 0;
+                        box-shadow: none;
+                    }
+                    >.head{
+                        display: flex;
+                        justify-content: space-around;
+                        border-bottom: 1px solid $black;
+                        >p{
+                            text-transform: uppercase;
+                            font-weight: 900;
+                            color: $black;
+                        }
+                    }
+
+                    >.item{
+                        div{
+                            display: flex;
+                            justify-content: space-around;
+                        }
+                    }
+                }
+            }
+
         }
+
+  
     }
 
     >:last-child{
-        height: 2000px;
+        top: 81px;
+        
+        position: sticky;
+        height: 90vh;
+        // overflow-y: auto;
         >.r-aside{
-            position: sticky;
-            top: 112px; // 要用js來抓高度
-            height: 90vh;
+            // position: sticky;
+            // top: 112px; // 要用js來抓高度
+            height: 100px;
             margin-top: 0;
+            align-self: flex-start; 
     
         }
     }

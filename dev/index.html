@@ -10,12 +10,16 @@
         <link rel="stylesheet" href="./css/page/index.css" />
         <script src="./js/header.js" defer></script>
         <script src="./js/index.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+        <!-- <script src="./js/"></script> -->
     </head>
     <body>
+
         @@include('./layout/header.html')
+        @@include('./layout/cart.html')
 
         <div class="mainVision">
-            <img src="./img/main_vision.jpg" alt="" />
+            <img src="./img/main_vision.jpg"/>
         </div>
 
         <main class="mainContent container">
@@ -288,7 +292,9 @@
                 </div>
             </div>
 
-            <div class="bottom"></div>
+            <div class="bottom">
+                @@include('./layout/moreproduct.html')
+            </div>
         </section>
 
         @@include('./layout/footer.html')
