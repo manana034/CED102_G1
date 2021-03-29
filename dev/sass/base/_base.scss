@@ -128,8 +128,12 @@ input[type=text]{
     background-color: $black;
 }
 
+@each $n,$v in $bgcColor {
+    .bg-#{$n}{
+        background-color: $v;
+    }
+}
  
-
 
 @each $n ,$bgc in $btnColor {
     .#{$n}-btn {

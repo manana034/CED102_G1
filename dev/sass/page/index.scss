@@ -11,6 +11,13 @@
 @import '../component/header';
 @import '../component/footer';
 @import '../component/comment';
+@import '../component/cart.scss';
+@import '../component/moreproduct.scss';
+
+
+
+
+
 
 .mainVision {
     position: fixed;
@@ -340,14 +347,14 @@
         display: flex;
         flex-wrap: wrap;
         .circle {
-            background-color: $primary;
-            @include circle(calc(calc(100% / 11) - 80px));
-            margin: 40px;
+            // background-color: $primary;
+            @include circle(calc(calc(100% / 11) - 4vw));
+            margin: 2vw;
             position: relative;
             
         }
         > .person {
-            background-image: url('../../img/info4.jpg');
+            background-image: url('../../img/info2_3.jpg');
             background-size: contain;
             border: 1px solid $white;
             box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);

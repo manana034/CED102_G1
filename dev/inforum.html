@@ -8,152 +8,165 @@
     <link rel="stylesheet" type="text/css" href="./css/page/inforum.css">
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="./css/page/index.css"> -->
-    <!-- <script src="../dist/js/header.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/forum.js" defer></script>
+
+    <script>
+            $(document).ready(function() {
+        $(".drop_down").click(function() {
+            $(this).next(".hiddenContent").slideToggle(250);
+        });
+        });
+   
+        
+        $(document).ready(function() {
+        $(".nc-btn").click(function() {
+            $(this).next(".social").slideToggle(250);
+        });
+        });
+    </script>
 </head>
 <body>
-    <header class="container ">
+
+    <div id="lightBox" style="display:none">
+        <div id="tableLogin">
+            <div class="pop_inside">
 
 
-    <div class="row">
-            <div class="col-4 col-lg-2 col-md-2 col-sm-1 logo">
-                <a href="">
-                    <!-- <img src="./dev/layout/dist/img/logo.png" > -->
-                    <img src="./img/logo.png">
-                </a>
+                <div class="above_pop">
+
+                    <div class="follow_select"> 
+                        <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                        <button id="btnCancel">X</button>
+                    </div>
+                    
+                    <table class="follow_list">
+                        <tr> <!-- 第一列 -->
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第一列 -->
+
+                        <tr> <!-- 第二列 -->
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第二列 -->
+
+                        <tr> <!-- 第三列 --> 
+                            <td> <!-- 左邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 左邊好友 -->
+                            <td> <!-- 右邊好友 -->
+                                <img src="./img/selfie.png" alt="">
+                                <ul>
+                                    <li class="member_level">Level9</li>
+                                    <li class="member_name">Jerry Guerrero</li>
+                                    <li><button class="l-btn">follow</button></li>    
+                                </ul>
+                            </td> <!-- 右邊好友 -->
+                        </tr><!-- 第三列 -->                      
+                    </table> <!-- .follow_list -->
+                                  
+                </div><!-- .above_pop -->
+
+
+
+                <div class="under_pop">
+                        <pre class="load">load more +</pre>                          
+                </div> <!-- .under_pop -->
             </div>
             
-            <form id="searchBar" class="col-4 col-lg-2 col-md-2 col-sm-1">
-                <div class="row">
-                    
-                    <div class="search-input">
-                        <input type="text" placeholder="SERACH">
-                        <div class="suggest-items">
-                            <a class="search-item" href="">麥香魚餐</a>
-                            <a class="search-item" href="">麥香魚餐</a>
-                            <a class="search-item"href="">麥香魚餐</a>
-                            <a class="search-item"href="">麥香魚餐</a>
-                            
-                            <a class="custom-item" href="">customize food
-                                <img src="./icon/cart.png" >
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-select">
-                        <select name="sType">
-                          <option value="0">ALL</option>
-                          <option value="1">DESSERT</option>
-                          <option value="2">FRIED</option>
-                          <option value="3">NOODLES</option>
-                          <option value="4">RICE</option>
-                          <option value="5">DRNK</option>
-                          <option value="6">REPLACEMENT</option>
-                          <option value="7">FAST FOOD</option>
-                          <option value="8">FRUITS & VEG</option>
-                          <option value="9">CUSTOM</option>
-                        </select>
-                    </div>
-                    <button class="nc-btn o-5">
-                        <img src="./icon/magnifier.png" alt="">
-                    </button>
-                </div>
+            
 
-            </form>
+        </div>
+    </div> <!-- #lightBox -->
+
+
+
+    <div id="reportBox" style="display:none">
+        <div>
+
+            123
+        </div>
+    </div> <!-- #reportBox -->
     
-            <div class="col-4 col-lg-2 col-md-2 col-sm-1 row" >
-
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <a href="" class=" a"> MEMBER
-                        <img src="./icon/member.png" alt="">
-                    </a>
-                </div>
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1 ">
-                    <button class="nc-btn"> CART
-                        <img src="./icon/cart.png" alt="">
-                    </button>
-                </div>
-
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <button class="nc-btn menuIcon"> MENU
-                        <img src="./icon/hamburger.png" alt="">
-                    </button>
-                </div>
-            </div>
-
-    </div>
-
-    
-    <div class="menuBody" data-state="0">
-        <button class="nc-btn">
-            <img src="./icon/cart.png">
-        </button>
-        <ul>
-            <li>
-                <a href="">Calories diary</a>
-            </li>
-            <li>
-                <a href="">Calories search</a>
-            </li>
-            <li>
-                <a href="">ft. shop</a>
-            </li>
-            <li>
-                <a href="">post board</a>
-            </li>
-            <li>
-                <a href="">health news</a>
-            </li>
-            <li>
-                <a href="">post board</a>
-            </li>
-            <li>
-                <a href="">member</a>
-            </li>
-        </ul>
-    </div>
-
-
-</header>
-
+    @@include('./layout/header.html')
+        
+ 
+   
     <main>
+
         <!-- 左邊介紹區 -->
         <div class="left">
             <div class="box_in_left">
                 <div class="profile_pic"><img src="./img/selfie.png" alt=""></div>
-                <div class="edit_btn"><i class="fas fa-pencil-alt"></i></div>
-                <div class="level">Level 10</div>
+                <div class="edit_btn_outer"><div class="edit_btn"><i class="fas fa-pencil-alt"></i></div></div>
+                
+                <div class="member_level">Level 10</div>
                 <div class="member_name">Dorothy Weber</div>
-                <div class="follower"><button class="l-btn">following</button></div>
-                <div class="following"><button class="l-btn"><pre>follower </pre></button></div> 
                     
-                    
+                <div class="follower"><button class="l-btn"><span id="sp_follower">FOLLOWER</span></button></div>
+                <div class="following"><button class="l-btn"><span id="spanLogin">FOLLOWING</span></button></div> 
+  
+                
 
                 
                 <div class="self_intro">
                     Sed a magna semper, leo  
                     ullamcorper 
-                    ligula.  sit amet 
+                    ligula.   
                     consectetur sapien. Etiam 
                     dui ipsum, viverra vel 
                      dapibus auctor leo
                     scelerisque. Aenean at  
                     tellus. Morbi eu sapien.
-                    Sed a magna semper, leo  
-                    ullamcorper 
-                    ligula.  sit amet 
-                    consectetur sapien. Etiam 
-                    dui ipsum, viverra vel 
-                     dapibus auctor leo
-                    scelerisque. Aenean at  
-                    tellus. Morbi eu sapien.
+            
                 </div>
+
+
+                <ul>
+                    <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
+                    <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
+                    <li><a href=""><i class="fas fa-chart-bar"></i>Report</a></li>
+                </ul>
             </div>
 
-            <ul>
-                <li><a href="" class="news"><i class="fas fa-rss"></i>news feed</a></li>  <br>
-                <li><a href=""><i class="fas fa-image"></i>Photo / Video</a></li> <br>
-                <li><a href=""><i class="fas fa-chart-bar"></i>Report</a></li>
-            </ul>
+
+
+
         </div>
 
 
@@ -167,8 +180,8 @@
                         <div class="post">
 
                             <div class="xsbutton">
-                                <div class="xsl">Photo / Video<i class="fas fa-image"></i></div>
-                                <div class="xsr">Report<i class="fas fa-chart-bar"></i></div>
+                                <div class="xsl"><i class="fas fa-image"></i>Photo / Video</div>
+                                <div class="xsr"><i class="fas fa-chart-bar"></i>Report</div>
                             </div>
 
                             <form class="post_form" action=""> <!-- form裡面有issue 和create_post -->
@@ -183,7 +196,7 @@
                                     </div>
 
                                     <div class="create_post">
-                                        <div class="ptime">
+                                        <!-- <div class="ptime">
                                             <script type="text/javascript">
                                                 var Today=new Date();
                                                 document.write("DATE:",  "&nbsp");
@@ -195,8 +208,7 @@
                                                 document.write(Today.getHours()+":");
                                                 document.write(Today.getMinutes());             
                                             </script>
-                                        </div>
-                            
+                                        </div> -->
                                         <button class="l-btn"><i class="fas fa-pencil-alt"></i>Create Post</button>
                                     </div>  <!-- create_post-->    
                             </form>       
@@ -218,155 +230,788 @@
 
 
 
-            <div class="gallery" id="gallery">
-                <!-- <div class="gallery-item"> -->
-                    <!-- <div class="card"> 
-                        <div class="figure">
-                            <img style="border-radius: 50%;" src="https://source.unsplash.com/200X200/?avatar">
-                            <span>花橘子</span>
-                        </div> -->
-
-                        <!-- <article>
-
-                            
-                            <img src="https://source.unsplash.com/featured/?cal" alt="">
-                            <section>
-                                <p>join us !
-                                    let'S get fitness!
-                                    record daily Calories
-                                    made you
-                                    easily to achieve your
-                                    goal with report
-                                </p>
-                            </section>
-                        </article> -->
-       
-
-               
-
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?food" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>                               
-                    </div>
+<div class="gallery" id="gallery"> <!-- !!!!!!瀑布流大外框!!!!!! -->
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
                 </div>
-
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?organic" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
                 </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?fitness" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+    
+        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down" ><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+
+
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
                 </div>
-
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?diet" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
                 </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?fruit" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+    
+        <img class="article" src="https://source.unsplash.com/featured/?organic" alt="">
+
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
                 </div>
-
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?protein" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
                 </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?vegetable" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+    
+        <img class="article" src="https://source.unsplash.com/featured/?diet" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
                 </div>
-
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?health" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
                 </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?meal" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
+    
+        <img class="article" src="https://source.unsplash.com/featured/?fruit" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
                 </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-                <div class="gallery-item">
-                    <div class="card">     
-                            <img src="https://source.unsplash.com/featured/?weight" alt="">
-                            <p>join us !
-                                let'S get fitness!
-                                record daily Calories
-                                made you
-                                easily to achieve your
-                                goal with report</p>
-                    </div>
-                </div> 
+    
+        <img class="article" src="https://source.unsplash.com/featured/?protein" alt="">
+      
 
-            </div>   <!-- class="gallery" id="gallery" -->
-            <div class="load">load more +</div>
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
+                </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
+
+    
+        <img class="article" src="https://source.unsplash.com/featured/?vegetable" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
+                </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
+
+    
+        <img class="article" src="https://source.unsplash.com/featured/?health" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
+                    
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
+                </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
+
+    
+        <img class="article" src="https://source.unsplash.com/featured/?meal" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+
+</div> <!-- ."gallery" id="gallery" --> <!-- !!!!!!瀑布流大外框!!!!!! -->
+
+
+
+
+            <div class="middle_load"><pre class="load">load more +</pre></div> <!-- !!!!!!瀑布流內容看更多!!!!!! -->
+
+
+            
+
+
+
         </div>  <!-- class="middle" -->
+
+
 
 
         <!-- 右邊報告區 -->
@@ -374,17 +1019,17 @@
             <div class="join">
                 <div class="your_report">Your Report<i class="fas fa-caret-down"></i></div>
                
+
                 <div class="report_card">
                     <div class="this_month"> <button class="l-btn">This month<i class="fas fa-caret-down"></i></button></div>
-                    <!-- <div id="chartdiv02">2000cal</div> -->
-                    
 
 
-                </div>
+  
+                </div> 
 
                 <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
                 <div class="report_card"></div>
-                    
+                
                 
 
 
@@ -396,14 +1041,7 @@
 
 
 
-    <footer class="container ">
-        <div>
-            <img src="./img/logo.png" alt="">
-        </div>
-        <p class="o-5">
-            Copyright © 2021  ft. All rights reserved.
-        </p>
-    </footer>
+    @@include('./layout/footer.html')
 
 
 
@@ -418,10 +1056,10 @@
         var resizeAll = function () {
             var altura = getVal(gallery, 'grid-auto-rows');
             var gap = getVal(gallery, 'grid-row-gap');
-            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-                var el = item;
-                el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-            });
+            // gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+            //     var el = item;
+            //     el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+            // });
         };
         gallery.querySelectorAll('img').forEach(function (item) {
             item.classList.add('byebye');
@@ -445,6 +1083,8 @@
         //     });
         // });
     </script>
+
+
 
 
 

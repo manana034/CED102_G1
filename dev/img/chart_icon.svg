@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="17" viewBox="0 0 20 17">
+  <defs>
+    <clipPath id="clip-Artboard_8">
+      <rect width="20" height="17"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_8" data-name="Artboard – 8" clip-path="url(#clip-Artboard_8)">
+    <path id="Icon_metro-chart-bars" data-name="Icon metro-chart-bars" d="M2.571,17.9H20.194v2.2H2.571Zm2.2-4.406h2.2v3.3h-2.2Zm3.3-4.406h2.2V16.8h-2.2Zm3.3,3.3h2.2V16.8h-2.2Zm3.3-6.609h2.2V16.8h-2.2Z" transform="translate(-1.486 -4.571)" fill="#fff"/>
+  </g>
+</svg>

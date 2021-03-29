@@ -10,12 +10,16 @@
         <link rel="stylesheet" href="./css/page/index.css" />
         <script src="./js/header.js" defer></script>
         <script src="./js/index.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+        <!-- <script src="./js/"></script> -->
     </head>
     <body>
+
         @@include('./layout/header.html')
+        @@include('./layout/cart.html')
 
         <div class="mainVision">
-            <img src="./img/main_vision.jpg" alt="" />
+            <img src="./img/main_vision.jpg"/>
         </div>
 
         <main class="mainContent container">
@@ -194,60 +198,60 @@
 
                     @@include('./layout/comment.html')
                 </div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-rd"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-rd"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-bl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gd"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-bd"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gl"></div>
+                <div class="circle bg-rl"></div>
+                <div class="circle bg-p"></div>
+                <div class="circle bg-gl"></div>
             </div>
             <div class="col-5 card">
                 <h4>Share your report</h4>
@@ -288,7 +292,9 @@
                 </div>
             </div>
 
-            <div class="bottom"></div>
+            <div class="bottom">
+                @@include('./layout/moreproduct.html')
+            </div>
         </section>
 
         @@include('./layout/footer.html')

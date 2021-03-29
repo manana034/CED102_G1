@@ -1,0 +1,36 @@
+//放置base 的全部
+@import '../base/reset';
+@import '../base/var';
+@import '../base/mixin';
+@import '../base/base';
+@import '../base/grid';
+@import '../base/rwd';
+//不能抓 all.scss 文自路徑會跑掉
+
+
+
+body{
+    background-color: $primary-l;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-image: url('../../img/main_vision.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    >div{
+       >a.p-btn{
+            font-size: 80px;
+            color: white;
+            font-weight: 100;
+            padding: 100px;
+            margin: 100px;
+            border-radius: 100vw;
+            text-decoration: none;
+        }
+    }
+}
