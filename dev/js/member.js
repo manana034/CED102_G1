@@ -66,10 +66,12 @@ inputs.forEach(input=>{
 //進入個人資料的畫面 ---------------------------
 
 
-const statusOrderBtn = document.querySelector('.statusOrder>button')
-const favPosterBtn = document.querySelector('.favPoster>button')
+const statusOrderBtn = document.querySelector('.statusOrder>:first-child>button')
+const favPosterBtn = document.querySelector('.favPoster>:first-child>button')
 
-const openStatusOrder = () =>{
+const reportBtn = document.querySelector('.reportBtn');
+
+const toggleStatusOrder = () =>{
     const listBody = document.querySelector('.statusOrder>.listBody')
     const card = document.querySelector('.statusOrder>.listBody>div')
 
@@ -81,10 +83,11 @@ const openStatusOrder = () =>{
     }
 }
 
-const openFavPoster = () =>{
+const toggleFavPoster = () =>{
     const listBody = document.querySelector('.favPoster>.listBody')
     const card = document.querySelector('.favPoster>.listBody>div')
 
+    
     listBody.style.height = `${card.clientHeight}px`
     if (listBody.clientHeight > 0) {
         listBody.style.height = 0
@@ -93,9 +96,32 @@ const openFavPoster = () =>{
     }
 }
 
-statusOrderBtn.addEventListener('click',openStatusOrder)
-favPosterBtn.addEventListener('click', openFavPoster)
+const toggleReport = (e) =>{
+    e.stopPropagation()
+    const reportBody = document.querySelector('.reportBody')
+    const card = document.querySelector('.reportBody>.card')
 
+    //trainsition 會影響 ↓↓↓↓↓↓↓↓↓↓↓↓↓發生的時間
+    reportBody.style.height = `${card.clientHeight}px`
+    if (reportBody.clientHeight > 0) {
+        reportBody.style.height = 0
+        console.log('work2')
+    } else if (reportBody.clientHeight == 0) {
+        console.log('work')
+        reportBody.style.height = `${card.clientHeight}px`
+    }
+}
+
+statusOrderBtn.addEventListener('click',toggleStatusOrder)
+favPosterBtn.addEventListener('click', toggleFavPoster)
+reportBtn.addEventListener('click', toggleReport)
+
+
+
+
+
+
+//登出登入按鈕  ---------------------------
 
 const loginBtn = document.getElementById('login')
 const signupBtn = document.getElementById('signup')
@@ -116,5 +142,66 @@ const leaveAccount = () =>{
 
 loginBtn.addEventListener('click',openAccount)
 signupBtn.addEventListener('click', openAccount)
-
 signoutBtn.addEventListener('click', leaveAccount)
+
+
+//登出登入按鈕  ---------------------------
+
+const profileLabel = document.querySelector('.labelrow>label.profile>p')
+const accountLabel = document.querySelector('.labelrow>label.account>p')
+
+const profileBody = document.querySelector('.editBody>.profileBody')
+const accountBody = document.querySelector('.editBody>.accountBody')
+
+const leaveEditbtn = [...document.querySelectorAll('.leaveEdit')]
+const editBody = document.querySelector('section.edit')
+
+const editbtn = document.querySelector('.edit-signout-button>:last-child>button')
+
+
+editbtn.addEventListener('click', () => {
+    editBody.style.display = "flex"
+})
+
+leaveEditbtn.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        
+
+        editBody.style.display="none"
+    })
+})
+
+
+profileLabel.addEventListener('click',(e)=>{
+    e.stopPropagation()
+
+    accountBody.style.display = "none";
+    profileBody.style.display = 'block';
+})
+
+accountLabel.addEventListener('click',()=>{
+    
+    accountBody.style.display = 'block';
+    profileBody.style.display = 'none';
+})
+
+
+//出貨detail  ---------------------------
+
+
+const orderDetail = document.querySelector('.orderDetail')
+
+const orderDetailClose = document.querySelector('.orderDetail>.detailBody>button.nc-btn')
+
+const statusOrderList = [...document.querySelectorAll('.statusOrder>.listBody tbody tr')]
+
+
+orderDetailClose.addEventListener('click', () => {
+    orderDetail.style.display = 'none'
+})
+
+statusOrderList.forEach(item =>{
+    item.addEventListener('click',()=>{
+        orderDetail.style.display = "flex"
+    })
+})

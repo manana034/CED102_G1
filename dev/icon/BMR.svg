@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9" height="11" viewBox="0 0 9 11">
+  <defs>
+    <clipPath id="clip-Artboard_5">
+      <rect width="9" height="11"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_5" data-name="Artboard – 5" clip-path="url(#clip-Artboard_5)">
+    <path id="Icon_ionic-md-calculator" data-name="Icon ionic-md-calculator" d="M12.8,3.375H7.817A1.068,1.068,0,0,0,6.75,4.442v7.115a1.068,1.068,0,0,0,1.067,1.067H12.8a1.07,1.07,0,0,0,1.067-1.067V4.442A1.068,1.068,0,0,0,12.8,3.375ZM9.063,11.558H8V10.49H9.063Zm0-1.957H8V8.534H9.063Zm0-1.957H8V6.577H9.063Zm1.779,3.913H9.774V10.49h1.067Zm0-1.957H9.774V8.534h1.067Zm0-1.957H9.774V6.577h1.067Zm1.779,3.913H11.553V8.534H12.62Zm0-3.913H11.553V6.577H12.62Zm0-2.135H8V4.442H12.62Z" transform="translate(-5.75 -2.375)"/>
+  </g>
+</svg>

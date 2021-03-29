@@ -75,3 +75,19 @@ const closeSocial = (e)=>{
 
 
 document.addEventListener('click', closeSocial)
+
+
+// --------rwd search 使用
+const phoneSearch = document.querySelector('.phoneSearch')
+const pSearchCBtn = document.querySelector('.searchWindow>.close')
+const searchWindow = document.querySelector('.searchWindow')
+
+
+
+phoneSearch.addEventListener('click',()=>{
+    searchWindow.style.display="flex";
+})
+
+pSearchCBtn.addEventListener('click',()=>{
+    searchWindow.style.display = 'none'
+})

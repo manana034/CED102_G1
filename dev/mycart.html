@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/mycart.css">
-    <script src="./js/header.js" defer></script>
+    <!-- <script src="./js/header.js" defer></script> -->
     <title>My Cart</title>
 </head>
 <body>
-    @@include('./layout/header.html')
-    @@include('./layout/cart.html')
+    <!-- @@include('./layout/header.html')
+    @@include('./layout/cart.html') -->
     <div class="cartall">
          <h5>MY CART</h5>
          <div class="steps">
@@ -18,37 +18,41 @@
              <p>2. PAYMENT</p>
              <p>3. CONFIRM ORDER</p>
          </div>
-         <div class="orderinfo">
-             <div class="ordertitle">
-                 <p>PRODUCT</p>
-                 <p>QTY</p>
-                 <p>PRICE</p>
-                 <p>DELETE</p>
-             </div>
-             <div class="line"></div>
-             <div class="orders">
-                 <a href="./product.html">
-                    <div class="orderbg">
-                        <img src="./img/prod1.png">
-                        <p>ALMONDS SALTED CHOCOLATE BAR</p>
-                    </div>
-                 </a>
-                 <p>1</p>
-                 <p>NT$250</p>
-                 <p>&times;</p>
-             </div>
-             <div class="orders">
-                <a href="./product.html">
-                   <div class="orderbg">
-                       <img src="./img/prod1.png">
-                       <p>ALMONDS SALTED CHOCOLATE BAR</p>
-                   </div>
-                </a>
-                <p>1</p>
-                <p>NT$250</p>
-                <p>&times;</p>
-            </div>
-         </div>
+         <table class="orderinfo">
+             <tr>
+                 <th>PRODUCT</th>
+                 <th>QTY</th>
+                 <th>PRICE</th>
+                 <th>DELETE</th>
+             </tr>
+             <tr>
+                 <td class="order">
+                    <a href="./product.html">
+                        <!-- <div class="orderbg"> -->
+                            <img src="./img/prod1.png">
+                            <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                        <!-- </div> -->
+                     </a>
+                 </td>
+                    <td>1</td> 
+                    <td>NT$250</td> 
+                    <td>&times;</td> 
+                </tr>    
+                <tr>
+                    <td class="order">
+                       <a href="./product.html">
+                           <!-- <div class="orderbg"> -->
+                               <img src="./img/prod1.png">
+                               <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                           <!-- </div> -->
+                        </a>
+                    </td>
+                       <td>1</td> 
+                       <td>NT$250</td> 
+                       <td>&times;</td> 
+                   </tr>    
+        </table>
+        
          <div class="points">
              <h6>POINTS:<span>200</span></h6>
              <div class="apply">
@@ -68,10 +72,10 @@
          </div>
          <div class="back">
              <a href="./shop.html"> &lt; CONTINUE SHOPPING</a>
-             <button>PROCESS TO PAYMENT</button>
+             <a href="./payment.html"><button>NEXT</button></a>
         </div>
     </div>
-    @@include('./layout/footer.html')
-    <script src="./js/cart.js"></script>
+    <!-- @@include('./layout/footer.html') -->
+    <!-- <script src="./js/cart.js"></script> -->
 </body>
 </html>
