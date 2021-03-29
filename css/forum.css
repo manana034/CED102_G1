@@ -56,29 +56,29 @@ body {
   line-height: 21px;
   opacity: 1;
   margin: 0;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
-/* width */
-::-webkit-scrollbar {
+body ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
+body ::-webkit-scrollbar-track {
   background: #f4f1ec;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
+body ::-webkit-scrollbar-thumb {
   background: #D8D8D8;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+body ::-webkit-scrollbar-thumb:hover {
   background: #9D9D9D;
 }
 
-p {
+body p {
   font-family: "KozGoPr6N-R";
   font-size: 16px;
   color: #333333;
@@ -88,7 +88,7 @@ p {
   margin: 0;
 }
 
-.card {
+body .card {
   padding: 40px 20px;
   background-color: #ffffff;
   border-radius: 20px;
@@ -96,28 +96,28 @@ p {
   margin: 10px;
 }
 
-img {
+body img {
   object-fit: cover;
   max-width: 100%;
   max-height: 100%;
 }
 
-input[type=text] {
+body input[type=text] {
   border: none;
   background-color: transparent;
   border-bottom: 1px solid #9D9D9D;
   outline: none;
 }
 
-input[type=text]::placeholder {
+body input[type=text]::placeholder {
   color: #9D9D9D;
 }
 
-* {
+body * {
   box-sizing: border-box;
 }
 
-.nc-btn, .a {
+body .nc-btn, body .a {
   font-family: "NotoSans-B";
   font-size: 14px;
   color: #333333;
@@ -132,7 +132,7 @@ input[type=text]::placeholder {
   text-decoration: none;
 }
 
-.l-btn {
+body .l-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #333333;
@@ -150,51 +150,39 @@ input[type=text]::placeholder {
   background-color: transparent;
 }
 
-.l-aside {
+body .l-aside {
   padding: 10px;
   background-color: #D25541;
   border-radius: 0px 50px 0px 0px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0;
   position: sticky;
-  top: 100px;
-  width: 30%;
-  height: 300px;
-  margin-top: 50px;
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 
-.r-aside {
+body .r-aside {
   padding: 10px;
   background-color: #EAA565;
   border-radius: 50px 0px 0px 0px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0;
   position: sticky;
-  top: 100px;
-  width: 30%;
-  height: 300px;
-  margin-top: 50px;
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 
-.w-hr {
+body .w-hr {
   width: 100%;
   height: 1px;
   margin: 10px 0;
   background-color: #ffffff;
 }
 
-.b-hr {
+body .b-hr {
   width: 100%;
   height: 1px;
   margin: 10px 0;
   background-color: #333333;
 }
 
-.w-btn {
+body .w-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #333333;
@@ -213,12 +201,12 @@ input[type=text]::placeholder {
   transition: all .3s;
 }
 
-.w-btn:hover {
+body .w-btn:hover {
   background-color: white;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
-.p-btn {
+body .p-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #333333;
@@ -237,12 +225,12 @@ input[type=text]::placeholder {
   transition: all .3s;
 }
 
-.p-btn:hover {
+body .p-btn:hover {
   background-color: #f0bf92;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
-.g-btn {
+body .g-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #ffffff;
@@ -261,12 +249,12 @@ input[type=text]::placeholder {
   transition: all .3s;
 }
 
-.g-btn:hover {
+body .g-btn:hover {
   background-color: #afc49c;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
-.r-btn {
+body .r-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #ffffff;
@@ -285,12 +273,12 @@ input[type=text]::placeholder {
   transition: all .3s;
 }
 
-.r-btn:hover {
+body .r-btn:hover {
   background-color: #dc7a6a;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
-.b-btn {
+body .b-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
   color: #ffffff;
@@ -309,37 +297,47 @@ input[type=text]::placeholder {
   transition: all .3s;
 }
 
-.b-btn:hover {
+body .b-btn:hover {
   background-color: #2b92cf;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
 @font-face {
-  font-family: "NotoSans-L";
-  src: url("../../font/NotoSans-Light.ttf");
+  body {
+    font-family: "NotoSans-L";
+    src: url("../../font/NotoSans-Light.ttf");
+  }
 }
 
 @font-face {
-  font-family: "NotoSans-R";
-  src: url("../../font/NotoSans-Regular.ttf");
+  body {
+    font-family: "NotoSans-R";
+    src: url("../../font/NotoSans-Regular.ttf");
+  }
 }
 
 @font-face {
-  font-family: "NotoSans-B";
-  src: url("../../font/NotoSans-Bold.ttf");
+  body {
+    font-family: "NotoSans-B";
+    src: url("../../font/NotoSans-Bold.ttf");
+  }
 }
 
 @font-face {
-  font-family: "KozGoPr6N-EL";
-  src: url("../../font/KozGoPr6N-ExtraLight.otf");
+  body {
+    font-family: "KozGoPr6N-EL";
+    src: url("../../font/KozGoPr6N-ExtraLight.otf");
+  }
 }
 
 @font-face {
-  font-family: "KozGoPr6N-R";
-  src: url("../../font/KozGoPr6N-Regular.otf");
+  body {
+    font-family: "KozGoPr6N-R";
+    src: url("../../font/KozGoPr6N-Regular.otf");
+  }
 }
 
-h1, .h1 {
+body h1, body .h1 {
   font-size: 80px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -349,7 +347,7 @@ h1, .h1 {
   font-weight: bold;
 }
 
-h2, .h2 {
+body h2, body .h2 {
   font-size: 70px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -359,7 +357,7 @@ h2, .h2 {
   font-weight: bold;
 }
 
-h3, .h3 {
+body h3, body .h3 {
   font-size: 60px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -369,7 +367,7 @@ h3, .h3 {
   font-weight: bold;
 }
 
-h4, .h4 {
+body h4, body .h4 {
   font-size: 42px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -379,7 +377,7 @@ h4, .h4 {
   font-weight: bold;
 }
 
-h5, .h5 {
+body h5, body .h5 {
   font-size: 32px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -389,7 +387,7 @@ h5, .h5 {
   font-weight: bold;
 }
 
-h6, .h6 {
+body h6, body .h6 {
   font-size: 26px;
   font-family: "NotoSans-L";
   color: #333333;
@@ -1017,12 +1015,14 @@ header > .row form#searchBar .row .search-input .suggest-items .custom-item {
   justify-content: center;
   text-transform: uppercase;
   align-items: center;
+  padding: 10px 0;
   cursor: pointer;
 }
 
 header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 100%;
+  height: 20px;
   margin-left: 10px;
+  opacity: .5;
 }
 
 header > .row form#searchBar .row .custom-select {
@@ -1034,7 +1034,7 @@ header > .row form#searchBar .row .custom-select {
   line-height: 21px;
   opacity: 1;
   margin: 0;
-  width: 140px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -1108,8 +1108,9 @@ header > .menuBody {
   padding: 50px;
   align-content: space-around;
   width: 15%;
-  transform: translate(100%, 2%);
+  transform: translate(100%, 0);
   transition: all .5s;
+  z-index: 12;
 }
 
 header > .menuBody button {
@@ -1241,12 +1242,14 @@ header header > .row form#searchBar .row .search-input .suggest-items .custom-it
   justify-content: center;
   text-transform: uppercase;
   align-items: center;
+  padding: 10px 0;
   cursor: pointer;
 }
 
 header header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 100%;
+  height: 20px;
   margin-left: 10px;
+  opacity: .5;
 }
 
 header header > .row form#searchBar .row .custom-select {
@@ -1258,7 +1261,7 @@ header header > .row form#searchBar .row .custom-select {
   line-height: 21px;
   opacity: 1;
   margin: 0;
-  width: 140px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -1332,8 +1335,9 @@ header header > .menuBody {
   padding: 50px;
   align-content: space-around;
   width: 15%;
-  transform: translate(100%, 2%);
+  transform: translate(100%, 0);
   transition: all .5s;
+  z-index: 12;
 }
 
 header header > .menuBody button {
