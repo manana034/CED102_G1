@@ -157,12 +157,6 @@ input[type=text]::placeholder {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0;
   position: sticky;
-  top: 100px;
-  width: 30%;
-  height: 300px;
-  margin-top: 50px;
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 
 .r-aside {
@@ -172,12 +166,6 @@ input[type=text]::placeholder {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin: 0;
   position: sticky;
-  top: 100px;
-  width: 30%;
-  height: 300px;
-  margin-top: 50px;
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 
 .w-hr {
@@ -1017,12 +1005,14 @@ header > .row form#searchBar .row .search-input .suggest-items .custom-item {
   justify-content: center;
   text-transform: uppercase;
   align-items: center;
+  padding: 10px 0;
   cursor: pointer;
 }
 
 header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 100%;
+  height: 20px;
   margin-left: 10px;
+  opacity: .5;
 }
 
 header > .row form#searchBar .row .custom-select {
@@ -1034,7 +1024,7 @@ header > .row form#searchBar .row .custom-select {
   line-height: 21px;
   opacity: 1;
   margin: 0;
-  width: 140px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -1108,8 +1098,9 @@ header > .menuBody {
   padding: 50px;
   align-content: space-around;
   width: 15%;
-  transform: translate(100%, 2%);
+  transform: translate(100%, 0);
   transition: all .5s;
+  z-index: 12;
 }
 
 header > .menuBody button {
@@ -1241,12 +1232,14 @@ header header > .row form#searchBar .row .search-input .suggest-items .custom-it
   justify-content: center;
   text-transform: uppercase;
   align-items: center;
+  padding: 10px 0;
   cursor: pointer;
 }
 
 header header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 100%;
+  height: 20px;
   margin-left: 10px;
+  opacity: .5;
 }
 
 header header > .row form#searchBar .row .custom-select {
@@ -1258,7 +1251,7 @@ header header > .row form#searchBar .row .custom-select {
   line-height: 21px;
   opacity: 1;
   margin: 0;
-  width: 140px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -1332,8 +1325,9 @@ header header > .menuBody {
   padding: 50px;
   align-content: space-around;
   width: 15%;
-  transform: translate(100%, 2%);
+  transform: translate(100%, 0);
   transition: all .5s;
+  z-index: 12;
 }
 
 header header > .menuBody button {
