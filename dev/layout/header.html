@@ -1,12 +1,27 @@
 <header>
+
+    <div class="searchWindow">
+        <button class="close nc-btn">X</button>
+        <form>
+           <input type="search">
+           <select name="type">
+               <option value="FOOD">FOOD</option>
+               <option value="EXERCISE">EXERCISE</option>
+           </select>
+           <button class="nc-btn">
+               <img src="../icon/magnifier.png">
+           </button>
+        </form>
+    </div>
+
     <div class="row container">
-        <div class="col-4 col-lg-2 col-md-2 col-sm-1 logo">
+        <div class=" logo">
             <a href="./B_index.html">
                 <img src="../img/logo.png" />
             </a>
         </div>
 
-        <form id="searchBar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+        <form id="searchBar" >
             <div class="row">
                 <div class="search-input">
                     <input type="text" placeholder="SERACH" />
@@ -50,26 +65,37 @@
             </div>
         </form>
 
-        <div class="col-4 col-lg-2 col-md-2 col-sm-1 row">
-            <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+        <div class="row">
+            <div>
+                <button class="nc-btn phoneSearch">
+                    <img src="../icon/magnifier.png" >
+                </button>
+            </div>
+
+            <div >
                 <a href="./member.html" class="a">
-                    MEMBER
+                    <span>MEMBER</span>
+                    
                     <img src="../icon/member.png" alt="" />
                 </a>
             </div>
-            <div class="col-4 col-lg-2 col-md-2 col-sm-1 nc">
+            <div class="nc">
                 <button class="nc-btn">
-                    CART
+                    <span>CART</span>
+                    
                     <img src="../icon/cart.png" alt="" />
                 </button>
             </div>
 
-            <div class="col-4 col-lg-2 col-md-2 col-sm-1">
+            <div>
                 <button class="nc-btn menuIcon">
-                    MENU
+                    <span>MENU</span>
+                    
                     <img src="../icon/hamburger.png" alt="" />
                 </button>
             </div>
+
+         
         </div>
     </div>
 
@@ -98,4 +124,6 @@
             </li>
         </ul>
     </div>
+
 </header>
+ 

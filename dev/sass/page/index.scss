@@ -67,7 +67,7 @@
         #chatRobot {
             position: fixed;
             right: 70px;
-            z-index: 1;
+            z-index: 2;
 
             width: 50px;
             height: 50px;
@@ -417,4 +417,110 @@
     // >.bottom{
 
     // }
+}
+
+@include rwd(1120px){
+    .mainContent {
+        >.title{
+            display: block;
+        }
+        div:last-child #chatRobot{
+            right: 10%;
+            
+        }
+    }
+    .mainVision{
+        display: block;
+        left: 15%;
+        top: 25%;
+   
+    }
+
+    .steps{
+        >div.container{
+            width: unset;
+            >.title{
+                >:last-child{
+                    text-align: unset;
+                }
+            }
+            >.stepSlider{
+                padding: 10px;
+                flex-wrap: wrap;
+                >:first-child{
+                    width: 100%;
+                    height: unset;
+                    span{
+                        display: none;
+                    }
+                    >.tilt{
+                        width: 100%;
+                        padding: 10px;
+                        h4{
+                            margin-bottom: 25px;
+                        }
+                        p{
+                            margin-bottom: 10px;
+                        }
+                        .fInput{
+                            margin-bottom: 30px;
+                        }
+                    }
+                }
+                >:last-child{
+                    width: unset;
+                    height: unset;
+                    padding: 20px;
+                }
+            }
+        }
+    }
+
+    header > .menuBody{
+        width: 100%;
+    }
+
+    .postWall{
+        >:first-child{
+            display: none;
+        }
+        >:last-child{
+            position: relative;
+            top:unset; 
+            left:unset; 
+            transform: unset;
+            max-width: unset;
+            flex: unset;
+        }
+    }
+
+    .product{
+        >.top{
+            flex-wrap: wrap;
+            justify-content: center;
+            .content{
+                width: 100%;
+                
+            }
+            >:last-child{
+                width: unset;
+                margin: 20px 0;
+            }
+        } 
+      
+    } 
+
+    footer{
+        div{
+            margin-top: 20px;
+            img{
+                width: 35px;
+            }
+        }
+        p{
+            margin: 10px;
+        }
+    }
+    
+        
 }
