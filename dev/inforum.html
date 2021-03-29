@@ -8,7 +8,22 @@
     <link rel="stylesheet" type="text/css" href="./css/page/inforum.css">
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/forum.js" defer></script>
+
+    <script>
+            $(document).ready(function() {
+        $("#clickMe").click(function() {
+            $(this).next(".hiddenContent").slideToggle(250);
+        });
+        });
+   
+        $(document).ready(function() {
+        $(".nc-btn").click(function() {
+            $(this).next(".social").slideToggle(250);
+        });
+        });
+    </script>
 </head>
 <body>
 
@@ -242,7 +257,7 @@
                                     <img src="./icon/share.svg" /> 
                                     share
                                 </button>
-                                <div class="social ">
+                                <div class="social">
                                     <button class="nc-btn">
                                         <img src="./icon/twitter.svg">
                                     </button>
@@ -280,7 +295,8 @@
                                     <img src="./icon/report.svg" alt="" />
                                 </button>
                             </div>
-                        </div>  <!-- .topBody -->
+                        </div>  <!--.topBody -->
+
 
                     
                         <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
@@ -290,9 +306,10 @@
                         <div class="commentNum">
                             <span>100</span> <span>&ensp;comments</span>
                         </div>
+
+
                         
                         <div class="bottomBody">
-                            <button class="nc-btn comment"><img src="./icon/comment.svg" /> comment</button>
                             <div class="share">
                                 <button class="nc-btn">
                                     <img src="./icon/share.svg" /> 
@@ -309,8 +326,29 @@
                                         <img src="./icon/facebook.svg">
                                     </button>
                                 </div> <!-- .social-->
-                            </div>  <!-- .share-->
-                        </div>  <!-- .bottomBody-->    
+                            </div>  <!-- .share-->                          
+                        </div>  <!-- .bottomBody-->  
+                        
+                        
+
+
+
+                        <div class="floor">
+                            <button class="nc-btn comment" id="clickMe"><i class="fas fa-comment-alt"></i> comment</button>
+
+                            <div class="hiddenContent">
+
+                                <div class="issue">
+                                    <div class="radius_icon"></div>
+                                    <input type="text" style="border:none;"placeholder="Comment...">
+                                    <pre>123</pre>
+                                </div>
+
+                            </div>
+                        </div> <!-- .floor -->
+
+
+
                     </div> <!-- .card -->
                 </div> <!-- .gallery-item -->
     
@@ -325,43 +363,12 @@
 
 
             
-           <script>
-                function showLoginForm(){            
-                  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
-                    document.getElementById("lightBox").style.display = "";
-                  }
-
-                }//showLoginForm
-
-                function cancelLogin(){
-                  document.getElementById("lightBox").style.display="none";
-                }
-
-                function init(){
-                    
-                  //===設定spanLogin.onclick 事件處理程序是 showLoginForm
-                  document.getElementById("sp_follower").onclick = showLoginForm;
-                  document.getElementById("spanLogin").onclick = showLoginForm;
-                  
-                                
-                  //===設定btnCancel.onclick 事件處理程序是 cancelLogin
-                  document.getElementById("btnCancel").onclick = cancelLogin;
-                
-                  document.getElementById("pic").style.display = "none";
-                
-                }; //window.onload
-                
-                window.addEventListener("load", init, false);
-                </script>
-
-
-
-
-
 
 
 
         </div>  <!-- class="middle" -->
+
+
 
 
         <!-- 右邊報告區 -->
