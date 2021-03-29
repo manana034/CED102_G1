@@ -30,13 +30,13 @@ input[type=number] {
 .prodContent {
     max-width: 1200px; 
     display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-wrap: wrap;     
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 200px;
-    // padding-left: 0px;
-    // border: 1px solid #000;
+    padding: 0 15px;
+    border: 1px solid #000;
 
       //按鈕
       button {
@@ -48,8 +48,8 @@ input[type=number] {
         }
 
     .prod_desc{
-        width: 400px;
-        margin-right: 100px;
+        width: 35%;
+        // margin-right: 100px;
         // border: 1px solid blue;
         p{
             margin-top: 20px;
@@ -67,21 +67,25 @@ input[type=number] {
         position: sticky;
         // border: 1px solid red;
         top: 100px;
+        width: 50%;
 
     .prodimg{
         background-color: #2d6ca6;
         position: relative;
         text-align: center;
-        max-width: 230px;
+        // max-width: 250px;
+        height:350px;
+        
         border-radius: 200px;
             img{
-                width: 85%;
+                // width: 180px;
+                max-width: 250px;
             }
         }
         .prod1Info{
             position: relative;
             top: 50px;
-            margin-left: 150px;
+            margin-left: 80px;
             width: 40%;
             // border: 1px solid red;
             p{
@@ -108,15 +112,12 @@ input[type=number] {
                 .btn_number{
                     display: inline-block;
                     // border-bottom: 1px solid gray;
-                    // border-radius: 20px;
                     padding: 5px 15px 5px 15px;
                     
                 }
                 span{
                     font-size: 20px;
                     cursor: pointer;
-                    // padding: 2px 4px;
-                    // border-radius: 50%;
                     text-align: center;
                     // border: 1px solid gray;
                 }
@@ -138,6 +139,7 @@ input[type=number] {
         width:100%;
         margin-top: 200px;
         // border: 1px solid #000;
+        margin-left: 25px;
         
 
         h6{
@@ -168,3 +170,49 @@ input[type=number] {
 }
 
 @import'./component/moreproduct.scss';
+
+//----------------RWD--------------------
+@media (max-width: 992px){
+    .prodContent {
+        display: flex;
+        flex-wrap:  wrap-reverse;
+        margin-top:0;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #000;
+
+        .prod_desc{
+            order: 1;
+            width: 80%;
+            margin-top: 150px;
+            border: 1px solid #000;
+        }
+        .productDetail{
+            // width: 100%;
+            position: relative;
+            order: 2;
+            justify-content: center;
+            .prodimg{
+                background-color: #2d6ca6;
+                position: relative;
+                text-align: center;
+                // max-width: 250px;
+                height:250px;
+                
+                border-radius: 200px;
+                    img{
+                        // width: 180px;
+                        max-width: 200px;
+                    }
+                }
+                .prod1Info{
+                    width: 200px;
+                } 
+        }
+        .prod_infoall{
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+        }
+    }
+}   
