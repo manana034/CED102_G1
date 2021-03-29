@@ -322,7 +322,12 @@ div.right{
   width: 100%;
   // border: 1px solid blue;
 }
-.floor > .comment{
+.floor > .drop_down{
+  font-family: "NotoSans-B";
+  outline: none;
+  font-size: 14px;
+  background-color: white;
+  border: none;
   display: flex;
   align-items: center;
   // border: 1px solid hotpink;
@@ -341,9 +346,13 @@ div.right{
 .hiddenContent > .issue{
   width: 100%;
   border: none;
-  // border: 1px solid red;
   position: relative;
 }
+
+.hiddenContent {
+  display: none;
+}
+
 
 .issue input::-webkit-input-placeholder {
   font-size: 16px;
@@ -732,8 +741,8 @@ pre.reply_time{
   }
 
   .pop_inside{
-    margin-top: 5%;
-    margin-left: 10%;
+    margin-top: 12%;
+    margin-left: 11%;
     width: 75%;
     // border: 1px solid orange;
     z-index: 502;

@@ -13,11 +13,12 @@
 
     <script>
             $(document).ready(function() {
-        $("#clickMe").click(function() {
+        $(".drop_down").click(function() {
             $(this).next(".hiddenContent").slideToggle(250);
         });
         });
    
+        
         $(document).ready(function() {
         $(".nc-btn").click(function() {
             $(this).next(".social").slideToggle(250);
@@ -222,165 +223,200 @@
 
 <div class="gallery" id="gallery"> <!-- !!!!!!瀑布流大外框!!!!!! -->
 <!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
-                <div class="gallery-item">
+<div class="gallery-item">
                     
-                    <div class="card"> 
-                        <div class="topBody">
-                            <div>
-                                <div class="face">
-                                    <img src="./img/selfie.png" alt="" />
-                                </div>
-                                <div>
-                                    <p class="name">Jose Young</p>
-                                    <p class="releaseDate">2021-3-23</p>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="nc-btn report">
-                                    <img src="./icon/report.svg" alt="" />
-                                </button>
-                            </div>
-                        </div>  <!-- .topBody -->
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
+                </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
+    
+        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
+      
+
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down" ><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
                       
-                        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
-                        
+                    </ul>
+                </div> <!-- .issue -->
 
-                        <div class="commentNum">
-                            <span>100</span> <span>&ensp;comments</span>
-                        </div>
-                        
-                        <div class="bottomBody">
-                            <button class="nc-btn comment"><img src="./icon/comment.svg" /> comment</button>
-                            <div class="share">
-                                <button class="nc-btn">
-                                    <img src="./icon/share.svg" /> 
-                                    share
-                                </button>
-                                <div class="social">
-                                    <button class="nc-btn">
-                                        <img src="./icon/twitter.svg">
-                                    </button>
-                                    <button class="nc-btn">
-                                        <img src="./icon/ig.svg">
-                                    </button>
-                                    <button class="nc-btn">
-                                        <img src="./icon/facebook.svg">
-                                    </button>
-                                </div> <!-- .social-->
-                            </div>  <!-- .share-->
-                        </div>  <!-- .bottomBody-->    
-                    </div> <!-- .card -->
-                </div> <!-- .gallery-item -->
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
                        
 <!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
 
-<!--vvvvvvvv以下一張白色圓角卡片:文字vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->
 
-                <div class="gallery-item">
+
+
+<!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
+<div class="gallery-item">
                     
-                    <div class="card"> 
-                        <div class="topBody">
-                            <div>
-                                <div class="face">
-                                    <img src="./img/selfie.png" alt="" />
-                                </div>
-                                <div>
-                                    <p class="name">Jose Young</p>
-                                    <p class="releaseDate">2021-3-23</p>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="nc-btn report">
-                                    <img src="./icon/report.svg" alt="" />
-                                </button>
-                            </div>
-                        </div>  <!--.topBody -->
+    <div class="card"> 
+        <div class="topBody">
+            <div>
+                <div class="face">
+                    <img src="./img/selfie.png" alt="" />
+                </div>
+                <div>
+                    <p class="name">Jose Young</p>
+                    <p class="releaseDate">2021-3-23</p>
+                </div>
+            </div>
+            <div>
+                <button class="nc-btn report">
+                    <img src="./icon/report.svg" alt="" />
+                </button>
+            </div>
+        </div>  <!--.topBody -->
 
-
-                    
-                        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
-
-                        
-
-                        <div class="commentNum">
-                            <span>100</span> <span>&ensp;comments</span>
-                        </div>
-
-
-                        
-                        <div class="bottomBody">
-                            <div class="share">
-                                <button class="nc-btn">
-                                    <img src="./icon/share.svg" /> 
-                                    share
-                                </button>
-                                <div class="social ">
-                                    <button class="nc-btn">
-                                        <img src="./icon/twitter.svg">
-                                    </button>
-                                    <button class="nc-btn">
-                                        <img src="./icon/ig.svg">
-                                    </button>
-                                    <button class="nc-btn">
-                                        <img src="./icon/facebook.svg">
-                                    </button>
-                                </div> <!-- .social-->
-                            </div>  <!-- .share-->                          
-                        </div>  <!-- .bottomBody-->  
-                        
-                        
-
-
-
-                        <div class="floor">
-                            <button class="nc-btn comment" id="clickMe"><i class="fas fa-comment-alt"></i> comment</button>
-
-                            <div class="hiddenContent">
-
-                                <div class="issue">
-                                    <div class="radius_icon"></div>
-                                    <input type="text" style="border:none;"placeholder="Comment...">
-                                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
-                                </div> <!-- .issue -->
-
-                                <div class="issue">
-                                    <div class="radius_icon"></div>
-                                    <ul>
-                                        <li class="reply_detail"> 
-                                            <div class="reply_member">Diana Diaz</div> 
-                                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
-                                        </li>
-
-                                        <li class="reply_content"> Thanks for all of the love and support!</li>
-                                      
-                                    </ul>
-                                </div> <!-- .issue -->
-
-                                <div class="issue">
-                                    <div class="radius_icon"></div>
-                                    <ul>
-                                        <li class="reply_detail"> 
-                                            <div class="reply_member">Diana Diaz</div> 
-                                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
-                                        </li>
-
-                                        <li class="reply_content"> Thanks for all of the love and support!</li>
-                                    </ul>
-                                </div> <!-- .issue -->
-                                <div class="under_pop"><pre class="load">load more +</pre></div>
-      
-                            </div><!-- .hiddenContent -->
-                        </div> <!-- .floor -->
-
-
-
-                    </div> <!-- .card -->
-                </div> <!-- .gallery-item -->
     
-<!--^^^^^^^^以上一張白色圓角卡片:文字^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
-</div> <!-- ."gallery" id="gallery" --> <!-- !!!!!!瀑布流大外框!!!!!! -->
+        <img class="article" src="https://source.unsplash.com/featured/?food" alt="">
+      
 
+        <div class="commentNum">
+            <span>100</span> <span>&ensp;comments</span>
+        </div>
+        
+        <div class="bottomBody">
+            <div class="share">
+                <button class="nc-btn">
+                    <img src="./icon/share.svg" /> 
+                    share
+                </button>
+                <div class="social ">
+                    <button class="nc-btn">
+                        <img src="./icon/twitter.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/ig.svg">
+                    </button>
+                    <button class="nc-btn">
+                        <img src="./icon/facebook.svg">
+                    </button>
+                </div> <!-- .social-->
+            </div>  <!-- .share-->                          
+        </div>  <!-- .bottomBody-->  
+        
+        
+       <div class="floor">
+            <button class="drop_down"><i class="fas fa-comment-alt"></i> comment</button>
+
+            <div class="hiddenContent">
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <input type="text" style="border:none;"placeholder="Comment...">
+                    <!-- <pre class="reply_time">2020/06/20 19:00</pre> -->
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 18:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                      
+                    </ul>
+                </div> <!-- .issue -->
+
+                <div class="issue">
+                    <div class="radius_icon"></div>
+                    <ul>
+                        <li class="reply_detail"> 
+                            <div class="reply_member">Diana Diaz</div> 
+                            <pre class="reply_time">2020/06/20 19:00  <img src="./icon/report.svg" alt="" /> </pre>    
+                        </li>
+
+                        <li class="reply_content"> Thanks for all of the love and support!</li>
+                    </ul>
+                </div> <!-- .issue -->
+                <div class="under_pop"><pre class="load">load more +</pre></div>
+
+            </div><!-- .hiddenContent -->
+        </div> <!-- .floor -->
+
+    </div> <!-- .card -->
+</div> <!-- .gallery-item -->
+                       
+<!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+
+</div> <!-- ."gallery" id="gallery" --> <!-- !!!!!!瀑布流大外框!!!!!! -->
 
 
 
