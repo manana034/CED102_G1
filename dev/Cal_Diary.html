@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/Cal_Dairy.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="./js/chart_selector.js"></script>
+
+    <link rel="stylesheet" href="./css/page/index.css" />
+    <script src="./js/header.js" defer></script>
+    <script src="./js/cart.js" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/common/mychart.css">
 </head>
 <body>
     @@include('./layout/header.html')
@@ -80,7 +89,7 @@
                         </div>
                         <div class="rest_day">
                             <p>REST DAY</p>
-                            <p>CURENT DATE : 1992/10/18</p>
+                            <p>CURENT DATE  1992/10/18</p>
                             <div class="rest_day_item">
                                 <p class="rest_day_value">53</p>
                                 <p class="rest_day_unit">DAY</p>
@@ -103,28 +112,22 @@
                 </div>
 
                 <div class="card report">
-                    <div class="title_back"></div>
-                    <p class="CurGoal_title">
-                        <img src="img/chart_icon.svg">
-                        REPORT
-                        <select>
-                            <option>This Month</option>
-                            <option>Last Month</option>
-                        </select>
-                    </p>
-                    <!-- <div class="CurGoal_title">                      
-                        <img src="img/data_icon.png">
-                        REPORT
-                        <select>
-                            <option>This Month</option>
-                            <option>Last Month</option>
-                        </select>
-                    </div> -->
+                    
+                        <div class="title_back"></div>
+                        <p class="CurGoal_title">
+                            <img src="img/chart_icon.svg">
+                            REPORT
+                            <select>
+                                <option>This Month</option>
+                                <option>Last Month</option>
+                            </select>
+                        </p>            
+                  
                     <p class="report_title">
                         compared to last week 2/8~2/14
                     </p>
                     <div class="chart_select">
-                        <div class="chart_weight chart_selectors" >
+                        <div class="chart_weight chart_selectors">
                             <p>Weight</p>
                             <div class="chart_data">
                                 <p>64</p>
@@ -132,7 +135,7 @@
                                 <p class="w_persan">1%</p>
                             </div>
                         </div>
-                        <div class="chart_cal chart_selectors" >
+                        <div class="chart_cal chart_selectors">
                             <p>Cal</p>
                             <div class="chart_data">
                                 <p>1700</p>
@@ -140,7 +143,7 @@
                                 <p class="cal_persan">2%</p>
                             </div>
                         </div>
-                        <div class="chart_excercie chart_selectors" >
+                        <div class="chart_excercie chart_selectors">
                             <p>Exercise</p>
                             <div class="chart_data">
                                 <p>1 hr 30 min</p>
@@ -148,18 +151,8 @@
                                 <p class="ex_persan">1%</p>
                             </div>
                         </div>
-    
                     </div>
                     <div class="report_chart">
-<<<<<<< HEAD
-                        <div class="report_charts">1</div>
-                        <div class="report_charts">2</div>
-                        <div class="report_charts">3</div>
-=======
-<<<<<<< HEAD
-                        <img src="img/model_picture.png">
-
-=======
                         <div class="report_charts">
                             <div id="chartdiv01"></div>
                             <script>
@@ -443,8 +436,6 @@
                                 }); // end am4core.ready()
                                 </script> 
                         </div>
->>>>>>> yimming
->>>>>>> 279b6998d69ef81c263bf8a3fc0fbe47c74a015a
                     </div>
                    
                 </div>
@@ -456,22 +447,14 @@
                         <div class="s_exercise input_selector"><p>Exercise</p></div>
                     </div>
                     <div class = "card cal_input_table" >
-                        <div class="input_pages">food</div>
-                        <div class="input_pages">exersice</div>
+                        <div class="input_pages">Food</div>
+                        <div class="input_pages">Exercise</div>
                     </div>
                 </div>
             </div>
         </div>
       
     </div>
-<<<<<<< HEAD
-  
-=======
-<<<<<<< HEAD
-    
-=======
     @@include('./layout/footer.html')
->>>>>>> yimming
->>>>>>> 279b6998d69ef81c263bf8a3fc0fbe47c74a015a
 </body>
 </html>
