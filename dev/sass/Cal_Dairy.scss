@@ -1,11 +1,26 @@
+<<<<<<< HEAD
+=======
+// body *{
+//     box-sizing: unset;
+// }
+.containor.Cal_Dairy *{
+    box-sizing: unset;
+}
+>>>>>>> yimming
 .containor.Cal_Dairy{
+    margin-top: 20px;
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: 20% 80%;
 //===============Aside=============
+=======
+    grid-template-columns: 18% 82%;
+//=============== Aside =============
+>>>>>>> yimming
 .l-aside.Cal_Dairy{
     display: block;
-    width:250px;
-    height:700px;
+    width: 300px;
+    height: 900px;
     .cal_aside {
         // height: 40px;
         .aside_title{
@@ -20,7 +35,7 @@
         .aside_inf{
             width: 100%;
             text-align:center;
-            padding: 10px 0px 10px 0px;
+            padding: 15px 0px 40px 0px;;
             .person_inf{
                 display: flex;
                 margin: 5PX;
@@ -54,7 +69,49 @@
         margin:0px auto;
     }
 }
+<<<<<<< HEAD
 //=============CENTER===========
+=======
+//=========== Aside_RWD =============
+@media (max-width: 1479px) and (min-width: 1340px){
+    .l-aside.Cal_Dairy{
+        width: 250px;
+        .cal_aside {
+            transform: scale(0.95,0.95);
+            .aside_title{
+            
+            }
+            .aside_inf{
+              
+                .person_inf{
+                    
+                    p{
+                      
+                    }
+                    .gender,.hight,.age{
+                      
+                    }
+                }
+                .aside_inf_title{
+                    
+                }
+                 .aside_inf_data{
+                   
+                }
+            }
+        }
+        .w-btn.Cal_Dairy{
+        
+        }
+    }
+}
+@media (max-width: 1339px) and (min-width: 1170px){
+    .l-aside.Cal_Dairy{
+        width: 220px;
+    }
+}
+//==============================CENTER=====================================
+>>>>>>> yimming
 .center.Cal_Dairy{
     .top_area{
         display: grid;
@@ -62,8 +119,21 @@
         grid-template-columns: 49% 49%;
         .card.CurGoal{
             padding: 20px;
-            width: 520px;
+            width: 700px;
             margin: 0px auto;
+<<<<<<< HEAD
+=======
+            position: relative;
+            .title_back{
+                width: 100%;
+                height: 60px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background-color: #EAA565;
+                border-radius: 20px 20px 0px 0px;
+            }
+>>>>>>> yimming
             .CurGoal_title{
                 img{
                     height: 20px;
@@ -75,6 +145,7 @@
                 border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
+                padding-bottom: 13px;
             }
             .CurGoal_content{
                 display: grid;
@@ -90,7 +161,7 @@
                         grid-template-columns: 55% 45%;
                         img{
                             margin: 20px 20px 10px 25px;
-                            width: 90px;
+                            width: 120px;
                         }
                         .rest_cal_inf{
                             padding-right: 20px;
@@ -102,6 +173,7 @@
                                 text-align: center;
                                 font-size: 32px;
                                 font-weight: bold;
+                                color:#EAA565;
                                 margin: 60px 0px 10px 0px;
                             }
                             .rest_cal_unit{
@@ -111,6 +183,7 @@
                                 text-align: center;
                                 font-size: 16px;
                                 font-weight: bold;
+                                color:#EAA565;
                                 margin: 20px 0px 10px 0px;
                             }
                             .daily_cal_unit,.rest_cal_unit{
@@ -131,10 +204,11 @@
                         display: flex;
                         .rest_day_value{
                             font-size: 42px;
-                            padding: 20px 40px 20px 50px;
+                            color:#EAA565;
+                            padding: 40px 40px 40px 90px;
                         }
                         .rest_day_unit{
-                            margin: 30px 0px 0px 0px;
+                            margin: 50px 0px 0px 0px;
                         }
                     }
                     .sch_title{
@@ -145,7 +219,7 @@
                             font-weight: bolder;
                         }
                         .sch_start{
-                            padding-right: 55px;
+                            padding-right: 150px;
                         }
                         
 
@@ -159,7 +233,7 @@
                     .sch_date{
                         display: flex;
                         .date_start{
-                            margin-right: 55px;
+                            margin-right: 135px;
                         }
                     }
                     
@@ -169,14 +243,33 @@
 
         }
         .card.report{
-            width: 520px;
+            width: 700px;
             margin: 0px auto;
             padding: 20px;
+<<<<<<< HEAD
+=======
+            position: relative;
+            .title_back{
+                width: 100%;
+                height: 60px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background-color: #EAA565;
+                border-radius: 20px 20px 0px 0px;
+            }
+>>>>>>> yimming
             .CurGoal_title{
                 select{
                     border:none;
+<<<<<<< HEAD
                     margin-left: 60%;
                     color: #888888;
+=======
+                    margin-left: 70%;
+                    color: #D8D8D8;
+                    font-size: 16px;
+>>>>>>> yimming
                     cursor: pointer;
                 }
                 img{
@@ -189,6 +282,7 @@
                 border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
+                padding-bottom: 13px;
             }
             .report_title{
                 margin: 10px;
@@ -197,7 +291,7 @@
             .chart_select{
                 height: 80px;
                 display: grid;
-                grid-template-columns: 25% 25% 35%;
+                grid-template-columns: 16% 18% 26%;;
                 .chart_weight,.chart_cal,.chart_excercie{
                     border: 1px solid #AAAAAA;
                     height: 48px;
@@ -235,6 +329,19 @@
                 img{
                     width: 100%;
                 }
+<<<<<<< HEAD
+=======
+                .report_charts{
+                    border: 1px solid #dddd;
+                    width: 100%;
+                    #chartdiv01,#chartdiv02,#chartdiv03{
+                        height: 200px;
+                    }
+                }
+                .report_charts:nth-child(2),.report_charts:nth-child(3){
+                    display:none;
+                }
+>>>>>>> yimming
             }
 
 
@@ -286,4 +393,51 @@
         }
     }
 }
+<<<<<<< HEAD
+=======
+@media (max-width: 1339px) and (min-width: 1170px){
+.center.Cal_Dairy{
+    .top_area{
+        margin-top: -15px;
+        .card.CurGoal{
+            transform:scale(0.9,0.9);
+            width: 450px;
+            .CurGoal_content{
+                .rest_day{
+                    .sch_title{
+                        p{
+                            text-align: center;
+                        }
+                    }
+                    .sch_date{                       
+                        .date_start{
+                            font-size: 14px;
+                            margin-right: 35px;
+                        }
+                        .date_end{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+        .card.report{
+            transform:scale(0.9,0.9);
+            width: 450px;
+            .chart_select{
+               grid-template-columns: 26% 28% 40%;
+            }
+        }
+    }
+    .bot_area{
+       
+        .cal_input{
+            margin-left: -25px;
+            transform:scale(0.9,0.9);
+        }
+    }
+}    
+}
+
+>>>>>>> yimming
 }
