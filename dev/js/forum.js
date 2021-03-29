@@ -13,9 +13,9 @@
 
 
                 function showReportForm(){            
-                  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
+                  // if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
                     document.getElementById("reportBox").style.display = "";
-                  }
+                  // }
                 }//showReportForm
 
 
