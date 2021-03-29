@@ -235,9 +235,7 @@ div.right{
 
 //"中間middle"裡 上面的區塊midbox(內含outcard和popular) 下面才是瀑布流
 .midbox{
-  // border: 1px solid deeppink;
   display: flex;
-  // justify-content: space-around;
 }
 
 .outcard{
@@ -257,6 +255,9 @@ div.right{
   display: flex;
   text-transform:uppercase;
   margin-left: 3%;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 .post .xsl{
   margin-right: 5%;
@@ -289,52 +290,127 @@ div.right{
   }
   
 
-
-
-
-.issue{
-  border-bottom:1px solid $gray4;
-  // border: 1px solid black;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  display: flex;
-  align-items: center;
-}
-
 .radius_icon {
     width: 50px;
     height: 50px;
     border-radius: 50px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-    background-color: $gray5;
+    background-color:grayscale($color: #0000003f);
   }
 
-.issue input{
+.issue{
+    border-bottom:1.5px solid $gray4;
+    width: 80%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+.issue input{ //發文區輸入框
   width: 420px;
   height: 40px;
-  margin-left: 0%;
+  margin-left: 2%;
+  margin-top: 3%;
+  // margin-bottom: 3%;
 }
+
+
+.floor{
+  font-size: 18px;
+  width: 100%;
+  // border: 1px solid blue;
+}
+.floor > .drop_down{
+  font-family: "NotoSans-B";
+  outline: none;
+  font-size: 14px;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  // border: 1px solid hotpink;
+  text-transform: uppercase;
+  color: #333333bd;
+}
+
+.floor .issue input{  //留言區輸入框
+  // width: 150%;
+  background-color:$gray3;
+  border-radius: 10px;
+  width: 90%;
+  // z-index: 0;
+}
+
+.hiddenContent > .issue{
+  width: 100%;
+  border: none;
+  position: relative;
+}
+
+.hiddenContent {
+  display: none;
+}
+
 
 .issue input::-webkit-input-placeholder {
-  /* placeholder字体大小 */
-  font-size: 24px;
-  color: $gray4;
+  font-size: 16px;
+  color: grayscale($color: #0000003f);
+  font-family: "NotoSans-R";
+  text-transform: uppercase;
 }
 
 
+.issue ul{
+  height: 80%;
+  width: 90%;
+  margin-left: 2%;
+  // margin-top: 3%;
+  // margin-bottom: 3%;
+  padding-left: 2%;
+  background-color: #F2F2F2;
+  border-radius: 10px;
+  font-size: 14px;
+  color: grayscale($color: #0a0a0a96);
+  font-family: "NotoSans-R";
+  text-transform: uppercase;
+}
+
+li.reply_detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5%;
+}
+
+li.reply_content{
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+
+// .issue pre.reply_time{ //功能刪除
+//   color: $gray5;
+//   position: absolute;
+//   right: 0%;
+// }
+pre.reply_time{
+  display: flex;
+  align-items: center;
+}
 
 
 .create_post{
   display: flex;
-  align-items: baseline;
+  justify-content: flex-end;
 }
 
-.ptime{
-  margin-top: 5%;
-  margin-right: 33%;
-  margin-left: 3%;
-  color: $gray5 ;
-}
+// .ptime{  
+//   margin-top: 5%;
+//   margin-right: 33%;
+//   margin-left: 3%;
+//   color: $gray5 ;
+// }
 
 .popular{
   color:$gray5;
@@ -356,8 +432,6 @@ div.right{
 
 
 
-
-
 //中間瀑布流內容
   .gallery {
     display: grid;
@@ -366,41 +440,23 @@ div.right{
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     grid-auto-rows: 8px;
   }
-  // .gallery img {
-  //   max-width: 100%;
-  //   border-radius: 8px;
-  //   box-shadow: 0 0 16px #333;
-  //   transition: all 1.5s ease;
-  // }
 
-//   .mescard {
-//     padding: 40px 20px;
-//     background-color: #ffffff; 
-//     border-radius: 20px; 
-//     margin-bottom: 5%;
-//     margin-right: 5%;
-//     margin-top: 5%;
-// }
-
-// figure{
-//   height: 100%;
-// }
 .figure img{
     width: 5%;
     height: 5%;
     border-radius: 50px;
 }
 
-  .gallery .img {  
+  .gallery .article {  
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 0 16px #333;
     transition: all 1.5s ease;
   }
 
-  .gallery img:hover {
-    box-shadow: 0 0 32px #333;
-  }
+  // .gallery img:hover {
+  //   box-shadow: 0 0 32px #333;
+  // }
 
 
   .gallery .gallery-item {
@@ -529,7 +585,131 @@ div.right{
       transform: rotate(0deg);
     }
   }
-  
+
+// 卡片內
+.topBody {
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  > :first-child {
+      display: flex;
+      .face {
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          overflow: hidden;
+          border: 1px solid $white;
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+          margin-right: 20px;
+          img {
+              width: 100%;
+              height: 100%;
+          }
+
+      }
+      > :nth-child(2) {
+    
+          .name {
+              font-weight: 900;
+          }
+          .releaseDate {
+              font-size: 12px;
+              opacity: 0.8;
+          }
+      }
+  }
+
+  >:last-child{
+      .report{
+          opacity: .5;
+      }
+  }
+} //.topbody
+
+
+.middleBody {
+  border-bottom: 1px solid $gray5;
+  margin-top: 15px;
+} //.middleBody
+
+
+
+.commentNum{ //寫在裡面吃不到
+  display: flex;
+  justify-content: flex-end;
+  border-bottom:1px solid $gray4;
+}
+
+.commentNum span {
+  font-size: 12px;
+  color: $gray5;
+  text-transform: uppercase;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.hiddenContent{
+  width: 100%;
+}
+
+
+
+
+
+.bottomBody {
+  // border: 1px solid green;
+  display: flex;
+  margin-top: 5px;
+  justify-content: flex-end;
+  position: relative;
+  button {
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      opacity: 0.6;
+      img {
+          margin-right: 10px;
+      }
+  }
+  .share{
+      z-index: 1;
+      color: $gray4;
+      position: relative;
+      .social{
+          opacity: 1;
+          position: absolute;
+          width: 100%;
+          top: 30px;
+          right: 0;
+          padding: 10px;
+          background-color: $white;
+          flex-wrap: wrap;
+          box-shadow: 3px 5px 5px 1px rgba(0, 0, 0, 0.2);
+
+          display: none; //使用flex
+          >button{
+              display: flex;
+              justify-content: center;
+              width: 100%;
+              margin: 5px 0;
+              img{
+                  opacity: .5;
+              }
+          }
+          
+      }
+  }
+} //bottombody
+
+
+
+
+
+
+
+//以上卡片內容
+
 
 
 
@@ -561,8 +741,8 @@ div.right{
   }
 
   .pop_inside{
-    margin-top: 5%;
-    margin-left: 10%;
+    margin-top: 12%;
+    margin-left: 11%;
     width: 75%;
     // border: 1px solid orange;
     z-index: 502;
@@ -645,6 +825,7 @@ div.right{
     // background-color: green;
     display: flex;
     justify-content: center;
+    font-size: 14px;
   }
 
 
