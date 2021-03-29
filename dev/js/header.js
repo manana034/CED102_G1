@@ -107,12 +107,12 @@ let menuCIcon = menuBody.children[0]
 
 menuIcon.addEventListener('click', () => {
     const state = getComputedStyle(menuBody).transform
-
     if (getComputedStyle(menuBody).display == 'none') {
         menuBody.style.display = 'block'
         const time = setTimeout(() => {
             menuBody.style.transform = 'translate(0,0)'
-        }, 100)
+            clearTimeout(time)
+        })
     } else if (state == 'matrix(1, 0, 0, 1, 400, 0)') {
         menuBody.style.transform = 'translate(0,0)'
     } else {
