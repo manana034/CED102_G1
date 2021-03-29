@@ -14,6 +14,11 @@
 @import '../component/cart.scss';
 
 
+
+.statusOrder .table tbody tr{
+    cursor: pointer;
+}
+
 .table{
     width: 100%;
     border-collapse: collapse;
@@ -28,7 +33,7 @@
         }
     }
     td{
-        padding: 10px;
+        padding: 10px 30px;
         >button{
             padding: 3px 10px;
             margin: 0;
@@ -36,20 +41,24 @@
     }
     tbody{
         >tr{
+            
             border-bottom: 1px solid #d4d4d4;
         }
     }
- 
+
 }
 
+
+
 @include rwd(1000px){
-    .table thead{
+    .totalTable thead,.table thead{
         display: none;
     }
     .table, .table tbody, .table tr, .table td{
         display: block;
         width: 100%;
     }
+
     .table tr{
         margin-bottom: 15px;
     }
@@ -146,11 +155,11 @@
                 }
             }
 
-            >.signup{
-                .fristName,.lastName{
-                    width: 48% ;
-                }
-            }
+            // >.signup{
+            //     .fristName,.lastName{
+            //         width: 48% ;
+            //     }
+            // }
         }
 
         .upper{
@@ -233,8 +242,10 @@
                             font-size: 14px;
                             text-transform: uppercase;
                         }
-                        h6{
+                        .name{
                             font-weight: 900;
+                            font-size: 18px; 
+                            
                         }
                     }
     
@@ -244,9 +255,14 @@
                             justify-content: space-between;
                             >div{
                                 display: flex;
-                                // >img{
-                                //     // margin-right: 5px;
-                                // }
+                                align-items: center;
+                                >img{
+                                    opacity: .5;
+                                    object-fit: contain;
+                                    height: 15px;
+                                    width: 15px;
+                                    margin-right: 5px;
+                                }
                             }
                             p{
                                 font-size: 14px;
@@ -276,7 +292,14 @@
                                 display: flex;
                                 align-items: center;
                                 text-transform: uppercase;
+                                img{
+                                    opacity: .5;
+                                    height: 20px;
+                                    width: 20px;
+                                    margin-left: 10px;
+                                }
                             }
+
                         }
          
                     }
@@ -406,6 +429,7 @@
                                     }
                                     >input:checked~p{
                                         background-color: $primary;
+
                                     }
                                 }
                                 >.enterDurTime{
@@ -426,6 +450,11 @@
                                         background-color: transparent;
                                         position: absolute;
                                         width: 20px;
+                                    }
+                                    img{
+                                        width: 20px;
+                                        height: 20px;
+                                        opacity: .5;
                                     }
                                 }
                             }
@@ -474,6 +503,10 @@
                                     align-items: center;
                                     >img{
                                         margin-right: 5px;
+                                        height: 15px;
+                                        width: 15px;
+                                        object-fit: contain;
+                                        opacity: .5;
                                     }
                                     >p{
                                         margin-right: 10px;
@@ -512,6 +545,9 @@
                                     left: 50%;
                                     position: absolute;
                                     transform: translate(-50%,-50%);
+                                    height: 20px;
+                                    width: 20px;
+                                    opacity: .5;
                                 }
                                 >input{
                                     width: 80%;
@@ -599,6 +635,12 @@
                                     justify-content: center;
                                     align-items: center;
                                     text-transform: uppercase;
+                                    img{
+                                        opacity: .5;
+                                        height: 20px;
+                                        width: 20px;
+                                        margin-left: 10px;
+                                    }
                                 }
                             }
                         }
@@ -609,14 +651,37 @@
 
             >.statusOrder,.favPoster{
                 margin-top: 30px;
-               
-                >button{
+                >:first-child{
                     display: flex;
                     align-items: center;
-                    text-transform: uppercase;
-                    
-                }
+                    justify-content: space-between;
+                    >form{
+                        border-bottom: 1px solid $gray5;
+                        margin-bottom: 10px;
+                        input{
+                            border: none;
+                        }
+                        >button{
+                            img{
+                                opacity: .5;
+                            }
+                        }
+                    }
+                    >button{
+                        display: flex;
+                        align-items: center;
+                        text-transform: uppercase;
+                        margin-bottom: 10px;
+                        img{
+                            height: 15px;
+                            width: 15px;
+                            object-fit: contain;
+                            margin-left: 10px;
+                        }
+                    }
 
+                }
+              
                 >.listBody{
                     overflow: hidden;
                     // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -655,18 +720,327 @@
 
     >:last-child{
         top: 81px;
-        
         position: sticky;
-        height: 90vh;
-        // overflow-y: auto;
+        // height: 90vh;
         >.r-aside{
-            // position: sticky;
-            // top: 112px; // 要用js來抓高度
-            height: 100px;
+    
+            height: 93vh;
             margin-top: 0;
             align-self: flex-start; 
-    
+            padding: 30px 10px;
+             overflow-y: auto;
+
+
+            >button{
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                >img{
+
+                    height: 15px;
+                    width: 15px;
+                    margin-left: 10px;
+                    object-fit: contain;
+                }
+            }
+
+            >.reportBody{
+                //trainsition 會干擾js 運行的時間
+                transition: all .5s;
+                overflow: hidden;
+              
+                >.card{
+                    padding: 10px;
+                    margin: 0;
+                    >:first-child{
+                        margin: 5px 5px 10px 5px;
+                        border-bottom: 1px solid $gray5;
+
+
+                        >select{
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            outline: none;
+                            margin-bottom: 10px;
+                            border: none;
+                            >option{
+                                font-size: 14px;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+                    >:nth-child(2){
+                        display: flex;
+                        flex-wrap: wrap;
+                        button{
+                            padding: 5px 10px;
+                            margin: 5px;
+                            font-size: 14px;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+
+            >.points{
+                margin-top: 50px;
+                padding: 0px;
+                background-color: $primary-l;
+
+                >:first-child{
+                    display: flex;
+                    align-items: center;
+                    text-transform: uppercase;
+                    padding: 10px;
+                    border-bottom: 1px solid $black;
+
+                    img{
+                        height: 20px;
+                        width: 20px;
+                        margin-right: 10px;
+                        opacity: .5;
+                    }
+                }
+
+                >:last-child{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    >:first-child{
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin: 30px 0px;
+                        h6,p{
+                            width: 100%;
+                            text-transform: uppercase;
+                            text-align: center;
+                        }
+                        p{
+                            font-size: 12px;
+                        }
+
+                    }
+
+                    >.p-btn{
+                        text-transform: uppercase;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
         }
     }
  
+}
+
+section.edit,section.orderDetail{
+    
+    z-index: 11;
+    position: fixed;
+    width: 100vw;
+    min-height: 100vh;
+    // display: flex;
+    display: none;
+    >.bg{
+        display: flex;
+        position: absolute;
+        background-color: $black;
+        opacity: .5;
+        width: 100vw;
+        min-height: 100vh;
+    }
+    >.editBody{
+        width: 35%;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+        >.labelrow{
+            display: flex;
+            >label{
+                >input:checked~p{
+                    background-color: $white;
+                }
+                p{
+                    text-transform: uppercase;
+                    padding: 10px;
+                    background-color: rgb(212, 212, 212);
+                    border-radius: 10px 10px 0  0 ;
+                }
+            }
+        }
+
+        >.profileBody,.accountBody{
+            overflow: auto;
+            max-height: 80vh;
+            padding: 20px;
+            background-color:#ebebeb;
+            border-radius: 0 10px 10px  10px ;
+
+            >.row-1{
+                border-bottom: 1px solid $gray5;
+                h4{
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+            }
+
+            >form.row-2{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 30px;
+                >.protrait{
+                    width: 100%;
+                    >div{
+                        margin: auto;
+                        background-color: $gray5;
+                        border-radius: 100%;
+                        width: 80px;
+                        height: 80px;
+                        border: 1px solid $white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        box-shadow:  3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+                        cursor: pointer;
+                    }
+                }
+
+                >.name,.birthday, div.gender,.weight,.height,.email,.phone,.intro,.userid,.oldPwd,.newPwd,.cfmPwd{
+                    width: 100%;
+                    display: flex;
+                    margin: 10px 0;
+                    justify-content: flex-start;
+                    align-items: center;
+                    >:first-child{
+                        width: 250px;
+                        font-weight: 900;
+                        text-transform: uppercase;
+                    }
+                }
+
+                >.weight,.height,.email,.phone,.oldPwd,.newPwd,.cfmPwd{
+                    input{
+                        flex-grow: 2;
+                    }
+                }
+
+                >.name{
+                    margin-top: 50px;
+                }
+
+                >.birthday{
+                    input{
+                        width: 100px;
+                        margin-right: 10px;
+                    }
+                }
+                >div.gender{
+                    // >:first-child{
+                    //     width: 200px;
+                    // }
+                    >label{
+                        display: flex;
+                        align-items: center;
+                        margin-right: 20px;
+                        >p{
+                            text-transform: uppercase;
+                            order: 2;
+                            font-size: 14px;
+                        }
+                        >div{
+                            order: 1;
+                            height: 15px;
+                            width: 15px;
+                            border: 1px solid $gray5;
+                            border-radius: 3px;
+                            margin: 5px;
+                        }
+                        >input:checked~div{
+                            background-color: $primary;
+                            border: none;
+                        }
+                    }
+  
+                }
+
+                >.intro{
+                    align-items: flex-start;
+                    textarea{
+                        border-radius: 10px;
+                        background-color: #ebebeb;
+                        flex-grow: 2;
+                        height: 100px;
+                        resize: none;
+                        outline: none;
+                    }
+                }
+
+
+                >:last-child{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    margin: 20px 0;
+                    button{
+                        text-transform: uppercase;
+                        padding: 10px 50px;
+                    }
+                }
+            }
+        }
+
+        >.accountBody{
+            display: none;
+        }
+    }
+    
+}
+
+section.orderDetail{
+    // display: flex;
+    display: none;
+    justify-content: flex-end;
+
+    .detailBody{
+        // width: 35%;
+        padding: 50px;
+        max-height: 60vh;
+        overflow-y: auto;
+        border-radius: 20px;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+        background-color: $white;
+        >button{
+            position: absolute;
+            right: 20px;
+            top:20px;
+        }
+        >.table{
+            margin-bottom: 20px;
+        }
+        >.total{
+            // display: flex;
+            padding: 20px;
+            // flex-wrap: wrap;
+    
+            >div{
+                display: flex;
+                margin: 10px 0;
+                >:first-child{
+                    width: 200px;
+                    font-size: 14px;
+                }
+            }
+
+            >.hr{
+                width: 50%;
+                height: 1px;
+                background-color: $black;
+            }
+        }
+    }
 }

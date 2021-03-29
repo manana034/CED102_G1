@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10" viewBox="0 0 10 10">
+  <defs>
+    <clipPath id="clip-Artboard_7">
+      <rect width="10" height="10"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_7" data-name="Artboard – 7" clip-path="url(#clip-Artboard_7)">
+    <path id="Icon_awesome-calendar-day" data-name="Icon awesome-calendar-day" d="M0,7.965a.824.824,0,0,0,.824.824H6.866a.824.824,0,0,0,.824-.824V3.3H0Zm1.1-3.3a.275.275,0,0,1,.275-.275H3.021a.275.275,0,0,1,.275.275V6.317a.275.275,0,0,1-.275.275H1.373A.275.275,0,0,1,1.1,6.317ZM6.866,1.1H6.042V.275A.275.275,0,0,0,5.767,0H5.218a.275.275,0,0,0-.275.275V1.1h-2.2V.275A.275.275,0,0,0,2.472,0H1.922a.275.275,0,0,0-.275.275V1.1H.824A.824.824,0,0,0,0,1.922v.824H7.69V1.922A.824.824,0,0,0,6.866,1.1Z" transform="translate(1 0.469)"/>
+  </g>
+</svg>
