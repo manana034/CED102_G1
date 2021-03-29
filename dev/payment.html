@@ -13,6 +13,7 @@
     @@include('./layout/cart.html')
     <div class="cartall">
          <h5>MY CART</h5>
+
          <div class="steps">
              <p>1. CHECK ORDER</p>
              <p>2. PAYMENT</p>
@@ -41,9 +42,14 @@
                 <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="circle">         
              </form>
-             <p>Ship to different address?</p>
+             <hr>
+
+             <!-- Shipping to different address -->
+             <input type="checkbox" id="shipping" name="shipping">
+             <label for="shipping" class="shipping">Ship to different address?</label>
              <h6>Enter your shipping details</h6>
-             <form>
+             
+             <form class="different">
                 <label for="name">Name: </label>
                 <input type="text" id="nm2" name="name" class="circle">
                 <label for="phone">Phone: </label>
@@ -64,9 +70,6 @@
             </form>
          </div>
          <h6>Payment method: Credit Card</h6>
-         <div class="payment">
-           
-         </div>
          <div class="warn">
              <input type="checkbox" id="warn" name="warn" value="warn">
              <label for="warn">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</label>
@@ -204,11 +207,8 @@
     </div>
 
     @@include('./layout/footer.html')
-<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
     <script src="./js/payment.js"></script>
-=======
->>>>>>> 0114fc7f3d5c0e58e13794ac873c25c56e5de830
     <script src="./js/cart.js"></script>
 </body>
 </html>

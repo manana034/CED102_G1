@@ -89,6 +89,9 @@ let menuIcon = document.querySelector('.menuIcon')
 let menuBody = document.querySelector('.menuBody')
 let menuCIcon = menuBody.children[0]
 
+
+
+
 // element.matches(selectorString) 只能用在element 身上
 // const closeMenu = (elmnt) => {
 //     let ta = elmnt.target
@@ -105,22 +108,17 @@ let menuCIcon = menuBody.children[0]
 //     }
 // }
 
-menuIcon.addEventListener('click', () => {
+menuIcon.addEventListener('click', ()=>{
     const state = getComputedStyle(menuBody).transform
-    if (getComputedStyle(menuBody).display == 'none') {
-        menuBody.style.display = 'block'
-        const time = setTimeout(() => {
-            menuBody.style.transform = 'translate(0,0)'
-            clearTimeout(time)
-        })
-    } else if (state == 'matrix(1, 0, 0, 1, 400, 0)') {
+
+    if (state == 'matrix(1, 0, 0, 1, 400, 0)') {
         menuBody.style.transform = 'translate(0,0)'
-    } else {
+    } else{
         menuBody.style.transform = 'translate(100%,0)'
     }
 })
-menuCIcon.addEventListener('click', () => {
-    menuBody.style.transform = 'translate(100%,0)'
+menuCIcon.addEventListener('click', ()=>{
+     menuBody.style.transform = 'translate(100%,0)'
 })
 // document.addEventListener('click', closeMenu)
 

@@ -16,10 +16,10 @@
     max-width: 1200px;
     margin: 0 auto;
     h5{ 
-        margin: 20px;
+        margin: 30px 30px 30px 30px;
     }
     .steps{
-        margin-bottom: 50px;
+        margin: 30px 30px 50px 30px;
         p{
             margin: 10px;
             position: relative;
@@ -38,8 +38,8 @@
             }  
         }    
     }
+
     .orderinfo{
-<<<<<<< HEAD
         
         // border: 1px solid #000;
         margin: 50px 50px 0 50px;
@@ -82,63 +82,10 @@
                         }
                     }
                 }          
-=======
-        .ordertitle{
-            display: flex;
-            justify-content: center;
-            margin: 25px 0 10px 0;
-            font-weight: bold;
-            p{
-                width: 35%;
-                // border: 1px solid #000;
-                text-align: center;
-
->>>>>>> 0114fc7f3d5c0e58e13794ac873c25c56e5de830
             }
-            p:nth-child(1){
-               width: 100%;
-               text-align: center;
-               padding-left: 0;
-            //    border: 1px solid #000;
-            }
-        }
-          .line{
-              border: 1px solid rgba(128, 128, 128, 0.192);
-              margin-bottom: 20px;
-          }
-          .orders{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.192);
-            padding-bottom: 30px;
-            margin-bottom: 30px;
-            p{
-                justify-content:flex-start;
-                // border: 1px solid #000;
-                width: 14%;
-                text-align: center;
-                &:nth-child(3){
-                    width: 6%;
-                }    
-                &:nth-child(4){
-                    cursor: pointer;
-                } 
-            }
-            .orderbg{
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-             //    border: 1px solid #000;
-                 img{
-                     width: 30%;
-                 }
-                 p{
-                     width: 80%;
-                 }
-             }
         }
     }
+
     .points{
         // border: 1px solid #000;
         display: flex;
@@ -149,6 +96,7 @@
         border-radius:100px;
         height: 100px;
         margin-bottom: 30px;
+        width: 100%;
         h6{
             color: white;
             span{
@@ -207,5 +155,21 @@
             text-align: center;
             margin-right: 50px;
          }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .cartall{
+        display: flex;
+        flex-wrap: wrap;
+        // margin: 0 30px;
+
+        .steps{
+            margin: 0 30px;
+        }
+        h5{
+            width:100%;
+        }
     }
 }

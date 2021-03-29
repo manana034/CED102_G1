@@ -5,17 +5,270 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../dist/css/common/all.css">
-    <link rel="stylesheet" href="../dist/css/common/search.css">
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/search.css">
     <script src="./js/header.js" defer></script>
 </head>
 <body>
     @@include('./layout/header.html')
     <main>
-        <div class="top"></div>
+        <div id="food_page" class="tab-inner">
+            <div class="top">
+                <div class="overflow_hidden">
+                    <div class="banner"></div>
+                    <h4>SEARCH WHAT YOU TOOK</h4>
+                </div>
+                <div class="tab_title">
+                    <div class="food">FOOD</div>
+                    <div id="exercise">EXERCISE</div>
+                </div>
+                <form id="search_bar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <div class="search-input">
+                        <input type="text" placeholder="SERACH">
+                    </div>
+                    <div class="custom-select">
+                        <select name="sType">
+                            <option value="0">ALL</option>
+                            <option value="0">ALL</option>
+                            <option value="1">FT. SHOP</option>
+                            <option value="2">RICE</option>
+                            <option value="3">NOODLES</option>
+                            <option value="4">MEAT</option>
+                            <option value="5">FRUIT & VEG</option>
+                            <option value="6">油炸?</option>
+                            <option value="7">FAST FOOD</option>
+                            <option value="8">DESSERT</option>
+                            <option value="9">DRINK</option>
+                            <option value="10">CUSTOM</option>
+                        </select>
+                    </div>
+                    <button class="nc-btn o-5">
+                        <img src="../icon/search_magnifier.png" alt="">
+                    </button>  
+                </form>
+                
+            </div>
+            <div class="middle">
+                <div class="custom_text">CREATE YOU OWN FOOD, RECORD IT</div>
+                <div class="custom_add">
+                    <div>CUSTOMIZED FOOD</div>
+                    <img src="../icon/add.svg">
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="result_number"><h6>RESULT OF 麥當勞(10 ITEMS)</h6></div>
+                <div class="result_items">
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞麥香魚再四個字</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>999</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+            <!-- ======可刪除 -->
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞勁辣雞腿堡</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>229</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞香芋派</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>300</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞蜂蜜黑咖啡</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>100</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞經典大早餐</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>567</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞4塊麥克雞塊</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>400</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞6塊麥克雞塊</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>600</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞9塊麥克雞塊</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>900</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞麥克鷄塊分享盒</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>1428</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>麥當勞麥脆鷄腿分享盒</div>
+                                <img src="../icon/add_food.png">
+                            </div>
+                            <h5>3298</h5>
+                            <div class="cal">CAL / PER SERVING</div>
+                        </div>
+                    </a>
+            <!-- ============================= 以上可刪除-->
+                </div>
+            </div>
+        </div>
 
-        <div class="bottom"></div>
+        
+<!-- 以下是運動分頁 -->
+        <div id="exercise_page" class="tab-inner">
+            <div class="top">
+                <div class="overflow_hidden">
+                    <div class="banner"></div>
+                    <h4>SEARCH WHAT YOU DONE</h4>
+                </div>
+                <div class="tab_title">
+                    <div id="food">FOOD</div>
+                    <div class="exercise">EXERCISE</div>
+                </div>
+                <form id="search_bar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                    <div class="search-input">
+                        <input type="text" placeholder="SERACH">
+                    </div>
+                    <div class="custom-select">
+                        <select name="sType">
+                            <option value="0">ALL</option>
+                            <option value="0">ALL</option>
+                            <option value="1">LOW</option>
+                            <option value="2">MEDIUM</option>
+                            <option value="3">HIGH</option>
+                        </select>
+                    </div>
+                    <button class="nc-btn o-5">
+                        <img src="../icon/search_magnifier.png" alt="">
+                    </button>  
+                </form>
+                
+            </div>
+            <div class="bottom">
+                <div class="result_number"><h6>RESULT OF 球(5 ITEMS)</h6></div>
+                <div class="result_items">
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>籃球</div>
+                                <img src="../icon/add_exercise.png">
+                            </div>
+                            <h5>30</h5>
+                            <div class="cal">CAL / PER MINUTE</div>
+                        </div>
+                    </a>
+            <!-- ======可刪除 -->
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>棒球</div>
+                                <img src="../icon/add_exercise.png">
+                            </div>
+                            <h5>50</h5>
+                            <div class="cal">CAL / PER MINUTE</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>羽毛球</div>
+                                <img src="../icon/add_exercise.png">
+                            </div>
+                            <h5>9999</h5>
+                            <div class="cal">CAL / PER MINUTE</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>網球</div>
+                                <img src="../icon/add_exercise.png">
+                            </div>
+                            <h5>9999</h5>
+                            <div class="cal">CAL / PER MINUTE</div>
+                        </div>
+                    </a>
+                    <a href="Cal_Diary.html">
+                        <div class="cal_card">
+                            <div class="cal_title">
+                                <div>排球</div>
+                                <img src="../icon/add_exercise.png">
+                            </div>
+                            <h5>9999</h5>
+                            <div class="cal">CAL / PER MINUTE</div>
+                        </div>
+                    </a>
+            <!-- ============================= 以上可刪除-->
+                </div>
+            </div>
+        </div>
+
     </main>
-    @@include('./layout/footer.html')    
+    @@include('./layout/footer.html')
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#exercise').click(function(){
+            $('#food_page').css('display','none');
+            $('#exercise_page').css('display','block');
+    });
+    $('#food').click(function(){
+            $('#exercise_page').css('display','none');
+            $('#food_page').css('display','');
+    });
+});
+</script>
 </body>
 </html>
