@@ -2,13 +2,14 @@ body *{
     box-sizing: unset;
 }
 .containor.Cal_Dairy{
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 20% 80%;
 //=============== Aside =============
 .l-aside.Cal_Dairy{
     display: block;
-    width:250px;
-    height:700px;
+    width: 300px;
+    height: 900px;
     .cal_aside {
         // height: 40px;
         .aside_title{
@@ -23,7 +24,7 @@ body *{
         .aside_inf{
             width: 100%;
             text-align:center;
-            padding: 10px 0px 10px 0px;
+            padding: 15px 0px 40px 0px;;
             .person_inf{
                 display: flex;
                 margin: 5PX;
@@ -105,7 +106,7 @@ body *{
         //=========================CurGoal==========================
         .card.CurGoal{
             padding: 20px;
-            width: 520px;
+            width: 700px;
             margin: 0px auto;
             position: relative;
             .title_back{
@@ -129,6 +130,7 @@ body *{
                 border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
+                padding-bottom: 13px;
             }
             .CurGoal_content{
                 display: grid;
@@ -144,7 +146,7 @@ body *{
                         grid-template-columns: 55% 45%;
                         img{
                             margin: 20px 20px 10px 25px;
-                            width: 90px;
+                            width: 120px;
                         }
                         .rest_cal_inf{
                             padding-right: 20px;
@@ -156,6 +158,7 @@ body *{
                                 text-align: center;
                                 font-size: 32px;
                                 font-weight: bold;
+                                color:#EAA565;
                                 margin: 60px 0px 10px 0px;
                             }
                             .rest_cal_unit{
@@ -165,6 +168,7 @@ body *{
                                 text-align: center;
                                 font-size: 16px;
                                 font-weight: bold;
+                                color:#EAA565;
                                 margin: 20px 0px 10px 0px;
                             }
                             .daily_cal_unit,.rest_cal_unit{
@@ -185,10 +189,11 @@ body *{
                         display: flex;
                         .rest_day_value{
                             font-size: 42px;
-                            padding: 20px 40px 20px 50px;
+                            color:#EAA565;
+                            padding: 40px 40px 40px 90px;
                         }
                         .rest_day_unit{
-                            margin: 30px 0px 0px 0px;
+                            margin: 50px 0px 0px 0px;
                         }
                     }
                     .sch_title{
@@ -199,7 +204,7 @@ body *{
                             font-weight: bolder;
                         }
                         .sch_start{
-                            padding-right: 55px;
+                            padding-right: 150px;
                         }
                         
 
@@ -213,7 +218,7 @@ body *{
                     .sch_date{
                         display: flex;
                         .date_start{
-                            margin-right: 55px;
+                            margin-right: 135px;
                         }
                     }
                     
@@ -224,7 +229,7 @@ body *{
         }
         //=========================report==========================
         .card.report{
-            width: 520px;
+            width: 700px;
             margin: 0px auto;
             padding: 20px;
             position: relative;
@@ -256,6 +261,7 @@ body *{
                 vertical-align: middle;
                 color: #ffffff;
                 font-weight: bold;
+                padding-bottom: 13px;
             }
             .report_title{
                 margin: 10px;
@@ -264,7 +270,7 @@ body *{
             .chart_select{
                 height: 80px;
                 display: grid;
-                grid-template-columns: 25% 25% 35%;
+                grid-template-columns: 16% 18% 26%;;
                 .chart_weight,.chart_cal,.chart_excercie{
                     border: 1px solid #AAAAAA;
                     height: 48px;
