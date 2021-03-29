@@ -1,22 +1,11 @@
-<<<<<<< HEAD
-=======
-// body *{
-//     box-sizing: unset;
-// }
 .containor.Cal_Dairy *{
     box-sizing: unset;
 }
->>>>>>> yimming
 .containor.Cal_Dairy{
     margin-top: 20px;
     display: grid;
-<<<<<<< HEAD
-    grid-template-columns: 20% 80%;
-//===============Aside=============
-=======
     grid-template-columns: 18% 82%;
 //=============== Aside =============
->>>>>>> yimming
 .l-aside.Cal_Dairy{
     display: block;
     width: 300px;
@@ -69,9 +58,6 @@
         margin:0px auto;
     }
 }
-<<<<<<< HEAD
-//=============CENTER===========
-=======
 //=========== Aside_RWD =============
 @media (max-width: 1479px) and (min-width: 1340px){
     .l-aside.Cal_Dairy{
@@ -111,7 +97,6 @@
     }
 }
 //==============================CENTER=====================================
->>>>>>> yimming
 .center.Cal_Dairy{
     .top_area{
         display: grid;
@@ -121,8 +106,6 @@
             padding: 20px;
             width: 700px;
             margin: 0px auto;
-<<<<<<< HEAD
-=======
             position: relative;
             .title_back{
                 width: 100%;
@@ -133,7 +116,6 @@
                 background-color: #EAA565;
                 border-radius: 20px 20px 0px 0px;
             }
->>>>>>> yimming
             .CurGoal_title{
                 img{
                     height: 20px;
@@ -246,8 +228,6 @@
             width: 700px;
             margin: 0px auto;
             padding: 20px;
-<<<<<<< HEAD
-=======
             position: relative;
             .title_back{
                 width: 100%;
@@ -258,18 +238,12 @@
                 background-color: #EAA565;
                 border-radius: 20px 20px 0px 0px;
             }
->>>>>>> yimming
             .CurGoal_title{
                 select{
                     border:none;
-<<<<<<< HEAD
-                    margin-left: 60%;
-                    color: #888888;
-=======
                     margin-left: 70%;
                     color: #D8D8D8;
                     font-size: 16px;
->>>>>>> yimming
                     cursor: pointer;
                 }
                 img{
@@ -329,8 +303,6 @@
                 img{
                     width: 100%;
                 }
-<<<<<<< HEAD
-=======
                 .report_charts{
                     border: 1px solid #dddd;
                     width: 100%;
@@ -341,7 +313,6 @@
                 .report_charts:nth-child(2),.report_charts:nth-child(3){
                     display:none;
                 }
->>>>>>> yimming
             }
 
 
@@ -393,8 +364,6 @@
         }
     }
 }
-<<<<<<< HEAD
-=======
 @media (max-width: 1339px) and (min-width: 1170px){
 .center.Cal_Dairy{
     .top_area{
@@ -439,5 +408,4 @@
 }    
 }
 
->>>>>>> yimming
 }
