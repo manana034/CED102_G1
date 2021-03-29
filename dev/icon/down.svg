@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="7" viewBox="0 0 11 7">
+  <defs>
+    <clipPath id="clip-Artboard_8">
+      <rect width="11" height="7"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_8" data-name="Artboard – 8" clip-path="url(#clip-Artboard_8)">
+    <path id="Icon_awesome-angle-down" data-name="Icon awesome-angle-down" d="M4.105,16.472.2,12.565a.686.686,0,0,1,0-.974l.649-.649a.686.686,0,0,1,.974,0L4.59,13.711l2.769-2.769a.686.686,0,0,1,.974,0l.649.649a.686.686,0,0,1,0,.974L5.076,16.472A.683.683,0,0,1,4.105,16.472Z" transform="translate(0.88 -10.466)"/>
+  </g>
+</svg>

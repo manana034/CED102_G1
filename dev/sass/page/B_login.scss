@@ -1,0 +1,53 @@
+//放置base 的全部
+@import '../base/reset';
+@import '../base/var';
+@import '../base/mixin';
+@import '../base/base';
+@import '../base/grid';
+@import '../base/rwd';
+//不能抓 all.scss 文自路徑會跑掉
+
+body{
+    background-color: $primary-l;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url('../../img/main_vision.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+form.card{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 30%;
+
+    margin: auto;
+    background-color: white;
+    padding: 50px;
+    >:nth-child(3){
+        margin-bottom: 50px;
+    }
+
+    label{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 20px;
+        input{
+            width: 60%;
+        }
+    }
+    div{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        a,button{
+            margin: auto;
+        }
+    }
+}
+    

@@ -94,10 +94,14 @@ exports.browser = function browsersync() {
         // browser: "chrome",
         server: {
             baseDir: './dist', //跟目錄設定
+<<<<<<< HEAD
             index: 'info_content.html', //需更改成自己頁面的名稱
+=======
+            index: 'B_index.html', //需更改成自己頁面的名稱
+>>>>>>> archie_branch
             injectChanges: false,
         },
-    });
+    })
     //與browser同步
     // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle).on('change', reload);
     watch('./dev/sass/**/*.scss', commonStyle).on('change', reload);

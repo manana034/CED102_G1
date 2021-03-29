@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="11" viewBox="0 0 11 11">
+  <defs>
+    <clipPath id="clip-Artboard_9">
+      <rect width="11" height="11"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_9" data-name="Artboard – 9" clip-path="url(#clip-Artboard_9)">
+    <path id="Icon_awesome-pencil-alt" data-name="Icon awesome-pencil-alt" d="M8.16,2.528,7.4,3.347a.186.186,0,0,1-.279,0L5.307,1.375a.226.226,0,0,1,0-.3L6.062.254a.746.746,0,0,1,1.113,0L8.16,1.322A.9.9,0,0,1,8.16,2.528Zm-3.5-.751L.355,6.441.008,8.6a.411.411,0,0,0,.456.494l1.991-.378,4.3-4.664a.226.226,0,0,0,0-.3L4.938,1.777a.188.188,0,0,0-.28,0ZM2.035,6.041a.263.263,0,0,1,0-.352L4.558,2.954a.216.216,0,0,1,.324,0,.263.263,0,0,1,0,.352L2.359,6.041a.216.216,0,0,1-.324,0ZM1.443,7.535H2.23V8.18l-1.057.2-.51-.552L.848,6.682h.595Z" transform="translate(1.37 0.995)"/>
+  </g>
+</svg>
