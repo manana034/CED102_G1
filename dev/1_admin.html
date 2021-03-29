@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/1_admin.css">
+    <script src="./js/header.js" defer></script>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+</head>
+<body>
+<!-- 側邊欄 -->
+    <div class="aside">
+        <div class="logo">
+            <img src="../img/logo.png">
+        </div>
+        <div class="menu">
+            <div class="admin">
+                <img src="../icon/backend_admin.png">
+                <div class="admin_name">
+                    董董
+                </div>
+            </div>
+            <ul>
+                <li class="on">
+                    <a href="./1_admin.html">ADMIN</a>
+                </li>
+                <li>
+                    <a href="./2_member.html">MEMBER</a>
+                </li>
+                <li>
+                    <a href="./3_caloriesitem.html">CALORIES ITEM</a>
+                </li>
+                <li>
+                    <a href="./4_order.html">ORDER</a>
+                </li>
+                <li>
+                    <a href="./5_product.html">PRODUCT</a>
+                </li>
+                <li>
+                    <a href="./6_point.html">POINT</a>
+                </li>
+                <li>
+                    <a href="./7_report.html">REPORT</a>
+                </li>
+                <li>
+                    <a href="./8_healthnews.html">HEALTH NEWS</a>
+                </li>
+                <li>
+                    <a href="./9_chatbot.html">CHATBOT</a>
+                </li>
+            </ul>
+            <div class="logout">
+                <img src="../icon/backend_logout.svg">
+                <div>Log out</div>
+            </div>
+        </div>
+    </div>
+<!-- 右邊主欄 -->
+    <div class="main_food">
+        <div class="main_top">
+            <div class="page">
+                <div class="food">FOOD</div>
+                <div id="exercise">EXERCISE</div>
+            </div>
+            <form id="search_bar">
+                <div class="search-input">
+                    <input type="search" placeholder="No or Name">
+                    <button>
+                        <img src="../icon/magnifier_white.png">
+                    </button>  
+                </div>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">ALL</option>
+                        <option value="1">FOOD</option>
+                        <option value="2">EXERCISE</option>
+                        <option value="3">REGIMEN</option>
+                    </select>
+                </div>
+            </form>
+            <div class="add">
+                <button>
+                    <img src="../icon/add_white.png">
+                    ADD
+                </button>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                  <th>NO</th>
+                  <th>NAME</th>
+                  <th>CALORIE</th>
+                  <th>TYPE</th>
+                  <th>RATE</th>
+                  <th>EDIT</th>
+                  <th>DELETE</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>麥當勞5號餐</td>
+                    <td>5555</td>
+                    <td>FRIED</td>
+                    <td>1</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>麥當勞4號餐</td>
+                    <td>4444</td>
+                    <td>FRIED</td>
+                    <td>1</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>三杯雞</td>
+                    <td>333</td>
+                    <td>MEAT</td>
+                    <td>1</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ALMONDS BAR</td>
+                    <td>585</td>
+                    <td>FT. SHOP</td>
+                    <td>0.8</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                </tr>
+              </table>
+            <!-- <div class="pagination"></div> -->
+        </div>
+    </div>
+
+</body>
+</html>

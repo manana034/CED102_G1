@@ -1,0 +1,287 @@
+@import './all.scss';
+@import './component/header.scss';
+
+.aside {
+    margin: 20px 0;
+    display: inline-block;
+    > .logo {
+        width: 40px;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+    > .menu {
+        background-color: $red-l;
+        border-radius: 0 70px 70px 0;
+        height: 100%;
+		padding: 20px;
+		align-content: space-around;
+        width: 300px;
+		transition: all .5s;
+        > .admin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            > img {
+                width: 25px;
+                margin: 15px;
+            }
+            > div {
+                font-size: 24px;
+                font-family: KozGoPr6N-R;
+                color: $white;
+                margin-right: 20px;
+            }
+        }
+        > ul{
+			display: flex;
+			flex-wrap: wrap;
+			> li {
+                font-size: 20px;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+                padding: 20px;
+                border-radius: 100px;
+                transition: .3s;
+                cursor: pointer;
+                &:hover {
+                    background-color: lighten($red-l,10);
+                    transition: .3s;
+                }
+				a {
+                    text-decoration: none;
+					color:$white;
+					text-transform: uppercase;
+				}
+			}
+            li.on {
+                background-color: #f4f1ec;
+                a {
+                    color: $red-l;
+                    font-family: NotoSans-B;
+                }
+            }
+		}
+        > .logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            background-color: $red-l;
+            cursor: pointer;
+            > img {
+                width: 20px;
+                margin: 15px;
+                transition: .5s;
+            }
+            > div {
+                font-size: 20px;
+                color: $white;
+                margin-right: 20px;
+                transition: .5s;
+            }
+            &:hover > img{
+                transform: translateX(-50%);
+                transition: .5s;
+            }
+        }
+        
+    }
+}
+
+.main_food {
+    margin-left: 100px;
+    max-width: calc(90% - 300px);
+    position: absolute;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    div.main_top {
+        div.page {
+            padding-bottom: 50px;
+            display: flex;
+            width: 100%;
+            div.food {
+                color: $white;
+                background-color: $red-l;
+                padding: 2% 3%;
+                font-size: 20px;
+                outline: none;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                display: inline-block;
+                margin: 0 20px;
+            }
+            #exercise {
+                color: $black;
+                background-color: $primary-l;
+                padding: 2% 2%;
+                font-size: 20px;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                transition: all .3s;
+                display: inline-block;
+                &:hover {
+                    color: $white;
+                    background-color: $blue-d;
+                    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                }
+            }
+        }
+        #search_bar {
+            margin: 30px;
+            display: flex;
+            align-items: self-end;
+            .search-input{
+                margin-right: 20px;
+                display: inline-flex;
+                align-items: center;
+                input {
+                    width: 300px;
+                    height: 40px;
+                    border: 1px solid $primary;
+                    border-radius: 100px 0 0 100px;
+                    outline: none;
+                    font-size: 18px;
+                    padding: 0 20px;
+                    background-color: $white;
+                } 
+                button {
+                    background-color: $white;
+                    width: 50px;
+                    height: 40px;
+                    border: 1px solid $primary;
+                    border-radius: 0 100px 100px 0;
+                    outline: none;
+                    background-color: $primary;
+                    cursor: pointer;
+                    transition: .3s;
+                    &:hover {
+                        border: 1px solid lighten($primary,10);
+                        background-color: lighten($primary,10);
+                        transition: .3s;
+                    }
+                    img {
+                        width: 20px;
+                    }
+                }
+            }
+            .custom-select {
+                display: flex;
+                justify-content: center;
+                padding: 3px 0px;
+                border: 1px solid $primary;
+                position: relative;
+                font-size: 18px;
+                width: 140px;
+                cursor: pointer;
+                background: white;
+                border-radius: 30px;
+                // border: 1px solid black;
+                select{
+                    display: none; /*hide original SELECT element:*/
+                }
+            }
+            .select-selected:after {
+                position: absolute;
+                content: "";
+                top: 14px;
+                right: 10px;
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-color: $primary transparent transparent transparent;
+            }
+            /*point the arrow upwards when the select box is open (active):*/
+            .select-selected.select-arrow-active:after {
+                border-color: transparent transparent $primary transparent;
+                top: 7px;
+            }
+            
+            /*style the items (options), including the selected item:*/
+            .select-items div,.select-selected {
+                display: flex;
+                justify-content: center;
+                padding: 5px;
+                border: 1px solid transparent;
+                // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+                // cursor: pointer;
+                user-select: none;
+            }
+            
+            /*style items (options):*/
+            .select-items {
+                border-radius: 10px;
+                top: 40px;
+                box-shadow: 8px 11px 7px -6px rgba(0, 0, 0 ,.3);
+                position: absolute;
+                z-index: 99;
+                width: 100%;
+                background-color: $white;
+            }
+            
+            /*hide the items when the select box is closed:*/
+            .select-hide {
+                display: none;
+            }
+            
+            .select-items div:hover, .same-as-selected {
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+        > .add {
+            width: 100%;
+            padding-bottom: 30px;
+            button {
+                @include btnStyle($b-color:$primary);
+                text-align: center;
+                margin-left: 30px;
+                font-size: 18px;
+                color: $white;
+                display: flex;
+                align-items: center;
+                img {
+                    width: 30px;
+                }
+            }
+        }
+    }
+    div.main_bottom {
+        padding: 30px 0;
+        table {
+            font-size: 18px;
+            border-collapse: collapse;
+            border: 1px solid $gray1;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            th {
+                background: $gray5;
+                color: $white;
+                padding: 20px;
+            }
+            tr {
+                text-align: center;
+            }
+            tr:nth-child(odd) {
+                background: $gray1;
+            }
+            td {
+                width: 600px;
+                vertical-align: middle;
+                min-width: 50px;
+                padding: 10px 20px;
+                img {
+                    cursor: pointer;
+                    width: 30px;
+                    transition: .3s;
+                    &:hover {
+                        transform: scale(1.1);
+                        transition: .3s;
+                    }
+                }
+            }
+        }
+    }
+}

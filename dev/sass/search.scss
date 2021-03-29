@@ -94,7 +94,7 @@ main {
                 margin: auto;
                 max-width: 1200px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-                
+                z-index: 100;
                 .search-input{
                     width: 50%;
                     display: block;
@@ -106,6 +106,7 @@ main {
                         // background-color: pink;
                         width: 100%;
                         border: none;
+                        outline: none;
                     }
                 }
                     .custom-select { 
@@ -185,31 +186,33 @@ main {
             margin: auto;
             background-color: $white;
             font-size: 18px;
-            display: flex;
             padding: 1%;
-            div.custom_text {
-                width: 50%;
-                border-right: 1px solid $gray5;
-                text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            > input[type="text"] {
+                font-size: 18px;
+                padding: 10px;
             }
-            div.custom_add {
-                display: flex;
-                justify-content: center;
-                margin: auto;
-                cursor: pointer;
-                div {
-                    padding-right: 20px;
-                }
-                img {
-                    align-self: center;
-                    width: 20px;
-                    height: 20px;
+            div.create {
+                margin-left: 30px;
+                border-left: 1px solid $gray5;
+                button {
+                    @include btnStyle($b-color:$primary);
+                    text-align: center;
+                    margin-left: 30px;
+                    display: flex;
+                    align-items: center;
+                    img {
+                        padding: 2px;
+                        width: 25px;
+                    }
                 }
             }
         }
         div.bottom {
             margin: 50px auto;
-            max-width: 1300px;
+            max-width: 1200px;
             // background-color: blue;
             div.result_number {
                 // background-color: coral;
@@ -230,13 +233,13 @@ main {
                 display: flex;
                 flex-wrap: wrap;
                 //  要改第9跟10要置左
-                justify-content: space-around;
+                justify-content: start;
                 div.cal_card {
                     align-content: wrap;
                     margin: 17px 10px;
                     cursor: pointer;
                     overflow: hidden;
-                    width: 300px;
+                    width: 280px;
                     background-color: $white;
                     // padding: $pd;
                     border-radius: 10px;
@@ -386,6 +389,7 @@ main {
                         // background-color: pink;
                         width: 100%;
                         border: none;
+                        outline: none;
                     }
                 }
                     .custom-select { 
@@ -457,7 +461,7 @@ main {
         }
         div.bottom {
             margin: 50px auto;
-            max-width: 1300px;
+            max-width: 1200px;
             // background-color: blue;
             div.result_number {
                 // background-color: coral;
@@ -478,13 +482,13 @@ main {
                 display: flex;
                 flex-wrap: wrap;
                 //  要改第9跟10要置左
-                justify-content: space-around;
+                justify-content: start;
                 div.cal_card {
                     align-content: wrap;
                     margin: 17px 10px;
                     cursor: pointer;
                     overflow: hidden;
-                    width: 300px;
+                    width: 280px;
                     background-color: $white;
                     // padding: $pd;
                     border-radius: 10px;
