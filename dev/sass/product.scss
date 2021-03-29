@@ -7,8 +7,6 @@
 @import "./base/rwd";
 
 
-
-
 @import"./component/footer";
 @import "./component/header";
 
@@ -36,7 +34,7 @@ input[type=number] {
     margin-top: 100px;
     margin-bottom: 200px;
     padding: 0 15px;
-    border: 1px solid #000;
+    // border: 1px solid #000;
 
       //按鈕
       button {
@@ -150,6 +148,7 @@ input[type=number] {
                 width: 320px;
                 margin-top: 20px;
                 margin-bottom: 100px;
+                margin-left: 30px;
                 // border: 1px solid red;
                 line-height: 30px; 
             }
@@ -168,7 +167,9 @@ input[type=number] {
     }
 
 }
-
+    h6{
+        margin-left: 100px;
+    }
 @import'./component/moreproduct.scss';
 
 //----------------RWD--------------------
@@ -179,13 +180,14 @@ input[type=number] {
         margin-top:0;
         width: 100%;
         margin: 0 auto;
-        border: 1px solid #000;
+        // border: 1px solid #000;
+        margin-bottom: 30px;
 
         .prod_desc{
             order: 1;
             width: 80%;
             margin-top: 150px;
-            border: 1px solid #000;
+            // border: 1px solid #000;
         }
         .productDetail{
             // width: 100%;
@@ -213,6 +215,12 @@ input[type=number] {
             justify-content: center;
             align-items: center;
             width: 50%;
+
+            .prod1_pic{
+                img{
+                    width: 100%;
+                }
+            }
         }
     }
 }   

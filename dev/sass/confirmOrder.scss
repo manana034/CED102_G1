@@ -25,7 +25,7 @@
             position: relative;
             padding-left: 30px;
             // border: 1px solid #000;
-             &:nth-child(1)::before{
+             &:nth-child(3)::before{
                 content:"";
                 border-radius: 50%;
                 border: 1px solid #EAA565;
@@ -39,6 +39,23 @@
         }    
     }
 
+
+    //order
+    .confirmorder{
+        .order{
+            a{
+                cursor: pointer;
+                color: #EAA565;
+            }
+            p{
+                margin: 10px;
+                // border: 1px solid #000;
+                padding: 10px 30px;
+            }
+        }
+    }
+
+    //orderinfo
     .orderinfo{
         
         // border: 1px solid #000;
