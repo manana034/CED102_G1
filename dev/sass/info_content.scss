@@ -6,6 +6,7 @@
 
 main { 
     margin: auto;
+    margin-top: 80px;
     max-width: 1200px;
     // position: relative;
     .title {
@@ -44,13 +45,17 @@ main {
     img {
         max-width: 100%;
     }
-    p {
-        padding: 30px;
+    > p {
+        padding: 40px;
+        padding-top: 60px;
         font-size: 16px;
         letter-spacing: 2px;    
         line-height: 26px;
     }
-    section.top {
+    section.top,section.bottom {
+        @include rwd(768px) {
+            display: block;
+        }
         margin: 70px auto;
         // background-color: blue;
         display: flex;
@@ -58,25 +63,22 @@ main {
         align-items: center;
         div {
             width: 40%;
+            @include rwd(768px) {
+                width: 80%;
+                margin: auto;
+            }
         }
         p {
+            padding: 20px;
             width: 40%;
-            // letter-spacing: 2px;    
-            // line-height: 26px;
+            @include rwd(768px) {
+                width: 80%;
+                margin: auto;
+            }
         }
     }
     section.bottom {
-        margin: 70px auto;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        div {
-            width: 40%;
-        }
-        p {
-            width: 40%;
-        }
-
+        flex-direction: row-reverse;
     }
     div {
         display: flex;

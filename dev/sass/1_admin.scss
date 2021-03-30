@@ -102,7 +102,6 @@
     flex-direction: column;
     div.main_top {
         div.page {
-            padding-bottom: 50px;
             display: flex;
             width: 100%;
             div.food {
@@ -134,7 +133,7 @@
             }
         }
         #search_bar {
-            margin: 30px;
+            margin: 50px 30px;
             display: flex;
             align-items: self-end;
             .search-input{
@@ -147,7 +146,7 @@
                     border: 1px solid $primary;
                     border-radius: 100px 0 0 100px;
                     outline: none;
-                    font-size: 18px;
+                    font-size: 16px;
                     padding: 0 20px;
                     background-color: $white;
                 } 
@@ -237,7 +236,7 @@
         }
         > .add {
             width: 100%;
-            padding-bottom: 30px;
+            padding-bottom: 20px;
             button {
                 @include btnStyle($b-color:$primary);
                 text-align: center;
@@ -253,16 +252,25 @@
         }
     }
     div.main_bottom {
-        padding: 30px 0;
+        margin-top: 20px;
+        max-height: 65vh;
+        overflow: auto;
         table {
-            font-size: 18px;
+            table-layout: fixed;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
             border-collapse: collapse;
             border: 1px solid $gray1;
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             th {
                 background: $gray5;
+                text-transform: uppercase;
                 color: $white;
-                padding: 20px;
+                padding: 15px;
+                font-family: NotoSans-B;
+                position:sticky;
+                top:0;
             }
             tr {
                 text-align: center;
@@ -274,10 +282,10 @@
                 width: 600px;
                 vertical-align: middle;
                 min-width: 50px;
-                padding: 10px 20px;
+                padding: 5px 20px;
                 img {
                     cursor: pointer;
-                    width: 30px;
+                    width: 25px;
                     transition: .3s;
                     &:hover {
                         transform: scale(1.1);
