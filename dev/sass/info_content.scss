@@ -1,6 +1,8 @@
 @import './all.scss';
 @import './component/header.scss';
 @import './component/footer.scss';
+@import './component/cart.scss';
+@import './component/moreproduct.scss';
 
 main { 
     margin: auto;
@@ -33,6 +35,11 @@ main {
                 letter-spacing: 2px;    
             }
         }
+    }
+    video {
+        outline: none;
+        height: auto;
+        max-width: 100%;
     }
     img {
         max-width: 100%;
@@ -79,5 +86,12 @@ main {
             text-align: center;
             margin-left: 30px;
         }
+    }
+}
+div.bottom {
+    margin-top: 200px;
+    max-width: 100%;
+    h6{
+        margin-left: 100px;
     }
 }

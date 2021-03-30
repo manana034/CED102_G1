@@ -32,15 +32,17 @@ chatRobotIcon.addEventListener('click',(e)=>{
     e.stopPropagation()
     const body = chatRobotIcon.querySelector('.chatRoomBody')
 
-    console.log(body)
     body.classList.remove('bodynone');
 
+    body.parentElement.style.zIndex = 20;
 })
 
 chatRobotCloseIcon.addEventListener('click',(e)=>{
     e.stopPropagation()
-    const body2 = document.querySelector('.chatRoomBody')
-    body2.classList.add('bodynone')
+    const body = document.querySelector('.chatRoomBody')
+    body.classList.add('bodynone')
+
+    body.parentElement.style.zIndex = 3
     
 })
 
@@ -77,17 +79,3 @@ const closeSocial = (e)=>{
 document.addEventListener('click', closeSocial)
 
 
-// --------rwd search 使用
-const phoneSearch = document.querySelector('.phoneSearch')
-const pSearchCBtn = document.querySelector('.searchWindow>.close')
-const searchWindow = document.querySelector('.searchWindow')
-
-
-
-phoneSearch.addEventListener('click',()=>{
-    searchWindow.style.display="flex";
-})
-
-pSearchCBtn.addEventListener('click',()=>{
-    searchWindow.style.display = 'none'
-})

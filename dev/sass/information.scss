@@ -12,7 +12,8 @@ div.banner {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    h5 {
+    h4 {
+        text-shadow: 2px 2px rgba(0, 0, 0 ,.3);
         color: $white;
         position: absolute;
         bottom: 35%;
@@ -157,9 +158,7 @@ div.main {
                     transition: .4s;
                 }
             }
-        }
-
-        
+        }        
         .infophoto1 {
             clip-path: polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%);
             max-width: 100%;
@@ -170,11 +169,18 @@ div.main {
                 transition: .8s all;
             }
         }
-        #infovideo1 {
+        .infovideo1 {
             margin: 0;
             clip-path: polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%);
             width: 100%;
             display: block;
+            outline: none;
+            //要改成播放時間!=0時是直的，偵測播放時間不是hover
+            transition: 100s all;
+            &:hover {
+                clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+                transition: .8s all;
+            }
         }
     }
     div:nth-child(odd){
@@ -184,6 +190,19 @@ div.main {
     div:nth-child(even){
         margin-top: 150px;
         margin-bottom: 50px;
+    }
+    div.load{
+        width: 100%;
+        border-bottom: 1px solid black;
+        margin-left: 49%;
+        margin-right: 42%;
+        color: black;
+        text-transform:uppercase;
+        font-weight: bold;
+        padding-bottom:5px;
+        margin-bottom: 8%;
+        margin-top: 5%;
+        cursor: pointer;
     }
 }
 

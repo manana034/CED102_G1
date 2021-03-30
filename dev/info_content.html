@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>info_content</title>
-    <link rel="stylesheet" href="./css/common/all.css">
+    <title>HEALTH NEWS</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/common/info_content.css">
     <script src="./js/header.js" defer></script>
+    <script src="./js/cart.js" defer></script>
+
 </head>
 <body>
     @@include('./layout/header.html')
+    @@include('./layout/cart.html')
 
     <main>
         <p class="title">Buckwheat can reduce weight and blood lipids.</p>
@@ -42,11 +45,15 @@
             <div><img src="./img/info2_3.jpg"></div>
         </section>
         <div>
-            <button>VIEW MORE</button>
+            <a href="information.html">
+                <button>VIEW MORE</button>
+            </a>
         </div>
-            
     </main>
+    <div class="bottom">
+        <h6>MORE FITNESS?</h6>  
+        @@include('./layout/moreproduct.html')
+    </div>
     @@include('./layout/footer.html')
-
 </body>
 </html>

@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>information</title>
+    <title>HEALTH NEWS</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/information.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
 </head>
 <body>
     @@include('./layout/header.html')
     <div class="banner">
         <div class="banner_img">
-            <h5>More Fitness,<br>Less Fatness!</h5>
+            <h4>More Fitness,<br>Less Fatness!</h4>
         </div>
     </div>
     <div class="filter">
@@ -38,14 +39,14 @@
             <img class="bookmark" src="./img/bookmark-white.png">
             <div class="text">
                 <p class="title">Nutrition facts and health benefits of buckwheat.</p>
-                <p class="content">Buckwheat belongs to a group of foods commonly called pseudocereals...</p>
+                <p class="content">自從燕麥片被證實可以降低膽固醇之後，...(內文前30字+...)</p>
                 <a href="info_content.html"><img class="arrow" src="./img/right-arrow.png"></a>
             </div>
             <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
         <div class="info_card">
             <img class="bookmark" src="./img/bookmark-white.png">
-            <video width="480" height="270" controls id="infovideo1">
+            <video width="480" height="270" controls class="infovideo1">
                 <source src="./img/info2_1.mp4" type="video/mp4">
             </video>
             <div class="text">
@@ -92,20 +93,20 @@
             <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
 <!-- ============================= -->
-
+        <div class="load">load more +</div>
     </div>
 
     @@include('./layout/footer.html')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#infovideo1').hover(function(){
-				$(this).css('clip-path','polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%')
-			},function(){
-				$(this).css('clip-path','polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%')
-			});
-        });
+        // $(document).ready(function(){
+        //     $('.infovideo1').hover(function(){
+		// 		$(this).css('clip-path','polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%')
+		// 	},function(){
+		// 		$(this).css('clip-path','polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%')
+		// 	});
+        // });
     </script>
 </body>
 </html>

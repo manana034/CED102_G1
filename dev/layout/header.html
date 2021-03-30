@@ -1,6 +1,6 @@
 <header>
 
-    <div class="searchWindow">
+    <!-- <div class="searchWindow">
         <button class="close nc-btn">X</button>
         <form>
            <input type="search">
@@ -12,7 +12,7 @@
                <img src="../icon/magnifier.png">
            </button>
         </form>
-    </div>
+    </div> -->
 
     <div class="row container">
         <div class=" logo">
@@ -22,6 +22,7 @@
         </div>
 
         <form id="searchBar" >
+            <div class="nc-btn closeForm">X</div>
             <div class="row">
                 <div class="search-input">
                     <input type="text" placeholder="SERACH" />
@@ -46,15 +47,18 @@
                         </a>
 
 
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <a href="./member.html" class="a"> MEMBER
-                        <img src="./icon/member.png" alt="">
-                    </a>
+                        <a class="custom-item" href=""
+                            >customize food
+                            <img src="./icon/add.svg" />
+                        </a>
+                    </div>
                 </div>
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1 nc">
-                    <button class="nc-btn"> CART
-                        <img src="./icon/cart.png" alt="">
-                    </button>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">FOOD</option>
+                        <option value="0">FOOD</option>
+                        <option value="1">EXERCISE</option>
+                    </select>
                 </div>
                 <button class="nc-btn o-5">
                     <img src="../icon/magnifier.png" alt="" />
@@ -62,13 +66,6 @@
             </div>
         </form>
 
-<<<<<<< HEAD
-                <div class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <button class="nc-btn menuIcon"> MENU
-                        <img src="./icon/hamburger.png" alt="">
-                    </button>
-                </div>
-=======
         <div class="row">
             <div>
                 <button class="nc-btn phoneSearch">
@@ -89,7 +86,6 @@
                     
                     <img src="../icon/cart.png" alt="" />
                 </button>
->>>>>>> archie_branch
             </div>
 
             <div>
@@ -106,7 +102,7 @@
 
     <div class="menuBody">
         <button class="nc-btn">
-            <img src="./icon/add.svg">
+            <img src="../icon/close.svg" />
         </button>
         <ul>
             <li>

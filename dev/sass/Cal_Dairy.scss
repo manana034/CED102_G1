@@ -1,10 +1,10 @@
-body *{
+.containor.Cal_Dairy *{
     box-sizing: unset;
 }
 .containor.Cal_Dairy{
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 18% 82%;
 //=============== Aside =============
 .l-aside.Cal_Dairy{
     display: block;
@@ -91,19 +91,17 @@ body *{
         }
     }
 }
-@media (max-width: 1339px) and (min-width: 1200px){
+@media (max-width: 1339px) and (min-width: 1170px){
     .l-aside.Cal_Dairy{
         width: 220px;
     }
 }
 //==============================CENTER=====================================
 .center.Cal_Dairy{
-    //=========================top_area====================================
     .top_area{
         display: grid;
         // margin-top: 50px;
         grid-template-columns: 49% 49%;
-        //=========================CurGoal==========================
         .card.CurGoal{
             padding: 20px;
             width: 700px;
@@ -111,7 +109,7 @@ body *{
             position: relative;
             .title_back{
                 width: 100%;
-                height: 47px;
+                height: 60px;
                 position: absolute;
                 top: 0px;
                 left: 0px;
@@ -126,10 +124,10 @@ body *{
                     padding-bottom: 3px;
                 }
                 width: 100%;
-                color: #ffffff;
                 border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
+                color: #ffffff;
                 padding-bottom: 13px;
             }
             .CurGoal_content{
@@ -220,14 +218,11 @@ body *{
                         .date_start{
                             margin-right: 135px;
                         }
-                    }
-                    
-                           
+                    }     
                 }
             }
 
         }
-        //=========================report==========================
         .card.report{
             width: 700px;
             margin: 0px auto;
@@ -235,7 +230,7 @@ body *{
             position: relative;
             .title_back{
                 width: 100%;
-                height: 47px;
+                height: 60px;
                 position: absolute;
                 top: 0px;
                 left: 0px;
@@ -244,10 +239,11 @@ body *{
             }
             .CurGoal_title{
                 select{
-                    background-color: unset;
                     border:none;
-                    margin-left: 60%;
-                    color: #ffffff;
+                    margin-left: 70%;
+                    color: #D8D8D8;
+                    font-size: 16px;
+                    background-color: unset;
                     cursor: pointer;
                 }
                 img{
@@ -259,9 +255,9 @@ body *{
                 width: 100%;
                 border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
-                color: #ffffff;
                 font-weight: bold;
                 padding-bottom: 13px;
+                color: #ffffff;
             }
             .report_title{
                 margin: 10px;
@@ -303,7 +299,7 @@ body *{
                 }
             }
             .report_chart{
-                width: 100%;
+                width: 700px;
                 padding-top: 5px;
                 img{
                     width: 100%;
@@ -311,6 +307,9 @@ body *{
                 .report_charts{
                     border: 1px solid #dddd;
                     width: 100%;
+                    #chartdiv01,#chartdiv02,#chartdiv03{
+                        height: 200px;
+                    }
                 }
                 .report_charts:nth-child(2),.report_charts:nth-child(3){
                     display:none;
@@ -321,7 +320,6 @@ body *{
         }
         
     }
-    //=========================bot_area====================================
     .bot_area{
         display: grid;
         grid-template-columns: 70% 30%;
@@ -358,65 +356,58 @@ body *{
                         color: #dddddd;
                     }
                 }
-               
                 
             }
             .card.cal_input_table{
                 border-top-left-radius:0px;
-                .input_pages{
-                    border: 1px solid #dddd;
-                    width: 100%;
-                }
                 .input_pages:nth-child(2){
-                    display:none;
+                   display: none;
                 }
             }
         }
     }
-
 }
-//==============================CENTER_RWD=====================================  
-@media (max-width: 1479px) and (min-width: 1339px){
-.center.Cal_Dairy{
-    .top_area{
-        margin-top: -15px;
-        .card.CurGoal{
-            transform:scale(0.9,0.9);
-        }
-        .card.report{
-            transform:scale(0.9,0.9);
-        }
-    }
-    .bot_area{
-       
-        .cal_input{
-            margin-left: -25px;
-            transform:scale(0.9,0.9);
-        }
-    }
-}
-}
-@media (max-width: 1339px) and (min-width: 1200px){
+@media (max-width: 1339px) and (min-width: 1170px){
 .center.Cal_Dairy{
     .top_area{
         margin-top: -15px;
         .card.CurGoal{
             transform:scale(0.9,0.9);
             width: 450px;
-            .CurGoal_content{.rest_day{.sch_date{.date_start{
-                margin-right: 35px;
-            }}}}
+            .CurGoal_content{
+                .rest_day{
+                    .sch_title{
+                        p{
+                            text-align: center;
+                        }
+                    }
+                    .sch_date{                       
+                        .date_start{
+                            font-size: 14px;
+                            margin-right: 35px;
+                        }
+                        .date_end{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
         }
         .card.report{
             transform:scale(0.9,0.9);
             width: 450px;
+            .chart_select{
+               grid-template-columns: 26% 28% 40%;
+            }
         }
     }
-    .bot_area{
-       
+    .bot_area{      
         .cal_input{
             margin-left: -25px;
             transform:scale(0.9,0.9);
+            .card.cal_input_table{
+                
+            }
         }
     }
 }    
