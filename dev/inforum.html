@@ -28,16 +28,17 @@
 </head>
 <body>
 
+
+
     <div id="lightBox" style="display:none">
         <div id="tableLogin">
             <div class="pop_inside">
-
 
                 <div class="above_pop">
 
                     <div class="follow_select"> 
                         <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
-                        <button id="btnCancel">X</button>
+                        <button class="btnCancel">X</button>
                     </div>
                     
                     <table class="follow_list">
@@ -102,29 +103,33 @@
                                   
                 </div><!-- .above_pop -->
 
-
-
                 <div class="under_pop">
                         <pre class="load">load more +</pre>                          
                 </div> <!-- .under_pop -->
-            </div>
-            
-            
+            </div>            
 
         </div>
     </div> <!-- #lightBox -->
 
 
-
+    <!-- #reportBox -->
     <div id="reportBox" style="display:none">
-        <div>
+        <div id="tableReport">
 
-            123
+            <div class="follow_select"> 
+                <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                <button class="btnCancel">X</button>
+            </div>
+
         </div>
-    </div> <!-- #reportBox -->
+    </div> 
+    <!-- #reportBox -->
+
+
+
     
     @@include('./layout/header.html')
-        
+    
  
    
     <main>
@@ -521,6 +526,7 @@
                        
 <!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
 
+
 <!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
 <div class="gallery-item">
                     
@@ -613,8 +619,9 @@
 
     </div> <!-- .card -->
 </div> <!-- .gallery-item -->
-                       
 <!--^^^^^^^^以上一張白色圓角卡片:照片^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
+
+
 
 <!--vvvvvvvv以下一張白色圓角卡片:照片vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv -->         
 <div class="gallery-item">
@@ -1001,7 +1008,7 @@
 
 
 
-
+            <div class="holding_block"></div>
             <div class="middle_load"><pre class="load">load more +</pre></div> <!-- !!!!!!瀑布流內容看更多!!!!!! -->
 
 
@@ -1030,8 +1037,7 @@
                 <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
                 <div class="report_card"></div>
                 
-                
-
+ 
 
             </div>  <!-- join -->
             
