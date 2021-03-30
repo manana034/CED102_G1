@@ -20,3 +20,18 @@ footer{
         margin-bottom: $u-m*5;
     }
 }
+
+
+@include rwd(1120px){
+    footer{
+        div{
+            margin-top: 20px;
+            img{
+                width: 35px;
+            }
+        }
+        p{
+            margin: 10px;
+        }
+    }
+}
