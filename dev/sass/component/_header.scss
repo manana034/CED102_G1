@@ -1,9 +1,9 @@
-a{
-  text-decoration: none;
-  color: $gray5;
+a {
+    text-decoration: none;
+    color: $gray5;
 }
 
-header{
+header {
     // display: none;
     border-bottom: 1px solid $gray4;
     background-color: $primary-l;
@@ -12,296 +12,289 @@ header{
     position: sticky;
     top: 0;
 
-    >.menuBody{
-      display: none; 
-  
-      height: 100vh;
-      background-color: $red-l;
-      position: absolute;
-      right: 0; 
-      padding: 50px;
-      align-content: space-around;
-      width: 400px;
-      transform: translate(100%,0);
-      transition: all .5s;
-      z-index: 12;
-  
-      button{
+    > .menuBody {
+        display: none;
+
+        height: 100vh;
+        background-color: $red-l;
         position: absolute;
-        top: 20px;
-        right: 20px;
-      }
-      ul{
-        display: flex;
-        flex-wrap: wrap;
-        height: 95%;
-        li{
-          margin: 20px;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          a{
-            text-decoration: none;
-            color:$white;
-            text-transform: uppercase;
-  
-          }
+        right: 0;
+        padding: 50px;
+        align-content: space-around;
+        width: 400px;
+        transform: translate(100%, 0);
+        transition: all 0.5s;
+        z-index: 12; 
+
+        button {
+            color: $white;
+            position: absolute;
+            font-size: 20px;
+            top: 20px;
+            right: 20px;
         }
-      }
-  
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            height: 95%;
+            li {
+                margin: 20px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                a {
+                    text-decoration: none;
+                    color: $white;
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
-    & > .row{
-      display: flex;
-      justify-content: space-between;
-    
-        .logo,#searchBar,>:last-child { 
+    & > .row {
+        display: flex;
+        justify-content: space-between;
+
+        .logo,
+        #searchBar,
+        > :last-child {
             height: 40px;
             width: calc(100% / 3);
             // border: 1px solid black;
         }
-    
-        form#searchBar{
-            
+
+        form#searchBar {
             display: inline-flex;
-            >.closeForm{
-              display: none;
+            > .closeForm {
+                display: none;
             }
 
-            >.row{            
+            > .row {
                 width: 100%;
                 display: inline-flex;
                 align-items: center;
                 border-bottom: 1px solid $gray5;
 
-                justify-content:space-around;
+                justify-content: space-around;
                 // padding: 5px 0px;
-                .search-input{
-                  flex-grow: 2; 
-                  position: relative;
-                  input{
-                    width: 100%;
-                    border: none;
-                  }
-                  .suggest-items{
-                    display: none;
-                    width: 100%;
-                    // border: 1px solid red;
-                    position: absolute;
-                    background-color: $primary-l;
-                    box-shadow: 8px 11px 7px -6px rgba(0, 0, 0 ,.3);
-                    padding: 10px;
-                    left: 0;
-                    top: 25px;
-                    a.search-item{
-                      border-bottom: 1px solid $gray4;
-                      margin: 10px 0;
-                      width: 100%;
-                      display: inline-block;
-                      cursor: pointer;
-                      div{
-                        display: flex;
+                .search-input {
+                    flex-grow: 2;
+                    position: relative;
+                    input {
                         width: 100%;
-                        justify-content: space-between;
-                        p{
-                          font-size: 14px;
-                          color: $gray5;
-                        }
-                      }
+                        border: none;
                     }
-                    .custom-item{
-                      display: flex;
-                      justify-content: center;
-                      text-transform: uppercase;
-                      align-items: center;
-                      padding: 10px 0;
-                      cursor: pointer;
-                      img{
-                        height: 20px;
-                        margin-left: 10px;
-                        opacity: .5;
-                      }
-                    } 
-                  }
+                    .suggest-items {
+                        display: none;
+                        width: 100%;
+                        // border: 1px solid red;
+                        position: absolute;
+                        background-color: $primary-l;
+                        box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
+                        padding: 10px;
+                        left: 0;
+                        top: 25px;
+                        a.search-item {
+                            border-bottom: 1px solid $gray4;
+                            margin: 10px 0;
+                            width: 100%;
+                            display: inline-block;
+                            cursor: pointer;
+                            div {
+                                display: flex;
+                                width: 100%;
+                                justify-content: space-between;
+                                p {
+                                    font-size: 14px;
+                                    color: $gray5;
+                                }
+                            }
+                        }
+                        .custom-item {
+                            display: flex;
+                            justify-content: center;
+                            text-transform: uppercase;
+                            align-items: center;
+                            padding: 10px 0;
+                            cursor: pointer;
+                            img {
+                                height: 20px;
+                                margin-left: 10px;
+                                opacity: 0.5;
+                            }
+                        }
+                    }
                 }
-                
 
-                .custom-select { 
+                .custom-select {
                     position: relative;
                     @include textStyle();
                     width: 100px;
                     cursor: pointer;
-                    
-                    select{
+
+                    select {
                         display: none; /*hide original SELECT element:*/
                     }
-                    
-                  }
-                  
-                  
+                }
+
                 //   .select-selected {
                 //     background-color: DodgerBlue;
                 //   }
-                  
-                  /*style the arrow inside the select element:*/
-                  .select-selected:after {
+
+                /*style the arrow inside the select element:*/
+                .select-selected:after {
                     position: absolute;
-                    content: "";
+                    content: '';
                     top: 14px;
                     right: 10px;
                     width: 0;
                     height: 0;
                     border: 6px solid transparent;
                     border-color: $gray5 transparent transparent transparent;
-                  }
-                  
-                  /*point the arrow upwards when the select box is open (active):*/
-                  .select-selected.select-arrow-active:after {
+                }
+
+                /*point the arrow upwards when the select box is open (active):*/
+                .select-selected.select-arrow-active:after {
                     border-color: transparent transparent $gray5 transparent;
                     top: 7px;
-                  }
-                  
-                  /*style the items (options), including the selected item:*/
-                  .select-items div,.select-selected {
+                }
+
+                /*style the items (options), including the selected item:*/
+                .select-items div,
+                .select-selected {
                     padding: 5px;
                     border: 1px solid transparent;
                     // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
                     // cursor: pointer;
                     user-select: none;
-                  }
-                  
-                  /*style items (options):*/
-                  .select-items {
-                    box-shadow: 8px 11px 7px -6px rgba(0, 0, 0 ,.3);
+                }
+
+                /*style items (options):*/
+                .select-items {
+                    box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
                     position: absolute;
                     z-index: 99;
                     width: 100%;
                     background-color: $primary-l;
-                    
-                  }
-                  
-                  /*hide the items when the select box is closed:*/
-                  .select-hide {
+                }
+
+                /*hide the items when the select box is closed:*/
+                .select-hide {
                     display: none;
-                  }
-                  
-                  .select-items div:hover, .same-as-selected {
+                }
+
+                .select-items div:hover,
+                .same-as-selected {
                     background-color: rgba(0, 0, 0, 0.1);
-                  }
-
-
+                }
             }
-
         }
 
-        &> div:last-child{
+        & > div:last-child {
             // border: 1px solid black;
             display: inline-flex;
             align-items: center;
- 
-            >div{
+
+            > div {
                 display: flex;
-                width: calc(100% / 3);;
+                width: calc(100% / 3);
                 justify-content: flex-end;
 
-                >a,button{
-                  display: flex;
-                  align-items: center;
+                > a,
+                button {
+                    display: flex;
+                    align-items: center;
 
-                  img{
-                    margin-left: 5px;
-                  }
+                    img {
+                        margin-left: 5px;
+                    }
                 }
             }
-            >:first-child{
-              display: none;
-              justify-content: flex-end;
+            > :first-child {
+                display: none;
+                justify-content: flex-end;
             }
         }
     }
 
+    > .searchWindow {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 20;
+        background-color: $primary-l;
 
-    >.searchWindow{
-      display: none;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 20;
-      background-color: $primary-l;
-
-      justify-content: center;
-      align-items: center;
-      >button{
-        position: absolute;
-        top: 10%;
-      }
-
-      >form{
-        display: flex;
+        justify-content: center;
         align-items: center;
-      }
+        > button {
+            position: absolute;
+            top: 10%;
+        }
+
+        > form {
+            display: flex;
+            align-items: center;
+        }
     }
 }
 
+@include rwd(1200px) {
+    header {
+        > .row {
+            padding: 10px;
+            > .logo {
+                width: unset;
+            }
+            > form#searchBar {
+                display: none;
+                position: fixed;
+                background-color: $primary-l;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                padding: 10px;
+                border: none;
+                align-items: center;
 
-@include rwd(1200px){
-  header{
-    >.row{
-      padding: 10px;
-      >.logo{
-        width: unset;
-      }
-      >form#searchBar{
-        display: none;
-        position: fixed;
-        background-color: $primary-l;
-        width: 100%;
-        height: 100%;
-        left: 0;
-         top: 0;
-        padding: 10px;
-        border: none;
-        align-items: center;
+                > :first-child {
+                    position: absolute;
+                    display: block;
+                    top: 10%;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                }
+                // div.row>.search-input{
+                //   >input{
+                //     border-bottom: 1px solid $gray5;
+                //   }
+                // }
+            }
 
+            // >:first-child{
+            //   display: block;
+            //   background-color: red;
+            // }
 
-        >:first-child{
-          position: absolute;
-          display: block;
-          top: 10%;
-          left: 50%;
-          transform: translate(-50%,0);
-
+            > div:last-child.row {
+                width: 50%;
+                > div {
+                    width: calc(100% / 4);
+                }
+                > :first-child {
+                    display: flex;
+                }
+                a,
+                button {
+                    > span {
+                        display: none;
+                    }
+                }
+            }
         }
-        // div.row>.search-input{
-        //   >input{
-        //     border-bottom: 1px solid $gray5;
-        //   }
-        // }
-      }
-
-      // >:first-child{
-      //   display: block;
-      //   background-color: red;
-      // }
-
-      >div:last-child.row{
-        
-        width: 50% ;
-        >div{
-          width: calc(100% / 4);
-        }
-        >:first-child{
-          display: flex;
-        }
-        a,button{
-          >span{
-            display: none;
-          }
-        }
-      }
-
-      
     }
-  }
 
-
+    header > .menuBody {
+        width: 100%;
+    }
 }

@@ -50,6 +50,10 @@ input[type=text]{
     background-color: transparent;
     border-bottom: 1px solid $gray5;
     outline: none;
+    font-family: "NotoSans-R";
+    letter-spacing: 2px;
+    font-size: 14px;
+
     &::placeholder{
         color: $gray5;
     }
