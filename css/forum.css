@@ -182,6 +182,34 @@ input[type=text]::placeholder {
   background-color: #333333;
 }
 
+.bg-p {
+  background-color: #EAA565;
+}
+
+.bg-gl {
+  background-color: #c1d4b0;
+}
+
+.bg-gd {
+  background-color: #95b17c;
+}
+
+.bg-rl {
+  background-color: #D25541;
+}
+
+.bg-rd {
+  background-color: #9F1600;
+}
+
+.bg-bl {
+  background-color: #50A8DC;
+}
+
+.bg-bd {
+  background-color: #2274A5;
+}
+
 .w-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
@@ -950,154 +978,15 @@ header {
   top: 0;
 }
 
-header > .row .logo {
-  height: 40px;
-}
-
-header > .row form#searchBar {
-  display: inline-flex;
-}
-
-header > .row form#searchBar .row {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  border-bottom: 1px solid #9D9D9D;
-  justify-content: space-around;
-  /*style the arrow inside the select element:*/
-  /*point the arrow upwards when the select box is open (active):*/
-  /*style the items (options), including the selected item:*/
-  /*style items (options):*/
-  /*hide the items when the select box is closed:*/
-}
-
-header > .row form#searchBar .row .search-input {
-  flex-grow: 2;
-  position: relative;
-}
-
-header > .row form#searchBar .row .search-input input {
-  width: 100%;
-  border: none;
-}
-
-header > .row form#searchBar .row .search-input .suggest-items {
-  display: none;
-  width: 100%;
-  position: absolute;
-  background-color: #f4f1ec;
-  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  left: 0;
-  top: 25px;
-}
-
-header > .row form#searchBar .row .search-input .suggest-items .search-item {
-  border-bottom: 1px solid #D8D8D8;
-  margin: 10px 0;
-  display: inline-block;
-  width: 100%;
-  cursor: pointer;
-}
-
-header > .row form#searchBar .row .search-input .suggest-items .custom-item {
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-  align-items: center;
-  padding: 10px 0;
-  cursor: pointer;
-}
-
-header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 20px;
-  margin-left: 10px;
-  opacity: .5;
-}
-
-header > .row form#searchBar .row .custom-select {
-  position: relative;
-  font-family: "NotoSans-L";
-  font-size: 14px;
-  color: #333333;
-  letter-spacing: unset;
-  line-height: 21px;
-  opacity: 1;
-  margin: 0;
-  width: 100px;
-  cursor: pointer;
-}
-
-header > .row form#searchBar .row .custom-select select {
-  display: none;
-  /*hide original SELECT element:*/
-}
-
-header > .row form#searchBar .row .select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #9D9D9D transparent transparent transparent;
-}
-
-header > .row form#searchBar .row .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #9D9D9D transparent;
-  top: 7px;
-}
-
-header > .row form#searchBar .row .select-items div, header > .row form#searchBar .row .select-selected {
-  padding: 5px;
-  border: 1px solid transparent;
-  user-select: none;
-}
-
-header > .row form#searchBar .row .select-items {
-  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  background-color: #f4f1ec;
-}
-
-header > .row form#searchBar .row .select-hide {
-  display: none;
-}
-
-header > .row form#searchBar .row .select-items div:hover, header > .row form#searchBar .row .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-header > .row > div:last-child {
-  display: inline-flex;
-  align-items: center;
-}
-
-header > .row > div:last-child > div {
-  display: flex;
-  justify-content: flex-end;
-}
-
-header > .row > div:last-child > div > a, header > .row > div:last-child > div button {
-  display: flex;
-  align-items: center;
-}
-
-header > .row > div:last-child > div > a img, header > .row > div:last-child > div button img {
-  margin-left: 5px;
-}
-
 header > .menuBody {
+  display: none;
   height: 100vh;
   background-color: #D25541;
   position: absolute;
   right: 0;
   padding: 50px;
   align-content: space-around;
-  width: 15%;
+  width: 400px;
   transform: translate(100%, 0);
   transition: all .5s;
   z-index: 12;
@@ -1128,6 +1017,234 @@ header > .menuBody ul li a {
   text-transform: uppercase;
 }
 
+header > .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+header > .row .logo, header > .row #searchBar, header > .row > :last-child {
+  height: 40px;
+  width: calc(100% / 3);
+}
+
+header > .row form#searchBar {
+  display: inline-flex;
+}
+
+header > .row form#searchBar > .closeForm {
+  display: none;
+}
+
+header > .row form#searchBar > .row {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid #9D9D9D;
+  justify-content: space-around;
+  /*style the arrow inside the select element:*/
+  /*point the arrow upwards when the select box is open (active):*/
+  /*style the items (options), including the selected item:*/
+  /*style items (options):*/
+  /*hide the items when the select box is closed:*/
+}
+
+header > .row form#searchBar > .row .search-input {
+  flex-grow: 2;
+  position: relative;
+}
+
+header > .row form#searchBar > .row .search-input input {
+  width: 100%;
+  border: none;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items {
+  display: none;
+  width: 100%;
+  position: absolute;
+  background-color: #f4f1ec;
+  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  left: 0;
+  top: 25px;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items a.search-item {
+  border-bottom: 1px solid #D8D8D8;
+  margin: 10px 0;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items a.search-item div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items a.search-item div p {
+  font-size: 14px;
+  color: #9D9D9D;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items .custom-item {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+header > .row form#searchBar > .row .search-input .suggest-items .custom-item img {
+  height: 20px;
+  margin-left: 10px;
+  opacity: .5;
+}
+
+header > .row form#searchBar > .row .custom-select {
+  position: relative;
+  font-family: "NotoSans-L";
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: unset;
+  line-height: 21px;
+  opacity: 1;
+  margin: 0;
+  width: 100px;
+  cursor: pointer;
+}
+
+header > .row form#searchBar > .row .custom-select select {
+  display: none;
+  /*hide original SELECT element:*/
+}
+
+header > .row form#searchBar > .row .select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #9D9D9D transparent transparent transparent;
+}
+
+header > .row form#searchBar > .row .select-selected.select-arrow-active:after {
+  border-color: transparent transparent #9D9D9D transparent;
+  top: 7px;
+}
+
+header > .row form#searchBar > .row .select-items div, header > .row form#searchBar > .row .select-selected {
+  padding: 5px;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+header > .row form#searchBar > .row .select-items {
+  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  background-color: #f4f1ec;
+}
+
+header > .row form#searchBar > .row .select-hide {
+  display: none;
+}
+
+header > .row form#searchBar > .row .select-items div:hover, header > .row form#searchBar > .row .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header > .row > div:last-child {
+  display: inline-flex;
+  align-items: center;
+}
+
+header > .row > div:last-child > div {
+  display: flex;
+  width: calc(100% / 3);
+  justify-content: flex-end;
+}
+
+header > .row > div:last-child > div > a, header > .row > div:last-child > div button {
+  display: flex;
+  align-items: center;
+}
+
+header > .row > div:last-child > div > a img, header > .row > div:last-child > div button img {
+  margin-left: 5px;
+}
+
+header > .row > div:last-child > :first-child {
+  display: none;
+  justify-content: flex-end;
+}
+
+header > .searchWindow {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: #f4f1ec;
+  justify-content: center;
+  align-items: center;
+}
+
+header > .searchWindow > button {
+  position: absolute;
+  top: 10%;
+}
+
+header > .searchWindow > form {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  header > .row {
+    padding: 10px;
+  }
+  header > .row > .logo {
+    width: unset;
+  }
+  header > .row > form#searchBar {
+    display: none;
+    position: fixed;
+    background-color: #f4f1ec;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    border: none;
+    align-items: center;
+  }
+  header > .row > form#searchBar > :first-child {
+    position: absolute;
+    display: block;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  header > .row > div:last-child.row {
+    width: 50%;
+  }
+  header > .row > div:last-child.row > div {
+    width: calc(100% / 4);
+  }
+  header > .row > div:last-child.row > :first-child {
+    display: flex;
+  }
+  header > .row > div:last-child.row a > span, header > .row > div:last-child.row button > span {
+    display: none;
+  }
+}
+
 footer {
   display: flex;
   flex-wrap: wrap;
@@ -1150,6 +1267,18 @@ footer p {
   font-size: 1px;
   margin-top: 30px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 1120px) {
+  footer div {
+    margin-top: 20px;
+  }
+  footer div img {
+    width: 35px;
+  }
+  footer p {
+    margin: 10px;
+  }
 }
 
 body {
@@ -1177,154 +1306,15 @@ header header {
   top: 0;
 }
 
-header header > .row .logo {
-  height: 40px;
-}
-
-header header > .row form#searchBar {
-  display: inline-flex;
-}
-
-header header > .row form#searchBar .row {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  border-bottom: 1px solid #9D9D9D;
-  justify-content: space-around;
-  /*style the arrow inside the select element:*/
-  /*point the arrow upwards when the select box is open (active):*/
-  /*style the items (options), including the selected item:*/
-  /*style items (options):*/
-  /*hide the items when the select box is closed:*/
-}
-
-header header > .row form#searchBar .row .search-input {
-  flex-grow: 2;
-  position: relative;
-}
-
-header header > .row form#searchBar .row .search-input input {
-  width: 100%;
-  border: none;
-}
-
-header header > .row form#searchBar .row .search-input .suggest-items {
-  display: none;
-  width: 100%;
-  position: absolute;
-  background-color: #f4f1ec;
-  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  left: 0;
-  top: 25px;
-}
-
-header header > .row form#searchBar .row .search-input .suggest-items .search-item {
-  border-bottom: 1px solid #D8D8D8;
-  margin: 10px 0;
-  display: inline-block;
-  width: 100%;
-  cursor: pointer;
-}
-
-header header > .row form#searchBar .row .search-input .suggest-items .custom-item {
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-  align-items: center;
-  padding: 10px 0;
-  cursor: pointer;
-}
-
-header header > .row form#searchBar .row .search-input .suggest-items .custom-item img {
-  height: 20px;
-  margin-left: 10px;
-  opacity: .5;
-}
-
-header header > .row form#searchBar .row .custom-select {
-  position: relative;
-  font-family: "NotoSans-L";
-  font-size: 14px;
-  color: #333333;
-  letter-spacing: unset;
-  line-height: 21px;
-  opacity: 1;
-  margin: 0;
-  width: 100px;
-  cursor: pointer;
-}
-
-header header > .row form#searchBar .row .custom-select select {
-  display: none;
-  /*hide original SELECT element:*/
-}
-
-header header > .row form#searchBar .row .select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #9D9D9D transparent transparent transparent;
-}
-
-header header > .row form#searchBar .row .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #9D9D9D transparent;
-  top: 7px;
-}
-
-header header > .row form#searchBar .row .select-items div, header header > .row form#searchBar .row .select-selected {
-  padding: 5px;
-  border: 1px solid transparent;
-  user-select: none;
-}
-
-header header > .row form#searchBar .row .select-items {
-  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  background-color: #f4f1ec;
-}
-
-header header > .row form#searchBar .row .select-hide {
-  display: none;
-}
-
-header header > .row form#searchBar .row .select-items div:hover, header header > .row form#searchBar .row .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-header header > .row > div:last-child {
-  display: inline-flex;
-  align-items: center;
-}
-
-header header > .row > div:last-child > div {
-  display: flex;
-  justify-content: flex-end;
-}
-
-header header > .row > div:last-child > div > a, header header > .row > div:last-child > div button {
-  display: flex;
-  align-items: center;
-}
-
-header header > .row > div:last-child > div > a img, header header > .row > div:last-child > div button img {
-  margin-left: 5px;
-}
-
 header header > .menuBody {
+  display: none;
   height: 100vh;
   background-color: #D25541;
   position: absolute;
   right: 0;
   padding: 50px;
   align-content: space-around;
-  width: 15%;
+  width: 400px;
   transform: translate(100%, 0);
   transition: all .5s;
   z-index: 12;
@@ -1355,6 +1345,234 @@ header header > .menuBody ul li a {
   text-transform: uppercase;
 }
 
+header header > .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+header header > .row .logo, header header > .row #searchBar, header header > .row > :last-child {
+  height: 40px;
+  width: calc(100% / 3);
+}
+
+header header > .row form#searchBar {
+  display: inline-flex;
+}
+
+header header > .row form#searchBar > .closeForm {
+  display: none;
+}
+
+header header > .row form#searchBar > .row {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid #9D9D9D;
+  justify-content: space-around;
+  /*style the arrow inside the select element:*/
+  /*point the arrow upwards when the select box is open (active):*/
+  /*style the items (options), including the selected item:*/
+  /*style items (options):*/
+  /*hide the items when the select box is closed:*/
+}
+
+header header > .row form#searchBar > .row .search-input {
+  flex-grow: 2;
+  position: relative;
+}
+
+header header > .row form#searchBar > .row .search-input input {
+  width: 100%;
+  border: none;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items {
+  display: none;
+  width: 100%;
+  position: absolute;
+  background-color: #f4f1ec;
+  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  left: 0;
+  top: 25px;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items a.search-item {
+  border-bottom: 1px solid #D8D8D8;
+  margin: 10px 0;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items a.search-item div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items a.search-item div p {
+  font-size: 14px;
+  color: #9D9D9D;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items .custom-item {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+header header > .row form#searchBar > .row .search-input .suggest-items .custom-item img {
+  height: 20px;
+  margin-left: 10px;
+  opacity: .5;
+}
+
+header header > .row form#searchBar > .row .custom-select {
+  position: relative;
+  font-family: "NotoSans-L";
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: unset;
+  line-height: 21px;
+  opacity: 1;
+  margin: 0;
+  width: 100px;
+  cursor: pointer;
+}
+
+header header > .row form#searchBar > .row .custom-select select {
+  display: none;
+  /*hide original SELECT element:*/
+}
+
+header header > .row form#searchBar > .row .select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #9D9D9D transparent transparent transparent;
+}
+
+header header > .row form#searchBar > .row .select-selected.select-arrow-active:after {
+  border-color: transparent transparent #9D9D9D transparent;
+  top: 7px;
+}
+
+header header > .row form#searchBar > .row .select-items div, header header > .row form#searchBar > .row .select-selected {
+  padding: 5px;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+header header > .row form#searchBar > .row .select-items {
+  box-shadow: 8px 11px 7px -6px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  background-color: #f4f1ec;
+}
+
+header header > .row form#searchBar > .row .select-hide {
+  display: none;
+}
+
+header header > .row form#searchBar > .row .select-items div:hover, header header > .row form#searchBar > .row .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header header > .row > div:last-child {
+  display: inline-flex;
+  align-items: center;
+}
+
+header header > .row > div:last-child > div {
+  display: flex;
+  width: calc(100% / 3);
+  justify-content: flex-end;
+}
+
+header header > .row > div:last-child > div > a, header header > .row > div:last-child > div button {
+  display: flex;
+  align-items: center;
+}
+
+header header > .row > div:last-child > div > a img, header header > .row > div:last-child > div button img {
+  margin-left: 5px;
+}
+
+header header > .row > div:last-child > :first-child {
+  display: none;
+  justify-content: flex-end;
+}
+
+header header > .searchWindow {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: #f4f1ec;
+  justify-content: center;
+  align-items: center;
+}
+
+header header > .searchWindow > button {
+  position: absolute;
+  top: 10%;
+}
+
+header header > .searchWindow > form {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  header header > .row {
+    padding: 10px;
+  }
+  header header > .row > .logo {
+    width: unset;
+  }
+  header header > .row > form#searchBar {
+    display: none;
+    position: fixed;
+    background-color: #f4f1ec;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    border: none;
+    align-items: center;
+  }
+  header header > .row > form#searchBar > :first-child {
+    position: absolute;
+    display: block;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  header header > .row > div:last-child.row {
+    width: 50%;
+  }
+  header header > .row > div:last-child.row > div {
+    width: calc(100% / 4);
+  }
+  header header > .row > div:last-child.row > :first-child {
+    display: flex;
+  }
+  header header > .row > div:last-child.row a > span, header header > .row > div:last-child.row button > span {
+    display: none;
+  }
+}
+
 footer footer {
   display: flex;
   flex-wrap: wrap;
@@ -1377,6 +1595,18 @@ footer footer p {
   font-size: 1px;
   margin-top: 30px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 1120px) {
+  footer footer div {
+    margin-top: 20px;
+  }
+  footer footer div img {
+    width: 35px;
+  }
+  footer footer p {
+    margin: 10px;
+  }
 }
 
 main {
@@ -1450,6 +1680,10 @@ div.join p {
 .xsbutton {
   display: flex;
   text-transform: uppercase;
+  margin-left: 3%;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .post .xsl {
@@ -1457,18 +1691,18 @@ div.join p {
 }
 
 .issue {
-  border-bottom: 1px solid black;
-  margin-top: 5%;
+  border-bottom: 1.5px solid #D8D8D8;
+  width: 98%;
+  margin-top: 2%;
   margin-bottom: 2%;
   display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 4%;
+  align-items: center;
 }
 
 .issue input {
-  width: 350px;
-  margin-right: 22%;
-  margin-left: 4%;
+  width: 50%;
+  height: 40px;
+  margin-left: 2%;
 }
 
 .issue input::-webkit-input-placeholder {
@@ -1483,10 +1717,12 @@ div.join p {
   border-radius: 50px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
   background-color: #9D9D9D;
+  margin-bottom: 2.5%;
 }
 
 .create_post {
   display: flex;
+  justify-content: flex-end;
 }
 
 .ptime {
@@ -1552,7 +1788,7 @@ div.join p {
 div.load {
   border-bottom: 1px solid black;
   margin-left: 49%;
-  margin-right: 40%;
+  margin-right: 42%;
   color: black;
   text-transform: uppercase;
   font-weight: bold;

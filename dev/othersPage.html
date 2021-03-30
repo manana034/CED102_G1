@@ -4,48 +4,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum</title>
+    <title>Jose Yang</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./css/page/othersPage.css">
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-    <script>
+    <script> //點選留言展開
             $(document).ready(function() {
         $(".drop_down").click(function() {
             $(this).next(".hiddenContent").slideToggle(250);
         });
         });
    
-        
+        //分享到其他社交媒體
         $(document).ready(function() {
         $(".nc-btn").click(function() {
             $(this).next(".social").slideToggle(250);
         });
         });
     </script>
+
+
+
+
 </head>
 <body>
-
+  
 
 
     <!-- #reportBox -->
     <div id="reportBox" style="display:none">
         <div id="tableReport">
-            <button class="btnCancel">X</button>
- 
-            <img src="./icon/report.png" alt="" />
-
-
-            <div class="follow_select"> </div>
-      
             
-            <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+            <div class=".report_wrapper">
+
+                <button class="btnCancel">X</button>
+    
+                <img src="./icon/report.png" alt="" />
+
+                <div class="select_type">
+                    <span class="placeholder">Select your language</span>
+                    <ul>
+                    <li>España- Español</li>
+                    <li>United States - English</li>
+                    <li>France - Français</li>
+                    <li>Deutschland - Deutsch</li>
+                    </ul>
+                </div>
+        
+                
+                <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                
+            </div>    <!-- .report_wrapper -->
         </div><!-- #tableReport -->
     </div> 
     <!-- #reportBox -->
+    
+    <script> 
+        $('.select_type').on('click','.placeholder',function(){
+        var parent = $(this).closest('.select_type');
+        if ( ! parent.hasClass('is-open')){
+        parent.addClass('is-open');
+        $('.select_type.is-open').not(parent).removeClass('is-open');
+        }else{
+        parent.removeClass('is-open');
+        }
+    }).on('click','ul>li',function(){
+        var parent = $(this).closest('.select_type');
+        parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
+    });
 
+    </script>
 
 
 

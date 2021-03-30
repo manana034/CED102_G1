@@ -1,332 +1,344 @@
+
+    
+
 <div class="card report">
-                                
-    <div class="title_back"></div>
-    <p class="CurGoal_title">
+    <div class="title_outer">                    
+        <div class="title_back">
+            <div class="CurGoal_title">
+                
+                <div class="top_title">
+                    <img src="img/chart_icon.svg">
+                    REPORT
+                </div>
+                <select>
+                    <option>This Month</option>
+                    <option>Last Month</option>
+                </select>
+            </div> 
+        </div>               
+
+        <p class="report_title">
+            compared to last week 2/8~2/14
+        </p>
+    </div>  
+
+        <div class="chart_select">
+
+            <div class="chart_weight chart_selectors">
+                <p>Weight</p>
+                <div class="chart_data">
+                    <p>64</p>
+                    <img src="img/down_icon.png">
+                    <p class="w_persan">1%</p>
+                </div>
+            </div>
+            <div class="chart_cal chart_selectors">
+                <p>Cal</p>
+                <div class="chart_data">
+                    <p>1700</p>
+                    <img src="img/down_icon.png">
+                    <p class="cal_persan">2%</p>
+                </div>
+            </div>
+            <div class="chart_excercie chart_selectors">
+                <p>Exercise</p>
+                <div class="chart_data">
+                    <p>1.5hr</p>
+                    <img src="img/up_icon.png">
+                    <p class="ex_persan">1%</p>
+                </div>
+            </div>
+        </div> <!-- chart_select -->
+
+    <div class="report_chart">
+        <div class="report_charts">
+            <div id="chartdiv01"></div>
+            <script>
+                    // Themes begin
+                    am4core.useTheme(am4themes_animated);
+                    // Themes end
+
+
+                    
+                    // Create chart instance
+                    var chart = am4core.create("chartdiv01", am4charts.XYChart);
+                    
+                    var w1 = 900;
+                    var w2 = 1250;
+                    var w3 = 1000;
+                    var w4 = 1200;
+                    // Add data
+                    chart.data = [{
+                    "period": "Week1",
+                    "cal01": w1
+                    }, {
+                    "period": "Week2",
+                    "cal01": w2
+                    }, {
+                    "period": "Week3",
+                    "cal01": w3
+                    }, {
+                    "period": "Week4",
+                    "cal01": w4
+                    }];
+                    
+                    // Create axes
+                    
+                    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                    categoryAxis.dataFields.category = "period";
+                    categoryAxis.renderer.grid.template.location = 0;
+                    categoryAxis.renderer.minGridDistance = 20;
+                    
+                    categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+                    if (target.dataItem && target.dataItem.index & 2 == 2) {
+                        return dy + 25;
+                    }
+                    return dy;
+                    });
+                    
+                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                    
+                    // Create series
+                    var series = chart.series.push(new am4charts.ColumnSeries());
+                    series.dataFields.valueY = "cal01";
+                    series.dataFields.categoryX = "period";
+                    series.name = "Visits";
+                    series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+                    series.columns.template.fillOpacity = .8;
+                    
+                    var columnTemplate = series.columns.template;
+                    columnTemplate.strokeWidth = 1;
+                    columnTemplate.strokeOpacity = 1;
+                    columnTemplate.column.cornerRadiusTopRight = 20;
+                    columnTemplate.column.cornerRadiusTopLeft = 20;
+                    columnTemplate.width = am4core.percent(10);
+
+
+        </script> <!-- 長條圖 -->
+        </div>
+        <div class="report_charts">
+            <div id="chartdiv02"></div>
+            <script>
+                am4core.ready(function() {
         
-        <pre><img src="img/chart_icon.svg">REPORT</pre>
-        <select>
-            <option>This Month</option>
-            <option>Last Month</option>
-        </select>
-    </p>            
-
-<p class="report_title">
-    compared to last week 2/8~2/14
-</p>
-
-<div class="chart_select">
-    <div class="chart_weight chart_selectors">
-        <p>Weight</p>
-        <div class="chart_data">
-            <p>64</p>
-            <img src="img/down_icon.png">
-            <p class="w_persan">1%</p>
-        </div>
-    </div>
-    <div class="chart_cal chart_selectors">
-        <p>Cal</p>
-        <div class="chart_data">
-            <p>1700</p>
-            <img src="img/down_icon.png">
-            <p class="cal_persan">2%</p>
-        </div>
-    </div>
-    <div class="chart_excercie chart_selectors">
-        <p>Exercise</p>
-        <div class="chart_data">
-            <p>1.5hr</p>
-            <img src="img/up_icon.png">
-            <p class="ex_persan">1%</p>
-        </div>
-    </div>
-</div> <!-- chart_select -->
-
-<div class="report_chart">
-    <div class="report_charts">
-        <div id="chartdiv01"></div>
-        <script>
                 // Themes begin
                 am4core.useTheme(am4themes_animated);
                 // Themes end
-
-
-                
+        
                 // Create chart instance
-                var chart = am4core.create("chartdiv01", am4charts.XYChart);
+                var chart = am4core.create("chartdiv02", am4charts.PieChart);
+        
+                // Add data
+                chart.data = [ {
+                "meals": "Breakfast",
+                "cal02": 501.9,
+                }, {
+                "meals": "Lunch",
+                "cal02": 501.9
+                }, {
+                "meals": "Dinner",
+                "cal02": 501.9
+                }];
+        
+                // Set inner radius
+                chart.innerRadius = am4core.percent(50);
+        
+                // Add and configure Series
+                var pieSeries = chart.series.push(new am4charts.PieSeries());
+                pieSeries.dataFields.value = "cal02";
+                pieSeries.dataFields.category = "meals";
+        
+                // chart.legend = new am4charts.Legend();
                 
-                var w1 = 900;
-                var w2 = 1250;
-                var w3 = 1000;
-                var w4 = 1200;
+                pieSeries.colors.list = [
+                am4core.color("#FF9671"),
+                am4core.color("#FFC75F"),
+                am4core.color("#F9F871"),
+            ]
+        
+                pieSeries.slices.template.stroke = am4core.color("#fff");
+                pieSeries.slices.template.strokeWidth = 2;
+                pieSeries.slices.template.strokeOpacity = 1;
+        
+                // This creates initial animation
+                pieSeries.hiddenState.properties.opacity = 1;
+                pieSeries.hiddenState.properties.endAngle = -90;
+                pieSeries.hiddenState.properties.startAngle = -90;
+                
+        
+                }); // end am4core.ready()
+                </script> <!-- 圓餅圖 -->
+        </div>
+        <div class="report_charts">
+            <div id="chartdiv03"></div>
+            <script>
+                am4core.ready(function() {
+        
+                // Themes begin
+                am4core.useTheme(am4themes_animated);
+                // Themes end
+        
+                // Create chart instance
+                var chart = am4core.create("chartdiv03", am4charts.XYChart);
+        
                 // Add data
                 chart.data = [{
-                "period": "Week1",
-                "cal01": w1
+                "date": "2012-08-01",
+                "value": 13
                 }, {
-                "period": "Week2",
-                "cal01": w2
+                "date": "2012-08-02",
+                "value": 22
                 }, {
-                "period": "Week3",
-                "cal01": w3
+                "date": "2012-08-03",
+                "value": 23
                 }, {
-                "period": "Week4",
-                "cal01": w4
+                "date": "2012-08-04",
+                "value": 20
+                }, {
+                "date": "2012-08-05",
+                "value": 17
+                }, {
+                "date": "2012-08-06",
+                "value": 16
+                }, {
+                "date": "2012-08-07",
+                "value": 18
+                }, {
+                "date": "2012-08-08",
+                "value": 21
+                }, {
+                "date": "2012-08-09",
+                "value": 26
+                }, {
+                "date": "2012-08-10",
+                "value": 24
+                }, {
+                "date": "2012-08-11",
+                "value": 29
+                }, {
+                "date": "2012-08-12",
+                "value": 32
+                }, {
+                "date": "2012-08-13",
+                "value": 18
+                }, {
+                "date": "2012-08-14",
+                "value": 24
+                }, {
+                "date": "2012-08-15",
+                "value": 22
+                }, {
+                "date": "2012-08-16",
+                "value": 18
+                }, {
+                "date": "2012-08-17",
+                "value": 19
+                }, {
+                "date": "2012-08-18",
+                "value": 14
+                }, {
+                "date": "2012-08-19",
+                "value": 15
+                }, {
+                "date": "2012-08-20",
+                "value": 12
+                }, {
+                "date": "2012-08-21",
+                "value": 8
+                }, {
+                "date": "2012-08-22",
+                "value": 9
+                }, {
+                "date": "2012-08-23",
+                "value": 8
+                }, {
+                "date": "2012-08-24",
+                "value": 7
+                }, {
+                "date": "2012-08-25",
+                "value": 5
+                }, {
+                "date": "2012-08-26",
+                "value": 11
+                }, {
+                "date": "2012-08-27",
+                "value": 13
+                }, {
+                "date": "2012-08-28",
+                "value": 18
+                }, {
+                "date": "2012-08-29",
+                "value": 20
+                }, {
+                "date": "2012-08-30",
+                "value": 29
+                }, {
+                "date": "2012-08-31",
+                "value": 33
                 }];
-                
+        
+                // Set input format for the dates
+                chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+        
                 // Create axes
-                
-                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-                categoryAxis.dataFields.category = "period";
-                categoryAxis.renderer.grid.template.location = 0;
-                categoryAxis.renderer.minGridDistance = 20;
-                
-                categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
-                if (target.dataItem && target.dataItem.index & 2 == 2) {
-                    return dy + 25;
-                }
-                return dy;
-                });
-                
+                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
                 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-                
+        
                 // Create series
-                var series = chart.series.push(new am4charts.ColumnSeries());
-                series.dataFields.valueY = "cal01";
-                series.dataFields.categoryX = "period";
-                series.name = "Visits";
-                series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-                series.columns.template.fillOpacity = .8;
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.valueY = "value";
+                series.dataFields.dateX = "date";
+                series.tooltipText = "{value}"
+                series.strokeWidth = 2;
+                series.minBulletDistance = 15;
+        
+                // Drop-shaped tooltips
+                series.tooltip.background.cornerRadius = 20;
+                series.tooltip.background.strokeOpacity = 0;
+                series.tooltip.pointerOrientation = "vertical";
+                series.tooltip.label.minWidth = 40;
+                series.tooltip.label.minHeight = 40;
+                series.tooltip.label.textAlign = "middle";
+                series.tooltip.label.textValign = "middle";
+        
+                // Make bullets grow on hover
+                var bullet = series.bullets.push(new am4charts.CircleBullet());
+                bullet.circle.strokeWidth = 2;
+                bullet.circle.radius = 4;
+                bullet.circle.fill = am4core.color("#fff");
                 
-                var columnTemplate = series.columns.template;
-                columnTemplate.strokeWidth = 1;
-                columnTemplate.strokeOpacity = 1;
-                columnTemplate.column.cornerRadiusTopRight = 20;
-                columnTemplate.column.cornerRadiusTopLeft = 20;
-                columnTemplate.width = am4core.percent(10);
-
-
-    </script> <!-- 長條圖 -->
-    </div>
-    <div class="report_charts">
-        <div id="chartdiv02"></div>
-        <script>
-            am4core.ready(function() {
-    
-            // Themes begin
-            am4core.useTheme(am4themes_animated);
-            // Themes end
-    
-            // Create chart instance
-            var chart = am4core.create("chartdiv02", am4charts.PieChart);
-    
-            // Add data
-            chart.data = [ {
-            "meals": "Breakfast",
-            "cal02": 501.9,
-            }, {
-            "meals": "Lunch",
-            "cal02": 501.9
-            }, {
-            "meals": "Dinner",
-            "cal02": 501.9
-            }];
-    
-            // Set inner radius
-            chart.innerRadius = am4core.percent(50);
-    
-            // Add and configure Series
-            var pieSeries = chart.series.push(new am4charts.PieSeries());
-            pieSeries.dataFields.value = "cal02";
-            pieSeries.dataFields.category = "meals";
-    
-            chart.legend = new am4charts.Legend();
-            
-            pieSeries.colors.list = [
-            am4core.color("#FF9671"),
-            am4core.color("#FFC75F"),
-            am4core.color("#F9F871"),
-        ]
-    
-            pieSeries.slices.template.stroke = am4core.color("#fff");
-            pieSeries.slices.template.strokeWidth = 2;
-            pieSeries.slices.template.strokeOpacity = 1;
-    
-            // This creates initial animation
-            pieSeries.hiddenState.properties.opacity = 1;
-            pieSeries.hiddenState.properties.endAngle = -90;
-            pieSeries.hiddenState.properties.startAngle = -90;
-            
-    
-            }); // end am4core.ready()
-            </script> <!-- 圓餅圖 -->
-    </div>
-    <div class="report_charts">
-        <div id="chartdiv03"></div>
-        <script>
-            am4core.ready(function() {
-    
-            // Themes begin
-            am4core.useTheme(am4themes_animated);
-            // Themes end
-    
-            // Create chart instance
-            var chart = am4core.create("chartdiv03", am4charts.XYChart);
-    
-            // Add data
-            chart.data = [{
-            "date": "2012-08-01",
-            "value": 13
-            }, {
-            "date": "2012-08-02",
-            "value": 22
-            }, {
-            "date": "2012-08-03",
-            "value": 23
-            }, {
-            "date": "2012-08-04",
-            "value": 20
-            }, {
-            "date": "2012-08-05",
-            "value": 17
-            }, {
-            "date": "2012-08-06",
-            "value": 16
-            }, {
-            "date": "2012-08-07",
-            "value": 18
-            }, {
-            "date": "2012-08-08",
-            "value": 21
-            }, {
-            "date": "2012-08-09",
-            "value": 26
-            }, {
-            "date": "2012-08-10",
-            "value": 24
-            }, {
-            "date": "2012-08-11",
-            "value": 29
-            }, {
-            "date": "2012-08-12",
-            "value": 32
-            }, {
-            "date": "2012-08-13",
-            "value": 18
-            }, {
-            "date": "2012-08-14",
-            "value": 24
-            }, {
-            "date": "2012-08-15",
-            "value": 22
-            }, {
-            "date": "2012-08-16",
-            "value": 18
-            }, {
-            "date": "2012-08-17",
-            "value": 19
-            }, {
-            "date": "2012-08-18",
-            "value": 14
-            }, {
-            "date": "2012-08-19",
-            "value": 15
-            }, {
-            "date": "2012-08-20",
-            "value": 12
-            }, {
-            "date": "2012-08-21",
-            "value": 8
-            }, {
-            "date": "2012-08-22",
-            "value": 9
-            }, {
-            "date": "2012-08-23",
-            "value": 8
-            }, {
-            "date": "2012-08-24",
-            "value": 7
-            }, {
-            "date": "2012-08-25",
-            "value": 5
-            }, {
-            "date": "2012-08-26",
-            "value": 11
-            }, {
-            "date": "2012-08-27",
-            "value": 13
-            }, {
-            "date": "2012-08-28",
-            "value": 18
-            }, {
-            "date": "2012-08-29",
-            "value": 20
-            }, {
-            "date": "2012-08-30",
-            "value": 29
-            }, {
-            "date": "2012-08-31",
-            "value": 33
-            }];
-    
-            // Set input format for the dates
-            chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
-    
-            // Create axes
-            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    
-            // Create series
-            var series = chart.series.push(new am4charts.LineSeries());
-            series.dataFields.valueY = "value";
-            series.dataFields.dateX = "date";
-            series.tooltipText = "{value}"
-            series.strokeWidth = 2;
-            series.minBulletDistance = 15;
-    
-            // Drop-shaped tooltips
-            series.tooltip.background.cornerRadius = 20;
-            series.tooltip.background.strokeOpacity = 0;
-            series.tooltip.pointerOrientation = "vertical";
-            series.tooltip.label.minWidth = 40;
-            series.tooltip.label.minHeight = 40;
-            series.tooltip.label.textAlign = "middle";
-            series.tooltip.label.textValign = "middle";
-    
-            // Make bullets grow on hover
-            var bullet = series.bullets.push(new am4charts.CircleBullet());
-            bullet.circle.strokeWidth = 2;
-            bullet.circle.radius = 4;
-            bullet.circle.fill = am4core.color("#fff");
-            
-    
-            var bullethover = bullet.states.create("hover");
-            bullethover.properties.scale = 1.3;
-    
-            // Make a panning cursor
-            chart.cursor = new am4charts.XYCursor();
-            chart.cursor.behavior = "panXY";
-            chart.cursor.xAxis = dateAxis;
-            chart.cursor.snapToSeries = series;
-    
-            // Create vertical scrollbar and place it before the value axis
-            chart.scrollbarY = new am4core.Scrollbar();
-            chart.scrollbarY.parent = chart.leftAxesContainer;
-            chart.scrollbarY.toBack();
-    
-            // Create a horizontal scrollbar with previe and place it underneath the date axis
-            // chart.scrollbarX = new am4charts.XYChartScrollbar();
-            // chart.scrollbarX.series.push(series);
-            // chart.scrollbarX.parent = chart.bottomAxesContainer;
-    
-            dateAxis.start = 0.79;
-            dateAxis.keepSelection = true;
-    
-    
-            }); // end am4core.ready()
-            </script>  <!-- 折線圖 -->   
-    </div>
-</div>   <!--report chart --> 
+        
+                var bullethover = bullet.states.create("hover");
+                bullethover.properties.scale = 1.3;
+        
+                // Make a panning cursor
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.behavior = "panXY";
+                chart.cursor.xAxis = dateAxis;
+                chart.cursor.snapToSeries = series;
+        
+                // Create vertical scrollbar and place it before the value axis
+                // chart.scrollbarY = new am4core.Scrollbar();
+                // chart.scrollbarY.parent = chart.leftAxesContainer;
+                // chart.scrollbarY.toBack();
+        
+                // Create a horizontal scrollbar with previe and place it underneath the date axis
+                // chart.scrollbarX = new am4charts.XYChartScrollbar();
+                // chart.scrollbarX.series.push(series);
+                // chart.scrollbarX.parent = chart.bottomAxesContainer;
+        
+                dateAxis.start = 0.79;
+                dateAxis.keepSelection = true;
+        
+        
+                }); // end am4core.ready()
+                </script>  <!-- 折線圖 -->   
+        </div>
+    </div>   <!--report chart --> 
 
 </div>  <!-- card report --> 
+
 <div class="your_report">Your Goal<i class="fas fa-caret-down"></i></div>
 <div class="report_card"></div>
+
+

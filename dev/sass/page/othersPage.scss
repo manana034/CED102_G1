@@ -209,47 +209,49 @@ pre.load{
   display: flex;
   justify-content: space-between;
   align-content: center;
-  > :first-child {
+      > :first-child {
       display: flex;
-      .face {
-          height: 50px;
-          width: 50px;
-          border-radius: 100%;
-          overflow: hidden;
-          border: 1px solid $white;
-          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
-          margin-right: 20px;
-          img {
-              width: 100%;
-              height: 100%;
-          }
-  
+                .face {
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 100%;
+                    overflow: hidden;
+                    border: 1px solid $white;
+                    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+                    margin-right: 20px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+            
+                }
+              > :nth-child(2) {
+            
+                  .name {
+                      font-weight: 900;
+                      opacity: 1;
+                  }
+                  .releaseDate {
+                    opacity: 1;
+                    font-size: 12px;
+                    
+                  }
+              }
       }
-      > :nth-child(2) {
-    
-          .name {
-              font-weight: 900;
-          }
-          .releaseDate {
-              font-size: 12px;
-              opacity: 0.8;
-          }
-      }
-  }
   
-  >:last-child{
-      .report{
-          opacity: .5;
-      }
-  }
-  } //.topbody
-  
-  
+  // >:last-child{
+  //     .report{
+  //         opacity: .5;
+  //     }
+  // }
+  // } //.topbody
+}  //.topbody
+
+
   // .middleBody {
   // border-bottom: 1px solid $gray5;
   // margin-top: 15px;
   // } //.middleBody
-  
   
   
   .commentNum{ //寫在裡面吃不到
@@ -526,6 +528,7 @@ height: 100%;
 background: rgba(66,66,66,.6);
 z-index: 500;
 }
+
 #tableReport{
 z-index: 501;
 border-radius: 25px;
@@ -539,4 +542,107 @@ left: 0;
 margin:auto;
 background-color:$white;
 }
-//report檢舉的燈箱設定
+//report檢舉的燈箱設定}
+
+.report_wrapper{
+  background-color: burlywood;
+  width:80%
+ 
+}
+
+
+//report的下拉選單
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+
+
+// *,*:after,*:before{
+//   box-sizing: border-box;
+// }
+
+// html{
+//   box-sizing: inherit;
+//   background: linear-gradient(to left, #8e9eab , #eef2f3);
+// }
+// body{
+//   margin: 10% auto;
+//   text-align: center;
+//   font-size: 12px;
+// }
+
+.select_type{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 325px;
+  color: #cccccc;
+  // vertical-align: middle;
+  text-align: left;
+  user-select: none;
+  -webkit-touch-callout: none;
+
+  .placeholder{
+    position: relative;
+    display: block;
+    background-color: #393d41;
+    z-index: 1;
+    padding: 1em;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover{
+      background: darken(#393d41,2%);
+    }
+
+    &:after{
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'FontAwesome';
+      content: '\f078';
+      z-index: 10;
+    }
+  }
+
+  &.is-open{
+    .placeholder:after{
+      content: '\f077';
+    }
+    ul{
+      display: block;
+    }
+  }
+
+
+
+  ul{
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    z-index: 100;
+
+    li{
+      display: block;
+      text-align: left;
+      padding: 0.8em 1em 0.8em 1em;
+      color: #999;
+      cursor: pointer;
+
+      &:hover{
+        background: #4ebbf0;
+        color: #fff;
+      }
+    }
+  }
+}
+
+//report的下拉選單

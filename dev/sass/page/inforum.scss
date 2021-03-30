@@ -14,7 +14,7 @@
 //component
 @import"../component/header";
 @import"../component/footer";
-@import"../component/report.scss";
+@import"../component/report";
 
 
 body{
@@ -438,11 +438,13 @@ div.right{
 .hiddenContent > .issue{
   width: 100%;
   border: none;
-  position: relative;
 }
 
 .hiddenContent {
   display: none;
+  width: 100%;
+  // z-index: 0;
+  z-index:auto; 
 }
 
 
@@ -544,7 +546,7 @@ pre.reply_time{
   .gallery .article {  
     max-width: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 16px #333;
+    // box-shadow: 0 0 16px #333;
     transition: all 1.5s ease;
   }
 
@@ -694,6 +696,7 @@ pre.reply_time{
   > :first-child {
       display: flex;
       .face {
+          // z-index: 0;
           height: 50px;
           width: 50px;
           border-radius: 100%;
@@ -711,26 +714,27 @@ pre.reply_time{
     
           .name {
               font-weight: 900;
+              opacity: 1;
           }
           .releaseDate {
+              opacity: 1;
               font-size: 12px;
-              opacity: 0.8;
           }
       }
   }
 
-  >:last-child{
-      .report{
-          opacity: .5;
-      }
-  }
+  // >:last-child{
+  //     .report{
+  //         opacity: .5;
+  //     }
+  // }
 } //.topbody
 
 
-.middleBody {
-  border-bottom: 1px solid $gray5;
-  margin-top: 15px;
-} //.middleBody
+// .middleBody {
+//   border-bottom: 1px solid $gray5;
+//   margin-top: 15px;
+// } //.middleBody
 
 
 
@@ -747,11 +751,6 @@ pre.reply_time{
   margin-bottom: 1%;
   margin-top: 1%;
 }
-
-.hiddenContent{
-  width: 100%;
-}
-
 
 
 
