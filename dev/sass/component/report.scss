@@ -1,0 +1,105 @@
+.card.report{
+    height: 500px;
+    width: 100%;
+    // margin: 0px auto;
+    // padding: 20px;
+    position: relative;
+    .title_back{
+        border-bottom: 2px solid #DDDDDD;
+        width: 100%;
+        height: 60px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: #EAA565;
+        border-radius: 20px 20px 0px 0px;
+    }
+    .CurGoal_title{
+      // display: flex;
+      // justify-content: space-between;
+        select{
+            border:none;
+            outline: none;
+            color: #ffffff;
+            font-size: 16px;
+            background-color: unset;
+            cursor: pointer;
+        }
+        img{
+            height: 20px;
+            width: 20px;
+            vertical-align: middle;
+            padding-bottom: 3px;
+        }
+        width: 100%;
+        // border-bottom: 2px solid #DDDDDD;
+        vertical-align: middle;
+        font-weight: bold;
+        padding-bottom: 13px;
+        color: #ffffff;
+    }
+    .report_title{
+        margin: 10px;
+        color: #AAAAAA;
+    }
+    .chart_select{
+      // background-color: yellow;
+      width: 100%;
+      height: 80px;
+      display: flex;
+        // display: grid;
+        // grid-template-columns: 16% 18% 26%;;
+        .chart_weight,.chart_cal,.chart_excercie{
+            width: 33%;
+            border: 1px solid #AAAAAA;
+            height: 70%;
+            border-radius: 18px;
+            margin-right: 3%;
+            padding: 1%;
+            transition: 0.1s;
+            // text-align: center;
+            p{
+                margin-left: 5px;
+            }
+            .chart_data{
+                display: flex;
+                align-items: center;
+                img{
+                    width: 15%;
+                    height: 15%;
+                    // height: 10px;
+                    // padding: 8px 1px 0px 10px;
+                }
+                .w_persan,.cal_persan,.ex_persan{
+                    font-size: 5px;
+                    color: #888888;
+                }
+            }
+        }
+        .chart_weight:hover,.chart_cal:hover,.chart_excercie:hover{
+            cursor: pointer;
+            border: 2px solid #666666;
+            font-weight: bolder;
+            transform:scale(1.02,1.02);
+        }
+    }
+    .report_chart{
+        width: 100%;
+        padding-top: 5px;
+        img{
+            width: 100%;
+        }
+        .report_charts{
+            border: 1px solid #dddd;
+            width: 100%;
+            // #chartdiv01,#chartdiv02,#chartdiv03{
+            //     height: 100%;
+            // }
+        }
+        .report_charts:nth-child(2),.report_charts:nth-child(3){
+            display:none;
+        }
+    }
+  
+  
+  }
