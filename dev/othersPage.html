@@ -9,7 +9,7 @@
     <script src="./js/header.js" defer></script>
     <script src="https://kit.fontawesome.com/6535761837.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./js/forum.js" defer></script>
+
 
     <script>
             $(document).ready(function() {
@@ -27,98 +27,22 @@
     </script>
 </head>
 <body>
-    <div id="lightBox" style="display:none">
-        <div id="tableLogin">
-            <div class="pop_inside">
 
-                <div class="above_pop">
-
-                    <div class="follow_select"> 
-                        <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
-                        <button class="btnCancel">X</button>
-                    </div>
-                    
-                    <table class="follow_list">
-                        <tr> <!-- 第一列 -->
-                            <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 左邊好友 -->
-                            
-                            <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 右邊好友 -->
-                        </tr><!-- 第一列 -->
-
-                        <tr> <!-- 第二列 -->
-                            <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 左邊好友 -->
-                            <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 右邊好友 -->
-                        </tr><!-- 第二列 -->
-
-                        <tr> <!-- 第三列 --> 
-                            <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 左邊好友 -->
-                            <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
-                                <ul>
-                                    <li class="member_level">Level9</li>
-                                    <li class="member_name">Jerry Guerrero</li>
-                                    <li><button class="l-btn">follow</button></li>    
-                                </ul>
-                            </td> <!-- 右邊好友 -->
-                        </tr><!-- 第三列 -->                      
-                    </table> <!-- .follow_list -->
-                                  
-                </div><!-- .above_pop -->
-
-                <div class="under_pop">
-                        <pre class="load">load more +</pre>                          
-                </div> <!-- .under_pop -->
-            </div>            
-
-        </div>
-    </div> <!-- #lightBox -->
 
 
     <!-- #reportBox -->
     <div id="reportBox" style="display:none">
         <div id="tableReport">
+            <button class="btnCancel">X</button>
+ 
+            <img src="./icon/report.png" alt="" />
 
-            <div class="follow_select"> 
-                <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
-                <button class="btnCancel">X</button>
-            </div>
 
-        </div>
+            <div class="follow_select"> </div>
+      
+            
+            <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+        </div><!-- #tableReport -->
     </div> 
     <!-- #reportBox -->
 
@@ -985,7 +909,7 @@
 
 
 
-
+    <!-- 瀑布流 -->
     <script>
         var gallery = document.querySelector('#gallery');
         var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
@@ -1020,8 +944,41 @@
         //     });
         // });
     </script>
+    <!-- 瀑布流 -->
 
 
+    <!-- 檢舉 -->
+    <script>
+        //showReportForm   
+        function showReportForm(){
+        document.getElementById("reportBox").style.display = "";
+        }//showReportForm
+
+        //跳窗關閉
+        function cancelForms(){
+        document.getElementById("reportBox").style.display="none";
+        // document.getElementById("lightBox").style.display="none";
+        }
+
+        function init(){
+        //啟動檢舉功能跳窗
+        let RP= document.getElementsByClassName("nc-btn report")
+        let r;
+        for (r = 0; r < RP.length; r++) {
+            RP[r].onclick = showReportForm;
+        }
+
+        //檢舉、follow關閉視窗
+        let CL=document.getElementsByClassName("btnCancel")
+        let c;
+        for (c = 0; c < CL.length; c++) {
+            CL[c].onclick = cancelForms;
+        }
+        }; 
+        window.addEventListener("load", init, false);
+    </script>
+
+    <!-- 檢舉 -->
 
 </body>
 </html>

@@ -5,7 +5,8 @@ function showLoginForm(){
   if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
     document.getElementById("lightBox").style.display = "";
   }
-}//showLoginForm
+}
+//showLoginForm
 
 
 
