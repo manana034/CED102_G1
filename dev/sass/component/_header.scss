@@ -245,6 +245,7 @@ header{
 
 @include rwd(1200px){
   header{
+
     >.row{
       padding: 10px;
       >.logo{
@@ -303,5 +304,7 @@ header{
     }
   }
 
-
+  header > .menuBody{
+      width: 100%;
+  }
 }
