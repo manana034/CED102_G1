@@ -1,46 +1,58 @@
 
-                function showLoginForm(){            
-                  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
-                    document.getElementById("lightBox").style.display = "";
-                  }
-                }//showLoginForm
 
-
-                function cancelLogin(){
-                  document.getElementById("lightBox").style.display="none";
-                }
-
-
-
-                function showReportForm(){            
-                  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
-                    document.getElementById("reportBox").style.display = "";
-                  }
-                }//showReportForm
-
-
-                // function cancelReport(){
-                //   document.getElementById("reportBox").style.display="none";
-                // }
+//showLoginForm  //follow功能跳窗  
+function showLoginForm(){            
+  if((this.innerText == "FOLLOWING") || (this.innerText == "FOLLOWER")){
+    document.getElementById("lightBox").style.display = "";
+  }
+}
+//showLoginForm
 
 
 
-                function init(){
-                    
-                  //===設定spanLogin.onclick 事件處理程序是 showLoginForm
-                  document.getElementById("sp_follower").onclick = showLoginForm;
-                  document.getElementById("spanLogin").onclick = showLoginForm;
-                  document.getElementsByClassName("nc-btn report").onclick = showReportForm;
-                  
-                  
-                                
-                  //===設定btnCancel.onclick 事件處理程序是 cancelLogin
-                  document.getElementById("btnCancel").onclick = cancelLogin;
-                  
+//showReportForm   //檢舉功能跳窗
+function showReportForm(){
+  document.getElementById("reportBox").style.display = "";
+}//showReportForm
+
+
+
+
+
+//跳窗關閉
+function cancelForms(){
+  document.getElementById("reportBox").style.display="none";
+  document.getElementById("lightBox").style.display="none";
+}
+// function cancelLogin(){
+//   document.getElementById("lightBox").style.display="none";
+// }
+
+
+
+
+
+function init(){
+  //啟動follow功能跳窗  
+  document.getElementById("sp_follower").onclick = showLoginForm;
+  document.getElementById("spanLogin").onclick = showLoginForm;
+  //啟動檢舉功能跳窗
+  let RP= document.getElementsByClassName("nc-btn report")
+  let r;
+  for (r = 0; r < RP.length; r++) {
+    RP[r].onclick = showReportForm;
+}
+  
                 
-                  // document.getElementById("pic").style.display = "none";
-                
-                }; //window.onload
-                
-                window.addEventListener("load", init, false);
-          
+
+  //檢舉、follow關閉視窗
+  let CL=document.getElementsByClassName("btnCancel")
+  let c;
+  for (c = 0; c < CL.length; c++) {
+    CL[c].onclick = cancelForms;
+  }
+}; 
+
+
+window.addEventListener("load", init, false);
+
