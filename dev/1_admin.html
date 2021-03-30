@@ -52,10 +52,12 @@
                     <a href="./9_chatbot.html">CHATBOT</a>
                 </li>
             </ul>
-            <div class="logout">
-                <img src="../icon/backend_logout.svg">
-                <div>Log out</div>
-            </div>
+            <a href="B_login.html">
+                <div class="logout">
+                    <img src="../icon/backend_logout.svg">
+                    <div>Log out</div>
+                </div>
+            </a>
         </div>
     </div>
 <!-- 右邊主欄 -->
@@ -98,6 +100,7 @@
                   <th>RATE</th>
                   <th>EDIT</th>
                   <th>DELETE</th>
+                  <th>STATE</th>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -107,6 +110,12 @@
                     <td>1</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>  
+                        <label class="switch" for="checkbox">
+                            <input type="checkbox" id="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -116,6 +125,12 @@
                     <td>1</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>  
+                        <label class="switch" for="checkbox">
+                            <input type="checkbox" id="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -229,6 +244,11 @@
             <!-- <div class="pagination"></div> -->
         </div>
     </div>
-
+<div class="full_screen">
+    <div class="card">
+        是否要刪除 NO1 董董 ?
+        白N 紅Y 沒有X
+    </div>
+</div>
 </body>
 </html>

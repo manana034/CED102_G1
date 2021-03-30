@@ -148,7 +148,7 @@ main {
                         background-color: $white;
                         padding: 3%;
                         // background-color: chocolate;
-                        z-index: 99;
+                        z-index: 10;
                     }
                     /*style items (options):*/
                     .select-items {
@@ -284,6 +284,18 @@ main {
 
                 }
             }
+        }
+        div.load{
+            border-bottom: 1px solid black;
+            margin-left: 49%;
+            margin-right: 42%;
+            color: black;
+            text-transform:uppercase;
+            font-weight: bold;
+            padding-bottom:5px;
+            margin-bottom: 8%;
+            margin-top: 5%;
+            cursor: pointer;
         }
     }
 
@@ -533,6 +545,18 @@ main {
 
                 }
             }
+        }
+        div.load{
+            border-bottom: 1px solid black;
+            margin-left: 49%;
+            margin-right: 42%;
+            color: black;
+            text-transform:uppercase;
+            font-weight: bold;
+            padding-bottom:5px;
+            margin-bottom: 8%;
+            margin-top: 5%;
+            cursor: pointer;
         }
     }
 

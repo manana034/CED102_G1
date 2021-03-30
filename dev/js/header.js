@@ -107,16 +107,22 @@ let menuCIcon = menuBody.children[0]
 
 menuIcon.addEventListener('click', () => {
     const state = getComputedStyle(menuBody).transform
+            console.log(state)
+
+
     if (getComputedStyle(menuBody).display == 'none') {
         menuBody.style.display = 'block'
+
         const time = setTimeout(() => {
             menuBody.style.transform = 'translate(0,0)'
             clearTimeout(time)
         })
-    } else if (state == 'matrix(1, 0, 0, 1, 400, 0)') {
-        menuBody.style.transform = 'translate(0,0)'
-    } else {
+    } else if (state == 'matrix(1, 0, 0, 1, 0, 0)') {
+
         menuBody.style.transform = 'translate(100%,0)'
+    } else {
+        menuBody.style.transform = 'translate(0,0)'
+
     }
 })
 menuCIcon.addEventListener('click', () => {
@@ -150,3 +156,27 @@ const closeSugItem = (elmnt) => {
 
 searchInput.addEventListener('focus', showSugItem)
 document.addEventListener('click', closeSugItem)
+
+
+// --------rwd search 使用
+const searchBody = document.querySelector('form#searchBar')
+const phoneSearch = document.querySelector('.phoneSearch')
+const closeSearch = document.querySelector('#searchBar>.closeForm')
+
+
+
+phoneSearch.addEventListener('click',()=>{
+    searchBody.style.display = 'inline-flex'
+})
+
+closeSearch.addEventListener('click', () => {
+    searchBody.style.display = 'none'
+})
+
+window.addEventListener('resize',()=>{
+    if(window.innerWidth < 1200){
+        searchBody.style.display = 'none'
+    } else{
+        searchBody.style.display = 'inline-flex'
+    }
+})

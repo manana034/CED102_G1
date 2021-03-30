@@ -89,8 +89,11 @@
     margin-bottom: 5vw;
 
     >div.container{
+        >div.changBtn{
+            display: none;
+        }
+
        width: 65vw;
-    //    border: 1px solid red;
        margin: auto;
        position: relative;
         .under{
@@ -1044,3 +1047,33 @@ section.orderDetail{
         }
     }
 }
+
+
+@include rwd(1200px){
+    .logIn_signUp {
+        > div.container{
+            width: 90%;
+
+            >div.changBtn{
+                display: block;
+            }
+            
+            >.under{
+                justify-content: center;
+                >.signup{
+                    display: none;
+                }
+                >.signup, .login{
+                    width: unset;
+                }
+            }
+            >.upper{
+                display: none;
+            }
+        }
+       
+    }
+}
+
+
+// .logIn_signUp > div.container .under > .login, .logIn_signUp > div.container .under .signup

@@ -205,3 +205,35 @@ statusOrderList.forEach(item =>{
         orderDetail.style.display = "flex"
     })
 })
+
+
+//登入註冊phone 的畫面切換  ---------------------------
+
+const loginChangBtn = document.querySelector('.logIn_signUp .changBtn>:first-child')
+const signupChangBtn = document.querySelector('.logIn_signUp .changBtn>:last-child')
+
+const loginBody = document.querySelector('.logIn_signUp .under .login')
+
+const signupBody = document.querySelector('.logIn_signUp .under .signup')
+
+
+loginChangBtn.addEventListener('click',()=>{
+    loginChangBtn.classList.add('o-3');
+    signupChangBtn.classList.remove('o-3');
+    loginBody.style.display= "flex";
+    signupBody.style.display= "none"
+})
+
+signupChangBtn.addEventListener('click', () => {
+    signupChangBtn.classList.add('o-3')
+    loginChangBtn.classList.remove('o-3')
+    signupBody.style.display = 'flex'
+    loginBody.style.display = 'none'
+})
+
+window.addEventListener('resize',()=>{
+    if(window.innerWidth> 1200){
+        signupBody.style.display = 'flex'
+        loginBody.style.display = 'flex'
+    }
+})
