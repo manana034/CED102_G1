@@ -1069,7 +1069,11 @@ header > .row form#searchBar > .row .search-input .suggest-items {
   top: 25px;
 }
 
+<<<<<<< HEAD
 header > .row form#searchBar > .row .search-input .suggest-items a.search-item {
+=======
+header > .row form#searchBar .row .search-input .suggest-items a.search-item {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   border-bottom: 1px solid #D8D8D8;
   margin: 10px 0;
   width: 100%;
@@ -1077,18 +1081,30 @@ header > .row form#searchBar > .row .search-input .suggest-items a.search-item {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 header > .row form#searchBar > .row .search-input .suggest-items a.search-item div {
+=======
+header > .row form#searchBar .row .search-input .suggest-items a.search-item div {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
 header > .row form#searchBar > .row .search-input .suggest-items a.search-item div p {
   font-size: 14px;
   color: #9D9D9D;
 }
 
 header > .row form#searchBar > .row .search-input .suggest-items .custom-item {
+=======
+header > .row form#searchBar .row .search-input .suggest-items a.search-item div p {
+  color: #9D9D9D;
+}
+
+header > .row form#searchBar .row .search-input .suggest-items .custom-item {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -1214,6 +1230,7 @@ header > .searchWindow > form {
   }
   header > .row > form#searchBar {
     display: none;
+<<<<<<< HEAD
     position: fixed;
     background-color: #f4f1ec;
     width: 100%;
@@ -1230,6 +1247,8 @@ header > .searchWindow > form {
     top: 10%;
     left: 50%;
     transform: translate(-50%, 0);
+=======
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   }
   header > .row > div:last-child.row {
     width: 50%;
@@ -1397,7 +1416,11 @@ header header > .row form#searchBar > .row .search-input .suggest-items {
   top: 25px;
 }
 
+<<<<<<< HEAD
 header header > .row form#searchBar > .row .search-input .suggest-items a.search-item {
+=======
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   border-bottom: 1px solid #D8D8D8;
   margin: 10px 0;
   width: 100%;
@@ -1405,18 +1428,30 @@ header header > .row form#searchBar > .row .search-input .suggest-items a.search
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 header header > .row form#searchBar > .row .search-input .suggest-items a.search-item div {
+=======
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item div {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
 header header > .row form#searchBar > .row .search-input .suggest-items a.search-item div p {
   font-size: 14px;
   color: #9D9D9D;
 }
 
 header header > .row form#searchBar > .row .search-input .suggest-items .custom-item {
+=======
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item div p {
+  color: #9D9D9D;
+}
+
+header header > .row form#searchBar .row .search-input .suggest-items .custom-item {
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -1542,6 +1577,7 @@ header header > .searchWindow > form {
   }
   header header > .row > form#searchBar {
     display: none;
+<<<<<<< HEAD
     position: fixed;
     background-color: #f4f1ec;
     width: 100%;
@@ -1558,6 +1594,8 @@ header header > .searchWindow > form {
     top: 10%;
     left: 50%;
     transform: translate(-50%, 0);
+=======
+>>>>>>> 6c41d5b19025e21d56b01d9da04f1013cb8bbbeb
   }
   header header > .row > div:last-child.row {
     width: 50%;
