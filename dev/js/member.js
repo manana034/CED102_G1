@@ -268,3 +268,6 @@ window.addEventListener('resize', () => {
         signupBody.style.display = 'none'
     }
 })
+
+
+

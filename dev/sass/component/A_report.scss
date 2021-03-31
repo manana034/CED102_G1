@@ -1,0 +1,57 @@
+.myAccount{
+    >:last-child{
+        >.r-aside{
+            >button{
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                >img{
+
+                    height: 15px;
+                    width: 15px;
+                    margin-left: 10px;
+                    object-fit: contain;
+                }
+            }
+
+            >.reportBody{
+                //trainsition 會干擾js 運行的時間
+                transition: all .5s;
+                overflow: hidden;
+              
+                >.card{
+                    padding: 10px;
+                    margin: 0;
+                    >:first-child{
+                        margin: 5px 5px 10px 5px;
+                        border-bottom: 1px solid $gray5;
+
+
+                        >select{
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            outline: none;
+                            margin-bottom: 10px;
+                            border: none;
+                            >option{
+                                font-size: 14px;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+                    >:nth-child(2){
+                        display: flex;
+                        flex-wrap: wrap;
+                        button{
+                            padding: 5px 10px;
+                            margin: 5px;
+                            font-size: 14px;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
