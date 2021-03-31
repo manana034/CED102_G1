@@ -48,7 +48,6 @@ div.filter {
             display: block;
             margin: auto;
         }
-        display: flex;
         justify-content: center;
         padding: 3px 0px;
         border: 1px solid $gray5;
@@ -116,14 +115,14 @@ div.main {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    max-width: 1160px;
+    max-width: 1200px;
     justify-content: space-between;
-    @include rwd(992px) {
+    @include rwd(1100px) {
         justify-content: center;
     }
     div.info_card {
         background-color: $white;
-        width: 480px;
+        width: 544px;
         overflow: hidden;
         border-radius: 15px;
         position: relative;
@@ -131,11 +130,11 @@ div.main {
         .text{
             margin: auto;
             height: 100%;
-            width: 240px;
+            width: 300px;
             // background-color: blue;
             position: absolute;
             right: 0%;
-            top: 3%;
+            top: 9%;
             display: block;
             .title {
                 margin: auto;
@@ -143,14 +142,16 @@ div.main {
                 font-size: 20px;
                 font-weight: bold;
                 color: $black;
-                padding: 22px;
+                padding: 10px;
+                padding-left: 40px;
                 hyphens: none;
             }
             .content {
                 margin: auto;
-                width: 200px;
+                width: 250px;
                 font-size: 16px;
                 color: $black;
+                padding: 20px;
             }
             .arrow {
                 width: 20px;
@@ -190,11 +191,11 @@ div.main {
         }
     }
     div:nth-child(even){
-        margin-top: 150px;
-        margin-bottom: 50px;
-        @include rwd(992px) {
+        margin-top: 120px;
+        margin-bottom: 30px;
+        @include rwd(1100px) {
             margin: 50px;
-            margin-right: 200px;
+            margin-right: 300px;
             @include rwd(768px) {
                 margin: 30px;
                 margin-right: 100px;
@@ -205,11 +206,11 @@ div.main {
         }
     }
     div:nth-child(odd){
-        margin-top: 50px;
-        margin-bottom: 150px;
-        @include rwd(992px) {
+        margin-top: 30px;
+        margin-bottom: 120px;
+        @include rwd(1100px) {
             margin: 50px;
-            margin-left: 200px;
+            margin-left: 300px;
             @include rwd(768px) {
                 margin: 30px;
                 margin-left: 100px;

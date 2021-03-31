@@ -14,12 +14,17 @@
 <body>
     @@include('./layout/header.html')
     @@include('./layout/cart.html')
-
+    <div id="bookmark_box">
+        <div>
+            <img src="../icon/checked.svg">
+            <div>Added to favorites</div>
+        </div>
+    </div>
     <main>
         <p class="title">Buckwheat can reduce weight and blood lipids.</p>
         <div class="date">
             <div>2021-03-10</div>
-            <div class="bookmark">
+            <div id="bookmark">
                 <img class="bookmark" src="./img/bookmark-white.png">
                 <p>KEEP</p>
             </div>
@@ -55,5 +60,27 @@
         @@include('./layout/moreproduct.html')
     </div>
     @@include('./layout/footer.html')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#bookmark').click(function(){
+            $('#bookmark_box').css('display','block').animate({
+                opacity: 0 },{duration: 2500,},{
+                    complete: function() {
+                        $( this ).css('display' , 'none');
+                    } 
+                });
+        });
+        $('#bookmark').bind("click",function() {
+            var src = ($(this).children().attr('src') === './img/bookmark-white.png')
+                ? './img/bookmark-black.png' 
+                : './img/bookmark-white.png';
+            $(this).children().attr('src', src);
+        });
+    });
+
+
+</script>
 </body>
 </html>
