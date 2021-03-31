@@ -7,10 +7,124 @@
     <title>ADMIN</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/1_admin.css">
-    <script src="./js/header.js" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <script src="./js/header.js" defer></script>
+
 </head>
 <body>
+    <div id="suspend_box">
+        <div id="suspend">
+            <div>Do you want to suspend No.5 Anna Yung ?</div>
+            <div>
+                <button id="cancel_suspend">CANCEL</button>
+                <button id="continus_suspend">CONTINUS</button>
+            </div>
+        </div>
+    </div>
+    <div id="delete_box">
+        <div id="delete">
+            <div>Do you want to delete No.3 三杯雞 ?</div>
+            <div>
+                <button id="cancel_delete">CANCEL</button>
+                <button id="continus_delete">CONTINUS</button>
+            </div>
+        </div>
+    </div>
+    <div id="edit_box">
+        <div id="edit">
+            <table>
+                <tr>
+                    <td>NO</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>NAME</td>
+                    <td>
+                        <input type="text" value="ALMONDS BAR">
+                    </td>
+                </tr>
+                <tr>
+                    <td>CALORIE</td>
+                    <td>
+                        <input type="text" value="585">
+                    </td>
+                </tr>
+                <tr>
+                    <td>TYPE</td>
+                    <td>
+                        <select name="type">
+                            <option value="1" selected>FT. SHOP</option>
+                            <option value="2">RICE</option>
+                            <option value="3">NOODLES</option>
+                            <option value="4">MEAT</option>
+                            <option value="5">FRUIT & VEG</option>
+                            <option value="6">FRIED</option>
+                            <option value="7">DESSERT</option>
+                            <option value="8">DRINK</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CALORIE</td>
+                    <td>
+                        <input type="text" value="0.8">
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button id="cancel_edit">CANCEL</button>
+                <button id="continus_edit">CONTINUS</button>
+            </div>
+        </div>
+    </div>
+    <div id="add_box">
+        <div id="add">
+            <table>
+                <tr>
+                    <td>NO</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>NAME</td>
+                    <td>
+                        <input type="text" placeholder="Up to 20 characters">
+                    </td>
+                </tr>
+                <tr>
+                    <td>CALORIE</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>TYPE</td>
+                    <td>
+                        <select name="type">
+                            <option value="1">FT. SHOP</option>
+                            <option value="2">RICE</option>
+                            <option value="3">NOODLES</option>
+                            <option value="4">MEAT</option>
+                            <option value="5">FRUIT & VEG</option>
+                            <option value="6">FRIED</option>
+                            <option value="7">DESSERT</option>
+                            <option value="8">DRINK</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CALORIE</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button id="cancel_add">CANCEL</button>
+                <button id="continus_add">CONTINUS</button>
+            </div>
+        </div>
+    </div>
 <!-- 側邊欄 -->
     <div class="aside">
         <div class="logo">
@@ -24,13 +138,13 @@
                 </div>
             </div>
             <ul>
-                <li class="on">
+                <li>
                     <a href="./1_admin.html">ADMIN</a>
                 </li>
                 <li>
                     <a href="./2_member.html">MEMBER</a>
                 </li>
-                <li>
+                <li class="on">
                     <a href="./3_caloriesitem.html">CALORIES ITEM</a>
                 </li>
                 <li>
@@ -69,7 +183,7 @@
             </div>
             <form id="search_bar">
                 <div class="search-input">
-                    <input type="search" placeholder="No or Name">
+                    <input type="search" placeholder="ENTER NO. OR NAME">
                     <button>
                         <img src="../icon/magnifier_white.png">
                     </button>  
@@ -77,9 +191,15 @@
                 <div class="custom-select">
                     <select name="sType">
                         <option value="0">ALL</option>
-                        <option value="1">FOOD</option>
-                        <option value="2">EXERCISE</option>
-                        <option value="3">REGIMEN</option>
+                        <option value="0">ALL</option>
+                        <option value="1">FT. SHOP</option>
+                        <option value="2">RICE</option>
+                        <option value="3">NOODLES</option>
+                        <option value="4">MEAT</option>
+                        <option value="5">FRUIT & VEG</option>
+                        <option value="6">FRIED</option>
+                        <option value="7">DESSERT</option>
+                        <option value="8">DRINK</option>
                     </select>
                 </div>
             </form>
@@ -111,10 +231,8 @@
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
                     <td>  
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox">
-                            <div class="slider round"></div>
-                        </label>
+                        <input type="checkbox" id="switch1">
+                        <label for="switch1">Toggle</label>
                     </td>
                 </tr>
                 <tr>
@@ -126,10 +244,8 @@
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
                     <td>  
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox">
-                            <div class="slider round"></div>
-                        </label>
+                        <input type="checkbox" id="switch2">
+                        <label for="switch2">Toggle</label>
                     </td>
                 </tr>
                 <tr>
@@ -140,6 +256,10 @@
                     <td>1</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch3">
+                        <label for="switch3">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -149,6 +269,10 @@
                     <td>0.8</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch4">
+                        <label for="switch4">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -158,6 +282,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch5">
+                        <label for="switch5">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -167,6 +295,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch6">
+                        <label for="switch6">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -176,6 +308,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch7">
+                        <label for="switch7">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -185,6 +321,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch8">
+                        <label for="switch8">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -194,6 +334,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch9">
+                        <label for="switch9">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -203,6 +347,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch10">
+                        <label for="switch10">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -212,6 +360,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch11">
+                        <label for="switch11">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -221,6 +373,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch12">
+                        <label for="switch12">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -230,6 +386,10 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch13">
+                        <label for="switch13">Toggle</label>
+                    </td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -239,16 +399,146 @@
                     <td>1.2</td>
                     <td><img class="edit" src="../icon/backend_edit.svg"></td>
                     <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch14">
+                        <label for="switch14">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch15">
+                        <label for="switch15">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch16">
+                        <label for="switch16">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch17">
+                        <label for="switch17">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch18">
+                        <label for="switch18">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch19">
+                        <label for="switch19">Toggle</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>BANANA BAR</td>
+                    <td>989</td>
+                    <td>FT. SHOP</td>
+                    <td>1.2</td>
+                    <td><img class="edit" src="../icon/backend_edit.svg"></td>
+                    <td><img class="delete" src="../icon/backend_trash.png"></td>
+                    <td>
+                        <input type="checkbox" id="switch20">
+                        <label for="switch20">Toggle</label>
+                    </td>
                 </tr>
               </table>
             <!-- <div class="pagination"></div> -->
         </div>
     </div>
-<div class="full_screen">
-    <div class="card">
-        是否要刪除 NO1 董董 ?
-        白N 紅Y 沒有X
-    </div>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#switch1').change(function(){
+                $('#suspend_box').css('display','block');
+        });
+        $('#switch2').change(function(){
+                $('#suspend_box').css('display','block');
+        });
+        $('#continus_suspend').click(function(){
+                $('#suspend_box').css('display','none');
+        });
+        $('#cancel_suspend').click(function(){
+                $('#suspend_box').css('display','none');
+                $('#switch2').attr('checked',true);
+                //有問題
+        });
+
+        $('.delete').click(function(){
+                $('#delete_box').css('display','block');
+        });
+        $('#cancel_delete').click(function(){
+                $('#delete_box').css('display','none');
+
+        });
+        $('#continus_delete').click(function(){
+                $('#delete_box').css('display','none');
+                $("table tr:nth-child(4)").remove();
+        });
+
+        $('.edit').click(function(){
+                $('#edit_box').css('display','block');
+        });
+        $('#cancel_edit').click(function(){
+                $('#edit_box').css('display','none');
+
+        });
+        $('#continus_edit').click(function(){
+                $('#edit_box').css('display','none');
+        });
+
+        $('.add>button').click(function(){
+                $('#add_box').css('display','block');
+        });
+        $('#cancel_add').click(function(){
+                $('#add_box').css('display','none');
+
+        });
+        $('#continus_add').click(function(){
+                $('#add_box').css('display','none');
+        });
+    });
+    </script>
 </body>
 </html>

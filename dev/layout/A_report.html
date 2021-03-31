@@ -1,0 +1,42 @@
+<button class="nc-btn reportBtn">
+    your report
+    <img src="./icon/down.svg">
+</button>
+
+<div class="reportBody">
+    <div class="card">
+
+        <div>
+            <select name="month">
+                <option value="thisMonth" selected>this Month</option>
+                <option value="lastMonth">last Month</option>
+            </select>
+        </div>
+
+        <div class="rePortBtns">
+            <button class="l-btn o-3">
+                weight
+            </button>
+            <button class="l-btn">
+                cal
+            </button>
+            <button class="l-btn">
+                Exercise
+            </button>
+        </div>
+        
+        <div class="reportContent">
+            <div class="barCContainer">
+                <canvas id="barChart" width="10" height="10"></canvas>
+            </div>
+
+            <div class="pieCContainer">
+                <canvas id="pieChart" width="10" height="10"></canvas>
+            </div>
+
+            <div class="lineCContainer">
+                <canvas id="lineChart" width="10" height="10"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

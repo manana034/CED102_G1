@@ -12,6 +12,15 @@
 </head>
 <body>
     @@include('./layout/header.html')
+    <div id="create_box">
+        <div>
+            <div><img src="../icon/checked.svg">Added to customized food</div>
+            <div>
+                <button id="cancel_create">Return</button>
+                <a href="Cal_Diary.html"><button id="continus_create">Record diary</button></a>
+            </div>
+        </div>
+    </div>
     <main>
         <div id="food_page" class="tab-inner">
             <div class="top">
@@ -53,7 +62,7 @@
                 <input type="text" placeholder="FOOD NAME">
                 <input type="text" placeholder="CAL / PER SERVING">
                 <div class="create">
-                    <button>
+                    <button id="create">
                         <img src="../icon/add_black.png">
                         CREATE
                     </button>  
@@ -254,6 +263,17 @@ $(document).ready(function(){
             $('#exercise_page').css('display','none');
             $('#food_page').css('display','');
     });
+
+    $('#create').click(function(){
+                $('#create_box').css('display','block');
+        });
+        $('#cancel_create').click(function(){
+                $('#create_box').css('display','none');
+
+        });
+        $('#continus_create').click(function(){
+                $('#create_box').css('display','none');
+        });
 });
 </script>
 </body>

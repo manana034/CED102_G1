@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="29" viewBox="0 0 21 29">
+  <defs>
+    <clipPath id="clip-Artboard_2">
+      <rect width="21" height="29"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_2" data-name="Artboard – 2" clip-path="url(#clip-Artboard_2)">
+    <path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back" d="M14.752,18l7.686-8.93a1.879,1.879,0,0,0,0-2.384,1.318,1.318,0,0,0-2.056,0L11.673,16.8a1.888,1.888,0,0,0-.042,2.327L20.376,29.32a1.32,1.32,0,0,0,2.056,0,1.879,1.879,0,0,0,0-2.384Z" transform="translate(-6.25 -3.194)"/>
+  </g>
+</svg>

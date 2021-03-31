@@ -14,12 +14,17 @@
 <body>
     @@include('./layout/header.html')
     @@include('./layout/cart.html')
-
+    <div id="bookmark_box">
+        <div>
+            <img src="../icon/checked.svg">
+            <div>Added to favorites</div>
+        </div>
+    </div>
     <main>
         <p class="title">Buckwheat can reduce weight and blood lipids.</p>
         <div class="date">
             <div>2021-03-10</div>
-            <div class="bookmark">
+            <div id="bookmark">
                 <img class="bookmark" src="./img/bookmark-white.png">
                 <p>KEEP</p>
             </div>
@@ -39,10 +44,10 @@
         </section>
 
         <section class="bottom">
+            <div><img src="./img/info2_3.jpg"></div>
             <p>現代飲食過於精緻，膳食纖維攝取不足，六大類食物中的主食也強調「全穀雜糧類」，建議可以在白米中添加蕎麥，補充膳食纖維，適量的全穀類主食，對於糖尿病患者的血糖上升幅度也會相對穩定，但是有腸胃道潰瘍的民眾，可先諮詢營養師確認是否可食用。<br>
                 除了豐富的膳食纖維，蕎麥當中的磷和鉀含量也相對較高，腎臟病患者於食用前應詢問醫師或營養師，避免增加腎臟負擔。
             </p>
-            <div><img src="./img/info2_3.jpg"></div>
         </section>
         <div>
             <a href="information.html">
@@ -55,5 +60,27 @@
         @@include('./layout/moreproduct.html')
     </div>
     @@include('./layout/footer.html')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#bookmark').click(function(){
+            $('#bookmark_box').css('display','block').animate({
+                opacity: 0 },{duration: 2500,},{
+                    complete: function() {
+                        $( this ).css('display' , 'none');
+                    } 
+                });
+        });
+        $('#bookmark').bind("click",function() {
+            var src = ($(this).children().attr('src') === './img/bookmark-white.png')
+                ? './img/bookmark-black.png' 
+                : './img/bookmark-white.png';
+            $(this).children().attr('src', src);
+        });
+    });
+
+
+</script>
 </body>
 </html>

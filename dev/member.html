@@ -7,9 +7,15 @@
         <title>Document</title>
         <link rel="stylesheet" href="./css/page/member.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
-        <script src="./js/member.js" defer></script>
         <script src="./js/header.js" defer></script>
         <script src="./js/cart.js" defer></script>
+        <script src="./js/member.js" defer></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
+        <script src="./js/A_report.js" defer></script>
+
+      
+
     </head>
     <body>
         <section class="edit">
@@ -231,13 +237,14 @@
 
         </section>
 
-        @@include('./layout/header.html') @@include('./layout/cart.html')
+        @@include('./layout/header.html') 
+        @@include('./layout/cart.html')
     
 
  
 
         <main class="row myAccount">
-            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
+            <div class="col-2 col-lg-8 col-md-6 col-sm-4">
                 <div>
                     <div class="personInfo container">
                         <div class="portrait">
@@ -903,9 +910,14 @@
                 </div>
             </div>
 
-            <div class="col-2 col-lg-8 col-md-6 col-sm-4">
+            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
+                <div class="label">
+                    <p>Report & points</p>
+                    <img src="./icon/down.svg">
+                </div>
+
                 <aside class="r-aside">
-                    <button class="nc-btn reportBtn">
+                    <!-- <button class="nc-btn reportBtn">
                         your report
                         <img src="./icon/down.svg">
                     </button>
@@ -920,8 +932,8 @@
                                 </select>
                             </div>
 
-                            <div>
-                                <button class="l-btn">
+                            <div class="rePortBtns">
+                                <button class="l-btn o-3">
                                     weight
                                 </button>
                                 <button class="l-btn">
@@ -932,13 +944,23 @@
                                 </button>
                             </div>
                             
-                            <div>
-                                <img src="./img/BarChart.svg">
+                            <div class="reportContent">
+                                <div class="barCContainer">
+                                    <canvas id="barChart" width="10" height="10"></canvas>
+                                </div>
+
+                                <div class="pieCContainer">
+                                    <canvas id="pieChart" width="10" height="10"></canvas>
+                                </div>
+
+                                <div class="lineCContainer">
+                                    <canvas id="lineChart" width="10" height="10"></canvas>
+                                </div>
                             </div>
-
                         </div>
-                    </div>
+                    </div> -->
 
+                    @@include('./layout/A_report.html')
 
                     <div class="points card">
                         <div>
@@ -980,7 +1002,7 @@
                             </label>
                             <label class="psd">
                                 <p>password <span></span></p>
-                                <input type="text" name="psd" />
+                                <input type="password" name="psd" />
                             </label>
                             <div>
                                 <button class="nc-btn o-5" type="button">forget your password ?</button>
@@ -1016,12 +1038,12 @@
 
                             <label class="psd">
                                 <p>password <span>*</span></p>
-                                <input type="text" name="psd" />
+                                <input type="password" name="psd" />
                             </label>
 
                             <label class="cfmPsd">
                                 <p>confirm password <span>*</span></p>
-                                <input type="text" name="cfmPsd" />
+                                <input type="password" name="cfmPsd" />
                             </label>
 
                             <div>

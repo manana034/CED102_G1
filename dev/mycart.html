@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/mycart.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
-    <script src="./js/cart.js" defer></script>
+    
     <title>My Cart</title>
 </head>
 <body>
@@ -32,7 +33,7 @@
                         <a href="./product.html">
                             <!-- <div class="orderbg"> -->
                                 <img src="./img/prod1.png">
-                                <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                                <p>ALMONDS BAR</p>
                             <!-- </div> -->
                         </a>
                     </td>
@@ -45,7 +46,7 @@
                         <a href="./product.html">
                             <!-- <div class="orderbg"> -->
                                 <img src="./img/prod1.png">
-                                <p>ALMONDS SALTED CHOCOLATE BAR</p>
+                                <p>ALMONDS BAR</p>
                             <!-- </div> -->
                             </a>
                         </td>
@@ -80,8 +81,24 @@
              <a href="./payment.html"><button>NEXT</button></a>
         </div>
 </div>
+    <script>
+        const apply = document.querySelector('.apply button');
+        
+        apply.addEventListener('click', function(){
+            if(apply.innerText == "USED"){
+                apply.classList.remove('applybtn')
+                apply.innerText = "APPLY!";
+            }else{
+                apply.classList.add('applybtn');
+                apply.innerText = "USED"; 
+            }
+            
+        })
+            
+        
+    </script>
 
     @@include('./layout/footer.html')
-
+    <script src="./js/cart.js" defer></script>
 </body>
 </html>

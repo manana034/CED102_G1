@@ -16,21 +16,46 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 body{
     background-image: url('../../img/main_vision.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    >div{
+
+
+
+    >.buttonforEntry{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
        >a.p-btn{
+           position: relative;
+        //    top: -50px;
             font-size: 80px;
             color: white;
             font-weight: 100;
-            padding: 100px;
+            padding: 150px;
             margin: 100px;
             border-radius: 100vw;
             text-decoration: none;
         }
+
+    }
+
+    >.crpyright{
+        position: fixed;
+        bottom: 0;
+        padding: 10px;
+        width: 50%;
+        background-color: $white;
+        opacity: .8;
+        p{
+            font-size: 12px;
+        }
+
+
     }
 }

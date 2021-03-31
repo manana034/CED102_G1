@@ -6,6 +6,7 @@
 
 main { 
     margin: auto;
+    margin-top: 80px;
     max-width: 1200px;
     // position: relative;
     .title {
@@ -18,7 +19,7 @@ main {
         display: flex;
         justify-content: space-between;
         font-size: 14px;
-        div.bookmark {
+        #bookmark {
             // position: absolute;
             display: flex;
             justify-content: flex-end;
@@ -32,7 +33,7 @@ main {
             p{
                 display: inline-block;
                 padding: 7px;
-                letter-spacing: 2px;    
+                letter-spacing: 1px;    
             }
         }
     }
@@ -44,13 +45,17 @@ main {
     img {
         max-width: 100%;
     }
-    p {
-        padding: 30px;
+    > p {
+        padding: 40px;
+        padding-top: 60px;
         font-size: 16px;
         letter-spacing: 2px;    
         line-height: 26px;
     }
-    section.top {
+    section.top,section.bottom {
+        @include rwd(768px) {
+            display: block;
+        }
         margin: 70px auto;
         // background-color: blue;
         display: flex;
@@ -58,34 +63,33 @@ main {
         align-items: center;
         div {
             width: 40%;
+            @include rwd(768px) {
+                width: 80%;
+                margin: auto;
+            }
         }
         p {
+            padding: 20px;
             width: 40%;
-            // letter-spacing: 2px;    
-            // line-height: 26px;
+            @include rwd(768px) {
+                width: 80%;
+                margin: auto;
+            }
         }
     }
     section.bottom {
-        margin: 70px auto;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        div {
-            width: 40%;
-        }
-        p {
-            width: 40%;
-        }
-
+        flex-direction: row-reverse;
     }
-    div {
-        display: flex;
-        justify-content: flex-end;
-        button {
-            @include btnStyle($b-color:$primary);
-            text-align: center;
-            margin-left: 30px;
-        }
+
+        div {
+            display: flex;
+            justify-content: flex-end;
+            button {
+                @include btnStyle($b-color:$primary);
+                text-align: center;
+                margin-left: 30px;
+            }
+
     }
 }
 div.bottom {
@@ -93,5 +97,84 @@ div.bottom {
     max-width: 100%;
     h6{
         margin-left: 100px;
+    }
+}
+
+//燈箱
+div#bookmark_box {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    // background-color: yellowgreen;
+    background: rgba(66,66,66,.6);
+    z-index: 500;
+    > div {
+        font-size: 18px;
+        z-index: 501;
+        border-radius: 25px;
+        position: absolute;
+        top: 50%;
+        right: 30%;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        background-color: $white;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        img {
+            margin: auto;
+            width: 40px;
+        }
+        table {
+            // width: 100%;
+            font-size: 16px;
+            border-collapse: collapse;
+            border: 1px solid $gray1;
+            th {
+                background: $gray5;
+                text-transform: uppercase;
+                color: $white;
+                padding: 15px;
+                font-family: NotoSans-B;
+                position:sticky;
+                top:0;
+                z-index: 3;
+            }
+            tr {
+                text-align: center;
+            }
+            tr:nth-child(odd) {
+                background: $gray3;
+            }
+            td {
+                width: 100px;
+                vertical-align: middle;
+                min-width: 50px;
+                padding: 20px;
+                input[type=text] {
+                    text-align: center;
+                }
+            }
+        }    
+        div:first-child {
+            padding: 20px;
+        }
+        div:last-child {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            button:first-child {
+                justify-content: center;
+                @include btnStyle($b-color:$primary-l);
+                text-align: center;
+                color: $black;
+            }
+            button:last-child {
+                justify-content: center;
+                @include btnStyle($b-color:$primary);
+                text-align: center;
+            }
+        }
     }
 }

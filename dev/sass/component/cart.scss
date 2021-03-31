@@ -1,12 +1,12 @@
  .cart{
-     background-color:#D25541;
+     background-color:#889674;
      max-width: 400px;
      height:100vh;
-     position: absolute;
+     position: fixed;
      right:-100%;
      transition: all 1s;
-     z-index: 10;
-     display:none;
+     z-index: 15;
+    //  display:none;
      *{
          color: white;
      }

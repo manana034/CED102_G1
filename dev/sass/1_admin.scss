@@ -102,13 +102,12 @@
     flex-direction: column;
     div.main_top {
         div.page {
-            padding-bottom: 50px;
             display: flex;
             width: 100%;
             div.food {
                 color: $white;
                 background-color: $red-l;
-                padding: 2% 3%;
+                padding: 1% 2%;
                 font-size: 18px;
                 outline: none;
                 border-radius: 0 0 20px 20px;
@@ -119,7 +118,7 @@
             #exercise {
                 color: $black;
                 background-color: $primary-l;
-                padding: 2% 2%;
+                padding: 1% 1%;
                 font-size: 18px;
                 border-radius: 0 0 20px 20px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -134,7 +133,7 @@
             }
         }
         #search_bar {
-            margin: 30px;
+            margin: 50px 30px;
             display: flex;
             align-items: self-end;
             .search-input{
@@ -147,7 +146,7 @@
                     border: 1px solid $primary;
                     border-radius: 100px 0 0 100px;
                     outline: none;
-                    font-size: 18px;
+                    font-size: 16px;
                     padding: 0 20px;
                     background-color: $white;
                 } 
@@ -205,6 +204,7 @@
             
             /*style the items (options), including the selected item:*/
             .select-items div,.select-selected {
+                align-self: center;
                 display: flex;
                 justify-content: center;
                 padding: 5px;
@@ -237,7 +237,7 @@
         }
         > .add {
             width: 100%;
-            padding-bottom: 30px;
+            padding-bottom: 20px;
             button {
                 @include btnStyle($b-color:$primary);
                 text-align: center;
@@ -253,16 +253,26 @@
         }
     }
     div.main_bottom {
-        padding: 30px 0;
+        margin-top: 20px;
+        max-height: 65vh;
+        overflow: auto;
         table {
-            font-size: 18px;
+            table-layout: fixed;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
             border-collapse: collapse;
             border: 1px solid $gray1;
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             th {
                 background: $gray5;
+                text-transform: uppercase;
                 color: $white;
-                padding: 20px;
+                padding: 15px;
+                font-family: NotoSans-B;
+                position:sticky;
+                top:0;
+                z-index: 3;
             }
             tr {
                 text-align: center;
@@ -274,10 +284,10 @@
                 width: 600px;
                 vertical-align: middle;
                 min-width: 50px;
-                padding: 10px 20px;
+                padding: 5px 20px;
                 img {
                     cursor: pointer;
-                    width: 30px;
+                    width: 25px;
                     transition: .3s;
                     &:hover {
                         transform: scale(1.1);
@@ -289,52 +299,116 @@
     }
 }
 
+//SWITCH
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
 
-.switch {
-    display: inline-block;
-    height: 30px;
-    position: relative;
-    width: 56px;
-  }
-  
-  .switch input {
-    display:none;
-  }
-  
-  .slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 22px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 22px;
-  }
-  
-  input:checked + .slider {
-    background-color: #66bb6a;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  
-  .slider.round {
-    border-radius: 30px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 46px;
+	height: 24px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 4px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.4s;
+}
+
+input:checked + label {
+	background: #bada55;
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+
+//燈箱
+div#suspend_box ,div#delete_box ,div#edit_box ,div#add_box {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    // background-color: yellowgreen;
+    background: rgba(66,66,66,.6);
+    z-index: 500;
+    > div {
+        font-size: 18px;
+        z-index: 501;
+        border-radius: 25px;
+        position: absolute;
+        top: 50%;
+        right: 30%;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        background-color: $white;
+        padding: 20px;
+        table {
+            // width: 100%;
+            font-size: 16px;
+            border-collapse: collapse;
+            border: 1px solid $gray1;
+            th {
+                background: $gray5;
+                text-transform: uppercase;
+                color: $white;
+                padding: 15px;
+                font-family: NotoSans-B;
+                position:sticky;
+                top:0;
+                z-index: 3;
+            }
+            tr {
+                text-align: center;
+            }
+            tr:nth-child(odd) {
+                background: $gray3;
+            }
+            td {
+                width: 100px;
+                vertical-align: middle;
+                min-width: 50px;
+                padding: 20px;
+                input[type=text] {
+                    text-align: center;
+                }
+            }
+        }    
+        div:first-child {
+            padding: 20px;
+        }
+        div:last-child {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            button:first-child {
+                justify-content: center;
+                @include btnStyle($b-color:$primary-l);
+                text-align: center;
+                color: $black;
+            }
+            button:last-child {
+                justify-content: center;
+                @include btnStyle($b-color:$primary);
+                text-align: center;
+            }
+        }
+    }
+}
+    //燈箱設定
