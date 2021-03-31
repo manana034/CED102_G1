@@ -205,3 +205,66 @@ statusOrderList.forEach(item =>{
         orderDetail.style.display = "flex"
     })
 })
+
+
+//登入註冊phone 的畫面切換  ---------------------------
+
+const loginChangBtn = document.querySelector('.logIn_signUp .changBtn>:first-child')
+const signupChangBtn = document.querySelector('.logIn_signUp .changBtn>:last-child')
+
+const loginBody = document.querySelector('.logIn_signUp .under .login')
+
+const signupBody = document.querySelector('.logIn_signUp .under .signup')
+
+
+loginChangBtn.addEventListener('click',()=>{
+    loginChangBtn.classList.add('o-3');
+    signupChangBtn.classList.remove('o-3');
+    loginBody.style.display= "flex";
+    signupBody.style.display= "none"
+})
+
+signupChangBtn.addEventListener('click', () => {
+    signupChangBtn.classList.add('o-3')
+    loginChangBtn.classList.remove('o-3')
+    signupBody.style.display = 'flex'
+    loginBody.style.display = 'none'
+})
+
+
+
+//Phone asie 點擊拉出 ---------------------------------
+
+const asideLable = document.querySelector('.myAccount>:last-child>.label')
+
+const toggleAside = () =>{
+    const asideBody = asideLable.parentElement
+    const asideBodyShadow = asideBody.children[1]
+
+    const state = getComputedStyle(asideBody).transform
+
+
+
+    if (state == 'matrix(1, 0, 0, 1, 0, 0)') {
+         asideBody.style.transform = 'translate(100%,0)'
+         x.style.boxShadow = '-3px 3px 5px 2px rgba(0, 0, 0, 0)'
+    } else {
+        asideBody.style.transform = 'translate(0,0)'
+        x.style.boxShadow = '-3px 3px 5px 2px rgba(0, 0, 0, 0.3)'
+    } 
+}
+
+
+asideLable.addEventListener('click',toggleAside)
+
+
+
+//---- 當視窗 在resize 的時候 
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 1200) {
+        signupBody.style.display = 'flex'
+        loginBody.style.display = 'flex'
+    } else {
+        signupBody.style.display = 'none'
+    }
+})

@@ -24,6 +24,9 @@ div.banner {
 div.filter {
     margin: 50px;
     ul {
+        @include rwd(992px) {
+            display: none;
+        }
         margin: auto;
         max-width: 400px;
         display: flex;
@@ -35,8 +38,16 @@ div.filter {
             color: $black;
             cursor: pointer;
         }
+        li:nth-child(2) {
+            font-family: NotoSans-B;
+        }
     }
     .custom-select {
+        display: none;
+        @include rwd(992px) {
+            display: block;
+            margin: auto;
+        }
         display: flex;
         justify-content: center;
         padding: 3px 0px;
@@ -107,6 +118,9 @@ div.main {
     flex-wrap: wrap;
     max-width: 1160px;
     justify-content: space-between;
+    @include rwd(992px) {
+        justify-content: center;
+    }
     div.info_card {
         background-color: $white;
         width: 480px;
@@ -114,14 +128,6 @@ div.main {
         border-radius: 15px;
         position: relative;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-        .bookmark {
-            width: 15px;
-            height: 15px;
-            position: absolute;
-            right: 5%;
-            top: 5%;
-            cursor: pointer;
-        }
         .text{
             margin: auto;
             height: 100%;
@@ -129,7 +135,7 @@ div.main {
             // background-color: blue;
             position: absolute;
             right: 0%;
-            top: 10%;
+            top: 3%;
             display: block;
             .title {
                 margin: auto;
@@ -147,16 +153,16 @@ div.main {
                 color: $black;
             }
             .arrow {
-                width: 15px;
-                height: 15px;
+                width: 20px;
+                height: 20px;
                 position: absolute;
-                right: 15%;
-                bottom: 20%;
-                // cursor: pointer;
-                &:hover{
-                    transform: translateX(30%);
-                    transition: .4s;
-                }
+                right: 20%;
+                bottom: 15%;
+                transition: .4s;
+            }
+            &:hover .arrow {
+                transform: translateX(50%);
+                transition: .4s;
             }
         }        
         .infophoto1 {
@@ -183,14 +189,49 @@ div.main {
             }
         }
     }
-    div:nth-child(odd){
-        margin-top: 50px;
-        margin-bottom: 150px;
-    }
     div:nth-child(even){
         margin-top: 150px;
         margin-bottom: 50px;
+        @include rwd(992px) {
+            margin: 50px;
+            margin-right: 200px;
+            @include rwd(768px) {
+                margin: 30px;
+                margin-right: 100px;
+            }
+            @include rwd(576px) {
+                margin: 30px 0;
+            }
+        }
     }
+    div:nth-child(odd){
+        margin-top: 50px;
+        margin-bottom: 150px;
+        @include rwd(992px) {
+            margin: 50px;
+            margin-left: 200px;
+            @include rwd(768px) {
+                margin: 30px;
+                margin-left: 100px;
+                @include rwd(576px) {
+                    margin: 30px 0;
+                }
+            }
+        }
+    }
+}
+div.load{
+    border-bottom: 1px solid black;
+    text-align: center;
+    width: 110px;
+    margin: auto;
+    color: black;
+    text-transform:uppercase;
+    font-weight: bold;
+    padding-bottom:5px;
+    margin-bottom: 8%;
+    margin-top: 5%;
+    cursor: pointer;
 }
 
 

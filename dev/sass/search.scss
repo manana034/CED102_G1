@@ -94,7 +94,7 @@ main {
                 margin: auto;
                 max-width: 1200px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-                z-index: 100;
+                z-index: 3;
                 .search-input{
                     width: 50%;
                     display: block;
@@ -148,7 +148,7 @@ main {
                         background-color: $white;
                         padding: 3%;
                         // background-color: chocolate;
-                        z-index: 99;
+                        z-index: 10;
                     }
                     /*style items (options):*/
                     .select-items {
@@ -190,13 +190,25 @@ main {
             display: flex;
             justify-content: space-around;
             align-items: center;
+            text-align: center;
+            @include rwd(768px) {
+                display: block;
+            }
             > input[type="text"] {
                 font-size: 18px;
                 padding: 10px;
             }
+            div:first-child {
+                @include rwd(992px) {
+                    display: none;
+                }
+            }
             div.create {
-                margin-left: 30px;
                 border-left: 1px solid $gray5;
+                display: inline-flex;
+                @include rwd(768px) {
+                    border-left: 1px solid transparent;
+                }
                 button {
                     @include btnStyle($b-color:$primary);
                     text-align: center;
@@ -232,8 +244,11 @@ main {
                 text-align: center;
                 display: flex;
                 flex-wrap: wrap;
-                //  要改第9跟10要置左
+                //  要改第5跟6要置左
                 justify-content: start;
+                @include rwd(1200px) {
+                    justify-content: center;
+                }
                 div.cal_card {
                     align-content: wrap;
                     margin: 17px 10px;
@@ -284,6 +299,19 @@ main {
 
                 }
             }
+        }
+        div.load{
+            border-bottom: 1px solid black;
+            text-align: center;
+            width: 110px;
+            margin: auto;
+            color: black;
+            text-transform:uppercase;
+            font-weight: bold;
+            padding-bottom:5px;
+            margin-bottom: 8%;
+            margin-top: 5%;
+            cursor: pointer;
         }
     }
 
@@ -377,7 +405,7 @@ main {
                 margin: auto;
                 max-width: 1200px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-                
+                z-index: 3;
                 .search-input{
                     width: 50%;
                     display: block;
@@ -387,7 +415,7 @@ main {
                     input{
                         font-size: 24px;
                         // background-color: pink;
-                        width: 100%;
+                        width: 90%;
                         border: none;
                         outline: none;
                     }
@@ -534,10 +562,23 @@ main {
                 }
             }
         }
+        div.load{
+            border-bottom: 1px solid black;
+            margin-left: 49%;
+            margin-right: 42%;
+            color: black;
+            text-transform:uppercase;
+            font-weight: bold;
+            padding-bottom:5px;
+            margin-bottom: 8%;
+            margin-top: 5%;
+            cursor: pointer;
+        }
     }
 
 }
 
+//----------------動畫--------------------
 @keyframes food1 {
     0% {
       top: 0px;
@@ -554,3 +595,6 @@ main {
       top: -1600px;
     }
 }
+
+//----------------RWD--------------------
+

@@ -14,6 +14,7 @@
 //component
 @import"../component/header";
 @import"../component/footer";
+@import"../component/report.scss";
 
 
 body{
@@ -45,7 +46,7 @@ div.left{
     // border: 1px solid black;
     border-right: 1px solid #c5bfbf;
     margin-top: 1%;
-    margin-right: 22px;
+    // margin-right: 22px;
     width: 15%;
     display: flex;
     flex-direction: column;
@@ -129,7 +130,6 @@ div.left{
 
 
 
-
 .self_intro{
   // border: 1px solid deeppink;
   width: 80%;
@@ -146,38 +146,30 @@ ul .news{
 //中間middle
 div.middle{
     // border: 1px solid black;
-    flex-grow: 2;
+    // flex-grow: 2;
+    width: 60%;
     margin-top: 1%;
 }   
 
    
 //右邊righgt
 div.right{
-    // .join{  巢狀寫法
-    //     p{
-    //         @include textStyle(NotoSans-Regular,14px,#9D9D9D,);
-    //         }       
-    // }
-
     margin-top: 1%;
     // margin-left: 22px;
     width: 20%;
     border-top-left-radius: 50px;
     background-color:#FFDA9B;
     // background-color: indigo;
-    width: 15%;
 }
 
 
 .right .join{
   // border: 1px solid black;
-  background-color: indianred;
+  // background-color: indianred;
     // background-color: #FFDA9B;
     border-top-left-radius: 50px;
     position: sticky;
-    margin-top: 50%;
-
-    position:sticky;
+    margin-top: 10%;
     top: 14%;
     left: 0%
 }
@@ -211,26 +203,122 @@ div.right{
     margin-right: 9%;
 }
 
-//切換報表頁籤
 
 
 //切換報表頁籤
 
-
-
-
-#chartdiv02 { //圓餅   
-    width: 100%;
-    height: 300px;
-  
-  }
-
-
-  //長條
-// #chartdiv01 { 
+// .card.report{
+//   width: 100%;
+//   // margin: 0px auto;
+//   // padding: 20px;
+//   position: relative;
+//   .title_back{
+//       border-bottom: 2px solid #DDDDDD;
+//       width: 100%;
+//       height: 60px;
+//       position: absolute;
+//       top: 0px;
+//       left: 0px;
+//       background-color: #EAA565;
+//       border-radius: 20px 20px 0px 0px;
+//   }
+//   .CurGoal_title{
+//     // display: flex;
+//     // justify-content: space-between;
+//       select{
+//           border:none;
+//           outline: none;
+//           color: #ffffff;
+//           font-size: 16px;
+//           background-color: unset;
+//           cursor: pointer;
+//       }
+//       img{
+//           height: 20px;
+//           width: 20px;
+//           vertical-align: middle;
+//           padding-bottom: 3px;
+//       }
+//       width: 100%;
+//       // border-bottom: 2px solid #DDDDDD;
+//       vertical-align: middle;
+//       font-weight: bold;
+//       padding-bottom: 13px;
+//       color: #ffffff;
+//   }
+//   .report_title{
+//       margin: 10px;
+//       color: #AAAAAA;
+//   }
+//   .chart_select{
+//     // background-color: yellow;
 //     width: 100%;
-//     height: 300px;
-//   }  
+//     height: 80px;
+//     display: flex;
+//       // display: grid;
+//       // grid-template-columns: 16% 18% 26%;;
+//       .chart_weight,.chart_cal,.chart_excercie{
+//           width: 33%;
+//           border: 1px solid #AAAAAA;
+//           height: 70%;
+//           border-radius: 18px;
+//           margin-right: 3%;
+//           padding: 1%;
+//           transition: 0.1s;
+//           // text-align: center;
+//           p{
+//               margin-left: 5px;
+//           }
+//           .chart_data{
+//               display: flex;
+//               align-items: center;
+//               img{
+//                   width: 15%;
+//                   height: 15%;
+//                   // height: 10px;
+//                   // padding: 8px 1px 0px 10px;
+//               }
+//               .w_persan,.cal_persan,.ex_persan{
+//                   font-size: 5px;
+//                   color: #888888;
+//               }
+//           }
+//       }
+//       .chart_weight:hover,.chart_cal:hover,.chart_excercie:hover{
+//           cursor: pointer;
+//           border: 2px solid #666666;
+//           font-weight: bolder;
+//           transform:scale(1.02,1.02);
+//       }
+//   }
+//   .report_chart{
+//       width: 100%;
+//       padding-top: 5px;
+//       img{
+//           width: 100%;
+//       }
+//       .report_charts{
+//           border: 1px solid #dddd;
+//           width: 100%;
+//           // #chartdiv01,#chartdiv02,#chartdiv03{
+//           //     height: 100%;
+//           // }
+//       }
+//       .report_charts:nth-child(2),.report_charts:nth-child(3){
+//           display:none;
+//       }
+//   }
+
+
+// }
+//切換報表頁籤
+
+
+
+
+
+
+
 
 
 //"中間middle"裡 上面的區塊midbox(內含outcard和popular) 下面才是瀑布流
@@ -315,6 +403,10 @@ div.right{
   margin-top: 3%;
   // margin-bottom: 3%;
 }
+
+
+
+
 
 
 .floor{
@@ -432,6 +524,8 @@ pre.reply_time{
 
 
 
+
+
 //中間瀑布流內容
   .gallery {
     display: grid;
@@ -476,6 +570,10 @@ pre.reply_time{
     justify-content: center;
   }
 
+  .holding_block{
+    padding: 15%;
+  }
+
 
   pre.load{ 
     border-bottom: 1px solid black;
@@ -483,6 +581,7 @@ pre.reply_time{
     text-transform:uppercase;
     font-weight: bold;
     cursor: pointer;
+    margin-bottom: 10%;
   }
 
 
@@ -702,12 +801,6 @@ pre.reply_time{
   }
 } //bottombody
 
-
-
-
-
-
-
 //以上卡片內容
 
 
@@ -717,7 +810,38 @@ pre.reply_time{
 
 
 
-  //燈箱設定
+
+
+
+//report檢舉的燈箱設定
+#reportBox{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(66,66,66,.6);
+  z-index: 500;
+}
+#tableReport{
+  z-index: 501;
+  border-radius: 25px;
+  position: absolute;
+  width:40%;
+  height: 65%;
+  top: 0;
+  right: 0;
+  bottom: 25%;
+  left: 0;
+  margin:auto;
+  background-color:$white;
+  // background-color:transparent;
+}
+// report檢舉的燈箱設定
+
+
+
+
+
+  //follower following的燈箱設定
   #lightBox{
     position: fixed;
     width: 100%;
@@ -770,7 +894,6 @@ pre.reply_time{
   }
 
 
-
   .follow_list{
     // border: 1px solid black;
     width: 100%;
@@ -806,7 +929,6 @@ pre.reply_time{
   }
 
 
-
   #spanLogin:hover{
     cursor:pointer;
     margin-left:20px;
@@ -819,8 +941,6 @@ pre.reply_time{
     text-transform: uppercase;
   }
 
-
-
   .under_pop{  //pre.load父容器
     // background-color: green;
     display: flex;
@@ -828,8 +948,7 @@ pre.reply_time{
     font-size: 14px;
   }
 
-
-   //燈箱設定
+  //follower following的燈箱設定
 
 
 

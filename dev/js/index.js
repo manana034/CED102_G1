@@ -21,29 +21,6 @@ const visionChange = () => {
 document.addEventListener('scroll',visionChange);
 
 
-const chatRobotIcon = document.querySelector('#chatRobot');
-const chatRobotCloseIcon = document.querySelector('.chatRoomBody>div>button')
-
-//  const body2 = chatRobotIcon.querySelector('.chatRoomBody')
-// body2.style.display = "none"
-
-
-chatRobotIcon.addEventListener('click',(e)=>{
-    e.stopPropagation()
-    const body = chatRobotIcon.querySelector('.chatRoomBody')
-
-    console.log(body)
-    body.classList.remove('bodynone');
-
-})
-
-chatRobotCloseIcon.addEventListener('click',(e)=>{
-    e.stopPropagation()
-    const body2 = document.querySelector('.chatRoomBody')
-    body2.classList.add('bodynone')
-    
-})
-
 
 const share = document.querySelector('.comment .share>button')
 const social = document.querySelector('.comment .social')
@@ -77,17 +54,3 @@ const closeSocial = (e)=>{
 document.addEventListener('click', closeSocial)
 
 
-// --------rwd search 使用
-const phoneSearch = document.querySelector('.phoneSearch')
-const pSearchCBtn = document.querySelector('.searchWindow>.close')
-const searchWindow = document.querySelector('.searchWindow')
-
-
-
-phoneSearch.addEventListener('click',()=>{
-    searchWindow.style.display="flex";
-})
-
-pSearchCBtn.addEventListener('click',()=>{
-    searchWindow.style.display = 'none'
-})
