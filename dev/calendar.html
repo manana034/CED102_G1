@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+         html{
+        text-align: center;
+      }
+      .app{
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .app_content{
+        display: grid;
+        color: #5F5F5F;
+        height: 45px;
+        background-color: #f4f1ec;
+        grid-template-columns: 15% 70% 15%;
+      }
+      .app_content button{
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: transparent;
+      }
+      .app_content button img{
+        width: 12px;
+      }
+      .calendar{
+        margin:2px 0;
+      }
+      .weekDay{
+        color: #fff;
+        background-color: #D25541;
+      }
+      .weekDay,.week{
+        display: flex;
+        /* border-bottom: 1px solid #ddd; */
+      }
+      .weekDay>div{
+        flex: 1 1 0%;
+        line-height: 30px;
+      }
+      .week{
+        background-color: #f4f1ec;
+        /* border-right: 1px solid #ddd; */
+      }
+      .week>div{
+        position: relative;
+        cursor: pointer;
+        flex: 1 1 0%;
+        /* width: 32px; */
+        height: 32px;
+        line-height: 30px;
+        /* border-left: 1px solid #ddd; */
+      }
+      .week>div:hover{
+        height: 32px;
+        color: #fff;
+        border-radius: 50%;
+        background-color: #EAA565;
+      }
+      .week>div:before{
+        position: absolute;
+        content:attr(data-date);
+        top: 0;
+        right: 0;
+        display: block;
+        /* margin-right: 1%; */
+        width: 100%;
+        height: 100%;
+        /* border-left: 1px solid #ddd;
+        border-bottom: 1px solid #ddd; */
+      }
+
+      .today:before{
+        color: #fff;
+        background-color: #D25541;
+        border-radius: 50%;
+      }
+
+      .other{
+        color: #bbb;
+        background-color: #ddd;
+      }
+    </style>
+</head>
+<body>
+    <div class="app" id="app" v-cloak>
+        <!-- <h1>{{calendar.year}} 年 {{calendar.month+1}} 月</h1> -->
+        <div class="app_content">
+            <!-- <button @click="adjustYear(-1)">上一年</button> -->
+            <!-- <button @click="adjustMonth(-1)">上個月</button> -->
+            <!-- <h3>{{calendar.year}} 年 {{calendar.month+1}} 月</h3> -->
+            <button @click="adjustMonth(-1)"><img src="./img/arr_r_icon.svg"></button>
+            <h3>{{en[calendar.month]}} {{calendar.year}}</h3>
+            <button @click="adjustMonth(1)"><img src="./img/arr_l_icon.svg"></button>
+            <!-- <button @click="setToday">今天</button> -->
+            <!-- <button @click="adjustMonth(1)">下個月</button> -->
+            <!-- <button @click="adjustYear(1)">下一年</button> -->
+        </div>
+        <div class="calendar">
+          <div class="weekDay">
+              <div>S</div>
+              <div>M</div>
+              <div>T</div>
+              <div>W</div>
+              <div>T</div>
+              <div>F</div>
+              <div>S</div>
+          </div>
+          <!-- 修改顯示週數_1-->
+          <div class="week" v-for="i in 5">
+            <div class="day" v-for="j in 7" :data-date="calendarMonth[(i-1)*7+j-1].date"
+              :class="{
+               today:calendarMonth[(i-1)*7+j-1].year === today.year && calendarMonth[(i-1)*7+j-1].month === today.month && calendarMonth[(i-1)*7+j-1].date === today.date,
+               other:calendarMonth[(i-1)*7+j-1].month !== calendar.month
+              }"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
+        new Vue({
+          el: "#app",
+          data() {
+            return {
+              today:{
+                year:0,
+                month:0,
+                date:0,
+                day:0
+              },
+              en:[
+                'January',
+                'February ',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July ',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+              ],
+              calendar:{
+                year:0,
+                month:0,
+                date:0,
+                day:0
+              }
+            };
+          },
+          mounted(){
+            this.setToday()
+          },
+          methods:{
+            setToday(){
+              const date = new Date()
+              this.today.year = this.calendar.year = date.getFullYear()
+              this.today.month = this.calendar.month = date.getMonth() // 0~11
+              this.today.date = this.calendar.date = date.getDate()
+              this.today.day = this.calendar.day = date.getDay()
+            },
+            adjustYear(fix){
+              this.calendar.year += fix
+            },
+            adjustMonth(fix){
+              // this.calendar.month += fix 範圍
+              let month = this.calendar.month + fix
+              if(month > 11){
+                this.adjustYear(1)
+                this.calendar.month = 0
+              }else if(month < 0){
+                this.adjustYear(-1)
+                this.calendar.month = 11
+              }else{
+                this.calendar.month = month
+              }
+
+            }
+          },
+          computed:{
+            // monthFirstDay(){
+            //   const date = new Date(this.calendar.year,this.calendar.month,1)
+            //   return {
+            //     year:date.getFullYear(),// this.calendar.year
+            //     month:date.getMonth(),// this.calendar.month
+            //     date:date.getDate(),// 1
+            //     day:date.getDay(),
+            //   }
+            // },
+            calendarFirstDay(){
+              const mDate = new Date(this.calendar.year,this.calendar.month,1)
+              const date = new Date(this.calendar.year,this.calendar.month,1 - mDate.getDay())
+              return {
+                year:date.getFullYear(),
+                month:date.getMonth(),
+                date:date.getDate(),
+                day:date.getDay(),
+              }
+            },
+            calendarMonth(){
+              const data = []
+              let date
+              //<!-- 修改顯示週數_2-->
+              for(let i=0;i<35;i++){
+                date = new Date(this.calendarFirstDay.year,this.calendarFirstDay.month,this.calendarFirstDay.date + i)
+                data.push({
+                  year:date.getFullYear(),
+                  month:date.getMonth(),
+                  date:date.getDate(),
+                  day:date.getDay()
+                })
+              }
+              return data
+            }
+
+          }
+        })
+    </script>  
+    
+</body>
+</html>
