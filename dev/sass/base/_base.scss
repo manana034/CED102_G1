@@ -45,7 +45,7 @@ img{
     max-height: 100%
 }
 
-input[type=text]{
+input[type=text],input[type=password]{
     border: none;
     background-color: transparent;
     border-bottom: 1px solid $gray5;
