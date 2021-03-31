@@ -1,3 +1,6 @@
+//payment.html
+//credit card
+
 window.onload = function () {
 
     const name = document.getElementById('name');
@@ -278,3 +281,12 @@ window.onload = function () {
         document.querySelector('.creditcard').classList.add('flipped');
     });
     };
+
+    // Shipping to different address 
+
+    const shipping = document.querySelector("#shipping");
+    const different = document.querySelector(".different");
+
+    shipping.addEventListener("change", function(){
+        different.classList.toggle("differentopen")
+    })

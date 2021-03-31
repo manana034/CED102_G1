@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/product.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
-    <script src="./js/cart.js"></script>
     <title>Product</title>
 </head>
 <body>
@@ -14,9 +14,9 @@
     @@include('./layout/cart.html')
     <div class="prodContent">
         <div class="prod_desc">
-            <h5> ALMONDS SALTED CHOCOLATE BAR </h5>
+            <h5> ALMONDS BAR </h5>
             <p>2448kj / 585kcal per 100g</p>
-            <p> The calories you consume of the meal gets 10% discount.<p>
+            <p> The calories you consume of the meal gets 50% discount.<p>
             <p> Ingredients
                 dark chocolate (49%)<br>
                 (cacao mass, coconut sugar,cacao butter),<br>
@@ -39,7 +39,7 @@
                         <span class="btn_add">  &plus; </span>
                     </div>                    
                 </form>
-                <button class="addtocart">ADD TO CART</button>
+                <button class="byn">ADD TO CART</button>
                 <!-- <button class="wishlist"> WISH LIST</button> -->
             </div>
         </div>
@@ -56,6 +56,18 @@
     </div>
     <h6>MORE FITNESS?</h6>  
     @@include('./layout/moreproduct.html')
+    <script src="./js/cart.js"></script>
     <script src="./js/quantity.js"></script>
+
+    <script>
+    //buy now to cart
+    const buynow = document.querySelectorAll(".byn");
+
+    buynow.forEach(byn =>{
+        byn.addEventListener("click",function(){
+            cart.classList.add("opencart");
+        })
+    })
+    </script>
 </body>
 </html>
