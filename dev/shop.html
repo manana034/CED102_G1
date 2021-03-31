@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/shop.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-    <!-- <script src="./js/header.js" defer></script> -->
+    <script src="./js/header.js" defer></script>
     <title>SHOP</title>
 </head>
 <body>
-    <!-- @@include('./layout/header.html')
-    @@include('./layout/cart.html') -->
+    @@include('./layout/header.html')
+    @@include('./layout/cart.html')
     <div class="banner">
         <h4>Fitness starts with what you eat.</h4>
         <img src="./img/banner.jpeg">
@@ -26,26 +27,28 @@
             <div class="chooseall">     
                 <div class="typearrow">
                     <p>TYPE</p>
-                    <img src="./img/arrow_white.png">
+                    <!-- <img src="./img/arrow-down-sign-to-navigate.png">
+                    <img class="arrowwhite" src="./img/arrow_white.png"> -->
                 </div>
                 <form>
                     <div class="filter">
                         <input class="custom" type="checkbox" name="type" id="gain">
-                        <label class="orange" for="gain">GAIN WEIGHT</label>
+                        <label class="orange cus1" for="gain">GAIN WEIGHT</label>
                     </div>
                     <div class="filter">
                         <input class="custom" type="checkbox" name="type" id="lose">
-                        <label class="orange" for="lose">LOSE WEIGHT</label>
+                        <label class="orange cus2" for="lose">LOSE WEIGHT</label>
                     </div>
                     <div class="filter">
                         <input class="custom" type="checkbox" name="type" id="regimen">
-                        <label class="orange" for="regimen">REGIMEN</label>
+                        <label class="orange cus3" for="regimen">REGIMEN</label>
                     </div>
             </form>
 
                 <div class="ourarrow">
                         <p>OUR PRODUCTS</p>
-                        <img src="./img/arrow_white.png">
+                        <!-- <img src="./img/arrow-down-sign-to-navigate.png">
+                        <img class="arrowwhite" src="./img/arrow_white.png"> -->
                 </div>
 
                 <form>     
@@ -65,10 +68,13 @@
            </div>  
         </div>   
             <div class="products" id="app">
-                <div class="sort">
-                    <p>SORT BY </p>
-                    <img src="./img/arrow-down-sign-to-navigate.png">
-               </div>  
+                <div class="custom-select sort" style="width:200px;">
+                    <select>
+                      <option value="0">SORT BY</option>
+                      <option value="1">POPULAR</option>
+                      <option value="2">NEW ARRIVAL</option>                     
+                    </select>
+                  </div>
                 <ul>
                     <li class="prod1" v-for="item in products"> 
                         <a href="./product.html">   
@@ -77,10 +83,10 @@
                             </div>
                             <div class="prodinfo">
                                 <p>{{item.name}}</p>
-                                <p>{{item.price}}</p>
-                                <button>BUY NOW</button>  
+                                <p>{{item.price}}</p> 
                             </div>
-                        </a>   
+                        </a>
+                            <button class="byn">BUY NOW</button>   
                     </li>
                 </ul>
             </div>
@@ -92,13 +98,13 @@
                 products: [{
                     img: "./img/prod1.png",
                     backgroundColor: "#2d6ca6",
-                    name: "ALMONDS BAR (CONSUME 0.8 cal)",
+                    name: "ALMONDS BAR (CONSUME 0.5 cal)",
                     price:"NT$250",
                 },
                 {
                     img: "./img/prod2.png",
                     backgroundColor: "#f9c530",
-                    name: "BANANA BAR  (CONSUME 0.5 cal)",
+                    name: "BANANA BAR",
                     price:"NT$300",
                 },
                 {
@@ -110,18 +116,18 @@
                 {
                     img: "./img/prod4.png",
                     backgroundColor: "#2d6ca6",
-                    name: "COCO ALMONDS (CONSUME 0.8 cal)",
+                    name: "COCO ALMONDS (CONSUME 0.5 cal)",
                     price:"NT$250",
                 },
                 {
                     img: "./img/prod5.png",
-                    name: "ENERGY BALL (CONSUME 0.5 cal)",
+                    name: "ENERGY BALL",
                     backgroundColor: "#f9c530",
                     price:"NT$200",
                 },
                 {
                     img: "./img/prod1.png",
-                    name: "ALMONDS BAR (CONSUME 0.8 cal)",
+                    name: "ALMONDS BAR (CONSUME 0.5 cal)",
                     backgroundColor: "#2d6ca6",
                     price:"NT$250",
                 },]
@@ -139,9 +145,13 @@
 
         });
 
+            
+        
         
     </script>
-    
-
+        @@include('./layout/footer.html')
+    <script src="./js/cart.js"></script>
+    <script src="./js/buy.js"></script>
+    <!-- <script src="./js/shop.js"></script> -->
 </body>
 </html>
