@@ -43,14 +43,14 @@
                 <div class="above_pop">
 
                     <div class="follow_select"> 
-                        <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                        <div class="your_report"> <pre> you're following<i class="fas fa-caret-down"></i></pre></div>    
                         <button class="btnCancel">X</button>
                     </div>
                     
                     <table class="follow_list">
                         <tr> <!-- 第一列 -->
                             <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie2.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -59,7 +59,7 @@
                             </td> <!-- 左邊好友 -->
                             
                             <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie3.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -70,7 +70,7 @@
 
                         <tr> <!-- 第二列 -->
                             <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie4.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -78,7 +78,7 @@
                                 </ul>
                             </td> <!-- 左邊好友 -->
                             <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie5.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -89,7 +89,7 @@
 
                         <tr> <!-- 第三列 --> 
                             <td> <!-- 左邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie6.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -97,7 +97,7 @@
                                 </ul>
                             </td> <!-- 左邊好友 -->
                             <td> <!-- 右邊好友 -->
-                                <img src="./img/selfie.png" alt="">
+                                <img src="./img/selfie7.png" alt="">
                                 <ul>
                                     <li class="member_level">Level9</li>
                                     <li class="member_name">Jerry Guerrero</li>
@@ -118,18 +118,67 @@
     </div> <!-- #lightBox -->
 
 
+
     <!-- #reportBox -->
     <div id="reportBox" style="display:none">
         <div id="tableReport">
 
-            <div class="follow_select"> 
-                <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
-                <button class="btnCancel">X</button>
-            </div>
+            <button class="btnCancel">X</button>
+            <div class="report_wrapper">
 
-        </div>
+                
+                <div class="png_outer">
+                     <img class="report_png" src="./icon/report.png" alt="" />
+                </div>
+
+               
+
+                <div class="select_label">report type</div>
+                <div class="select_type">
+                    <span class="placeholder">檢舉類別</span>
+                    <ul>
+                    <li>包含侮辱字眼</li>
+                    <li>包含不雅文字</li>
+                    <li>涉及人身攻擊</li>
+                    <li>暴力和煽動仇恨</li>
+                    </ul>
+                </div>
+                <div class="description_label">Report description</div>
+                <textarea style="resize:none;width:100%;height:200px;margin-bottom: 4%;"></textarea>
+
+                
+                <div class="report_buttons"> 
+                    <button class="l-btn"><span class="others_button"id="#">Cancel</span></button>
+                    <button class="l-btn"><span class="others_button"id="#">Confirm</span></button>
+                </div>
+                
+
+            </div>    <!-- .report_wrapper -->
+            
+        </div><!-- #tableReport -->
     </div> 
     <!-- #reportBox -->
+    
+    <script> 
+        $('.select_type').on('click','.placeholder',function(){
+        var parent = $(this).closest('.select_type');
+        if ( ! parent.hasClass('is-open')){
+        parent.addClass('is-open');
+        $('.select_type.is-open').not(parent).removeClass('is-open');
+        }else{
+        parent.removeClass('is-open');
+        }
+    }).on('click','ul>li',function(){
+        var parent = $(this).closest('.select_type');
+        parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
+    });
+
+    </script>
+    <!-- #reportBox -->
+
+
+
+
 
 
 
@@ -230,7 +279,7 @@
 
                 <div class="popular">
 
-                    <div class="recommend">most popular<i class="fas fa-caret-down"></i></div>
+                    <div class="recommend">Recommend(off)<i class="fas fa-caret-down"></i></div>
                     <div>
                         <img src="./img/portrait.png" alt="">
                         <img src="./img/portrait.png" alt="">
@@ -249,10 +298,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <a href="./othersPage.html"><img src="./img/selfie2.png" alt="" /></a>
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <a href="./othersPage.html"><p class="name">Jose Young</p></a>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -347,10 +396,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie3.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Tory Burch</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -444,10 +493,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie4.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Jill Stuart</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -540,10 +589,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie5.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Jean Paul</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -636,10 +685,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie6.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Roberto Cavalier</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -731,10 +780,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie7.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Ralph Laurent</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -826,10 +875,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie8.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Olivia Palerm</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>
@@ -921,10 +970,10 @@
         <div class="topBody">
             <div>
                 <div class="face">
-                    <img src="./img/selfie.png" alt="" />
+                    <img src="./img/selfie9.png" alt="" />
                 </div>
                 <div>
-                    <p class="name">Jose Young</p>
+                    <p class="name">Sophia Wang</p>
                     <p class="releaseDate">2021-3-23</p>
                 </div>
             </div>

@@ -86,15 +86,30 @@ div.left{
 
 
 .edit_btn_outer{
-    // background-color: lightcoral;
+    background-color: transparent;
     width: 100%;
 }
 
  .fa-pencil-alt{
   border-radius: 50px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-  background-color: #ffffff;
+  background-color: transparent;
 }
+
+
+.left {
+  .edit_btn_outer{
+    margin-top: -8%;
+    padding-left: 45%;
+  }
+
+ .fa-pencil-alt{
+  border-radius: 50px;
+  background-color: #fff;
+  cursor: pointer;
+  }
+}
+
+
 
 // .edit_btn{
 //     display: flex;
@@ -180,7 +195,7 @@ div.right{
     text-transform:uppercase;
     cursor: pointer;
     // margin-top: 15%;
-    margin-left: 10%;
+    // margin-left: 10%;
     //margin-bottom: 4%;
 }
 
@@ -383,7 +398,7 @@ div.right{
     height: 50px;
     border-radius: 50px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-    background-color:grayscale($color: #0000003f);
+    background-color:#B8B8B8;
   }
 
 .issue{
@@ -450,7 +465,7 @@ div.right{
 
 .issue input::-webkit-input-placeholder {
   font-size: 16px;
-  color: grayscale($color: #0000003f);
+  color: #B8B8B8;
   font-family: "NotoSans-R";
   text-transform: uppercase;
 }
@@ -466,7 +481,7 @@ div.right{
   background-color: #F2F2F2;
   border-radius: 10px;
   font-size: 14px;
-  color: grayscale($color: #0a0a0a96);
+  color:#B8B8B8;
   font-family: "NotoSans-R";
   text-transform: uppercase;
 }
@@ -806,6 +821,189 @@ pre.reply_time{
 
 
 
+// report檢舉和本頁(其他會員頁面)的follow共用的button
+.l-btn {
+  margin: 10px 10px 10px 0px;
+  &:hover{
+    background: gray;
+    color: #fff;
+  }
+}
+
+.l-btn .others_button{
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: -0.5%;
+
+}
+// report和本頁follow共用的button
+
+
+//2個button的外框
+.report_buttons{
+  display: flex;
+  justify-content: space-between;
+}//2個button的外框
+
+
+//共用 X
+.btnCancel{
+  // align-self: flex-end;
+  width: 8%;
+  height:8% ;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin-left: 80%;
+}//共用X
+
+
+.report_wrapper{
+  margin: 0 auto;
+  // margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+  // border: 1px solid blue;
+  text-transform: uppercase;
+}
+
+.png_outer{
+  display: flex;
+  justify-content: center;
+  // border: 1px solid blue;
+  margin-bottom: 5%;
+}
+
+.report_png {
+  width: 10%;
+}
+
+
+
+
+
+
+//report的下拉選單
+// @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+
+// *,*:after,*:before{
+//   box-sizing: border-box;
+// }
+
+// html{
+//   box-sizing: inherit;
+//   background: linear-gradient(to left, #8e9eab , #eef2f3);
+// }
+// body{
+//   margin: 10% auto;
+//   text-align: center;
+//   font-size: 12px;
+// }
+
+.select_type{
+  margin-bottom: 5%;
+  position: relative;
+  display: block;
+  // margin: 0 auto;
+  width: 100%;
+  width: 100%;
+  // max-width: 325px;
+  // color: #cccccc;
+  color:#959595;
+  // vertical-align: middle;
+  text-align: left;
+  user-select: none;
+  -webkit-touch-callout: none;
+
+  .placeholder{
+    position: relative;
+    display: block;
+    background-color: #fff;
+    color: #959595;
+    border-bottom: 1px solid #959595;
+    z-index: 1;
+    padding: 1em;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover{
+      background: #959595;
+      color: #fff;
+    }
+
+    &:after{
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'FontAwesome';
+      content: '\f078';
+      z-index: 10;
+    }
+  }
+
+  &.is-open{
+    .placeholder:after{
+      content: '\f077';
+    }
+    ul{
+      display: block;
+    }
+  }
+
+
+
+  ul{
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    z-index: 100;
+
+    li{
+      display: block;
+      text-align: left;
+      padding: 0.8em 1em 0.8em 1em;
+      color: #999;
+      cursor: pointer;
+
+      &:hover{
+        background: #959595;
+        color: #fff;
+      }
+    }
+  }
+}
+
+//report的下拉選單
+.select_label{
+  margin-bottom: 2%;
+}
+
+.description_label{
+  margin-bottom: 5%;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -886,11 +1084,11 @@ pre.reply_time{
   }
 
   
-  #btnCancel{ 
-    background-color: transparent;
-    border: none;
-    margin-right: 5%;
-  }
+  // .btnCancel{ 
+  //   background-color: transparent;
+  //   border: none;
+  //   margin-right: 5%;
+  // }
 
 
   .follow_list{
