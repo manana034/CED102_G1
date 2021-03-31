@@ -80,10 +80,10 @@ main {
     section.bottom {
         flex-direction: row-reverse;
     }
-    div {
+    div#suspend {
         display: flex;
         justify-content: flex-end;
-        button {
+        button:first {
             @include btnStyle($b-color:$primary);
             text-align: center;
             margin-left: 30px;
