@@ -1,3 +1,5 @@
+
+
 .containor.Cal_Dairy *{
     box-sizing: unset;
 }
@@ -59,43 +61,8 @@
     }
 }
 //=========== Aside_RWD =============
-@media (max-width: 1479px) and (min-width: 1340px){
-    .l-aside.Cal_Dairy{
-        width: 250px;
-        .cal_aside {
-            transform: scale(0.95,0.95);
-            .aside_title{
-            
-            }
-            .aside_inf{
-              
-                .person_inf{
-                    
-                    p{
-                      
-                    }
-                    .gender,.hight,.age{
-                      
-                    }
-                }
-                .aside_inf_title{
-                    
-                }
-                 .aside_inf_data{
-                   
-                }
-            }
-        }
-        .w-btn.Cal_Dairy{
-        
-        }
-    }
-}
-@media (max-width: 1339px) and (min-width: 1170px){
-    .l-aside.Cal_Dairy{
-        width: 220px;
-    }
-}
+
+
 //==============================CENTER=====================================
 .center.Cal_Dairy{
     .top_area{
@@ -338,7 +305,7 @@
     }
     .bot_area{
         display: grid;
-        grid-template-columns: 70% 30%;
+        grid-template-columns: 70% 27.5%;
         margin: 35px 0px 0px 0px;
         .cal_input{
             position:relative;
@@ -412,7 +379,7 @@
                         padding: 5px;
                         border-bottom: 2px solid #dddddd;
                         display: grid;
-                        grid-template-columns: 15% 15% 20% 20% 15% 15%;
+                        grid-template-columns: 15% 20% 20% 15% 15% 15%;
                         P{
                             color: #AAAAAA;
                             text-align: center;
@@ -423,7 +390,7 @@
                         margin: 5px 20px 5px -5px;
                         padding: 5px;
                         display: grid;
-                        grid-template-columns: 15% 15% 20% 20% 15% 15%;
+                        grid-template-columns: 15% 20% 20% 15% 15% 15%;
                         P{
                             color: #666666;
                             text-align: center;
@@ -454,55 +421,240 @@
                         right: 11%;
                     }
                 }
+                
             }
         }
-    }
-}
-//---------------------------------------------------
-@media (max-width: 1339px) and (min-width: 1170px){
-.center.Cal_Dairy{
-    .top_area{
-        margin-top: -15px;
-        .card.CurGoal{
-            transform:scale(0.9,0.9);
-            width: 450px;
-            .CurGoal_content{
-                .rest_day{
-                    .sch_title{
-                        p{
-                            text-align: center;
-                        }
+        .advice_item{
+            width: 100%;
+            // height: 50px;
+            // background-color: #666666;
+            .owl-carousel.owl-theme{
+                width: 90%;
+                .advice_produt{
+                    margin-top: 10px;
+                    p{ 
+                       margin-top: 10px;
+                       font-size: 22px;
+                       margin-left: 5%;
+                       text-align: center;
                     }
-                    .sch_date{                       
-                        .date_start{
-                            font-size: 14px;
-                            margin-right: 35px;
-                        }
-                        .date_end{
-                            font-size: 14px;
-                        }
+                   img{
+                        width: 130px;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        padding: 5px 10px 5px 10px; 
+                        border-radius: 50px;
+                        background-color: rgb(45, 108, 166);
+                        // height: 300px;
+                    }
+                    .advice_produt_img2{
+                        background-color: rgb(191, 70, 89);
+                    }
+                    button{
+                        margin-left: 35%;
+                    }
+                    div{
+                        width: 60%;
+                        margin-left: 20%;
+                        text-align: center;
                     }
                 }
             }
         }
-        .card.report{
-            transform:scale(0.9,0.9);
-            width: 450px;
-            .chart_select{
-               grid-template-columns: 26% 28% 40%;
-            }
-        }
     }
-    .bot_area{      
-        .cal_input{
-            margin-left: -25px;
-            transform:scale(0.9,0.9);
-            .card.cal_input_table{
-                
-            }
-        }
-    }
-}    
 }
 
+}
+@media all and (max-width: 1500px){
+    .containor.Cal_Dairy{
+        .l-aside.Cal_Dairy{
+            height: 1300px;
+        } 
+        .center.Cal_Dairy{
+            .top_area{
+                    grid-template-columns: 100%;
+                    .card.report{
+                        margin-top: 20px;
+                    }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                        padding-right: 60%;
+                    }
+                    .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                        margin-right: calc(71% - 45px);
+                    }
+                } 
+            
+        }
+    }
+}
+@media (max-width: 1499px) and (min-width: 1300px){
+     .containor.Cal_Dairy{
+          .l-aside.Cal_Dairy{
+            height: 1300px;
+        }  
+        .center.Cal_Dairy{
+            .top_area{
+                    grid-template-columns: 100%;
+                    .card.report{
+                        margin-top: 20px;
+                    }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                        padding-right: 60%;
+                    }
+                    .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                        margin-right: calc(71% - 45px);
+                    }
+                    .card.CurGoal .CurGoal_content .rest_day .rest_day_item .rest_day_value{
+                        padding: 40px 40px 40px 35%;
+                   }
+                } 
+            
+        }
+    }
+}
+@media (max-width: 1299px) and (min-width: 1100px){
+    .containor.Cal_Dairy{
+        grid-template-columns: 100%;
+         .l-aside.Cal_Dairy{
+           display: none;
+       }  
+       .center.Cal_Dairy{
+           .top_area{
+                   grid-template-columns: 100%;
+                   .card.report{
+                       margin-top: 20px;
+                   }
+                  .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                       padding-right: 65%;
+                   }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                       margin-right: calc(74% - 45px);
+                   }
+                    .card.CurGoal .CurGoal_content .rest_day .rest_day_item .rest_day_value{
+                        padding: 40px 40px 40px 35%;
+                   }
+               } 
+           
+       }
+   }
+}
+@media (max-width: 1099px) and (min-width: 800px){
+    .containor.Cal_Dairy{
+        grid-template-columns: 100%;
+         .l-aside.Cal_Dairy{
+           display: none;
+       }  
+       .center.Cal_Dairy{
+           .top_area{
+                   grid-template-columns: 100%;
+                   .card.report{
+                       margin-top: 20px;
+                   }
+                  .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                       padding-right: 65%;
+                   }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                       margin-right: calc(74% - 65px);
+                   }
+                    .card.CurGoal .CurGoal_content .rest_day .rest_day_item .rest_day_value{
+                        padding: 40px 40px 40px 35%;
+                   }
+
+            } 
+            .bot_area{
+                grid-template-columns: 100%;
+                .advice_item{
+                    margin-left: 5%;
+                }
+            }
+           
+        }
+    }
+}
+@media (max-width: 799px) and (min-width: 700px){
+    .containor.Cal_Dairy{
+        grid-template-columns: 100%;
+         .l-aside.Cal_Dairy{
+           display: none;
+       }  
+       .center.Cal_Dairy{
+           .top_area{
+                   grid-template-columns: 100%;
+                   .card.report{
+                       margin-top: 20px;
+                   }
+                  .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                       padding-right: 65%;
+                   }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                       margin-right: calc(74% - 65px);
+                   }
+                    .card.CurGoal .CurGoal_content .rest_day .rest_day_item .rest_day_value{
+                        padding: 40px 40px 40px 35%;
+                   }
+
+            } 
+            .bot_area{
+                grid-template-columns: 100%;
+                .advice_item{
+                    margin-left: 5%;
+                }
+                .cal_input .card.cal_input_table .input_pages{
+                    grid-template-columns: 100%;
+                        .fd_pop{
+                            bottom:20px;
+                            right: 40%;
+                        }
+                }
+                .cal_input .card.cal_input_table{
+                    height: 550px;
+                }
+            }
+           
+        }
+    }
+}
+@media (max-width: 699px) and (min-width: 400px){
+    .containor.Cal_Dairy{
+        grid-template-columns: 100%;
+         .l-aside.Cal_Dairy{
+           display: none;
+       }  
+       .center.Cal_Dairy{
+           .top_area{
+                   grid-template-columns: 100%;
+                   .card.report{
+                       margin-top: 20px;
+                   }
+                  .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
+                       padding-right: 45%;
+                   }
+                   .card.CurGoal .CurGoal_content .rest_day .sch_date .date_start {
+                       margin-right: calc(74% - 110px);
+                   }
+                    .card.CurGoal .CurGoal_content .rest_day .rest_day_item .rest_day_value{
+                        padding: 40px 40px 40px 35%;
+                   }
+
+            } 
+            .bot_area{
+                grid-template-columns: 100%;
+                .advice_item{
+                    margin-left: 5%;
+                }
+                .cal_input .card.cal_input_table .input_pages{
+                    grid-template-columns: 100%;
+                        .fd_pop{
+                            bottom:20px;
+                            right: 35%;
+                        }
+                }
+                .cal_input .card.cal_input_table{
+                    height: 550px;
+                }
+            }
+           
+        }
+    }
 }

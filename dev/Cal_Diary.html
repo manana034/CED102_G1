@@ -12,7 +12,11 @@
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="./js/chart_selector.js"></script>
-
+    <!------ owl ------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- ------------ -->
     <link rel="stylesheet" href="./css/page/index.css" />
     <script src="./js/header.js" defer></script>
     <script src="./js/cart.js" defer></script>
@@ -530,6 +534,28 @@
                         </div>    
                     </div>
                 </div>
+                <div class="advice_item">
+                    <div class="owl-carousel owl-theme">
+                        <div class="advice_produt">
+                            <P>We advice this produt for you!</P>
+                            <img class="advice_produt_img" src="./img/prod1.png">
+                            <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
+                            <button class="w-btn buyit">BUY NOW</button>
+                        </div>
+                        <div class="advice_produt">
+                            <P>We advice this produt for you!</P>
+                            <img class="advice_produt_img" src="./img/prod4.png">
+                            <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
+                            <button class="w-btn buyit">BUY NOW</button>
+                        </div>
+                        <div class="advice_produt">
+                            <P>We advice this produt for you!</P>
+                            <img class="advice_produt_img2" src="./img/prod3.png">
+                            <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
+                            <button class="w-btn buyit">BUY NOW</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
       
@@ -538,5 +564,35 @@
     <div>
         @@include('./layout/footer.html')
     </div>
+    <script>
+        $(".owl-carousel").owlCarousel({
+          loop: true, // 循環播放// 外距 10px
+          nav: false, // 顯示點點
+          dots:false,
+          autoplay:true,
+          autoplayTimeout:3000,
+          responsive: {
+            //  0: {
+            //     items: 1 // 螢幕大小為 0~600 顯示 1 個項目
+            //  },
+             100: {
+                nav: false,
+               items: 1 // 螢幕大小為 600~1000 顯示 3 個項目
+             },
+             500: {
+                nav: false,
+               items: 2// 螢幕大小為 600~1000 顯示 3 個項目
+             },
+            1000: {
+                nav: false,
+              items: 3 // 螢幕大小為 1000 以上 顯示 5 個項目
+            },
+            1600:{
+              nav: false,
+              items: 1 // 螢幕大小為 1000 以上 顯示 5 個項目
+            }
+          }
+          });
+      </script>
 </body>
 </html>
