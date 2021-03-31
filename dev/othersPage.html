@@ -38,27 +38,39 @@
     <!-- #reportBox -->
     <div id="reportBox" style="display:none">
         <div id="tableReport">
-            
-            <div class=".report_wrapper">
 
-                <button class="btnCancel">X</button>
-    
-                <img src="./icon/report.png" alt="" />
+            <button class="btnCancel">X</button>
+            <div class="report_wrapper">
 
+                
+                <div class="png_outer">
+                     <img class="report_png" src="./icon/report.png" alt="" />
+                </div>
+
+               
+
+                <div class="select_label">report type</div>
                 <div class="select_type">
-                    <span class="placeholder">Select your language</span>
+                    <span class="placeholder">檢舉類別</span>
                     <ul>
-                    <li>España- Español</li>
-                    <li>United States - English</li>
-                    <li>France - Français</li>
-                    <li>Deutschland - Deutsch</li>
+                    <li>包含侮辱字眼</li>
+                    <li>包含不雅文字</li>
+                    <li>涉及人身攻擊</li>
+                    <li>暴力和煽動仇恨</li>
                     </ul>
                 </div>
-        
+                <div class="description_label">Report description</div>
+                <textarea style="resize:none;width:100%;height:200px;margin-bottom: 4%;"></textarea>
+
                 
-                <div class="your_report">you're following<i class="fas fa-caret-down"></i></div>
+                <div class="report_buttons"> 
+                    <button class="l-btn"><span class="others_button"id="#">FOLLOW</span></button>
+                    <button class="l-btn"><span class="others_button"id="#">FOLLOW</span></button>
+                </div>
                 
+
             </div>    <!-- .report_wrapper -->
+            
         </div><!-- #tableReport -->
     </div> 
     <!-- #reportBox -->
@@ -103,7 +115,7 @@
                     <div class="member_info">
                         <div class="member_level">Level 10</div>
                         <div class="member_name">Dorothy Weber</div>
-                        <button class="l-btn"><span id="#">FOLLOW</span></button>
+                        <button class="l-btn"><span class="others_button"id="#">FOLLOW</span></button>
                     </div>
                 </div>
                

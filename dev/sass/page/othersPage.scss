@@ -323,7 +323,7 @@ pre.load{
   height: 50px;
   border-radius: 50px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-  background-color:grayscale($color: #0000003f);
+  background-color: #C8C8C8;
 }
 
 .issue{
@@ -386,7 +386,7 @@ width: 100%;
 
 .issue input::-webkit-input-placeholder {
 font-size: 16px;
-color: grayscale($color: #0000003f);
+color: #959595;
 font-family: "NotoSans-R";
 text-transform: uppercase;
 }
@@ -402,7 +402,7 @@ padding-left: 2%;
 background-color: #F2F2F2;
 border-radius: 10px;
 font-size: 14px;
-color: grayscale($color: #0a0a0a96);
+color: #959595;
 font-family: "NotoSans-R";
 text-transform: uppercase;
 }
@@ -520,40 +520,76 @@ align-items: center;
 
 
 
-//report檢舉的燈箱設定
-#reportBox{
-position: fixed;
-width: 100%;
-height: 100%;
-background: rgba(66,66,66,.6);
-z-index: 500;
+
+// report檢舉和本頁(其他會員頁面)的follow共用的button
+.l-btn {
+  margin: 10px 10px 10px 0px;
+  &:hover{
+    background: gray;
+    color: #fff;
+  }
 }
 
-#tableReport{
-z-index: 501;
-border-radius: 25px;
-position: absolute;
-width:40%;
-height: 65%;
-top: 0;
-right: 0;
-bottom: 25%;
-left: 0;
-margin:auto;
-background-color:$white;
+.l-btn .others_button{
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: -0.5%;
+
 }
-//report檢舉的燈箱設定}
+// report和本頁follow共用的button
+
+
+//2個button的外框
+.report_buttons{
+  display: flex;
+  justify-content: space-between;
+}//2個button的外框
+
+
+//共用 X
+.btnCancel{
+  // align-self: flex-end;
+  width: 8%;
+  height:8% ;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin-left: 90%;
+}//共用X
+
 
 .report_wrapper{
-  background-color: burlywood;
-  width:80%
- 
+  margin: 0 auto;
+  // margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+  // border: 1px solid blue;
+  text-transform: uppercase;
 }
+
+.png_outer{
+  display: flex;
+  justify-content: center;
+  // border: 1px solid blue;
+  margin-bottom: 5%;
+}
+
+.report_png {
+  width: 10%;
+}
+
+
+
+
 
 
 //report的下拉選單
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
-
+// @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
 
 // *,*:after,*:before{
 //   box-sizing: border-box;
@@ -570,12 +606,15 @@ background-color:$white;
 // }
 
 .select_type{
+  margin-bottom: 5%;
   position: relative;
   display: block;
-  margin: 0 auto;
+  // margin: 0 auto;
   width: 100%;
-  max-width: 325px;
-  color: #cccccc;
+  width: 100%;
+  // max-width: 325px;
+  // color: #cccccc;
+  color:#959595;
   // vertical-align: middle;
   text-align: left;
   user-select: none;
@@ -584,14 +623,17 @@ background-color:$white;
   .placeholder{
     position: relative;
     display: block;
-    background-color: #393d41;
+    background-color: #fff;
+    color: #959595;
+    border-bottom: 1px solid #959595;
     z-index: 1;
     padding: 1em;
     border-radius: 2px;
     cursor: pointer;
 
     &:hover{
-      background: darken(#393d41,2%);
+      background: #959595;
+      color: #fff;
     }
 
     &:after{
@@ -638,7 +680,7 @@ background-color:$white;
       cursor: pointer;
 
       &:hover{
-        background: #4ebbf0;
+        background: #959595;
         color: #fff;
       }
     }
@@ -646,3 +688,37 @@ background-color:$white;
 }
 
 //report的下拉選單
+.select_label{
+  margin-bottom: 2%;
+}
+
+.description_label{
+  margin-bottom: 5%;
+}
+
+
+//report檢舉的燈箱設定
+#reportBox{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(66,66,66,.6);
+  z-index: 500;
+  }
+  
+  #tableReport{
+  // display: flex;
+  // align-items: flex-start;
+  z-index: 501;
+  border-radius: 25px;
+  position: absolute;
+  width:40%;
+  height: 65%;
+  top: 0;
+  right: 0;
+  bottom: 25%;
+  left: 0;
+  margin:auto;
+  background-color:$white;
+  }
+  //report檢舉的燈箱設定}
