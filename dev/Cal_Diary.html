@@ -78,7 +78,8 @@
                         <div class="rest_cal">
                             <p>REST CALORIS</p>
                             <div class="rest_cal_content">
-                                <img src="img/body_icon.png">
+                                  
+                                <img clss="body_sch_mask" src="img/body_icon.png">
                                 <div class="rest_cal_inf">
                                     <p class="rest_cal_data">1700</p>
                                     <p class="rest_cal_unit">REST CAL</p>
@@ -99,7 +100,7 @@
                                 <p class="sch_end">END DATE</p>
                             </div>
                             <div class="sch">
-
+                                <div class="sch_now"></div>
                             </div>
                             <div class="sch_date">
                                 <p class="date_start">2020/03/21</p>
@@ -443,18 +444,99 @@
             <div class="bot_area">
                 <div class="cal_input">
                     <div class="cal_input_select">
-                        <div class="s_food input_selector"><p>Food</p></div>
+                        <div class="s_food input_selector selected"><p>Food</p></div>
                         <div class="s_exercise input_selector"><p>Exercise</p></div>
                     </div>
                     <div class = "card cal_input_table" >
-                        <div class="input_pages">Food</div>
-                        <div class="input_pages">Exercise</div>
+                        <div class="cal_input_table_title"></div>
+                        <div class="input_pages">
+                            <div class="input_pages_data">
+                                <p class="input_pages_data_title">Fitness Start With What You Eat</p>
+                                <div class="daily_food_data">
+                                    <div class="daily_food_data_title">
+                                        <P>DATE</P>
+                                        <P>MEAL</P>
+                                        <P>NAME</P>
+                                        <P>CAL</P>
+                                        <P>EDIT</P>
+                                        <P>DEL</P>
+                                    </div>
+                                    <div class="daily_food_data_context">
+                                        <P>3/30</P>
+                                        <P>Breakfast</P>
+                                        <P>Hamberger</P>
+                                        <P>200</P>
+                                        <img src="./img/rewrite_icon_y.svg">
+                                        <img src="./img/del_icon_y.svg">
+                                    </div>
+                                    <div class="daily_food_data_context">
+                                        <P>3/30</P>
+                                        <P>Breakfast</P>
+                                        <P>Hamberger</P>
+                                        <P>200</P>
+                                        <img src="./img/rewrite_icon_y.svg">
+                                        <img src="./img/del_icon_y.svg">
+                                    </div>
+                                    <div class="daily_food_data_context">
+                                        <P>3/30</P>
+                                        <P>Breakfast</P>
+                                        <P>Hamberger</P>
+                                        <P>200</P>
+                                        <img src="./img/rewrite_icon_y.svg">
+                                        <img src="./img/del_icon_y.svg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_pages_date">
+                                <p class="input_pages_data_title">Select The Day For Your Diary</p>
+                                <iframe src="calendar.html"></iframe>
+                                <div class="fd_pop">@@include('./popout.html')</div>  
+                            </div>
+                        </div>
+                        <div class="input_pages">
+                            <div class="input_pages_data">
+                                <p class="input_pages_data_title">The Day Those You Took</p>
+                                <div class="daily_exercise_data">
+                                    <div class="daily_exercise_data_title">
+                                        <P>DATE</P>
+                                        <P>TIME</P>
+                                        <P>NAME</P>
+                                        <P>CAL</P>
+                                        <P>EDIT</P>
+                                        <P>DEL</P>
+                                    </div>
+                                    <div class="daily_exercise_data_context">
+                                        <P>3/30</P>
+                                        <P>30 min</P>
+                                        <P>jogging</P>
+                                        <P>400</P>
+                                        <img src="./img/rewrite_icon_y.svg">
+                                        <img src="./img/del_icon_y.svg">
+                                    </div>
+                                    <div class="daily_exercise_data_context">
+                                        <P>3/30</P>
+                                        <P>15 min</P>
+                                        <P>swimming</P>
+                                        <P>660</P>
+                                        <img src="./img/rewrite_icon_y.svg">
+                                        <img src="./img/del_icon_y.svg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_pages_date">
+                                <p class="input_pages_data_title">Select The Day For Your Diary</p>
+                                <iframe src="calendar.html"></iframe>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
         </div>
       
     </div>
-    @@include('./layout/footer.html')
+    </div>
+    <div>
+        @@include('./layout/footer.html')
+    </div>
 </body>
 </html>

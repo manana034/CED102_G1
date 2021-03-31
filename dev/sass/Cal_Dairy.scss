@@ -2,14 +2,14 @@
     box-sizing: unset;
 }
 .containor.Cal_Dairy{
-    margin-top: 20px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 18% 82%;
 //=============== Aside =============
 .l-aside.Cal_Dairy{
     display: block;
-    width: 300px;
-    height: 900px;
+    width: 88%;
+    height: 840px;
     .cal_aside {
         // height: 40px;
         .aside_title{
@@ -53,7 +53,7 @@
         width: 100px;
         text-align: center;
         font-size: 14px;
-        background-color: #AAAAAA;
+        background-color: #9F1600;
         color: #ffffff;
         margin:0px auto;
     }
@@ -104,7 +104,7 @@
         grid-template-columns: 49% 49%;
         .card.CurGoal{
             padding: 20px;
-            width: 700px;
+            width: 92%;
             margin: 0px auto;
             position: relative;
             .title_back{
@@ -144,8 +144,10 @@
                         grid-template-columns: 55% 45%;
                         img{
                             margin: 20px 20px 10px 25px;
-                            width: 120px;
+                            width: 110px;
+                         
                         }
+                       
                         .rest_cal_inf{
                             padding-right: 20px;
                             p{
@@ -212,11 +214,23 @@
                         height:8px;
                         background-color: #dddddd;
                         border-radius: 10px;
+                        .sch_now{
+                            width: 40%;
+                            height:8px;
+                            border-radius: 10px;
+                            background-color: #65B5EA;
+                        }
                     }
                     .sch_date{
                         display: flex;
+                        p{
+                            font-size: 12px;
+                        }
                         .date_start{
-                            margin-right: 135px;
+                            margin-right: calc(60% - 45px);
+                        }
+                        .date_end{
+                            text-align: right;
                         }
                     }     
                 }
@@ -224,7 +238,7 @@
 
         }
         .card.report{
-            width: 700px;
+            width:92%;
             margin: 0px auto;
             padding: 20px;
             position: relative;
@@ -240,7 +254,7 @@
             .CurGoal_title{
                 select{
                     border:none;
-                    margin-left: 70%;
+                    margin-left:64%;
                     color: #D8D8D8;
                     font-size: 16px;
                     background-color: unset;
@@ -266,7 +280,8 @@
             .chart_select{
                 height: 80px;
                 display: grid;
-                grid-template-columns: 16% 18% 26%;;
+                grid-template-columns:110px 125px 180px;
+                // grid-template-columns: calc(11% + 40px) calc(15% + 40px) calc(18% + 80px);
                 .chart_weight,.chart_cal,.chart_excercie{
                     border: 1px solid #AAAAAA;
                     height: 48px;
@@ -293,13 +308,14 @@
                 }
                 .chart_weight:hover,.chart_cal:hover,.chart_excercie:hover{
                     cursor: pointer;
-                    border: 2px solid #666666;
+                    border: 1px solid #666666;
                     font-weight: bolder;
                     transform:scale(1.02,1.02);
+                    background-color: #fccb9e!important;
                 }
             }
             .report_chart{
-                width: 700px;
+                width: 100%;
                 padding-top: 5px;
                 img{
                     width: 100%;
@@ -323,7 +339,7 @@
     .bot_area{
         display: grid;
         grid-template-columns: 70% 30%;
-        margin: 40px 0px 0px 5px;
+        margin: 35px 0px 0px 0px;
         .cal_input{
             position:relative;
             .cal_input_select{
@@ -341,32 +357,108 @@
                     text-align: center;
                     p{
                         padding: 5px;
+                        color: #666666;
                     }
                 }
                 .s_food:hover,.s_exercise:hover{
                     cursor: pointer;
-                    background-color: #666666;
+                    background-color: #f0b884;
                     P{
-                        color: #dddddd;
+                        color: #ffffff;
                     }
                 }
-                .s_food{
-                    background-color: #666666;
+                .s_food.selected,.s_exercise.selected{
+                    background-color: #EAA565;
                     P{
-                        color: #dddddd;
+                        color: #ffffff;
                     }
                 }
                 
+                // .s_food{
+                //     background-color: #EAA565;
+                //     P{
+                //         color: #ffffff;
+                //     }
+                // }
+                
             }
             .card.cal_input_table{
+                height: 325px;
                 border-top-left-radius:0px;
-                .input_pages:nth-child(2){
-                   display: none;
+                padding: 30px 20px;
+                position: relative;
+                .input_pages.selected{
+                    display: grid;
+                    grid-template-columns: 70% 30%;
+                }
+                // .input_pages:nth-child(2){
+                //     display: none;
+                //  }
+                .cal_input_table_title{
+                    position: absolute;
+                    height: 50px;
+                    width: 100%;
+                    top:0;
+                    left:0;
+                    background-color: #EAA565;
+                    border-radius: 0 20px 0px 0px;
+                }
+                .input_pages{
+                    display: grid;
+                    grid-template-columns: 65% 35%;
+                    height: 300px;
+                    .daily_food_data_title,.daily_exercise_data_title{
+                        margin: 20px 20px 0px -5px;
+                        padding: 5px;
+                        border-bottom: 2px solid #dddddd;
+                        display: grid;
+                        grid-template-columns: 15% 15% 20% 20% 15% 15%;
+                        P{
+                            color: #AAAAAA;
+                            text-align: center;
+                        }
+                       
+                    }
+                    .daily_food_data_context,.daily_exercise_data_context{
+                        margin: 5px 20px 5px -5px;
+                        padding: 5px;
+                        display: grid;
+                        grid-template-columns: 15% 15% 20% 20% 15% 15%;
+                        P{
+                            color: #666666;
+                            text-align: center;
+                        }
+                        img{
+                            width: 20px;
+                            margin: 0 auto;
+                            cursor: pointer;
+                        }
+                    }
+                    .input_pages_data:nth-child(1){
+                        border-right: 2px solid #AAAAAA;
+                    }
+                   .input_pages_data_title{
+                       margin: -15px 0px 0px calc(50% - 125px);
+                       font-size: 16px;
+                       color: #ffffff;
+                   }
+                    iframe{
+                        margin: 30px 0px 10px calc(50% - 115px);
+                        transform: scale(1.1);
+                        width:250px;
+                        height: 280px;
+                    }
+                    .fd_pop{
+                        position: absolute;
+                        bottom: 0px;
+                        right: 11%;
+                    }
                 }
             }
         }
     }
 }
+//---------------------------------------------------
 @media (max-width: 1339px) and (min-width: 1170px){
 .center.Cal_Dairy{
     .top_area{

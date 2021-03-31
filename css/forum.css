@@ -182,6 +182,34 @@ input[type=text]::placeholder {
   background-color: #333333;
 }
 
+.bg-p {
+  background-color: #EAA565;
+}
+
+.bg-gl {
+  background-color: #c1d4b0;
+}
+
+.bg-gd {
+  background-color: #95b17c;
+}
+
+.bg-rl {
+  background-color: #D25541;
+}
+
+.bg-rd {
+  background-color: #9F1600;
+}
+
+.bg-bl {
+  background-color: #50A8DC;
+}
+
+.bg-bd {
+  background-color: #2274A5;
+}
+
 .w-btn {
   font-family: "NotoSans-R";
   font-size: 14px;
@@ -950,8 +978,53 @@ header {
   top: 0;
 }
 
-header > .row .logo {
+header > .menuBody {
+  display: none;
+  height: 100vh;
+  background-color: #D25541;
+  position: absolute;
+  right: 0;
+  padding: 50px;
+  align-content: space-around;
+  width: 400px;
+  transform: translate(100%, 0);
+  transition: all .5s;
+  z-index: 12;
+}
+
+header > .menuBody button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+header > .menuBody ul {
+  display: flex;
+  flex-wrap: wrap;
+  height: 95%;
+}
+
+header > .menuBody ul li {
+  margin: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+header > .menuBody ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+header > .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+header > .row .logo, header > .row #searchBar, header > .row > :last-child {
   height: 40px;
+  width: calc(100% / 3);
 }
 
 header > .row form#searchBar {
@@ -992,12 +1065,22 @@ header > .row form#searchBar .row .search-input .suggest-items {
   top: 25px;
 }
 
-header > .row form#searchBar .row .search-input .suggest-items .search-item {
+header > .row form#searchBar .row .search-input .suggest-items a.search-item {
   border-bottom: 1px solid #D8D8D8;
   margin: 10px 0;
-  display: inline-block;
   width: 100%;
+  display: inline-block;
   cursor: pointer;
+}
+
+header > .row form#searchBar .row .search-input .suggest-items a.search-item div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+header > .row form#searchBar .row .search-input .suggest-items a.search-item div p {
+  color: #9D9D9D;
 }
 
 header > .row form#searchBar .row .search-input .suggest-items .custom-item {
@@ -1078,6 +1161,7 @@ header > .row > div:last-child {
 
 header > .row > div:last-child > div {
   display: flex;
+  width: calc(100% / 3);
   justify-content: flex-end;
 }
 
@@ -1090,42 +1174,54 @@ header > .row > div:last-child > div > a img, header > .row > div:last-child > d
   margin-left: 5px;
 }
 
-header > .menuBody {
-  height: 100vh;
-  background-color: #D25541;
-  position: absolute;
-  right: 0;
-  padding: 50px;
-  align-content: space-around;
-  width: 15%;
-  transform: translate(100%, 0);
-  transition: all .5s;
-  z-index: 12;
+header > .row > div:last-child > :first-child {
+  display: none;
+  justify-content: flex-end;
 }
 
-header > .menuBody button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-header > .menuBody ul {
-  display: flex;
-  flex-wrap: wrap;
-  height: 95%;
-}
-
-header > .menuBody ul li {
-  margin: 20px;
+header > .searchWindow {
+  display: none;
+  position: fixed;
   width: 100%;
-  display: flex;
+  height: 100%;
+  z-index: 20;
+  background-color: #f4f1ec;
   justify-content: center;
+  align-items: center;
 }
 
-header > .menuBody ul li a {
-  text-decoration: none;
-  color: #ffffff;
-  text-transform: uppercase;
+header > .searchWindow > button {
+  position: absolute;
+  top: 10%;
+}
+
+header > .searchWindow > form {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  header > .row {
+    padding: 10px;
+  }
+  header > .row > .logo {
+    width: unset;
+  }
+  header > .row > form#searchBar {
+    display: none;
+  }
+  header > .row > div:last-child.row {
+    width: 50%;
+  }
+  header > .row > div:last-child.row > div {
+    width: calc(100% / 4);
+  }
+  header > .row > div:last-child.row > :first-child {
+    display: flex;
+  }
+  header > .row > div:last-child.row a > span, header > .row > div:last-child.row button > span {
+    display: none;
+  }
 }
 
 footer {
@@ -1177,8 +1273,53 @@ header header {
   top: 0;
 }
 
-header header > .row .logo {
+header header > .menuBody {
+  display: none;
+  height: 100vh;
+  background-color: #D25541;
+  position: absolute;
+  right: 0;
+  padding: 50px;
+  align-content: space-around;
+  width: 400px;
+  transform: translate(100%, 0);
+  transition: all .5s;
+  z-index: 12;
+}
+
+header header > .menuBody button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+header header > .menuBody ul {
+  display: flex;
+  flex-wrap: wrap;
+  height: 95%;
+}
+
+header header > .menuBody ul li {
+  margin: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+header header > .menuBody ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+header header > .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+header header > .row .logo, header header > .row #searchBar, header header > .row > :last-child {
   height: 40px;
+  width: calc(100% / 3);
 }
 
 header header > .row form#searchBar {
@@ -1219,12 +1360,22 @@ header header > .row form#searchBar .row .search-input .suggest-items {
   top: 25px;
 }
 
-header header > .row form#searchBar .row .search-input .suggest-items .search-item {
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item {
   border-bottom: 1px solid #D8D8D8;
   margin: 10px 0;
-  display: inline-block;
   width: 100%;
+  display: inline-block;
   cursor: pointer;
+}
+
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+header header > .row form#searchBar .row .search-input .suggest-items a.search-item div p {
+  color: #9D9D9D;
 }
 
 header header > .row form#searchBar .row .search-input .suggest-items .custom-item {
@@ -1305,6 +1456,7 @@ header header > .row > div:last-child {
 
 header header > .row > div:last-child > div {
   display: flex;
+  width: calc(100% / 3);
   justify-content: flex-end;
 }
 
@@ -1317,42 +1469,54 @@ header header > .row > div:last-child > div > a img, header header > .row > div:
   margin-left: 5px;
 }
 
-header header > .menuBody {
-  height: 100vh;
-  background-color: #D25541;
-  position: absolute;
-  right: 0;
-  padding: 50px;
-  align-content: space-around;
-  width: 15%;
-  transform: translate(100%, 0);
-  transition: all .5s;
-  z-index: 12;
+header header > .row > div:last-child > :first-child {
+  display: none;
+  justify-content: flex-end;
 }
 
-header header > .menuBody button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-header header > .menuBody ul {
-  display: flex;
-  flex-wrap: wrap;
-  height: 95%;
-}
-
-header header > .menuBody ul li {
-  margin: 20px;
+header header > .searchWindow {
+  display: none;
+  position: fixed;
   width: 100%;
-  display: flex;
+  height: 100%;
+  z-index: 20;
+  background-color: #f4f1ec;
   justify-content: center;
+  align-items: center;
 }
 
-header header > .menuBody ul li a {
-  text-decoration: none;
-  color: #ffffff;
-  text-transform: uppercase;
+header header > .searchWindow > button {
+  position: absolute;
+  top: 10%;
+}
+
+header header > .searchWindow > form {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  header header > .row {
+    padding: 10px;
+  }
+  header header > .row > .logo {
+    width: unset;
+  }
+  header header > .row > form#searchBar {
+    display: none;
+  }
+  header header > .row > div:last-child.row {
+    width: 50%;
+  }
+  header header > .row > div:last-child.row > div {
+    width: calc(100% / 4);
+  }
+  header header > .row > div:last-child.row > :first-child {
+    display: flex;
+  }
+  header header > .row > div:last-child.row a > span, header header > .row > div:last-child.row button > span {
+    display: none;
+  }
 }
 
 footer footer {
@@ -1450,6 +1614,10 @@ div.join p {
 .xsbutton {
   display: flex;
   text-transform: uppercase;
+  margin-left: 3%;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .post .xsl {
@@ -1457,18 +1625,18 @@ div.join p {
 }
 
 .issue {
-  border-bottom: 1px solid black;
-  margin-top: 5%;
+  border-bottom: 1.5px solid #D8D8D8;
+  width: 98%;
+  margin-top: 2%;
   margin-bottom: 2%;
   display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 4%;
+  align-items: center;
 }
 
 .issue input {
-  width: 350px;
-  margin-right: 22%;
-  margin-left: 4%;
+  width: 50%;
+  height: 40px;
+  margin-left: 2%;
 }
 
 .issue input::-webkit-input-placeholder {
@@ -1483,10 +1651,12 @@ div.join p {
   border-radius: 50px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
   background-color: #9D9D9D;
+  margin-bottom: 2.5%;
 }
 
 .create_post {
   display: flex;
+  justify-content: flex-end;
 }
 
 .ptime {
@@ -1552,7 +1722,7 @@ div.join p {
 div.load {
   border-bottom: 1px solid black;
   margin-left: 49%;
-  margin-right: 40%;
+  margin-right: 42%;
   color: black;
   text-transform: uppercase;
   font-weight: bold;
