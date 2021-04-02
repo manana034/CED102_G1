@@ -4,7 +4,7 @@ const toggleButton = document.querySelector('.upper>div>div>button')
 
 const upperInfo = {
     login: ['Hello, Friend !', 'Enter your personal details and start journey with us', 'sing up'],
-    signup: ['Welcome Back !', 'To keep connected with us please login with your personal info', 'log in'],
+    signup: ['Welcome Back !', 'Can get 2000 points for Sign Up<br>Able to doing more features in FT.  ', 'log in'],
 }
 
 const toggleMember = (e) => {
@@ -22,9 +22,10 @@ const toggleMember = (e) => {
         upper.style.backgroundColor = '#EAA565'
         e.target.dataset.state = 'signup'
 
-        h4.textContent = upperInfo.signup[0]
-        p.textContent = upperInfo.signup[1]
-        button.textContent = upperInfo.signup[2]
+        h4.textContent = upperInfo.signup[0] 
+        p.innerHTML = upperInfo.signup[1]
+        button.innerHTML = upperInfo.signup[2]
+
     } else {
         upper.style.transform = 'translate(100%,0)'
         upper.style.backgroundColor = '#95b17c'
@@ -205,6 +206,24 @@ statusOrderList.forEach(item =>{
         orderDetail.style.display = "flex"
     })
 })
+
+
+//更多個levelinfo  ---------------------------
+const levelInfoIcon = document.querySelector('.myAccount .level>:first-child >:last-child')
+const levelInfoClose = document.querySelector('section.levelInfo>.infoBody >button')
+
+const levelInfoBody = document.querySelector('section.levelInfo')
+
+
+levelInfoIcon.addEventListener('click',()=>{
+    levelInfoBody.style.display = "flex"
+})
+levelInfoClose.addEventListener('click',()=>{
+    levelInfoBody.style.display = 'none'
+})
+
+
+// console.log(levelInfoIcon)
 
 
 //登入註冊phone 的畫面切換  ---------------------------

@@ -10,6 +10,23 @@ const browserSync = require('browser-sync').create();
 const reload = browserSync.reload; //browser的方法 更新後~
 
 
+
+function movePhp(){
+    return src('./dev/php/*').pipe(dest('./dist/php'))
+}
+
+function moveInfoImg(){
+    return src('./dev/infoImg/*').pipe(dest('./dist/infoImg'))
+}
+
+function moveMemberImg(){
+    return src('./dev/memberImg/*').pipe(dest('./dist/memberImg'))
+}
+
+function moveProductImg() {
+    return src('./dev/memberImg/*').pipe(dest('./dist/memberImg'))
+}
+
 function moveFont(){
     return src('./dev/font/*').pipe(dest('./dist/font'))
 }
@@ -24,9 +41,9 @@ function moveIcon(){
     return src('dev/icon/*').pipe(dest('dist/icon/'))
 }
 
-function concatJSAndMove() {
-    return src('dev/js/*.js').pipe(concat('all.js')).pipe(dest('dist/js/'));
-}
+// function concatJSAndMove() {
+//     return src('dev/js/*.js').pipe(concat('all.js')).pipe(dest('dist/js/'));
+// }
 
 function moveJS() {
     return src('dev/js/*.js').pipe(dest('dist/js/'));
@@ -43,8 +60,6 @@ function commonStyle() {
         .pipe(sourcemaps.write())
         .pipe(dest('dist/css/common/'));
 }
-
-
 
 function pageStyle() {
     return src('./dev/sass/page/*.scss')
@@ -82,7 +97,22 @@ function killDist() {
 exports.kill = killDist;
 
 //rewnew
-exports.u = series(killDist, parallel(moveFont, pageStyle, moveImg, moveIcon, moveJS, commonStyle, includeHTML))
+exports.u = series(
+    killDist,
+    parallel(
+        moveFont,
+        pageStyle,
+        moveImg,
+        moveIcon,
+        movePhp,
+        moveInfoImg,
+        moveMemberImg,
+        moveProductImg,
+        moveJS,
+        commonStyle,
+        includeHTML
+    )
+)
 
 
 //browser
@@ -100,6 +130,11 @@ exports.browser = function browsersync() {
     })
     //與browser同步
     // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle).on('change', reload);
+    watch('./dev/php/*', movePhp).on('change', reload)
+    watch('./dev/infoImg/*', moveInfoImg).on('change', reload)
+    watch('./dev/memberImg/*', moveMemberImg).on('change', reload)
+    watch('./dev/productImg/*', moveProductImg).on('change', reload)
+
     watch('./dev/sass/**/*.scss', commonStyle).on('change', reload);
     watch('./dev/sass/page/*.scss', pageStyle).on('change', reload);
     watch('./dev/**/*.html', includeHTML).on('change', reload);
@@ -112,9 +147,14 @@ exports.browser = function browsersync() {
 //watch
 exports.w = function watchFiles() {
     // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle);
+    // watch('./dev/sass/page/*', pageStyle);
+    watch('./dev/php/*', movePhp);
+    watch('./dev/infoImg/*', moveInfoImg);
+    watch('./dev/memberImg/*', moveMemberImg);
+    watch('./dev/productImg/*', moveProductImg);
+
     watch('./dev/sass/**/*.scss', commonStyle);
     watch('./dev/sass/**/*.scss', pageStyle);
-    // watch('./dev/sass/page/*', pageStyle);
     watch('./dev/*.html', includeHTML);
     watch('./dev/img/*', moveImg);
     watch('./dev/icon/*', moveIcon)

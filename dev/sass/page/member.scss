@@ -15,6 +15,17 @@
 @import '../component/A_report.scss';
 
 
+
+
+h1,h2,h3,h4,h5,h6,p,button{
+    letter-spacing: 0.8px;
+    text-transform: capitalize;
+}
+.card{
+    margin: 0;
+}
+
+
 .statusOrder .table tbody tr{
     cursor: pointer;
 }
@@ -298,7 +309,7 @@
                                     opacity: .5;
                                     height: 20px;
                                     width: 20px;
-                                    margin-left: 10px;
+                                    margin-right: 10px;
                                 }
                             }
 
@@ -311,9 +322,13 @@
             >.level{
                 margin: 50px 0;
 
-                >p{
-              
-                    text-transform: uppercase;
+                >:first-child{
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    img{
+                        cursor: pointer;
+                    }
                 }
                 >.levelBar{
                     width: 100%;
@@ -360,7 +375,7 @@
                         display: flex;
                         align-items: center;
                         >p{
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             margin: 0px 5px;
                         }
                         >.dateLine{
@@ -417,8 +432,9 @@
                         flex-wrap: wrap;
                         justify-content: space-between;
                         div{
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             font-size: 14px;
+                            // font-weight: 900;
                         }
                         >.durationTime{
                             >div{
@@ -491,7 +507,7 @@
                         justify-content: space-between;
                         >.block{
                             >p{
-                                text-transform: uppercase;
+                                text-transform: capitalize;
                             }
                         }
                         >.currentState{
@@ -609,7 +625,7 @@
 
                                         >p,span{
                                             width: 100%;
-                                            text-transform: uppercase;
+                                            text-transform: capitalize;
                                             margin: 2px;
                                         }
                                         
@@ -644,7 +660,7 @@
                                         opacity: .5;
                                         height: 20px;
                                         width: 20px;
-                                        margin-left: 10px;
+                                        margin-right: 10px;
                                     }
                                 }
                             }
@@ -657,6 +673,7 @@
             >.statusOrder,.favPoster{
                 margin-top: 30px;
                 >:first-child{
+                    flex-wrap: wrap;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -665,6 +682,7 @@
                         margin-bottom: 10px;
                         input{
                             border: none;
+                            letter-spacing: 0.8px;
                         }
                         >button{
                             img{
@@ -675,7 +693,7 @@
                     >button{
                         display: flex;
                         align-items: center;
-                        text-transform: uppercase;
+                        // text-transform: uppercase;
                         margin-bottom: 10px;
                         img{
                             height: 15px;
@@ -761,62 +779,10 @@
             height: 93vh;
             margin-top: 0;
             align-self: flex-start; 
-            padding: 30px 10px;
+            padding: 30px 15px;
             overflow-y: auto;
             box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0);
             transition: box-shadow .5s;
-
-            // >button{
-            //     text-transform: uppercase;
-            //     display: flex;
-            //     align-items: center;
-            //     margin-bottom: 10px;
-            //     >img{
-
-            //         height: 15px;
-            //         width: 15px;
-            //         margin-left: 10px;
-            //         object-fit: contain;
-            //     }
-            // }
-
-            // >.reportBody{
-            //     //trainsition 會干擾js 運行的時間
-            //     transition: all .5s;
-            //     overflow: hidden;
-              
-            //     >.card{
-            //         padding: 10px;
-            //         margin: 0;
-            //         >:first-child{
-            //             margin: 5px 5px 10px 5px;
-            //             border-bottom: 1px solid $gray5;
-
-
-            //             >select{
-            //                 font-size: 14px;
-            //                 text-transform: uppercase;
-            //                 outline: none;
-            //                 margin-bottom: 10px;
-            //                 border: none;
-            //                 >option{
-            //                     font-size: 14px;
-            //                     text-transform: uppercase;
-            //                 }
-            //             }
-            //         }
-            //         >:nth-child(2){
-            //             display: flex;
-            //             flex-wrap: wrap;
-            //             button{
-            //                 padding: 5px 10px;
-            //                 margin: 5px;
-            //                 font-size: 14px;
-            //                 text-transform: uppercase;
-            //             }
-            //         }
-            //     }
-            // }
 
             >.points{
                 margin-top: 50px;
@@ -826,7 +792,7 @@
                 >:first-child{
                     display: flex;
                     align-items: center;
-                    text-transform: uppercase;
+                    text-transform: capitalize;
                     padding: 10px;
                     border-bottom: 1px solid $black;
 
@@ -849,7 +815,7 @@
                         margin: 30px 0px;
                         h6,p{
                             width: 100%;
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             text-align: center;
                         }
                         p{
@@ -869,7 +835,7 @@
  
 }
 
-section.edit,section.orderDetail{
+section.edit,section.orderDetail,section.levelInfo{
     
     z-index: 11;
     position: fixed;
@@ -1082,8 +1048,44 @@ section.orderDetail{
     }
 }
 
+section.levelInfo{
+    >.infoBody{
+        width: 50%;
+        display: flex;
+        padding: 50px;
+        max-height: 60vh;
+        overflow-y: auto;
+        border-radius: 20px;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+        background-color: $white;
+        >.content{
+            >div{
+                display: flex;
+                justify-content: flex-start;
+                margin: 30px 0;
+                >:first-child{
+                    width: 100px;
+                }
+                >:last-child{
+                    width: calc(100% - 100px);
+                }
+            }
+        }
+
+        >button{
+            position: absolute;
+            right: 20px;
+            top:20px;
+        }
+    }
+}
+
 
 @include rwd(992px){
+
+
     .logIn_signUp {
         > div.container{
             width: 90%;
@@ -1096,6 +1098,7 @@ section.orderDetail{
                 justify-content: center;
                 >.signup, .login{
                     width: unset;
+                    padding: 5px; 
                 }
                 >.signup{
                     display: none;
@@ -1113,6 +1116,11 @@ section.orderDetail{
         >:first-child{
             height: unset;
             position: relative;
+            >div{
+                >.personInfo{
+                    padding: 10px;
+                }
+            }
         }
         #moveDate{
             display: none;
@@ -1144,6 +1152,26 @@ section.orderDetail{
 
         >:nth-child(2){
             margin-top: 50px;
+            >div{
+                padding: 5px;
+                .goal{
+                    >.goalBody{
+                        padding: 25px 5px;
+                        >.goal-row-3{
+                            >div{
+                                margin: 10px 0;
+                            }
+                        }
+
+                        >.goal-row-4{
+                            justify-content: flex-start;
+                            >div{
+                                margin: 10px 0;
+                            }
+                        }
+                    }
+                } 
+            }
         }
     }
 

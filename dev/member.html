@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="./css/page/member.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
@@ -237,6 +238,38 @@
 
         </section>
 
+        <section class="levelInfo">
+            <div class="bg"></div>
+            <div class="infoBody">
+                <button class="nc-btn">
+                    <img src="./icon/close.svg">
+                </button>
+                <div class="content">
+                    <div>
+                        <div>level 1.</div>
+                        <div>Lorem ipsum dong elit. Sit ducimus optio in voluptatibus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa ex</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 2.</div>
+                        <div>Lorem ipsum dolor sit abus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 3.</div>
+                        <div>Lorem ipsum dolor sit amet conas, possimus, fugiat quo tempore nobis, omnis iure?</div>
+                    </div>
+                </div>
+     
+            </div>
+
+
+        </section>
+
         @@include('./layout/header.html') 
         @@include('./layout/cart.html')
     
@@ -316,8 +349,8 @@
                                 </div>
                                 <div>
                                     <button class="l-btn">
-                                        edit
                                         <img src="./icon/pen.svg" />
+                                        edit
                                     </button>
                                 </div>
                             </section>
@@ -325,7 +358,11 @@
                     </div>
 
                     <div class="level container">
-                        <p>Member Level</p>
+                        <div>
+                            <p>Member Level</p>
+                            <img src="./icon/question.svg" class="o-5">
+                        </div>
+                        
 
                         <div class="levelBar">
                             <div class="currentBar"></div>
@@ -481,8 +518,8 @@
                                 <div class="block">
                                     <div>
                                         <button class="l-btn">
-                                            create goal
                                             <img src="./icon/pen.svg" />
+                                            create goal
                                         </button>
                                     </div>
                                 </div>
@@ -498,7 +535,7 @@
                             </button>
 
                             <form>
-                                <input type="text" placeholder="ENTER ID OR DETAIL">
+                                <input type="text" placeholder="Eenter ID or Detail">
                                 <button class="nc-btn" type="button">
                                     <img src="./icon/magnifier.png">
                                 </button>
@@ -801,7 +838,7 @@
                             </button>
 
                             <form>
-                                <input type="text" placeholder="ENTER TYPE OR NAME">
+                                <input type="text" placeholder="Enter Type or Name">
                                 <button class="nc-btn" type="button">
                                     <img src="./icon/magnifier.png">
                                 </button>
@@ -917,48 +954,6 @@
                 </div>
 
                 <aside class="r-aside">
-                    <!-- <button class="nc-btn reportBtn">
-                        your report
-                        <img src="./icon/down.svg">
-                    </button>
-
-                    <div class="reportBody">
-                        <div class="card">
-
-                            <div>
-                                <select name="month">
-                                    <option value="thisMonth" selected>this Month</option>
-                                    <option value="lastMonth">last Month</option>
-                                </select>
-                            </div>
-
-                            <div class="rePortBtns">
-                                <button class="l-btn o-3">
-                                    weight
-                                </button>
-                                <button class="l-btn">
-                                    cal
-                                </button>
-                                <button class="l-btn">
-                                    Exercise
-                                </button>
-                            </div>
-                            
-                            <div class="reportContent">
-                                <div class="barCContainer">
-                                    <canvas id="barChart" width="10" height="10"></canvas>
-                                </div>
-
-                                <div class="pieCContainer">
-                                    <canvas id="pieChart" width="10" height="10"></canvas>
-                                </div>
-
-                                <div class="lineCContainer">
-                                    <canvas id="lineChart" width="10" height="10"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                     @@include('./layout/A_report.html')
 

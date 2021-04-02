@@ -90,24 +90,23 @@ let menuBody = document.querySelector('.menuBody')
 let menuCIcon = menuBody.children[0]
 
 // element.matches(selectorString) 只能用在element 身上
-// const closeMenu = (elmnt) => {
-//     let ta = elmnt.target
-//     //要 點集 在menuIcon 上會變true
-//     if (ta.matches('.menuIcon') || ta.matches('.menuIcon>img')) {
-//         return
-//     } else if (ta.matches('.menuBody')) {
-//         return
-//     } else {
-//         // console.log('is out')
-//         // menuBody.dataset.state = '0'
-//         console.log('work')
-//         menuBody.style.transform = 'translate(100%,0)'
-//     }
-// }
+const closeMenu = (elmnt) => {
+    elmnt.stopPropagation()
+    let ta = elmnt.target
+    //要 點集 在menuIcon 上會變true
+    if (ta.matches('.menuIcon') || ta.matches('.menuIcon>img')) {
+        return
+    } else if (ta.matches('.menuBody')) {
+        return
+    } else {
+        menuBody.style.transform = 'translate(100%,0)'
+    }
+}
 
-menuIcon.addEventListener('click', () => {
+menuIcon.addEventListener('click', (e) => {
+    e.stopPropagation()
     const state = getComputedStyle(menuBody).transform
-            console.log(state)
+    // console.log(state)
 
 
     if (getComputedStyle(menuBody).display == 'none') {
@@ -118,17 +117,17 @@ menuIcon.addEventListener('click', () => {
             clearTimeout(time)
         })
     } else if (state == 'matrix(1, 0, 0, 1, 0, 0)') {
-
         menuBody.style.transform = 'translate(100%,0)'
     } else {
         menuBody.style.transform = 'translate(0,0)'
-
     }
 })
+
+
 menuCIcon.addEventListener('click', () => {
     menuBody.style.transform = 'translate(100%,0)'
 })
-// document.addEventListener('click', closeMenu)
+document.addEventListener('click', closeMenu)
 
 // -------------------------menu open↑↑↑↑↑↑↑↑↑↑↑↑
 
