@@ -28,26 +28,13 @@ main {
                     animation-timing-function: linear;
                     animation-iteration-count: infinite;
                 }
-                h4 {
-                    //應該是要h3但會變兩行 救救他
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: $primary;
-                    border-radius: 30px;
-                    color: $white;
-                    min-width: 400px;
-                    padding: 2% 4%;
-                }
-
             }
             div.tab_title {
                 margin: auto;
                 max-width: 1200px;
                 width: 100%;
                 position: absolute;
-                bottom: 32%;
+                top: 35%;
                 left: 50%;
                 transform: translate(-50%, 0%);
                 // background-color: cadetblue;
@@ -82,9 +69,9 @@ main {
             form#search_bar{
                 width: 100%;
                 position: absolute;
-                bottom: 20%;
+                top: 50%;
                 left: 50%;
-                transform: translate(-50%, 0%);
+                transform: translate(-50%, -50%);
                 padding: 0.5% 2%;
                 border-radius: 20px;
                 // width: 100%;
@@ -339,26 +326,13 @@ main {
                     animation-timing-function: linear;
                     animation-iteration-count: infinite;
                 }
-                h4 {
-                    //應該是要h3但會變兩行 救救他
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: $primary;
-                    border-radius: 30px;
-                    color: $white;
-                    min-width: 400px;
-                    padding: 2% 4%;
-                }
-
             }
             div.tab_title {
                 margin: auto;
                 max-width: 1200px;
                 width: 100%;
                 position: absolute;
-                bottom: 32%;
+                top: 35%;
                 left: 50%;
                 transform: translate(-50%, 0%);
                 // background-color: cadetblue;
@@ -393,9 +367,9 @@ main {
             form#search_bar{
                 width: 100%;
                 position: absolute;
-                bottom: 20%;
+                top: 50%;
                 left: 50%;
-                transform: translate(-50%, 0%);
+                transform: translate(-50%, -50%);
                 padding: 0.5% 2%;
                 border-radius: 20px;
                 // width: 100%;
