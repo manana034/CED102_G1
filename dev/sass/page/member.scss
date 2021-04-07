@@ -45,7 +45,7 @@ h1,h2,h3,h4,h5,h6,p,button{
     }
     td{
         padding: 10px 30px;
-        >button{
+        >button,a{
             padding: 3px 10px;
             margin: 0;
         }
@@ -59,6 +59,11 @@ h1,h2,h3,h4,h5,h6,p,button{
 
 }
 
+.favPoster{
+    th{
+        width: calc(100% / 4);
+    }
+}
 
 
 @include rwd(1000px){
@@ -212,13 +217,13 @@ h1,h2,h3,h4,h5,h6,p,button{
 
 
 .myAccount{
-    // display: flex;
-    display: none;
+    display: flex;
+    // display: none;
 
     flex-wrap: wrap;
     align-items: flex-start;
 
-    >:first-child{
+    >.personConainer{
         // display: flex;
         // justify-content: center;
         // flex-wrap: wrap;
@@ -360,7 +365,7 @@ h1,h2,h3,h4,h5,h6,p,button{
  
     }
 
-    >:nth-child(2){
+    >.mainConainter{
         >div{
             padding: 20px;
             >.goal{
@@ -447,10 +452,13 @@ h1,h2,h3,h4,h5,h6,p,button{
                                         background-color: $gray3;
                                         border-radius: 5px;
                                     }
-                                    >input:checked~p{
-                                        background-color: $primary;
-
+                                    >input:checked{
+                                        ~p{
+                                            background-color: $primary;
+                                            color: $white;
+                                        }
                                     }
+                                    
                                 }
                                 >.enterDurTime{
                                     margin: 10px;
@@ -463,19 +471,36 @@ h1,h2,h3,h4,h5,h6,p,button{
                                     border-radius: 5px;
                                     input{
                                         width: 50px;
+                                        text-align: center;
+                                        color: $white;
+                                        border: none;
                                     }
+                                    
                                     p{
                                         padding: 0;
                                         margin: 0;
                                         background-color: transparent;
                                         position: absolute;
                                         width: 20px;
+                                        transition: all .3s;
+                                        opacity: 1;
+                                        pointer-events: none;
                                     }
+                                    input:focus{
+                                        ~p{
+                                            opacity: 0;
+                                        }
+                                    }
+
                                     img{
                                         width: 20px;
                                         height: 20px;
                                         opacity: .5;
+                                        pointer-events: none;
                                     }
+                                }
+                                >.enterDurTime:focus-within{
+                                    background-color: $primary;
                                 }
                             }
                             
@@ -491,7 +516,7 @@ h1,h2,h3,h4,h5,h6,p,button{
                                 display: flex;
                                 >input{
                                     margin: 10px;
-                                    width: 100px;
+                                    width: 150px;
                                     text-align: center;
                                 }
                             }
@@ -548,19 +573,33 @@ h1,h2,h3,h4,h5,h6,p,button{
     
                         >.goalWeight{
                             position: relative;
-                            // >p{
-                            //     margin-bottom: 20px;
-                            // }
+             
                             >label{
                                 background-color: $gray3;
                                 border-radius: 5px;
                                 height: 80%;
                                 margin: 5px;
                                 position: relative;
-                                padding: 35px;
+                                // padding: 35px;
                                 display: flex;
                                 // align-items: center;
                                 justify-content: center;
+                                transition: all .5s;
+
+                                >input{
+                                    width: 80%;
+                                    font-size: 20px;
+                                    text-align: center;
+                                    color: $white;
+                                    border: none;
+                                }
+
+                                >input:focus{
+                                    ~img{
+                                        opacity: 0;
+                                    }
+                                }
+
                                 >img{
                                     top: 50%;
                                     left: 50%;
@@ -569,13 +608,12 @@ h1,h2,h3,h4,h5,h6,p,button{
                                     height: 20px;
                                     width: 20px;
                                     opacity: .5;
+                                    transition: all .5s;
                                 }
-                                >input{
-                                    width: 80%;
-                                    font-size: 16px;
-                                    text-align: center;
-                                }
-                                
+                            }
+
+                            >label:focus-within{
+                                background-color: $primary;
                             }
                         }
 
@@ -741,7 +779,7 @@ h1,h2,h3,h4,h5,h6,p,button{
   
     }
 
-    >:last-child{
+    >.secondContainer{
         transition: all .5s;
         >.label{
             // display: inline-flex;
@@ -836,9 +874,9 @@ h1,h2,h3,h4,h5,h6,p,button{
 }
 
 section.edit,section.orderDetail,section.levelInfo{
-    
+    top: 0;
     z-index: 11;
-    position: fixed;
+    position: fixed; 
     width: 100vw;
     min-height: 100vh;
     // display: flex;
@@ -896,6 +934,7 @@ section.edit,section.orderDetail,section.levelInfo{
                 >.protrait{
                     width: 100%;
                     >div{
+                        overflow: hidden;
                         margin: auto;
                         background-color: $gray4;
                         border-radius: 100%;
@@ -907,6 +946,7 @@ section.edit,section.orderDetail,section.levelInfo{
                         align-items: center;
                         box-shadow:  3px 3px 5px 2px rgba(0, 0, 0, 0.3);
                         cursor: pointer;
+                        
                     }
                 }
 
@@ -993,11 +1033,10 @@ section.edit,section.orderDetail,section.levelInfo{
                     }
                 }
             }
-        }
-
-        >.accountBody{
-            display: none;
-        }
+        } 
+        // >.accountBody{
+        //     display: none;
+        // }
     }
     
 }
@@ -1113,7 +1152,7 @@ section.levelInfo{
     }
 
     .myAccount{
-        >:first-child{
+        >.personConainer{
             height: unset;
             position: relative;
             >div{
@@ -1127,7 +1166,7 @@ section.levelInfo{
         }
   
 
-        >:last-child{
+        >.secondContainer{
         
             position: fixed;
             width: 90vw;
@@ -1150,7 +1189,7 @@ section.levelInfo{
         }
 
 
-        >:nth-child(2){
+        >.mainConainter{
             margin-top: 50px;
             >div{
                 padding: 5px;
@@ -1175,11 +1214,7 @@ section.levelInfo{
         }
     }
 
-    // section.edit > .editBody, 
-    // section.orderDetail > .editBody{
-    //     width: 100%;
-    // }
-
+  
     section.edit,section.orderDetail{
         .editBody{
             width: 100%;
@@ -1196,6 +1231,10 @@ section.levelInfo{
     }
   
 }
+
+section.edit{
+    display: flex;
+} 
 
 .reportBody{
     .reportContent{
