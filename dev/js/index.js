@@ -71,16 +71,21 @@ const stepsView = document.querySelector('section.steps')
  scrollDown.addEventListener('click', scrollSmooth)
 
 
-//第二頻 的button 切換-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
+//第二頻 動畫-----------------------------------
 const buttons = [...document.querySelectorAll('.stepSlider .change>div>button')]
 // [0]是goal [1]rocord [2]report
 const stepContents = [...document.querySelector('.stepSlider .content').children]
 //[0]是h4 [1]是內文
 const decoNum = document.querySelector('.stepSlider>:first-child >span')
 
-
-
-
+const tilts = document.querySelectorAll('.tilt')
+// [0]是goal [1]rocord [2]report
 
 const stepContent = [
     [
@@ -103,17 +108,22 @@ const changeContent = function(e){
     const no = parseInt(this.innerText.slice(0, 1))
  
     if(no === 1){
+        buttons[0].classList.add('active')
+        buttons[1].classList.remove('active')
+        buttons[2].classList.remove('active')
 
         stepsTl.play()
         setTimeout(() => {
-            stepsTl.reverse();
-
             decoNum.innerText = 1
             stepContents[0].innerHTML = stepContent[0][0]
             stepContents[1].innerHTML = stepContent[0][1]
-        }, 1000)
 
-
+            tilts[0].style.display = "flex"
+            tilts[1].style.display = "none"
+            tilts[2].style.display = 'none'
+            
+            stepsTl.reverse();
+        }, 800)
 
     } else if( no === 2){
 
@@ -123,12 +133,16 @@ const changeContent = function(e){
 
         stepsTl.play()
         setTimeout(() => {
-            stepsTl.reverse()
-
             decoNum.innerText = 2
             stepContents[0].innerHTML = stepContent[1][0]
             stepContents[1].innerHTML = stepContent[1][1]
-        }, 1000)
+
+            tilts[0].style.display = 'none'
+            tilts[1].style.display = 'flex'
+            tilts[2].style.display = 'none'
+
+            stepsTl.reverse()
+        }, 800)
 
 
 
@@ -139,14 +153,16 @@ const changeContent = function(e){
         
         stepsTl.play()
         setTimeout(() => {
-            stepsTl.reverse()
-
-  
             decoNum.innerText = 3
             stepContents[0].innerHTML = stepContent[2][0]
             stepContents[1].innerHTML = stepContent[2][1]
 
-        }, 1000)
+            tilts[0].style.display = 'none'
+            tilts[1].style.display = 'none'
+            tilts[2].style.display = 'flex'
+
+            stepsTl.reverse()
+        }, 800)
 
     }
 }
@@ -154,6 +170,10 @@ const changeContent = function(e){
 //step 的切換動畫
 const stepsTl = new TimelineMax()
 stepsTl
+    .to('div.tiltContainer', 0.2, {
+        x: '100px',
+        opacity: 0,
+    })
     .add([
         TweenMax.to(stepContents[0], 0.2, {
             x: '100px',
@@ -162,11 +182,10 @@ stepsTl
         TweenMax.to(decoNum, 0.2, {
             opacity: 0,
             scale: 1.3,
-
         }),
     ])
     .to(stepContents[1], 0.2, {
-        x: '100px',
+        x: '10px',
         opacity: 0,
         //執行過程會做哪個動作 value function
         // onComplete: 這裡放function,
@@ -175,10 +194,19 @@ stepsTl
 stepsTl.stop()
 
 
-
-
 buttons.forEach(button=>{
     button.addEventListener('click', changeContent)
 })
 
+
+// 傾斜套件 tilt.js 動畫 css 要transform-style: preserve-3d(寫在最外層父母) 跟 transform: translateZ(--px)(寫在小孩)
+VanillaTilt.init(tilts, {
+    //options 寫在這裡
+    // reverse: true,
+    // maxTilt: 20,
+    speed: 400,
+    reset: false,
+    // perspective: 1000,
+    // scale: 1.1,
+})
 
