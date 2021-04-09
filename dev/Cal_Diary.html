@@ -122,10 +122,12 @@
                         <p class="CurGoal_title">
                             <img src="img/chart_icon.svg">
                             REPORT
-                            <select>
-                                <option>This Month</option>
-                                <option>Last Month</option>
-                            </select>
+                            <div class="custom-select">
+                                <select>
+                                    <option>This Month</option>
+                                    <option>Last Month</option>
+                                </select>
+                            </div>
                         </p>            
                   
                     <p class="report_title">
@@ -493,7 +495,8 @@
                             </div>
                             <div class="input_pages_date">
                                 <p class="input_pages_data_title">Select The Day For Your Diary</p>
-                                <iframe src="calendar.html"></iframe>
+                                <!-- <iframe src="calendar.html"></iframe> -->
+                                <div class="calendarI">@@include('./calendar.html')</div>
                                 <div class="fd_pop">@@include('./popout.html')</div>  
                             </div>
                         </div>
@@ -535,21 +538,22 @@
                     </div>
                 </div>
                 <div class="advice_item">
+                    <P>We advice this produt for you!</P>
                     <div class="owl-carousel owl-theme">
                         <div class="advice_produt">
-                            <P>We advice this produt for you!</P>
+                            <!-- <P>We advice this produt for you!</P> -->
                             <img class="advice_produt_img" src="./img/prod1.png">
                             <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
                             <button class="w-btn buyit">BUY NOW</button>
                         </div>
                         <div class="advice_produt">
-                            <P>We advice this produt for you!</P>
+                            <!-- <P>We advice this produt for you!</P> -->
                             <img class="advice_produt_img" src="./img/prod4.png">
                             <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
                             <button class="w-btn buyit">BUY NOW</button>
                         </div>
                         <div class="advice_produt">
-                            <P>We advice this produt for you!</P>
+                            <!-- <P>We advice this produt for you!</P> -->
                             <img class="advice_produt_img2" src="./img/prod3.png">
                             <div>ALMONDS BAR (CONSUME 0.8 cal) NT$250</div>
                             <button class="w-btn buyit">BUY NOW</button>
@@ -557,20 +561,20 @@
                     </div>
                 </div>
             </div>
-        </div>
-      
+        </div> 
     </div>
-    </div>
+
     <div>
         @@include('./layout/footer.html')
     </div>
+
     <script>
         $(".owl-carousel").owlCarousel({
           loop: true, // 循環播放// 外距 10px
           nav: false, // 顯示點點
           dots:false,
           autoplay:true,
-          autoplayTimeout:3000,
+          autoplayTimeout:8000,
           responsive: {
             //  0: {
             //     items: 1 // 螢幕大小為 0~600 顯示 1 個項目
@@ -592,7 +596,8 @@
               items: 1 // 螢幕大小為 1000 以上 顯示 5 個項目
             }
           }
-          });
+        });
       </script>
+  
 </body>
 </html>

@@ -5,9 +5,11 @@ $(document).ready(function(){
       let divs2=document.getElementsByClassName("chart_selectors");
       for(let i=0;i<divs.length;i++){
           divs[i].style.display="none";
-          divs2[i].style.backgroundColor="#FFFFFF";
+          divs2[i].style.borderColor="";
+          divs2[i].style.borderWidth="1px"
       }
-      divs2[$(this).index()].style.backgroundColor="#EAA565";
+      divs2[$(this).index()].style.borderColor="#EAA565";
+      divs2[$(this).index()].style.borderWidth="2px"
       divs[$(this).index()].style.display="block";
     }
 
@@ -31,7 +33,9 @@ $(document).ready(function(){
       let cal_type=document.getElementsByClassName("input_selector");
       let divs = document.getElementsByClassName("input_pages");
       divs[1].style.display="none";
-      charts[0].style.backgroundColor="#EAA565";
+      charts[0].style.borderColor="#EAA565";
+      charts[0].style.borderWidth="2px";
+      // charts[0].style.backgroundColor="#EAA565";
       for(let i=0;i<charts.length;i++){
         charts[i].onclick=ChangeChart;
       }

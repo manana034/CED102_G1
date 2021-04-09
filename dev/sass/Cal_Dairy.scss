@@ -4,14 +4,18 @@
     box-sizing: unset;
 }
 .containor.Cal_Dairy{
-    margin-top: 10px;
+    margin-top: 0px;
     display: grid;
     grid-template-columns: 18% 82%;
 //=============== Aside =============
+header .row.container .logo{
+    text-align: left!important;
+}
 .l-aside.Cal_Dairy{
     display: block;
     width: 88%;
-    height: 840px;
+    height: 850px;
+    background-color: #889674;
     .cal_aside {
         // height: 40px;
         .aside_title{
@@ -55,8 +59,8 @@
         width: 100px;
         text-align: center;
         font-size: 14px;
-        background-color: #9F1600;
-        color: #ffffff;
+        background-color: #ffffffea;
+        color: #707070;
         margin:0px auto;
     }
 }
@@ -67,7 +71,7 @@
 .center.Cal_Dairy{
     .top_area{
         display: grid;
-        // margin-top: 50px;
+        margin-top: 10px;
         grid-template-columns: 49% 49%;
         .card.CurGoal{
             padding: 20px;
@@ -84,6 +88,7 @@
                 border-radius: 20px 20px 0px 0px;
             }
             .CurGoal_title{
+                text-align: left;
                 img{
                     height: 20px;
                     width: 20px;
@@ -219,6 +224,7 @@
                 border-radius: 20px 20px 0px 0px;
             }
             .CurGoal_title{
+                text-align: left;
                 select{
                     border:none;
                     margin-left:64%;
@@ -275,10 +281,9 @@
                 }
                 .chart_weight:hover,.chart_cal:hover,.chart_excercie:hover{
                     cursor: pointer;
-                    border: 1px solid #666666;
-                    font-weight: bolder;
+                    border: 2px solid #EAA565;
                     transform:scale(1.02,1.02);
-                    background-color: #fccb9e!important;
+                    background-color: #f8d6b7!important;
                 }
             }
             .report_chart{
@@ -358,9 +363,6 @@
                     display: grid;
                     grid-template-columns: 70% 30%;
                 }
-                // .input_pages:nth-child(2){
-                //     display: none;
-                //  }
                 .cal_input_table_title{
                     position: absolute;
                     height: 50px;
@@ -407,13 +409,14 @@
                    .input_pages_data_title{
                        margin: -15px 0px 0px calc(50% - 125px);
                        font-size: 16px;
+                       text-align: left;
                        color: #ffffff;
                    }
-                    iframe{
+                    .calendarI{
                         margin: 30px 0px 10px calc(50% - 115px);
                         transform: scale(1.1);
                         width:250px;
-                        height: 280px;
+                        height: 250px;
                     }
                     .fd_pop{
                         position: absolute;
@@ -426,11 +429,15 @@
         }
         .advice_item{
             width: 100%;
-            // height: 50px;
-            // background-color: #666666;
+            p{
+                width: 90%;
+                font-size: 20px;
+                text-align: center;
+            }
             .owl-carousel.owl-theme{
                 width: 90%;
                 .advice_produt{
+                    text-align: center;
                     margin-top: 10px;
                     p{ 
                        margin-top: 10px;
@@ -451,9 +458,9 @@
                     .advice_produt_img2{
                         background-color: rgb(191, 70, 89);
                     }
-                    button{
-                        margin-left: 35%;
-                    }
+                    // button{
+                    //     margin-left: 35%;
+                    // }
                     div{
                         width: 60%;
                         margin-left: 20%;
