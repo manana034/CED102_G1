@@ -68,6 +68,8 @@
             animation-name: UpDown;
             animation-duration: 1s;
             animation-iteration-count: infinite;
+
+            cursor: pointer;
             img {
                 width: 30px;
             }
@@ -109,42 +111,6 @@
                 width: 50%;
                 height: 100%;
                 position: relative;
-                > .tilt {
-                    display: flex;
-                    flex-wrap: wrap;
-                    width: 70%;
-                    margin: auto;
-                    z-index: 1;
-                    position: relative;
-                    padding: 50px;
-
-                    h4 {
-                        text-transform: uppercase;
-                        width: 100%;
-                        text-align: center;
-                        margin-bottom: 50px;
-                    }
-                    p {
-                        text-transform: uppercase;
-                        width: 100%;
-                        margin-bottom: 20px;
-                    }
-                    .fInput {
-                        padding: 10px;
-                        background-color: $gray3;
-                        width: 100%;
-                        border-radius: 10px;
-
-                        margin-bottom: 50px;
-                        height: 50px;
-                    }
-                    > :last-child {
-                        text-transform: uppercase;
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                    }
-                }
 
                 > span {
                     font-family: NotoSans-B;
@@ -155,6 +121,128 @@
                     position: absolute;
                     top: 50%;
                     transform: scale(1.2) translate(0, -50%);
+                }
+
+                >.tiltContainer{
+                    > .tilt {
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: 70%;
+                        margin: auto;
+                        z-index: 1;
+                        position: relative;
+                        padding: 50px;
+    
+                        // tilt 寫在最外層
+                        transform-style: preserve-3d;
+    
+                        h4 {
+                            text-transform: uppercase;
+                            width: 100%;
+                            text-align: center;
+                            margin-bottom: 50px;
+    
+                            //要搭配tilt
+                            transform: translateZ(100px);
+                        }
+                        p {
+                            text-transform: uppercase;
+                            width: 100%;
+                            margin-bottom: 20px;
+    
+                            transform: translateZ(50px);
+    
+                        }
+                        .fInput {
+                            padding: 10px;
+                            background-color: $gray3;
+                            width: 100%;
+                            border-radius: 10px;
+    
+                            margin-bottom: 50px;
+                            height: 50px;
+    
+                            transform: translateZ(50px);
+                        }
+                        > :last-child {
+                            text-transform: uppercase;
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+    
+                            transform: translateZ(100px);
+                        }
+                    }
+
+                    >.record{
+                        // display: flex;
+                        display: none;
+                        flex-wrap: wrap;
+                        >.fInput{
+                            height: unset;
+                            display: flex;
+                            justify-content: space-between;
+                            >img{
+                                height: 20px;
+                                width: 20px;
+                                
+                            }
+                        }
+                        >div.cal_card {
+                   
+                            display: flex;
+                            flex-wrap: wrap;
+                            overflow: hidden;
+
+                            background-color: $white;
+                            border-radius: 10px;
+                            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+          
+                            div.cal_title {
+                                font-family: KozGoPr6N-R;
+                                font-size: 16px;
+                                letter-spacing: 2px;
+                                width: 100%;
+                                color: $white;
+                                background-color: $red-l;
+                                display: flex;
+                                padding: 5px 10px;
+                                justify-content: space-between;
+                                align-items: center;
+                                img {
+                                    width: 35px;
+                                    height: 35px;
+                                }
+                            }
+                            h5 {
+                                width: 100%;
+                                // background-color: cornflowerblue;
+                                text-align: center;
+                                font-family: NotoSans-R;
+                                color: $black;
+                                padding: 15px;
+        
+                            }
+                            div.cal {
+                                text-align: center;
+                                margin-bottom: 15px;
+                                font-family: NotoSans-L;
+                                font-size: 14px;
+                                color: $black;
+                            }
+        
+                        }
+                    }
+
+                    >.report{
+                        display: none;
+                        >:nth-child(2){
+                            width: 100%;
+                        }
+                        >.l-btn{
+                            transform: translateZ(50px);
+                        }
+                    }
                 }
             }
 
@@ -349,20 +437,24 @@
                     height: unset;
                     span{
                         display: none;
-                    }
-                    >.tilt{
+                    } 
+                    >.tiltContainer{
                         width: 100%;
-                        padding: 10px;
-                        h4{
-                            margin-bottom: 25px;
-                        }
-                        p{
-                            margin-bottom: 10px;
-                        }
-                        .fInput{
-                            margin-bottom: 30px;
+                        >.tilt{
+                            width: 100%;
+                            padding: 10px;
+                            h4{
+                                margin-bottom: 25px;
+                            }
+                            p{
+                                margin-bottom: 10px;
+                            }
+                            .fInput{
+                                margin-bottom: 30px;
+                            }
                         }
                     }
+                
                 }
                 >:last-child{
                     width: unset;

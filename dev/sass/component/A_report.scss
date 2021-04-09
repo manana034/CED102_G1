@@ -2,10 +2,11 @@
     >:last-child{
         >.r-aside{
             >button{
-                text-transform: uppercase;
+                text-transform: capitalize; 
                 display: flex;
                 align-items: center;
                 margin-bottom: 10px;
+                
                 >img{
 
                     height: 15px;
@@ -24,6 +25,7 @@
                     padding: 10px;
                     margin: 0;
                     >:first-child{
+                        width: 40%;
                         margin: 5px 5px 10px 5px;
                         border-bottom: 1px solid $gray5;
 

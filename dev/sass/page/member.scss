@@ -15,6 +15,17 @@
 @import '../component/A_report.scss';
 
 
+
+
+h1,h2,h3,h4,h5,h6,p,button{
+    letter-spacing: 0.8px;
+    text-transform: capitalize;
+}
+.card{
+    margin: 0;
+}
+
+
 .statusOrder .table tbody tr{
     cursor: pointer;
 }
@@ -34,7 +45,7 @@
     }
     td{
         padding: 10px 30px;
-        >button{
+        >button,a{
             padding: 3px 10px;
             margin: 0;
         }
@@ -48,6 +59,11 @@
 
 }
 
+.favPoster{
+    th{
+        width: calc(100% / 4);
+    }
+}
 
 
 @include rwd(1000px){
@@ -201,13 +217,13 @@
 
 
 .myAccount{
-    // display: flex;
-    display: none;
+    display: flex;
+    // display: none;
 
     flex-wrap: wrap;
     align-items: flex-start;
 
-    >:first-child{
+    >.personConainer{
         // display: flex;
         // justify-content: center;
         // flex-wrap: wrap;
@@ -298,7 +314,7 @@
                                     opacity: .5;
                                     height: 20px;
                                     width: 20px;
-                                    margin-left: 10px;
+                                    margin-right: 10px;
                                 }
                             }
 
@@ -311,9 +327,13 @@
             >.level{
                 margin: 50px 0;
 
-                >p{
-              
-                    text-transform: uppercase;
+                >:first-child{
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    img{
+                        cursor: pointer;
+                    }
                 }
                 >.levelBar{
                     width: 100%;
@@ -345,7 +365,7 @@
  
     }
 
-    >:nth-child(2){
+    >.mainConainter{
         >div{
             padding: 20px;
             >.goal{
@@ -360,7 +380,7 @@
                         display: flex;
                         align-items: center;
                         >p{
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             margin: 0px 5px;
                         }
                         >.dateLine{
@@ -417,8 +437,9 @@
                         flex-wrap: wrap;
                         justify-content: space-between;
                         div{
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             font-size: 14px;
+                            // font-weight: 900;
                         }
                         >.durationTime{
                             >div{
@@ -431,10 +452,13 @@
                                         background-color: $gray3;
                                         border-radius: 5px;
                                     }
-                                    >input:checked~p{
-                                        background-color: $primary;
-
+                                    >input:checked{
+                                        ~p{
+                                            background-color: $primary;
+                                            color: $white;
+                                        }
                                     }
+                                    
                                 }
                                 >.enterDurTime{
                                     margin: 10px;
@@ -447,19 +471,36 @@
                                     border-radius: 5px;
                                     input{
                                         width: 50px;
+                                        text-align: center;
+                                        color: $white;
+                                        border: none;
                                     }
+                                    
                                     p{
                                         padding: 0;
                                         margin: 0;
                                         background-color: transparent;
                                         position: absolute;
                                         width: 20px;
+                                        transition: all .3s;
+                                        opacity: 1;
+                                        pointer-events: none;
                                     }
+                                    input:focus{
+                                        ~p{
+                                            opacity: 0;
+                                        }
+                                    }
+
                                     img{
                                         width: 20px;
                                         height: 20px;
                                         opacity: .5;
+                                        pointer-events: none;
                                     }
+                                }
+                                >.enterDurTime:focus-within{
+                                    background-color: $primary;
                                 }
                             }
                             
@@ -475,7 +516,7 @@
                                 display: flex;
                                 >input{
                                     margin: 10px;
-                                    width: 100px;
+                                    width: 150px;
                                     text-align: center;
                                 }
                             }
@@ -491,7 +532,7 @@
                         justify-content: space-between;
                         >.block{
                             >p{
-                                text-transform: uppercase;
+                                text-transform: capitalize;
                             }
                         }
                         >.currentState{
@@ -532,19 +573,33 @@
     
                         >.goalWeight{
                             position: relative;
-                            // >p{
-                            //     margin-bottom: 20px;
-                            // }
+             
                             >label{
                                 background-color: $gray3;
                                 border-radius: 5px;
                                 height: 80%;
                                 margin: 5px;
                                 position: relative;
-                                padding: 35px;
+                                // padding: 35px;
                                 display: flex;
                                 // align-items: center;
                                 justify-content: center;
+                                transition: all .5s;
+
+                                >input{
+                                    width: 80%;
+                                    font-size: 20px;
+                                    text-align: center;
+                                    color: $white;
+                                    border: none;
+                                }
+
+                                >input:focus{
+                                    ~img{
+                                        opacity: 0;
+                                    }
+                                }
+
                                 >img{
                                     top: 50%;
                                     left: 50%;
@@ -553,13 +608,12 @@
                                     height: 20px;
                                     width: 20px;
                                     opacity: .5;
+                                    transition: all .5s;
                                 }
-                                >input{
-                                    width: 80%;
-                                    font-size: 16px;
-                                    text-align: center;
-                                }
-                                
+                            }
+
+                            >label:focus-within{
+                                background-color: $primary;
                             }
                         }
 
@@ -609,7 +663,7 @@
 
                                         >p,span{
                                             width: 100%;
-                                            text-transform: uppercase;
+                                            text-transform: capitalize;
                                             margin: 2px;
                                         }
                                         
@@ -644,7 +698,7 @@
                                         opacity: .5;
                                         height: 20px;
                                         width: 20px;
-                                        margin-left: 10px;
+                                        margin-right: 10px;
                                     }
                                 }
                             }
@@ -657,6 +711,7 @@
             >.statusOrder,.favPoster{
                 margin-top: 30px;
                 >:first-child{
+                    flex-wrap: wrap;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -665,6 +720,7 @@
                         margin-bottom: 10px;
                         input{
                             border: none;
+                            letter-spacing: 0.8px;
                         }
                         >button{
                             img{
@@ -675,7 +731,7 @@
                     >button{
                         display: flex;
                         align-items: center;
-                        text-transform: uppercase;
+                        // text-transform: uppercase;
                         margin-bottom: 10px;
                         img{
                             height: 15px;
@@ -723,7 +779,7 @@
   
     }
 
-    >:last-child{
+    >.secondContainer{
         transition: all .5s;
         >.label{
             // display: inline-flex;
@@ -761,62 +817,10 @@
             height: 93vh;
             margin-top: 0;
             align-self: flex-start; 
-            padding: 30px 10px;
+            padding: 30px 15px;
             overflow-y: auto;
             box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0);
             transition: box-shadow .5s;
-
-            // >button{
-            //     text-transform: uppercase;
-            //     display: flex;
-            //     align-items: center;
-            //     margin-bottom: 10px;
-            //     >img{
-
-            //         height: 15px;
-            //         width: 15px;
-            //         margin-left: 10px;
-            //         object-fit: contain;
-            //     }
-            // }
-
-            // >.reportBody{
-            //     //trainsition 會干擾js 運行的時間
-            //     transition: all .5s;
-            //     overflow: hidden;
-              
-            //     >.card{
-            //         padding: 10px;
-            //         margin: 0;
-            //         >:first-child{
-            //             margin: 5px 5px 10px 5px;
-            //             border-bottom: 1px solid $gray5;
-
-
-            //             >select{
-            //                 font-size: 14px;
-            //                 text-transform: uppercase;
-            //                 outline: none;
-            //                 margin-bottom: 10px;
-            //                 border: none;
-            //                 >option{
-            //                     font-size: 14px;
-            //                     text-transform: uppercase;
-            //                 }
-            //             }
-            //         }
-            //         >:nth-child(2){
-            //             display: flex;
-            //             flex-wrap: wrap;
-            //             button{
-            //                 padding: 5px 10px;
-            //                 margin: 5px;
-            //                 font-size: 14px;
-            //                 text-transform: uppercase;
-            //             }
-            //         }
-            //     }
-            // }
 
             >.points{
                 margin-top: 50px;
@@ -826,7 +830,7 @@
                 >:first-child{
                     display: flex;
                     align-items: center;
-                    text-transform: uppercase;
+                    text-transform: capitalize;
                     padding: 10px;
                     border-bottom: 1px solid $black;
 
@@ -849,7 +853,7 @@
                         margin: 30px 0px;
                         h6,p{
                             width: 100%;
-                            text-transform: uppercase;
+                            text-transform: capitalize;
                             text-align: center;
                         }
                         p{
@@ -869,10 +873,10 @@
  
 }
 
-section.edit,section.orderDetail{
-    
+section.edit,section.orderDetail,section.levelInfo{
+    top: 0;
     z-index: 11;
-    position: fixed;
+    position: fixed; 
     width: 100vw;
     min-height: 100vh;
     // display: flex;
@@ -930,6 +934,7 @@ section.edit,section.orderDetail{
                 >.protrait{
                     width: 100%;
                     >div{
+                        overflow: hidden;
                         margin: auto;
                         background-color: $gray4;
                         border-radius: 100%;
@@ -941,6 +946,7 @@ section.edit,section.orderDetail{
                         align-items: center;
                         box-shadow:  3px 3px 5px 2px rgba(0, 0, 0, 0.3);
                         cursor: pointer;
+                        
                     }
                 }
 
@@ -1027,11 +1033,10 @@ section.edit,section.orderDetail{
                     }
                 }
             }
-        }
-
-        >.accountBody{
-            display: none;
-        }
+        } 
+        // >.accountBody{
+        //     display: none;
+        // }
     }
     
 }
@@ -1082,8 +1087,44 @@ section.orderDetail{
     }
 }
 
+section.levelInfo{
+    >.infoBody{
+        width: 50%;
+        display: flex;
+        padding: 50px;
+        max-height: 60vh;
+        overflow-y: auto;
+        border-radius: 20px;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+        background-color: $white;
+        >.content{
+            >div{
+                display: flex;
+                justify-content: flex-start;
+                margin: 30px 0;
+                >:first-child{
+                    width: 100px;
+                }
+                >:last-child{
+                    width: calc(100% - 100px);
+                }
+            }
+        }
+
+        >button{
+            position: absolute;
+            right: 20px;
+            top:20px;
+        }
+    }
+}
+
 
 @include rwd(992px){
+
+
     .logIn_signUp {
         > div.container{
             width: 90%;
@@ -1096,6 +1137,7 @@ section.orderDetail{
                 justify-content: center;
                 >.signup, .login{
                     width: unset;
+                    padding: 5px; 
                 }
                 >.signup{
                     display: none;
@@ -1110,16 +1152,21 @@ section.orderDetail{
     }
 
     .myAccount{
-        >:first-child{
+        >.personConainer{
             height: unset;
             position: relative;
+            >div{
+                >.personInfo{
+                    padding: 10px;
+                }
+            }
         }
         #moveDate{
             display: none;
         }
   
 
-        >:last-child{
+        >.secondContainer{
         
             position: fixed;
             width: 90vw;
@@ -1142,16 +1189,32 @@ section.orderDetail{
         }
 
 
-        >:nth-child(2){
+        >.mainConainter{
             margin-top: 50px;
+            >div{
+                padding: 5px;
+                .goal{
+                    >.goalBody{
+                        padding: 25px 5px;
+                        >.goal-row-3{
+                            >div{
+                                margin: 10px 0;
+                            }
+                        }
+
+                        >.goal-row-4{
+                            justify-content: flex-start;
+                            >div{
+                                margin: 10px 0;
+                            }
+                        }
+                    }
+                } 
+            }
         }
     }
 
-    // section.edit > .editBody, 
-    // section.orderDetail > .editBody{
-    //     width: 100%;
-    // }
-
+  
     section.edit,section.orderDetail{
         .editBody{
             width: 100%;
@@ -1168,6 +1231,10 @@ section.orderDetail{
     }
   
 }
+
+section.edit{
+    display: flex;
+} 
 
 .reportBody{
     .reportContent{

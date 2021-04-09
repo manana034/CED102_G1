@@ -3,12 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>Document</title>
         <link rel="icon" href="../img/logo.ico" type="image/x-icon">
-
-        <!-- <link rel="stylesheet" href="./css/common/all.css"> -->
         <link rel="stylesheet" href="./css/page/index.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+      
         <script src="./js/header.js" defer></script>
         <script src="./js/index.js" defer></script>
         <script src="./js/cart.js" defer></script>
@@ -30,69 +32,15 @@
                 <h1>LESS FATNESS</h1>
             </div>
             <div>
-                <a class="scrollDown" href="">
-                    <img src="./icon/scrollDown.png" />
+                <a class="scrollDown">
+                    <img src="./icon/scrollDown.png" /> 
                 </a>
-                <!-- <div id="chatRobot">
-                    <img src="./img/logo.png" />
-                    <div class="card chatRoomBody bodynone">
-                        <div>
-                            <p>FT. CHAT ROOM</p>
-                            <button class="nc-btn">
-                                <img src="./icon/close.svg">
-                            </button>
-                        </div>
-
-                        <div>
-                            <div class="admin">
-                                <img src="./img/logo.png" />
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-
-                            <div class="visitor">
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-                            <div class="admin">
-                                <img src="./img/logo.png" />
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-
-                            <div class="visitor">
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-                            <div class="admin">
-                                <img src="./img/logo.png" />
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-
-                            <div class="visitor">
-                                <div class="message">
-                                    <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <form>
-                            <textarea name="chatInput" id="chatInput" placeholder="輸入內容"></textarea>
-                            <button class="p-btn">submit</button>
-                        </form>
-                    </div>
-                </div> -->
+             
                 @@include('./layout/chatRobot.html')
             </div>
         </main>
 
-        <section class="steps">
+        <section class="steps" >
             <div class="container">
                 <div class="title">
                     <h3>Goal record report</h3>
@@ -100,18 +48,51 @@
                 </div>
 
                 <div class="stepSlider">
+
                     <div>
                         <span> 1 </span>
-                        <div class="tilt goal card">
-                            <h4>goal</h4>
-                            <p>ENTER YOUR TARGET WEIGHT</p>
-                            <div class="fInput"></div>
-                            <p>SET up the deadline</p>
-                            <div class="fInput"></div>
-                            <div>
-                                <div class="l-btn">create goal</div>
+                        <div class="tiltContainer">
+                            <div class="tilt goal card">
+                                <h4>goal</h4>
+                                <p>ENTER YOUR TARGET WEIGHT</p>
+                                <div class="fInput"></div>
+                                <p>SET up the deadline</p>
+                                <div class="fInput"></div>
+                                <div>
+                                    <div class="l-btn">create goal</div>
+                                </div>
+                            </div>
+    
+                            <div class="tilt record card">
+                                <h4>record</h4>
+                                <div class="fInput">
+                                    SEARCH <img src="./icon/search_magnifier.png">
+                                </div>
+                                <div class="cal_card">
+                                    <div class="cal_title">
+                                        <div>麥當勞勁辣雞腿堡</div>
+                                        <img src="../icon/add_food.png">
+                                    </div>
+                                    <h5>229</h5>
+                                    <div class="cal">CAL / PER SERVING</div>
+                                </div>
+                            </div>
+    
+                            <div class="tilt report card">
+                                <h4>report</h4>
+                                <div>This Month <img src="./icon/down.svg"></div>
+                                <span class="l-btn">weight</span>
+                                <span class="l-btn">cal</span>
+                                <span class="l-btn">exerice</span>
+
+                                <div>
+                                    <img src="./img/report.svg">
+                                </div>
+                        
                             </div>
                         </div>
+        
+
                     </div>
 
                     <div>
@@ -136,22 +117,9 @@
                                 讓我們來幫助你計算每天要攝取多少卡路里才能達成目標<br>
                                 開始往你的目標邁進！
                             </p>
-                            <!-- <h4>daily record</h4>
-                            <p>
-                                「今天走了20分鐘去買早餐，吃了一份肉鬆蛋餅、一杯豆漿」<br>
-                                依照建議的每日卡路里攝取量來進行飲食管理<br>
-                                記錄每天的飲食和運動，讓我們來幫您達成目標！
-                                
-                            </p>
-                            <h4>analysis report</h4>
-                            <p>
-                                「原來我有一半的卡路里是從早餐攝取，我要去搜尋卡路里低的替代食物」<br>
-                                從每天紀錄的飲食、運動、體重，觀察一個月內的變化<br>
-                                進而了解自己的飲食習慣，並針對身體需求做調整。
-                            </p> -->
                         </div>
                         <div>
-                            <a class="g-btn" href=""> join us &rarr; </a>
+                            <a class="g-btn" href="./member.html"> join us &rarr; </a>
                         </div>
                     </div>
                 </div>

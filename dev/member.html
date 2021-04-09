@@ -3,160 +3,29 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="./css/page/member.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" defer></script>  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.1.1/addons/cleave-phone.tw.js" defer></script> <!-- 要載入phone 的cdn-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+        <script src="./js/memberSecondVue.js" defer></script>
+        <script src="./js/memberVue.js" defer></script>
+        
+        <script src="./js/member.js" defer></script>
         <script src="./js/header.js" defer></script>
         <script src="./js/cart.js" defer></script>
-        <script src="./js/member.js" defer></script>
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
         <script src="./js/A_report.js" defer></script>
 
-      
+       
 
     </head>
     <body>
-        <section class="edit">
-            <div class="bg"></div>
-            <div class="editBody">
-                <div class="labelrow">
-                    <label class="profile">
-                        <input type="radio" name="edit" checked hidden>
-                        <p>profile</p>
-                    </label>
-                    <label class="account">
-                        <input type="radio" name="edit" hidden>
-                        <p>account</p>
-                    </label>
-                </div>
-                <div class="profileBody">
-                    <div class="row-1">
-                        <h4>edit profile</h4>
-                    </div>
-                    <form class="row-2">
-                        <label class="protrait">
-                            <input type="file" name="protraitImg" hidden>
-                            <div>
-                                <img src="./icon/upfile.svg">
-                            </div>
-                        </label>
-
-                        <div class="name">
-                            <p>Name</p>
-                            <p>Dorothy Weber</p>
-                        </div>
-
-                        <label class="birthday">
-                            <p>birthday *</p>
-                            <input type="text" name="yy" placeholder="YY">
-                            <input type="text" name="mm" placeholder="MM">
-                            <input type="text" name="dd" placeholder="DD">
-                        </label>
-
-
-                        <div class="gender">
-                            <p>gender *</p>
-                            <label>
-                                <p>male</p>
-                                <input type="radio" name="gender" hidden value="male">
-                                <div></div>
-                            </label>
-                            <label>
-                                <p>female</p>
-                                <input type="radio" name="gender" hidden value="female">
-                                <div></div>
-                            </label>
-                        </div>
-
-                        <label class="weight">
-                            <p>weight *</p>
-                            <input type="text" name="weight">
-                        </label>
-
-                        <label class="height">
-                            <p>height *</p>
-                            <input type="text" name="height">
-                        </label>
-
-                        <label class="email">
-                            <p>email</p>
-                            <input type="text" name="email" value="jfds32y18438@gmail.com">
-                        </label>
-
-                        <label class="phone">
-                            <p>phone</p>
-                            <input type="text" name="phone">
-                        </label>
-
-                        <label class="intro">
-                            <p>introduction</p>
-                            <textarea name="intro"></textarea>
-                        </label>
-
-                        <div>
-                            <button class="l-btn leaveEdit" type="button">
-                               cancel
-                            </button>
-                            <button class="p-btn">
-                                save
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="accountBody">
-                    <div class="row-1">
-                        <h4>edit account</h4>
-                    </div>
-                    <form class="row-2">
-                 
-                        <div class="userid">
-                            <p>userid</p>
-                            <p>Archie343829030</p>
-                        </div>
-
-                        <label class="email">
-                            <p>email</p>
-                            <input type="text" name="email" value="jfds32y18438@gmail.com">
-                        </label>
-
-
-                        <label class="oldPwd">
-                            <p>old password *</p>
-                            <input type="text" name="oldPwd">
-                        </label>
-
-                        <label class="newPwd">
-                            <p>new password *</p>
-                            <input type="text" name="newPwd">
-                        </label>
-                 
-
-                        <label class="cfmPwd">
-                            <p>confirm password *</p>
-                            <input type="text" name="cfmPwd">
-                        </label>
-
-                        <div>
-                            <button class="l-btn leaveEdit" type="button">
-                               cancel
-                            </button>
-                            <button class="p-btn">
-                                save
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
-           
-        
-
-        </section>
+  
 
         <section class="orderDetail">
             <div class="bg"></div>
@@ -237,751 +106,59 @@
 
         </section>
 
+        <section class="levelInfo">
+            <div class="bg"></div>
+            <div class="infoBody">
+                <button class="nc-btn">
+                    <img src="./icon/close.svg">
+                </button>
+                <div class="content">
+                    <div>
+                        <div>level 1.</div>
+                        <div>Lorem ipsum dong elit. Sit ducimus optio in voluptatibus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa ex</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 2.</div>
+                        <div>Lorem ipsum dolor sit abus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 3.</div>
+                        <div>Lorem ipsum dolor sit amet conas, possimus, fugiat quo tempore nobis, omnis iure?</div>
+                    </div>
+                </div>
+     
+            </div>
+
+
+        </section>
+
         @@include('./layout/header.html') 
         @@include('./layout/cart.html')
     
 
  
 
-        <main class="row myAccount">
-            <div class="col-2 col-lg-8 col-md-6 col-sm-4">
-                <div>
-                    <div class="personInfo container">
-                        <div class="portrait">
-                            <img src="./img/selfie.png" />
-                        </div>
+        <main class="row myAccount" id="myAccount">
 
-                        <div class="mainInfo">
-                            <section class="one-info">
-                                <p>level <span>1</span></p>
-                                <p class="name">Dorothy Weber</p>
-                                <p>
-                                    <span>1996</span> / <span>02</span> /
-                                    <span>21</span>
-                                </p>
-                            </section>
+            <edit-person 
+                v-show="openEditPerson">
+            </edit-person>
+            
+            <!-- 自己發送自己要接收 並由parent  -->
+            <person-info
+                @open-edit="changeStauts">
+            </person-info>
 
-                            <section class="two-info">
-                                <div class="age">
-                                    <div>
-                                        <img src="./icon/age.svg" />
-                                        <p>age</p>
-                                    </div>
-                                    <p>20</p>
-                                </div>
-                                <div class="gender">
-                                    <div>
-                                        <img src="./icon/gender.svg" />
-                                        <p>gender</p>
-                                    </div>
-                                    <p>male</p>
-                                </div>
-                                <div class="height">
-                                    <div>
-                                        <img src="./icon/height.svg" /> 
-                                        <p>height(cm)</p>
-                                    </div>
-                                    <p>180</p>
-                                </div>
-                                <div class="weight">
-                                    <div>
-                                        <img src="./icon/weight.svg" />
-                                        <p>weight(kg)</p>
-                                    </div>
-                                    <p>100</p>
-                                </div>
-                                <div class="bmr">
-                                    <div>
-                                        <img src="./icon/BMR.svg" />
-                                        <p>bmr</p>
-                                    </div>
-                                    <p>22000</p>
-                                </div>
-                            </section>
+            <main-content></main-content>
 
-                            <hr />
+            <second-info></second-info>
 
-                            <section class="three-info">
-                                <p class="email">diana.griffin@mail.com</p>
-                                <p class="phone">(486)510-1545</p>
-                                <p class="intro">
-                                    Sed a magna semper, porta purus eu, ullamcorper ligula. Nam sit amet consectetur
-                                    sapien. Fusce libero dolor, venenatis eget enim sed, commodo efficitur arcu.
-                                </p>
-                            </section>
-
-                            <section class="edit-signout-button">
-                                <div>
-                                    <button class="l-btn">sign out</button>
-                                </div>
-                                <div>
-                                    <button class="l-btn">
-                                        edit
-                                        <img src="./icon/pen.svg" />
-                                    </button>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-
-                    <div class="level container">
-                        <p>Member Level</p>
-
-                        <div class="levelBar">
-                            <div class="currentBar"></div>
-                        </div>
-
-                        <div>
-                            <h6 id="levelPointer">80</h6>
-                            /
-                            <span>100</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-7 col-lg-8 col-md-6 col-sm-4">
-                <div class="container">
-                    <div class="goal">
-                        <h6>your goal</h6>
-                        <form class="card goalBody">
-                            <div class="goal-row-1">
-                                <p>start Date</p>
-                                <div class="dateLine">
-                                    <div class="crrentLine">
-                                        <p id="moveDate">
-                                            <span>2020</span>
-                                            /
-                                            <span>03</span>
-                                            /
-                                            <span>07</span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p>end date</p>
-                            </div>
-
-                            <div class="goal-row-2">
-                                <p class="starDate">
-                                    <span>2020</span>
-                                    /
-                                    <span>03</span>
-                                    /
-                                    <span>07</span>
-                                </p>
-
-                                <p class="endDate">
-                                    <span>2020</span>
-                                    /
-                                    <span>03</span>
-                                    /
-                                    <span>07</span>
-                                </p>
-                            </div>
-
-                            <div class="goal-row-3">
-                                <div class="durationTime">
-                                    <p>duration time of goal</p>
-                                    <div>
-                                        <label>
-                                            <input type="radio" name="durationTime" value="30" hidden />
-                                            <p>30</p>
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="durationTime" value="60" hidden />
-                                            <p>60</p>
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="durationTime" value="90" hidden />
-                                            <p>90</p>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="durationTime" value="180" hidden />
-                                            <p>180</p>
-                                        </label>
-                                        <label class="enterDurTime">
-                                            <input type="text" name="durationTime" />
-                                            <p><img src="./icon/pen.svg" /></p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="customDate">
-                                    <p>Custom end date</p>
-                                    <div>
-                                        <input type="text" placeholder="YYYY" />
-                                        <input type="text" placeholder="MM" />
-                                        <input type="text" placeholder="DD" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="goal-row-4">
-                                <div class="block currentState">
-                                    <p>current state</p>
-                                    <div>
-                                        <div class="l-side">
-                                            <div>
-                                                <img src="./icon/gender.svg" />
-                                                <p>male</p>
-                                            </div>
-
-                                            <div>
-                                                <img src="./icon/age.svg" />
-                                                <p><span>20</span> y</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/height.svg" />
-                                                <p><span>180</span> cm</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="r-side">
-                                            <div>
-                                                <img src="./icon/weight.svg" />
-                                                <p><span>100</span> kg</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/BMR.svg" />
-                                                <p><span>2200</span> cal</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block goalWeight">
-                                    <p>goal weight</p>
-                                    <label>
-                                        <input type="text" />
-                                        <img src="./icon/pen.svg" />
-                                    </label>
-                                </div>
-                                <div class="block restCal">
-                                    <p>rest Calories</p>
-                                    <div>
-                                        <div class="peopleInfoGraphic">
-                                            <div class="tookCal"></div>
-                                            <p>0 <span>%</span></p>
-                                        </div>
-
-                                        <div class="infoNum">
-                                            <div class="row-1">
-                                                <p>12000</p>
-                                                <span>rest cal</span>
-                                            </div>
-                                            <div class="hr"></div>
-                                            <div class="row-2">
-                                                <p>24000</p>
-                                                <span>daliy cal</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block">
-                                    <div>
-                                        <button class="l-btn">
-                                            create goal
-                                            <img src="./icon/pen.svg" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="statusOrder">
-                        <div>
-                           
-                            <button class="nc-btn">Status of the Order
-                                <img src="./icon/down.svg">
-                            </button>
-
-                            <form>
-                                <input type="text" placeholder="ENTER ID OR DETAIL">
-                                <button class="nc-btn" type="button">
-                                    <img src="./icon/magnifier.png">
-                                </button>
-                            </form>
-                        </div>
-                      
-                        <div class="listBody">
-                            <div class="card ">
-        
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID Number</th>
-                                            <th>Time</th>
-                                            <th>detail</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td data-label="ID">32898843</td>
-                                        <td data-label="TIME">
-                                            <span>2020</span>-
-                                           <span>01</span>-
-                                           <span>01</span> 
-                                        </td>
-                                        <td data-label="DETAIL">
-                                            <span>vegetables</span>--
-                                           <span>2</span> 
-                                        </td>
-                                        <td data-label="PRICE">
-                                            NT$ 
-                                            <span>200</span>  
-                                        </td>
-                                        <td data-label="STATUS">ARRIVAL</td>
-                                       
-                                    </tr>
-                                </table>
-    
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="favPoster">
-                        <div>
-                            <button class="nc-btn">Favorites poster
-                                <img src="./icon/down.svg">
-                            </button>
-
-                            <form>
-                                <input type="text" placeholder="ENTER TYPE OR NAME">
-                                <button class="nc-btn" type="button">
-                                    <img src="./icon/magnifier.png">
-                                </button>
-                            </form>
-                        </div>
-             
-                        <div class="listBody">
-                            <div class="card">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>poster type</th>
-                                            <th>poster name</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="TYPE">health</td>
-                                        <td data-label="NAME">Eat and Fit</td>
-                                        <td><button class="l-btn">CHECK POST</button></td>
-                                        <td><button class="l-btn">DELETE</button></td>
-                                    </tr>
-                                </table>
-    
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-3 col-lg-8 col-md-6 col-sm-4">
-                <div class="label">
-                    <p>Report & points</p>
-                    <img src="./icon/down.svg">
-                </div>
-
-                <aside class="r-aside">
-                    <!-- <button class="nc-btn reportBtn">
-                        your report
-                        <img src="./icon/down.svg">
-                    </button>
-
-                    <div class="reportBody">
-                        <div class="card">
-
-                            <div>
-                                <select name="month">
-                                    <option value="thisMonth" selected>this Month</option>
-                                    <option value="lastMonth">last Month</option>
-                                </select>
-                            </div>
-
-                            <div class="rePortBtns">
-                                <button class="l-btn o-3">
-                                    weight
-                                </button>
-                                <button class="l-btn">
-                                    cal
-                                </button>
-                                <button class="l-btn">
-                                    Exercise
-                                </button>
-                            </div>
-                            
-                            <div class="reportContent">
-                                <div class="barCContainer">
-                                    <canvas id="barChart" width="10" height="10"></canvas>
-                                </div>
-
-                                <div class="pieCContainer">
-                                    <canvas id="pieChart" width="10" height="10"></canvas>
-                                </div>
-
-                                <div class="lineCContainer">
-                                    <canvas id="lineChart" width="10" height="10"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    @@include('./layout/A_report.html')
-
-                    <div class="points card">
-                        <div>
-                            <img src="./icon/points.svg">
-                            points
-                        </div>
-
-                        <div>
-                            <div>
-                                <h6>200000</h6>
-                                <p>points</p>
-                            </div>
-                           
-                            <a class="p-btn" href="./shop.html">
-                                shopping
-                            </a>
-
-                        </div>
-                    </div>
-                </aside>
-            </div>
         </main>
 
         <section class="logIn_signUp">
@@ -998,17 +175,17 @@
                         <form action="">
                             <label class="userid">
                                 <p>userid <span></span></p>
-                                <input type="text" name="userid" />
+                                <input type="text" name="userid" maxlength="10" minlength="6"/>
                             </label>
                             <label class="psd">
                                 <p>password <span></span></p>
-                                <input type="password" name="psd" />
+                                <input type="password" name="psd" maxlength="10" minlength="6"/>
                             </label>
                             <div>
                                 <button class="nc-btn o-5" type="button">forget your password ?</button>
                             </div>
                             <div>
-                                <button class="g-btn" id="login" type="button">log in</button>
+                                <button class="g-btn" id="login" type="submit">log in</button>
                             </div>
                         </form>
                     </div>
@@ -1018,36 +195,31 @@
                         <form action="">
                             <label class="Name">
                                 <p>name <span>*</span></p>
-                                <input type="text" name="Name" />
+                                <input type="text" name="Name" maxlength="20"/>
                             </label>
-
-                            <!-- <label class="lastName">
-                                <p>last name <span>*</span></p>
-                                <input type="text" name="lastName" />
-                            </label> -->
 
                             <label class="email">
                                 <p>email <span>*</span></p>
-                                <input type="text" name="email" />
+                                <input type="email" name="email" />
                             </label>
 
                             <label class="userid">
                                 <p>userid <span>*</span></p>
-                                <input type="text" name="userid" />
+                                <input type="text" name="userid" maxlength="10" minlength="6"/>
                             </label>
 
                             <label class="psd">
                                 <p>password <span>*</span></p>
-                                <input type="password" name="psd" />
+                                <input type="password" name="psd" maxlength="10" minlength="6"/>
                             </label>
 
                             <label class="cfmPsd">
                                 <p>confirm password <span>*</span></p>
-                                <input type="password" name="cfmPsd" />
+                                <input type="password" name="cfmPsd" maxlength="10"/>
                             </label>
 
                             <div>
-                                <button class="p-btn" id="signup" type="button">sign up</button>
+                                <button class="p-btn" id="signup" type="submit">sign up</button>
                             </div>
                         </form>
                     </div>
@@ -1076,5 +248,6 @@
                 />
             </clipPath>
         </svg>
+        
     </body>
 </html>

@@ -32,6 +32,7 @@ body{
 
 p{
     @include textStyle("KozGoPr6N-R", 16px , $black , unset, 0.8);
+    
 
 }
 
@@ -45,7 +46,7 @@ img{
     max-height: 100%
 }
 
-input[type=text],input[type=search],input[type=password]{
+input[type=text],input[type=search],input[type=password],input[type=number],input[type=email]{ 
     border: none;
     background-color: transparent;
     border-bottom: 1px solid $gray5;
@@ -92,7 +93,7 @@ input[type=text],input[type=search],input[type=password]{
 }
 
 .l-aside{
-    @include card($u-p ,$red-l, 0px 50px 0px 0px , 0);
+    @include card($u-p ,$red-l, 0px 0px 0px 0px , 0);
     position: sticky;
     //下面可以變更 但aisde 要sticky 
     // top: 100px;
@@ -104,7 +105,7 @@ input[type=text],input[type=search],input[type=password]{
 }
  
 .r-aside{
-    @include card($u-p , $primary, 50px 0px 0px 0px , 0);
+    @include card($u-p , $primary, 0px 0px 0px 0px , 0);
     position: sticky;
     
     //下面可以變更 但aisde 要sticky 
