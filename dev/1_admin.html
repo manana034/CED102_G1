@@ -1,141 +1,13 @@
 @@include("./layout/B_head.html");
-<title>Product</title>
+<title>Admin</title>
 
 </head>
 <body>
-    <!-- 確認 停權/復權 上架/下架 的燈箱 -->
-    <div class="lightbox_black">
-        <div class="lightbox" >
-            <div class="content">Do you want to <span>suspend</span> <span>adminA</span> ?</div>
-            <div>
-                <button class="cancel">Cancel</button>
-                <button class="continus">Continus</button>
-            </div>
-        </div>
-    </div>
-    <!-- 確認刪除的燈箱 -->
-    <div class="lightbox_delete_black">
-        <div class="lightbox" >
-            <div class="content">Do you want to <span>delete</span> <span>adminA</span> ?</div>
-            <div>
-                <button class="cancel">Cancel</button>
-                <button class="continus">Continus</button>
-            </div>
-        </div>
-    </div>
-    <!-- 新增的燈箱 沒有No. -->
-    <div class="lightbox_add_black">
-        <div class="lightbox" >                                        
-                <h6>Add calories item</h6>                             
-                <div>
-                    <div class="acc_title">Name</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                <div>
-                    <div class="acc_title">Calories</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                <div>
-                    <div class="acc_title">Type</div>
-                    <select class="acc_con">
-                        <option value="1">FT. Shop</option>
-                        <option value="2">Rice</option>
-                        <option value="3">Noodles</option>
-                        <option value="4">Meat</option>
-                        <option value="5">Fruit & Veg</option>
-                        <option value="6">Fried</option>
-                        <option value="7">Dessert</option>
-                        <option value="8">Drink</option>
-                    </select>
-                </div>
-                <div>
-                    <div class="acc_title">Rate</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
-                </div>                                                                                                                 
-        </div>
-    </div>
-    <!-- 修改的燈箱 -->
-    <div class="lightbox_edit_black">
-        <div class="lightbox" >                                        
-                <h6>Edit calories item</h6>
-                <div>
-                    <div class="acc_title">No</div>
-                    <div class="acc_con">111</div>
-                </div>                             
-                <div>
-                    <div class="acc_title">Name</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                <div>
-                    <div class="acc_title">Calories</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                <div>
-                    <div class="acc_title">Type</div>
-                    <select class="acc_con">
-                        <option value="1">FT. Shop</option>
-                        <option value="2">Rice</option>
-                        <option value="3">Noodles</option>
-                        <option value="4">Meat</option>
-                        <option value="5">Fruit & Veg</option>
-                        <option value="6">Fried</option>
-                        <option value="7">Dessert</option>
-                        <option value="8">Drink</option>
-                    </select>
-                </div>
-                <div>
-                    <div class="acc_title">Rate</div>
-                    <input type="text" required="required" class="acc_con">
-                </div>
-                
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
-                </div>                                                                                                                 
-        </div>
-    </div>
 <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
 <!-- 右邊主欄 -->
-    <div class="main_food main">
+    <div class="main">
         <div class="main_top">
-            <div class="page">
-                <div class="food">FOOD</div>
-                <div id="exercise">EXERCISE</div>
-            </div>
-            <div class="search_bar">
-                <div class="search-input">
-                    <input type="search" placeholder="Enter No. Or Name">
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">ALL</option>
-                        <option value="0">ALL</option>
-                        <option value="1">FT. SHOP</option>
-                        <option value="2">RICE</option>
-                        <option value="3">NOODLES</option>
-                        <option value="4">MEAT</option>
-                        <option value="5">FRUIT & VEG</option>
-                        <option value="6">FRIED</option>
-                        <option value="7">DESSERT</option>
-                        <option value="8">DRINK</option>
-                    </select>
-                </div>
-                <div class="daterange">
-                    <input type="text" name="daterange"/>
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
-                </div>
-            </div>
             <div class="add">
                 <button>
                     <img src="./icon/add_white.png">
@@ -148,52 +20,77 @@
                 <tr>
                   <th>No</th>
                   <th>Name</th>
-                  <th>CALORIES</th>
-                  <th>TYPE</th>
-                  <th>RATE</th>
-                  <th>Edit</th>
+                  <th>Id</th>
                   <th>Delete</th>
-                  <th>State</th>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td>麥當勞5號餐</td>
-                    <td>5555</td>
-                    <td>FRIED</td>
-                    <td>1</td>
-                    <td>
-                        <img class="edit" src="./icon/backend_edit.png">
-                    </td>
+                    <td>2</td>
+                    <td>adminB</td>
+                    <td>adminBid</td>
                     <td>
                         <img class="delete" src="./icon/backend_trash.png">
                     </td>
-                    <td>  
-                        <div class="button">
-                            <input type="checkbox">
-                            <label></label>
-                        </div>
-                    </td>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td>麥當勞5號餐</td>
-                    <td>5555</td>
-                    <td>FRIED</td>
                     <td>1</td>
-                    <td><img class="edit" src="./icon/backend_edit.png"></td>
-                    <td><img class="delete" src="./icon/backend_trash.png"></td>
-                    <td>  
-                        <div class="button">
-                            <input type="checkbox">
-                            <label></label>
-                        </div>
+                    <td>adminA</td>
+                    <td>adminAid</td>
+                    <td>
+                        <img class="delete" src="./icon/backend_trash.png">
                     </td>
                 </tr>
 
             </table>
         </div>
+        <!-- 確認刪除的燈箱 -->
+        <div class="lightbox_delete_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>delete</span> <span>adminA</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+        <!-- 新增的燈箱 沒有No. -->
+        <div class="lightbox_add_black">
+            <div class="lightbox" >                                        
+                <h6>Add Admin</h6>                             
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" maxlength="20" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter within 20 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Id</div>
+                    <div>
+                        <input type="text" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter 6~10 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Password</div>
+                    <div>
+                        <input type="password" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter 6~10 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Confirm Password</div>
+                    <div>
+                        <input type="password" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter 6~10 characters.</div>
+                    </div>                    
+                </div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
     </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
 <script>
     $(function(){

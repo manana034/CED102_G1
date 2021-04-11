@@ -5,9 +5,13 @@
 <body>
 <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
-<!-- 右邊主欄 -->
-    <div class="main">
+<!-- 右邊主欄 會員 -->
+    <div class="main_member main">
         <div class="main_top">
+            <div class="page">
+                <div class="member">MEMBER</div>
+                <div id="level">LEVEL</div>
+            </div>
             <div class="search_bar">
                 <div class="search-input">
                     <input type="search" placeholder="Enter No. Or Name">
@@ -70,6 +74,64 @@
             </div>
         </div>
     </div>
+<!-- 右邊主欄 level -->
+    <div class="main_level main">
+        <div class="main_top">
+            <div class="page">
+                <div id="member">MEMBER</div>
+                <div class="level">LEVEL</div>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                    <th>Level</th>
+                    <th>Days on record</th>
+                    <th>Accumulated amount</th>
+                    <th>Edit</th>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>15</td>
+                    <td>1500</td>
+                    <td>
+                        <img class="edit" src="./icon/backend_edit.png">
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+        <!-- 修改的燈箱 -->
+        <div class="lightbox_edit_black">
+            <div class="lightbox" >                                        
+                <h6>Edit Upgrade Conditions</h6>
+                <div>
+                    <div class="acc_title">Level</div>
+                    <div class="acc_acc_con">Gold</div>
+                </div>
+                <div>
+                    <div class="acc_title">Days</div>
+                    <div>
+                        <input type="text" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Amount</div>
+                    <div>
+                        <input type="text" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Edit</button>
+                </div>                                                                                                                        
+            </div>
+        </div>
+    </div>
+
+
 
 <script>
     $(function(){
@@ -94,6 +156,16 @@
             });
             $('.lightbox>div>button.continus').click(function(){
                 $('.lightbox_delete_black').css('display','none');
+            });
+        });
+        // 修改 lightbox
+        $('img.edit').click(function(){
+            $('.lightbox_edit_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_edit_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_edit_black').css('display','none');
             });
         });
     });

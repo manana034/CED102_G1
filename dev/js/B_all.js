@@ -1,4 +1,13 @@
 $(document).ready(function(){
+    // 2_Member 切換分頁
+    $('#level').click(function(){
+        $('.main_member').css('display','none');
+        $('.main_level').css('display','inline-flex');
+    });
+    $('#member').click(function(){
+        $('.main_level').css('display','none');
+        $('.main_member').css('display','inline-flex');
+    });
     // 3_Calories Item 切換分頁
     $('#exercise').click(function(){
         $('.main_food').css('display','none');

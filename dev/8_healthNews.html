@@ -1,5 +1,5 @@
 @@include("./layout/B_head.html");
-<title>Product</title>
+<title>Health News</title>
 
 </head>
 <body>
@@ -10,7 +10,7 @@
         <div class="main_top">
             <div class="search_bar">
                 <div class="search-input">
-                    <input type="search" placeholder="Enter No. Or Name">
+                    <input type="search" placeholder="Enter No. Or Title">
                     <button>
                         <img src="./icon/magnifier_white.png">
                     </button>  
@@ -19,9 +19,9 @@
                     <select name="sType">
                         <option value="0">ALL</option>
                         <option value="0">ALL</option>
-                        <option value="1">Cereal</option>
-                        <option value="2">Crackers</option>
-                        <option value="3">Energy bar</option>
+                        <option value="1">Food</option>
+                        <option value="2">Exercise</option>
+                        <option value="3">Regimen</option>
                     </select>
                 </div>
             </div>
@@ -37,25 +37,23 @@
                 <tr>
                   <th>No</th>
                   <th>Type</th>
-                  <th>Name</th>
+                  <th>Title</th>
                   <th>Photo</th>
-                  <th>Calories</th>
-                  <th>Rate</th>
-                  <th>Price</th>
+                  <th>Content</th>
+                  <th>Publish Date</th>
                   <th>Edit</th>
                   <th>Delete</th>
                   <th>State</th>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td>Energy bar</td>
-                    <td>APPLE BAR</td>
+                    <td>1</td>
+                    <td>Food</td>
+                    <td>What’s for dinner?</td>
                     <td>
-                        <img src="./img/prod1.png">
+                        <img src="./infoImg/info3_1.jpg">
                     </td>
-                    <td>110</td>
-                    <td>1.5</td>
-                    <td>$200</td>
+                    <td>Even if you enjoy cooking, chances are you find yourself wondering what to make for dinner once in a...</td>
+                    <td>2021-03-13 13:33</td>
                     <td>
                         <img class="edit" src="./icon/backend_edit.png">
                     </td>
@@ -74,7 +72,7 @@
         <!-- 確認 上架/下架 的燈箱 -->
         <div class="lightbox_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>start</span>selling <span>APPLE BAR</span> ?</div>
+                <div class="content">Do you want to <span>hide</span> article no.<span>1</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
                     <button class="continus">Continus</button>
@@ -84,7 +82,7 @@
         <!-- 確認刪除的燈箱 -->
         <div class="lightbox_delete_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>APPLE BAR</span> ?</div>
+                <div class="content">Do you want to <span>delete</span> article no.<span>1</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
                     <button class="continus">Continus</button>
@@ -94,69 +92,62 @@
         <!-- 新增的燈箱 沒有No. -->
         <div class="lightbox_add_black">
             <div class="lightbox" >                                        
-                <h6>Add Product</h6>
+                <h6>Add Article</h6>
                 <div>
                     <div class="acc_title">Type</div>
                     <select class="acc_con">
-                        <option value="1">Cereal</option>
-                        <option value="2">Crackers</option>
-                        <option value="3">Energy bar</option>
+                        <option value="1">Food</option>
+                        <option value="2">Exercise</option>
+                        <option value="3">Regimen</option>
                     </select>
                 </div>                             
                 <div>
-                    <div class="acc_title">Name</div>
+                    <div class="acc_title">Title</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
-                        <div class="acc_tip">Please enter within 20 characters.</div>
+                        <input type="text" required="required" maxlength="50" class="acc_con">
+                        <div class="acc_tip">Please enter within 50 characters.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Calories</div>
+                    <div class="acc_title">Photo1</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
+                        <input type="file" accept=".jpg,.png,.mp4" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Rate</div>
+                    <div class="acc_title">Photo2</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                        <input type="file" accept=".jpg,.png" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Price</div>
+                    <div class="acc_title">Photo3</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
+                        <input type="file" accept=".jpg,.png" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
-                </div>                
+                </div>              
                 <div>
-                    <div class="acc_title">Des</div>
+                    <div class="acc_title">Content1</div>
                     <div>
-                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con"></textarea>
+                        <textarea rows="3" cols="60" required="required" maxlength="800" class="acc_con"></textarea>
+                        <div class="acc_tip">Please enter within 800 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Content2</div>
+                    <div>
+                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
                         <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Pic.1</div>
+                    <div class="acc_title">Content3</div>
                     <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.2</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.3</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
+                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
+                        <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
                 <div>
@@ -168,73 +159,66 @@
         <!-- 修改的燈箱 -->
         <div class="lightbox_edit_black">
             <div class="lightbox" >                                        
-                <h6>Edit Product</h6>
+                <h6>Edit Article</h6>
                 <div>
                     <div class="acc_title">No</div>
-                    <div class="acc_acc_con">21</div>
+                    <div class="acc_acc_con">1</div>
                 </div>
                 <div>
                     <div class="acc_title">Type</div>
                     <select class="acc_con">
-                        <option value="1">Cereal</option>
-                        <option value="2">Crackers</option>
-                        <option value="3">Energy bar</option>
+                        <option value="1">Food</option>
+                        <option value="2">Exercise</option>
+                        <option value="3">Regimen</option>
                     </select>
-                </div>
+                </div>                             
                 <div>
-                    <div class="acc_title">Name</div>
+                    <div class="acc_title">Title</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
-                        <div class="acc_tip">Please enter within 20 characters.</div>
+                        <input type="text" required="required" maxlength="50" class="acc_con">
+                        <div class="acc_tip">Please enter within 50 characters.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Calories</div>
+                    <div class="acc_title">Photo1</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
+                        <input type="file" accept=".jpg,.png,.mp4" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Rate</div>
+                    <div class="acc_title">Photo2</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                        <input type="file" accept=".jpg,.png" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Price</div>
+                    <div class="acc_title">Photo3</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
+                        <input type="file" accept=".jpg,.png" class="acc_con">
+                        <div class="acc_tip">Upload file is too large.</div>
                     </div>
-                </div>                
+                </div>              
                 <div>
-                    <div class="acc_title">Des</div>
+                    <div class="acc_title">Content1</div>
                     <div>
-                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con"></textarea>
+                        <textarea rows="3" cols="60" required="required" maxlength="800" class="acc_con"></textarea>
+                        <div class="acc_tip">Please enter within 800 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Content2</div>
+                    <div>
+                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
                         <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
                 <div>
-                    <div class="acc_title">Pic.1</div>
+                    <div class="acc_title">Content3</div>
                     <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.2</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.3</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
+                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
+                        <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
                 <div>
