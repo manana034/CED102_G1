@@ -10,12 +10,12 @@
         margin-bottom: 30px;
     }
     > .menu {
-        background-color: $red-l;
+        background-color: $green-d;
         border-radius: 0 70px 70px 0;
         height: 100%;
 		padding: 20px;
 		align-content: space-around;
-        width: 300px;
+        width: 250px;
 		transition: all .5s;
         > .admin {
             display: flex;
@@ -41,12 +41,12 @@
 				width: 100%;
 				display: flex;
 				justify-content: center;
-                padding: 20px;
+                padding: 15px;
                 border-radius: 100px;
                 transition: .3s;
                 cursor: pointer;
                 &:hover {
-                    background-color: lighten($red-l,10);
+                    background-color: lighten($green-d,10);
                     transition: .3s;
                 }
 				a {
@@ -58,7 +58,7 @@
             li.on {
                 background-color: #f4f1ec;
                 a {
-                    color: $red-l;
+                    color: $green-d;
                     font-family: NotoSans-B;
                 }
             }
@@ -69,7 +69,6 @@
                 align-items: center;
                 justify-content: center;
                 margin: 20px 0;
-                background-color: $red-l;
                 cursor: pointer;
                 > img {
                     width: 20px;
@@ -93,9 +92,9 @@
     }
 }
 
-.main_food {
+.main_food, .main_exercise, .main {
     padding-left: 5%;
-    max-width: calc(90% - 300px);
+    max-width: calc(95% - 250px);
     position: absolute;
     display: inline-flex;
     flex-wrap: wrap;
@@ -107,7 +106,7 @@
             div.food {
                 color: $white;
                 background-color: $red-l;
-                padding: 1% 2%;
+                padding: 20px;
                 font-size: 18px;
                 outline: none;
                 border-radius: 0 0 20px 20px;
@@ -115,10 +114,37 @@
                 display: inline-block;
                 margin: 0 20px;
             }
-            #exercise {
+            div#food {
                 color: $black;
                 background-color: $primary-l;
-                padding: 1% 1%;
+                padding: 20px;
+                font-size: 18px;
+                outline: none;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                display: inline-block;
+                margin: 0 20px;
+                cursor: pointer;
+                transition: all .3s;
+                &:hover {
+                    color: $white;
+                    background-color: $red-l;
+                    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                }
+            }
+            div.exercise {
+                color: $white;
+                background-color: $blue-d;
+                padding: 20px 10px;
+                font-size: 18px;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                display: inline-block;
+            }
+            div#exercise {
+                color: $black;
+                background-color: $primary-l;
+                padding: 20px 10px;
                 font-size: 18px;
                 border-radius: 0 0 20px 20px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -132,16 +158,16 @@
                 }
             }
         }
-        #search_bar {
-            margin: 50px 30px;
+        div.search_bar {
+            margin: 40px 30px;
             display: flex;
             align-items: self-end;
-            .search-input{
-                margin-right: 20px;
+            .search-input, .daterange {
+                margin-right: 30px;
                 display: inline-flex;
                 align-items: center;
-                input {
-                    width: 300px;
+                > input {
+                    width: 270px;
                     height: 40px;
                     border: 1px solid $primary;
                     border-radius: 100px 0 0 100px;
@@ -149,8 +175,9 @@
                     font-size: 16px;
                     padding: 0 20px;
                     background-color: $white;
+                    color: $black;
                 } 
-                button {
+                > button {
                     background-color: $white;
                     width: 50px;
                     height: 40px;
@@ -171,13 +198,14 @@
                 }
             }
             .custom-select {
+                margin-right: 30px;
                 display: flex;
                 justify-content: center;
                 padding: 3px 0px;
                 border: 1px solid $primary;
                 position: relative;
                 font-size: 18px;
-                width: 140px;
+                width: 160px;
                 cursor: pointer;
                 background: white;
                 border-radius: 30px;
@@ -237,9 +265,10 @@
         }
         > .add {
             width: 100%;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             button {
                 @include btnStyle($b-color:$primary);
+                padding: 5px 15px;
                 text-align: center;
                 margin-left: 30px;
                 font-size: 18px;
@@ -258,7 +287,6 @@
         overflow: auto;
         table {
             table-layout: fixed;
-            width: 100%;
             border-radius: 10px;
             font-size: 16px;
             border-collapse: collapse;
@@ -266,7 +294,7 @@
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             th {
                 background: $gray5;
-                text-transform: uppercase;
+                text-transform: capitalize;
                 color: $white;
                 padding: 15px;
                 font-family: NotoSans-B;
@@ -281,119 +309,175 @@
                 background: $gray1;
             }
             td {
-                width: 600px;
                 vertical-align: middle;
-                min-width: 50px;
+                min-width: 100px;
                 padding: 5px 20px;
                 img {
                     cursor: pointer;
-                    width: 25px;
-                    transition: .3s;
+                    width: 30px;
+                    transition: 1s;
                     &:hover {
                         transform: scale(1.1);
-                        transition: .3s;
+                        transition: 1s;
                     }
                 }
+                select {
+                    padding: 5px 10px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    outline: none;
+                    background-color: $primary;
+                    color: $white;
+                    border: transparent;
+                }
+                button.detail {
+                    padding: 3px 10px;
+                    margin: 0;
+                }
+                .button {
+                    display: block;
+                    label {
+                        position: relative;
+                        display: inline-block;
+                        width: 42px;
+                        height: 20px;
+                        background-color: $gray5;
+                        border-radius: 25px;
+                        transition: all 0.3s ease-in-out;
+                        cursor: pointer;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+                        -webkit-tap-highlight-color: $gray5;
+                
+                        //白點點
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 2px;
+                            left: 1px;
+                            height: 15px;
+                            width: 15px;
+                            background-color: white;
+                            border-radius: 24px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                            transition: box-shadow 0.3s ease-in-out;
+                            animation: moveLeft 0.3s ease-in-out;
+                        }
+                    }
+                
+                    input {
+                        display: none;
+                        &:checked + label {
+                            background-color: $green-d;
+                            &:before {
+                                transform: translateX(25px);
+                                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                                animation: moveRight 0.3s ease-in-out;
+                            }
+                        }
+                    }
+                }
+                
+                @keyframes moveRight {
+                    0% {
+                        width: 17px;
+                        transform: translateX(0);
+                    }
+                
+                    100% {
+                        width: 17px;
+                        transform: translateX(20px);
+                    }
+                }
+                
+                @keyframes moveLeft {
+                    0% {
+                        width: 17px;
+                        transform: translateX(20px);
+                    }
+                
+                    100% {
+                        width: 17px;
+                        transform: translateX(0);
+                    }
+                }
+                
             }
         }
     }
 }
-
-//SWITCH
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
+.main_exercise {
+    display: none;
 }
-
-label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 46px;
-	height: 24px;
-	background: grey;
-	display: block;
-	border-radius: 100px;
-	position: relative;
-}
-
-label:after {
-	content: '';
-	position: absolute;
-	top: 3px;
-	left: 4px;
-	width: 18px;
-	height: 18px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.4s;
-}
-
-input:checked + label {
-	background: #bada55;
-}
-
-input:checked + label:after {
-	left: calc(100% - 5px);
-	transform: translateX(-100%);
-}
-
-
-//燈箱
-div#suspend_box ,div#delete_box ,div#edit_box ,div#add_box {
+// 燈箱
+.lightbox_black, .lightbox_add_black, .lightbox_edit_black, .lightbox_delete_black, .lightbox_orderDetail_black {
     display: none;
     position: fixed;
     width: 100%;
     height: 100%;
-    // background-color: yellowgreen;
+    top: 0;
+    right: 0;
     background: rgba(66,66,66,.6);
     z-index: 500;
+
     > div {
         font-size: 18px;
         z-index: 501;
         border-radius: 25px;
         position: absolute;
         top: 50%;
-        right: 30%;
+        left: 50%;
         transform: translate(-50%, -50%);
         margin: auto;
         background-color: $white;
         padding: 20px;
-        table {
-            // width: 100%;
-            font-size: 16px;
-            border-collapse: collapse;
-            border: 1px solid $gray1;
-            th {
-                background: $gray5;
-                text-transform: uppercase;
-                color: $white;
-                padding: 15px;
-                font-family: NotoSans-B;
-                position:sticky;
-                top:0;
-                z-index: 3;
+        > h6 {
+            padding: 20px;
+            text-align: center;
+        }
+        > div {
+            display: flex;
+            padding: 15px;
+            > span {
+                font-weight: bold;
+                padding: 0 5px;
             }
-            tr {
-                text-align: center;
+            div.acc_title {
+                text-align: right;
+                padding-right: 20px;
+                width: 120px;
             }
-            tr:nth-child(odd) {
-                background: $gray3;
+            select {
+                border-radius: 5px;
+                outline: none;
+                padding: 5px 10px;
             }
-            td {
-                width: 100px;
-                vertical-align: middle;
-                min-width: 50px;
-                padding: 20px;
-                input[type=text] {
-                    text-align: center;
+            > div {
+                input, textarea {
+                    padding: 3px;
+                    min-width: 200px;
+                    &:focus {
+                        background-color: $primary-l;
+                    }
                 }
-            }
-        }    
-        div:first-child {
+                .acc_tip {
+                    display: none;
+                    font-size: 10px;
+                    color: $red-d;
+                }
+                textarea {
+                    resize: none;
+                    outline: none;
+                }
+            }        
+        }
+        div.tip {
+            display: inline-block;
+            width: 100%;
+        }
+        > div.content {
             padding: 20px;
         }
-        div:last-child {
+        > div:last-child {
             padding: 20px;
             display: flex;
             justify-content: space-around;
@@ -409,6 +493,40 @@ div#suspend_box ,div#delete_box ,div#edit_box ,div#add_box {
                 text-align: center;
             }
         }
+        div.close {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0;
+            img {
+                cursor: pointer;
+                transition: .3s;
+                &:hover {
+                    transform: rotate(20deg);
+                    transition: .3s;
+                }
+            }
+        }
+        > table {
+            font-size: 16px;
+            border-collapse: collapse;
+            th {
+                text-transform: capitalize;
+                color: $gray5;
+                padding: 10px;
+                font-family: NotoSans-B;
+                border-bottom: 1px solid $gray5;
+            }
+            tr {
+                text-align: center;
+            }
+            tr:nth-child(odd) {
+                background: $gray3;
+            }
+            td {
+                vertical-align: middle;
+                min-width: 100px;
+                padding: 5px 20px;
+            }
+        }
     }
 }
-    //燈箱設定

@@ -1,0 +1,354 @@
+@@include("./layout/B_head.html");
+<title>Calories Item</title>
+
+</head>
+<body>
+    <!-- 側邊欄 -->
+    @@include('./layout/B_aside.html')
+    <!-- 右邊主欄 -->
+    <div class="main_food main">
+        <div class="main_top">
+            <div class="page">
+                <div class="food">FOOD</div>
+                <div id="exercise">EXERCISE</div>
+            </div>
+            <div class="search_bar">
+                <div class="search-input">
+                    <input type="search" placeholder="Enter No. Or Name">
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">All</option>
+                        <option value="0">All</option>
+                        <option value="1">FT. Shop</option>
+                        <option value="2">Rice</option>
+                        <option value="3">Noodles</option>
+                        <option value="4">Meat</option>
+                        <option value="5">Fruit & Veg</option>
+                        <option value="6">Fried</option>
+                        <option value="7">Dessert</option>
+                        <option value="8">Drink</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add">
+                <button>
+                    <img src="./icon/add_white.png">
+                    ADD
+                </button>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Calories</th>
+                  <th>Type</th>
+                  <th>Rate</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>麥香魚</td>
+                    <td>5555</td>
+                    <td>Fried</td>
+                    <td>1</td>
+                    <td>
+                        <img class="edit" src="./icon/backend_edit.png">
+                    </td>
+                    <td>
+                        <img class="delete" src="./icon/backend_trash.png">
+                    </td>
+                </tr>
+                
+
+            </table>
+        </div>
+    <!-- 確認刪除的燈箱 -->
+        <div class="lightbox_delete_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>delete</span> <span>麥香雞</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+    <!-- 新增的燈箱 沒有No. -->
+        <div class="lightbox_add_black">
+            <div class="lightbox" >                                        
+                <h6>Add Calories Item</h6>                             
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <div class="acc_tip">Please enter within 20 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Calories</div>
+                    <div>
+                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="2">Rice</option>
+                        <option value="3">Noodles</option>
+                        <option value="4">Meat</option>
+                        <option value="5">Fruit & Veg</option>
+                        <option value="6">Fried</option>
+                        <option value="7">Dessert</option>
+                        <option value="8">Drink</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Rate</div>
+                    <div>
+                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                    </div>
+                </div>   
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
+    <!-- 修改的燈箱 -->
+        <div class="lightbox_edit_black">
+            <div class="lightbox" >                                        
+                <h6>Edit Calories Item</h6>
+                <div>
+                    <div class="acc_title">No</div>
+                    <div class="acc_con">111</div>
+                </div>                             
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <div class="acc_tip">Please enter within 20 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Calories</div>
+                    <div>
+                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="2">Rice</option>
+                        <option value="3">Noodles</option>
+                        <option value="4">Meat</option>
+                        <option value="5">Fruit & Veg</option>
+                        <option value="6">Fried</option>
+                        <option value="7">Dessert</option>
+                        <option value="8">Drink</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Rate</div>
+                    <div>
+                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                    
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
+    </div>
+    <div class="main_exercise main">
+        <div class="main_top">
+            <div class="page">
+                <div id="food">FOOD</div>
+                <div class="exercise">EXERCISE</div>
+            </div>
+            <div class="search_bar">
+                <div class="search-input">
+                    <input type="search" placeholder="Enter No. Or Name">
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">All</option>
+                        <option value="0">All</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add">
+                <button>
+                    <img src="./icon/add_white.png">
+                    ADD
+                </button>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                  <th>NO</th>
+                  <th>NAME</th>
+                  <th>CALORIES</th>
+                  <th>TYPE</th>
+                  <th>EDIT</th>
+                  <th>DELETE</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>散步</td>
+                    <td>111</td>
+                    <td>Low</td>
+                    <td>
+                        <img class="edit" src="./icon/backend_edit.png">
+                    </td>
+                    <td>
+                        <img class="delete" src="./icon/backend_trash.png">
+                    </td>
+                </tr>
+                
+
+            </table>
+        </div>
+    <!-- 確認刪除的燈箱 -->
+        <div class="lightbox_delete_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>delete</span> <span>跑步</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+    <!-- 新增的燈箱 沒有No. -->
+        <div class="lightbox_add_black">
+            <div class="lightbox" >                                        
+                <h6>Add Calories Item</h6>                             
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <div class="acc_tip">Please enter within 10 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Calories</div>
+                    <div>
+                        <input type="text" required="required" maxlength="4" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>  
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
+    <!-- 修改的燈箱 -->
+        <div class="lightbox_edit_black">
+            <div class="lightbox" >                                        
+                <h6>Edit Calories Item</h6>
+                <div>
+                    <div class="acc_title">No</div>
+                    <div class="acc_con">11</div>
+                </div>                             
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <div class="acc_tip">Please enter within 10 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Calories</div>
+                    <div>
+                        <input type="text" required="required" maxlength="4" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>          
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+        // 切換分頁
+        $('#exercise').click(function(){
+            $('.main_food').css('display','none');
+            $('.main_exercise').css('display','inline-flex');
+        });
+        $('#food').click(function(){
+            $('.main_exercise').css('display','none');
+            $('.main_food').css('display','inline-flex');
+        });
+        // 刪除 lightbox
+        $('img.delete').click(function(){
+            $('.lightbox_delete_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_delete_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_delete_black').css('display','none');
+            });
+        });
+        // 新增 lightbox
+        $('.add>button').click(function(){
+            $('.lightbox_add_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_add_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_add_black').css('display','none');
+            });
+        });
+        // 修改 lightbox
+        $('img.edit').click(function(){
+            $('.lightbox_edit_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_edit_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_edit_black').css('display','none');
+            });
+        });
+    });
+    </script>
+</body>
+</html>
