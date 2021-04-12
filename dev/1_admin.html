@@ -31,15 +31,6 @@
                         <img class="delete" src="./icon/backend_trash.png">
                     </td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>adminA</td>
-                    <td>adminAid</td>
-                    <td>
-                        <img class="delete" src="./icon/backend_trash.png">
-                    </td>
-                </tr>
-
             </table>
         </div>
         <!-- 確認刪除的燈箱 -->
@@ -94,19 +85,6 @@
 
 <script>
     $(function(){
-        // 確認 lightbox
-        $('div.button>label').click(function(){
-            $('.lightbox_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $(this).siblings().attr('checked', function(index, attr){
-                return attr == 'checked' ? null : 'checked';
-            });
-        });
         // 刪除 lightbox
         $('img.delete').click(function(){
             $('.lightbox_delete_black').css('display','block');
@@ -125,16 +103,6 @@
             });
             $('.lightbox>div>button.continus').click(function(){
                 $('.lightbox_add_black').css('display','none');
-            });
-        });
-        // 修改 lightbox
-        $('img.edit').click(function(){
-            $('.lightbox_edit_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_edit_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_edit_black').css('display','none');
             });
         });
     });
