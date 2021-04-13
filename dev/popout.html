@@ -216,7 +216,7 @@
             lists:[],
             nextTodoId: 0,
             foods:[
-            //   { fdid:0,fdname:'Hamberger', fdcal:250}
+              { fdid:0,fdname:'Hamberger', fdcal:250}
             //   { fdid:1,fdname:'Sandwich', fdcal:150},
             //   { fdid:2,fdname:'French fries', fdcal:180},
             //   { fdid:3,fdname:'Pasta', fdcal:220},
@@ -225,7 +225,7 @@
             //   { fdid:6,fdname:'Bear', fdcal:95},
             //   { fdid:7,fdname:'Milk tea', fdcal:90},
             //   { fdid:8,fdname:'Cola', fdcal:120}
-            ]   
+            ],
         },
         methods:{
           
@@ -273,6 +273,7 @@
                 prodRows = JSON.parse(xhr.responseText);
                 // console.log(prodRows);
                 inputfoodV.foods = prodRows;
+                foodrecordchange.foods=prodRows;
             }
             xhr.open("get", "./php/getMore2_JSON.php", true);
             xhr.send(null);

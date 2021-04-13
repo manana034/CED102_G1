@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+        .foodchagepage{
+            position: fixed;
+            display: none;
+            /* display: grid;
+            grid-template-columns: 33% 33% 33%; */
+            width: 400px;
+            left:calc(50% - 200px);
+            bottom: 300px;
+            z-index: 100;
+            padding: 10px 15px 10px 15px;
+            text-align: center;
+        }
+        .inputarea{
+            display: grid;
+            grid-template-columns: 40% 30% 30%;  
+        }
+        .foodchagepage span{
+            padding: 4px;
+            padding-top: 8px;
+            font-weight: bold;
+        }
+        .foodchagepage span:nth-child(1){
+           font-weight: bold;
+        }
+        .foodchagepage span:nth-child(3){
+           text-align: right;
+           cursor: pointer;
+        }
+        .foodchagepage span:nth-child(9){
+            border-radius: 20px;
+            border:1px solid #dddddd;
+        }
+        .foodchagepage input,.foodchagepage select{
+            margin-left: 10%;
+            width: 80%;
+            text-align: center;
+            text-align-last: center;
+            border-radius: 20px;
+            border:1px solid #dddddd;
+            cursor: pointer;
+            height: 40px;
+        }
+        .editceck{
+            width: 100px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app4" class="card foodchagepage">
+        <div class=inputarea>
+            <span>Food Modify</span>
+            <span>{{dateselected}}</span>
+            <span @click="closeP"><img src="./img/del_icon.svg"></span>
+            <span>Food</span>
+            <span>QTY</span>
+            <span>Cal</span>
+            <select v-model="fruit">
+                <!-- <option disabled value="0">Select Food</option> -->
+                <option 
+                    v-for="list in foods" 
+                    v-bind:value="list.fdid" 
+                    >
+                    {{list.fdname}}
+                </option>
+            </select>
+            <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
+            <span >{{foods[fruit-1].fdcal*newAdd_number}}</span>
+         </div>
+         <button class="r-btn editceck">Edit</button>
+    </div>
+    <script>
+        const foodrecordchange=new Vue({
+            el:"#app4",
+            data() {
+                return {
+                    newAdd_number:1,
+                    fruit:1,
+                    dateselected:'2021-04-05',
+                    foods:[{ fdid:0,fdname:'Hamberger', fdcal:250}],
+                    fdrecord:[],
+                    edititem:[]
+                }
+            },
+            methods: {
+                closeP:function(){
+                    closeFdChange();
+                }
+            },
+        })
+        
+    </script>
+    <script>
+        function chageFdRecord(e){
+            let fdr=foodrecordchange;
+            fdr.edititem=fdr.fdrecord[e];
+            fdr.newAdd_number=fdr.edititem.fdQty;
+            fdr.fruit=fdr.edititem.fdNo;
+        }
+        function closeFdChange(){
+            document.getElementById("app4").style.display="none";
+        }
+        function openFdChange(){
+            document.getElementById("app4").style.display="block";
+        }
+    </script>
+
+</body>
+</html>
