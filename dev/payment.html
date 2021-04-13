@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="./css/common/payment.css">
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-city-selector@2.1.0/dist/tw-city-selector.min.js"></script>
+
     <title>Payment detail</title>
 </head>
 <body>
@@ -22,25 +25,16 @@
          </div>
          <div class="billingdetails">
              <h6>Enter your Billing details</h6>
-             <form>
-                 <label for="name">Name: </label>
+             <form id="myForm" action="confirmOrder.html">
+                 <label for="name">Name: *</label>
                  <input type="text" id="nm" name="name" class="circle">
-                 <label for="phone">Phone: </label>
-                 <input type="tel" id="pn" name="phone" class="circle">
-                 <label for="country">Country</label>
-                 <select id="city" name="country" class="circle">
-                     <option value="taipei" >台北市</option>
-                     <option value="taoyuan" >桃園市</option>
-                     <option value="xinzhu" >新竹市</option>
-                 </select>
-                 <select id="dist" name="district" class="circle">
-                    <option value="taipei" >中正區</option>
-                    <option value="xinyi" >信義區</option>
-                    <option value="zhongshan" >中山區</option>
-                </select>
-                <label for="address" >Street Address</label>
+                 <label for="phone">Phone: *</label>
+                 <input type="tel" id="pn" name="phone" class="circle" maxlength="10">
+                 <label for="country">Country *</label>
+                 <div role="tw-city-selector"></div>
+                <label for="address" >Street Address *</label>
                     <input type="text" id="address1" name="address" class="circle">
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                     <input type="email" id="email" name="email" class="circle">         
              </form>
              <hr>
@@ -51,28 +45,19 @@
             
              <form class="different">
                  <h6>Enter your shipping details</h6> 
-                <label for="name">Name: </label>
-                <input type="text" id="nm2" name="name" class="circle">
-                <label for="phone">Phone: </label>
-                <input type="tel" id="pn2" name="phone"class="circle">
-                <label for="country">Country</label>
-                <select id="country" name="country" class="circle">
-                    <option value="taipei">台北市</option>
-                    <option value="taoyuan">桃園市</option>
-                    <option value="xinzhu">新竹市</option>
-                </select>
-                <select id="district" name="district" class="circle">
-                    <option value="taipei">中正區</option>
-                    <option value="xinyi">信義區</option>
-                    <option value="zhongshan">中山區</option>
-                </select>
-                <label for="address" >Street Address</label>
-                <input type="text" id="address2" name="address" class="circle">
+                <label for="name">Name: *</label>
+                <input type="text" id="nm2" name="name" class="ce">
+                <label for="phone">Phone: *</label>
+                <input type="tel" id="pn2" name="phone"class="ce" maxlength="10">
+                <label for="country">Country *</label>
+                <div role="tw-city-selector"></div>
+                <label for="address" >Street Address *</label>
+                <input type="text" id="address2" name="address" class="ce">
             </form>
          </div>
          <h6>Payment method: Credit Card</h6>
          <div class="warn">
-             <input type="checkbox" id="warn" name="warn" value="warn">
+             <input type="checkbox" id="warn" name="warn" value="warn" class="privacy">
              <label for="warn">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</label>
          </div>
 
@@ -178,38 +163,51 @@
             </div>
             <div class="form-container">
                 <div class="field-container">
-                    <label for="name">Name</label>
-                    <input id="name" maxlength="20" type="text">
+                    <label for="name">Name *</label>
+                    <input id="nm3" maxlength="20" type="text" class="circle">
                 </div>
                 <div class="field-container">
-                    <label for="cardnumber">Card Number</label><span id="generatecard">generate random</span>
-                    <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
+                    <label for="cardnumber">Card Number *</label><span id="generatecard">generate random</span>
+                    <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" class="circle">
                     <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
         
                     </svg>
                 </div>
                 <div class="field-container">
-                    <label for="expirationdate">Expiration (mm/yy)</label>
-                    <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
+                    <label for="expirationdate">Expiration (mm/yy) *</label>
+                    <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric" class="circle">
                 </div>
                 <div class="field-container">
-                    <label for="securitycode">Security Code</label>
-                    <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
+                    <label for="securitycode">Security Code *</label>
+                    <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric" class="circle">
                 </div>
             </div>
         </div>
         <!-- credit card end-->
-
          <div class="back">
              <a href="./mycart.html"> &lt; PREV</a>
-             <a href="./confirmOrder.html"><button>NEXT</button></a>
+             <button>NEXT</button>
         </div>
     </div>
+    <div class="paybanner">
+        <div class="pay">
+                <h6>Are you sure?</h6>
+                <p>Do you really want to confirm the payment? This process cannot be undone.</p>
+                <button class="cancel">Cancel</button>
+                <button type="submit">Confirm</button> </a>
+        </div>
+    </div>
+
+    <script>
+        new TwCitySelector();
+        
+    </script>
 
     @@include('./layout/footer.html')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
     <script src="./js/payment.js"></script>
     <script src="./js/cart.js"></script>
+    
 </body>
 </html>

@@ -1,9 +1,8 @@
 //payment.html
-//credit card
+//============================= credit card ===================================
 
 window.onload = function () {
-
-    const name = document.getElementById('name');
+    const name = document.getElementById('nm3');
     const cardnumber = document.getElementById('cardnumber');
     const expirationdate = document.getElementById('expirationdate');
     const securitycode = document.getElementById('securitycode');
@@ -282,6 +281,13 @@ window.onload = function () {
     });
     };
 
+  
+
+
+
+    //======================= credit card end ==============================
+
+
     // Shipping to different address 
 
     const shipping = document.querySelector("#shipping");
@@ -290,3 +296,172 @@ window.onload = function () {
     shipping.addEventListener("change", function(){
         different.classList.toggle("differentopen")
     })
+
+
+    // click next to confirm the payment
+
+    const next = document.querySelector(".back button");
+    const cancel = document.querySelector(".cancel");
+    const paybanner = document.querySelector(".paybanner");
+    const body = document.querySelector("body");
+    const form = document.querySelector("form");
+
+    //formValidation
+
+    function checkForm(e){
+        const nm = document.querySelector("#nm");
+        const pn = document.querySelector("#pn");
+        const nm2 = document.querySelector("#nm2");
+        const pn2 = document.querySelector("#pn2");
+        const circle = document.querySelectorAll(".circle"); //空值
+        const ce = document.querySelectorAll(".ce"); //空值
+        
+        
+        // 姓名驗證
+        const arr3 = nm.value.split("");
+       
+        for(var i=0; i<10; i++){
+            if(arr3.indexOf(i.toString()) !== -1 || (nm.value.length < 2 && nm.value !== "")){
+                window.alert("請填寫正確姓名且不能低於2個字");
+                e.preventDefault();
+                return;
+            }
+        }
+       
+        
+        // 手機驗證
+        const arr = pn.value.split("");
+        
+        if(arr.indexOf("0") !== 0 && arr.indexOf("9") !== 1 && pn.value !== ""){
+            window.alert("手機號碼要09開頭")
+            e.preventDefault();
+            return
+        }
+
+
+        // === different address
+        
+        if(shipping.checked){
+            //手機驗證
+            const arr1 = pn2.value.split("");
+            if(arr1.indexOf("0") !== 0 && arr.indexOf("9") !== 1 && pn2.value !== ""){
+                window.alert("手機號碼要09開頭")
+                e.preventDefault();
+                return
+            }
+
+            if(pn.value.length < 10 && pn.value !== ""){
+                window.alert("手機號碼不能低於10碼");
+                e.preventDefault();
+                return;
+            }
+
+            //姓名驗證
+            if(nm2.value.length < 2 && nm2.value !== ""){
+                window.alert("姓名不能低於2個字");
+                e.preventDefault();
+                return;
+            }
+            if(pn2.value.length < 10 && pn2.value !== ""){
+                window.alert("手機號碼不能低於10碼");
+                e.preventDefault();
+                return;
+            }
+              // 空值欄位跳出alert
+            for(let i=0 ; i<ce.length ; i++){
+                if(ce[i].value == ""){
+                    alert("請填寫必填欄位");
+                    e.preventDefault();
+                    return;
+                }
+            }
+        }
+         
+        // privacy policy
+        const privacy = document.querySelector(".privacy");
+        if(!privacy.checked){
+            alert("請填寫必填欄位");
+                e.preventDefault();
+                return;
+        }
+        // 空值欄位跳出alert
+        for(let i=0 ; i<circle.length ; i++){
+            if(circle[i].value == ""){
+                alert("請填寫必填欄位");
+                e.preventDefault();
+                return;
+            }
+        }
+
+
+        // credit card validation
+
+        let evenNum = 0;
+        let oddNum = 0;
+        let total= 0;
+        let cdn = cardnumber.value.split(" ").join("").split(""); //將字串分開變成陣列
+        let checkNum = cdn.pop(); //取出最後一個檢查碼
+        let cdnReverse = cdn.reverse();
+        
+        if(cardnumber.value){
+
+            cdnReverse.forEach((num,i)=>{ //num陣列裡的值, i索引值
+                //判斷16碼
+                let arr = cdnReverse[i] * 2; 
+                if(cdnReverse.length == 15){
+                    if((i+1) %2 == 1){ //奇數
+                        arr >= 10 ? arr-=9 : arr //三元判斷式: 奇數大於10要-9  
+                        oddNum += arr;
+                    }else{
+                        evenNum += parseInt(num)
+                    }
+                    
+                }
+                //判斷15碼
+                if(cdnReverse.length == 14){
+                    if((i+1) %2 == 0){ //偶數 
+                        arr >= 10 ? arr-=9 : arr //三元判斷式: 奇數大於10要-9  
+                        oddNum += arr;
+                    }else{
+                        evenNum += parseInt(num)
+                    }
+                }
+            })
+            //檢查碼
+            let ck = 0;
+            total = evenNum + oddNum;
+    
+            ck = total % 10; //取的餘數
+            if(10 - ck != checkNum){
+                alert("您的信用卡卡號錯誤!");
+                e.preventDefault();
+                return;
+            }
+        }
+
+
+
+        //跳窗
+        paybanner.style.display ='block';
+        body.style.overflowY = 'hidden';
+
+        cancel.addEventListener("click",function(){
+            paybanner.style.display ='none';
+            body.style.overflowY = 'inherit';
+
+        })
+        }
+        
+        
+        const paybutton = document.querySelector(".pay button[type='submit']")
+
+        next.addEventListener("click",checkForm);
+    
+        paybutton.addEventListener("click",function(){
+            document.getElementById("myForm").submit();
+    });
+
+
+
+    // required 
+    
