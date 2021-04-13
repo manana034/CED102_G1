@@ -1,0 +1,160 @@
+@@include("./layout/B_head.html");
+<title>Order</title>
+
+</head>
+<body>
+    <!-- 側邊欄 -->
+    @@include('./layout/B_aside.html')
+    <!-- 右邊主欄 -->
+    <div class="main">
+        <div class="main_top">
+            <div class="search_bar">
+                <div class="search-input">
+                    <input type="search" placeholder="Enter No. Or Member">
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">All</option>
+                        <option value="0">All</option>
+                        <option value="1">Paid</option>
+                        <option value="2">Shipped</option>
+                        <option value="3">Cancelled</option>
+                    </select>
+                </div>
+                <div class="daterange">
+                    <input type="text" name="daterange"/>
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                    <th>no</th>
+                    <th>member</th>
+                    <th>points</th>
+                    <th>total</th>
+                    <th>recipient</th>
+                    <th>phone</th>
+                    <th>address</th>
+                    <th>order time</th>
+                    <th>state</th>
+                    <th>detail</th>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>1</td>
+                    <td>200</td>
+                    <td>$1800</td>
+                    <td>陳大胖</td>
+                    <td>0911222333</td>
+                    <td>桃園市中壢區復興路46號8樓</td>
+                    <td>2021-04-09 11:02</td>
+                    <td>
+                        <select class="Type" name="Type">
+                            <option value="1">Paid</option>
+                            <option value="2">Shipped</option>
+                            <option value="3">Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="detail l-btn">Detail</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>0</td>
+                    <td>$13500</td>
+                    <td>買很多</td>
+                    <td>0922333444</td>
+                    <td>桃園市中壢區興安一街111號</td>
+                    <td>2021-04-01 23:11</td>
+                    <td>
+                        <select class="Type" name="Type">
+                            <option value="1">Paid</option>
+                            <option value="2">Shipped</option>
+                            <option value="3">Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="detail l-btn">Detail</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <!-- 確認改狀態的燈箱 -->
+        <div class="lightbox_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>ship</span> order no.<span>21</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+    <!-- 訂單明細的燈箱 -->
+        <div class="lightbox_orderDetail_black">
+            <div class="lightbox">
+                <div class="close">
+                    <img class="close" src="./icon/close.svg">
+                </div>
+                <div>Order No.<span>21</span>  Order Detail</div>
+                <table>
+                    <tr>
+                        <th>Product No</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>ENERGY BALL</td>
+                        <td>5</td>
+                        <td>$200</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>APPLE BAR</td>
+                        <td>2</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>VEGGIE CRACKERS</td>
+                        <td>1</td>
+                        <td>$400</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+        // 改狀態的 lightbox
+        $('.Type').change(function(){
+            $('.lightbox_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_black').css('display','none');
+            });
+        });
+        // 訂單明細的 lightbox
+        $('.detail').click(function(){
+            $('.lightbox_orderDetail_black').css('display','block');
+            $('.lightbox>div>img.close').click(function(){
+                $('.lightbox_orderDetail_black').css('display','none');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

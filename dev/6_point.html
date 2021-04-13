@@ -1,0 +1,226 @@
+@@include("./layout/B_head.html");
+<title>Point</title>
+
+</head>
+<body>
+    <!-- 側邊欄 -->
+    @@include('./layout/B_aside.html')
+    <!-- 右邊主欄 -->
+    <div class="main">
+        <div class="main_top">
+            <div class="search_bar">
+                <div class="search-input">
+                    <input type="search" placeholder="Enter No. Or Name">
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">ALL</option>
+                        <option value="0">ALL</option>
+                        <option value="1">Sing-up</option>
+                        <option value="2">Login</option>
+                        <option value="3">Level</option>
+                    </select>
+                </div>
+                <div class="daterange">
+                    <input type="text" name="daterange"/>
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+            </div>
+            <div class="add">
+                <button>
+                    <img src="./icon/add_white.png">
+                    ADD
+                </button>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Points</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>開站註冊活動</td>
+                    <td>Sing-up</td>
+                    <td>Temporary</td>
+                    <td>2021-04-15</td>
+                    <td>2021-04-30</td>
+                    <td>100</td>
+                    <td>
+                        <img class="edit" src="./icon/backend_edit.png">
+                    </td>
+                    <td>
+                        <img class="delete" src="./icon/backend_trash.png">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- 確認刪除的燈箱 -->
+        <div class="lightbox_delete_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>delete</span> <span>開站註冊活動</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+        <!-- 新增的燈箱 沒有No. -->
+        <div class="lightbox_add_black">
+            <div class="lightbox" >                                        
+                <h6>Add Point Activity</h6>                      
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <div class="acc_tip">Please enter within 20 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="1">Sing-up</option>
+                        <option value="2">Login</option>
+                        <option value="3">Level</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Duration</div>
+                    <select class="acc_con">
+                        <option value="1">Permanent</option>
+                        <option value="2">Temporary</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Start date</div>
+                    <div>
+                        <input type="text" name="singledate" required="required" class="acc_con">
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">End date</div>
+                    <div>
+                        <input type="text" name="singledate" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Points</div>
+                    <div>
+                        <input type="text" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Add</button>
+                </div>                                                                                                                 
+            </div>
+        </div>
+        <!-- 修改的燈箱 -->
+        <div class="lightbox_edit_black">
+            <div class="lightbox" >                                        
+                <h6>Edit Point Activity</h6>
+                <div>
+                    <div class="acc_title">No</div>
+                    <div class="acc_acc_con">1</div>
+                </div>
+                <div>
+                    <div class="acc_title">Name</div>
+                    <div>
+                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <div class="acc_tip">Please enter within 20 characters.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Type</div>
+                    <select class="acc_con">
+                        <option value="1">Sing-up</option>
+                        <option value="2">Login</option>
+                        <option value="3">Level</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Duration</div>
+                    <select class="acc_con">
+                        <option value="1">Permanent</option>
+                        <option value="2">Temporary</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="acc_title">Start date</div>
+                    <div>
+                        <input type="text" name="singledate" required="required" class="acc_con">
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">End date</div>
+                    <div>
+                        <input type="text" name="singledate" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="acc_title">Points</div>
+                    <div>
+                        <input type="text" required="required" class="acc_con">
+                        <div class="acc_tip">Please enter only numbers.</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Edit</button>
+                </div>                                                                                                                        
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+        // 刪除 lightbox
+        $('img.delete').click(function(){
+            $('.lightbox_delete_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_delete_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_delete_black').css('display','none');
+            });
+        });
+        // 新增 lightbox
+        $('.add>button').click(function(){
+            $('.lightbox_add_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_add_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_add_black').css('display','none');
+            });
+        });
+        // 修改 lightbox
+        $('img.edit').click(function(){
+            $('.lightbox_edit_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_edit_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_edit_black').css('display','none');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

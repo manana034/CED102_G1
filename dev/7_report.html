@@ -1,0 +1,151 @@
+@@include("./layout/B_head.html");
+<title>Report</title>
+
+</head>
+<body>
+    <!-- 側邊欄 -->
+    @@include('./layout/B_aside.html')
+    <!-- 右邊主欄 -->
+    <div class="main_post main">
+        <div class="main_top">
+            <div class="page">
+                <div class="post">POST</div>
+                <div id="message">MESSAGE</div>
+            </div>
+            <div class="search_bar">
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">ALL</option>
+                        <option value="0">ALL</option>
+                        <option value="1">Pending</option>
+                        <option value="2">Passed</option>
+                        <option value="3">Failed</option>
+                    </select>
+                </div>
+                <div class="daterange">
+                    <input type="text" name="daterange"/>
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                    <th>informant</th>
+                    <th>post no</th>
+                    <th>post photo</th>
+                    <th>post content</th>
+                    <th>reason</th>
+                    <th>report time</th>
+                    <th>State</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>
+                        <img src="./infoImg/info1_1.jpg">
+                    </td>
+                    <td>今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天~~</td>
+                    <td>Personal attack</td>
+                    <td>2021-04-01 12:33</td>
+                    <td>
+                        <select class="Type" name="Type">
+                            <option value="1">Pending</option>
+                            <option value="2">Passed</option>
+                            <option value="3">Failed</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- 確認改狀態的燈箱 -->
+        <div class="lightbox_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>hide</span>  post no.<span>1</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main_message main">
+        <div class="main_top">
+            <div class="page">
+                <div id="post">POST</div>
+                <div class="message">MESSAGE</div>
+            </div>
+            <div class="search_bar">
+                <div class="custom-select">
+                    <select name="sType">
+                        <option value="0">ALL</option>
+                        <option value="0">ALL</option>
+                        <option value="1">Pending</option>
+                        <option value="2">Passed</option>
+                        <option value="3">Failed</option>
+                    </select>
+                </div>
+                <div class="daterange">
+                    <input type="text" name="daterange"/>
+                    <button>
+                        <img src="./icon/magnifier_white.png">
+                    </button>  
+                </div>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <table>
+                <tr>
+                    <th>informant</th>
+                    <th>message no</th>
+                    <th>message content</th>
+                    <th>reason</th>
+                    <th>report time</th>
+                    <th>State</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>66</td>
+                    <td>胖子一覺醒來就會復胖喔~</td>
+                    <td>Personal attack</td>
+                    <td>2021-04-10 13:11</td>
+                    <td>
+                        <select class="Type" name="Type">
+                            <option value="1">Pending</option>
+                            <option value="2">Passed</option>
+                            <option value="3">Failed</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- 確認改狀態的燈箱 -->
+        <div class="lightbox_black">
+            <div class="lightbox" >
+                <div class="content">Do you want to <span>hide</span>  message no.<span>66</span> ?</div>
+                <div>
+                    <button class="cancel">Cancel</button>
+                    <button class="continus">Continus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+        // 改狀態的 lightbox
+        $('.Type').change(function(){
+            $('.lightbox_black').css('display','block');
+            $('.lightbox>div>button.cancel').click(function(){
+                $('.lightbox_black').css('display','none');
+            });
+            $('.lightbox>div>button.continus').click(function(){
+                $('.lightbox_black').css('display','none');
+            });
+        });
+    });
+    </script>
+</body>
+</html>

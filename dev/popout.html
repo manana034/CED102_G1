@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <link href="all.css" rel="stylesheet" type ="text/css"/>
+
     <style>
         /* .r-btn.add_fd_btn{
             
@@ -17,11 +17,11 @@
         .fd_input_form{
             box-sizing: border-box!important;
             width:450px;
-            height:435px;
+            height:480px;
             background:#fdfdfd;
             border: 1px solid #C9C9C9;
             position: absolute;
-            top: -500px;
+            top: -600px;
             left: calc( 50% - 400px);
             padding: 30px;
         }
@@ -42,6 +42,7 @@
         }
         .meal_select{
             margin-top: 10px;
+            text-align: left;
         }
         .meal_select img,.meal_select select{
             vertical-align: middle;
@@ -103,15 +104,15 @@
          text-align: center;
      }
      .add_food_select select,.add_food_select input,.add_food_select span{
-            height: 30px;
             width: 90%;
             border: 1px solid #ddd;
-            border-radius: 12px;
+            border-radius: 20px;
             background-color: #fdfdfd;
             padding: 2px;
             cursor: pointer;
             color: #666666;
             margin-top: 5px;
+            padding:10px 0px 10px 0px;
             text-align: center;
             text-align-last: center;
             font-size: 16px;
@@ -119,13 +120,14 @@
      .add_food_select ul{
         margin-top: 10px;
         width: 400px;
-        height: 185px;
+        height:225px;
         list-style: none;
         overflow: scroll;
         border-bottom: 1px solid #C9C9C9;
      }
      .add_food_select ul li{
        display: grid;
+       padding: 2px 0px 2px 0px;
        grid-template-columns: 40% 20% 30% 10%;
      }
      .add_food_select  button{
@@ -135,27 +137,24 @@
          outline: none;
          background-color: #fdfdfd;
      }
-     .add_item_scroll{
-         /* height: 200px;
-         overflow: scroll; */
-     }
+   
      ::-webkit-scrollbar-track,::-webkit-scrollbar-corner{
          background-color: unset;
      }
      .add_fd_btn_2{
          width: 30%;
-         margin-left: 30%;
+         /* margin-left: 30%; */
          margin-top: 15px;
      }
     </style>
 </head>
 <body>
-    <div id="app"> 
+    <div id="app2"> 
         <button class="r-btn add_fd_btn" v-show="true" @click="open">Add Food</button>
         <div class="card fd_input_form" v-show="!isShow">
             <div class="fd_input_date">
                <p>Your Food Diary For :</p>
-               <input type="date" id="bookdate"  value="2021-03-26">
+               <input type="date" class="bookdate" id="bookdate" v-model="selecteddate" @change="checkdate">
                <button @click="close"><img src="./img/del_icon.svg"></button>
             </div>
             <div class="meal_select">
@@ -170,110 +169,119 @@
                 <span>FOOD</span>
                 <span>QTY</span>
                 <span>CAL</span>
-              </div>
+            </div>
             <div class="add_food_select">
                 <select v-model="fruit">
                     <!-- <option disabled value="0">Select Food</option> -->
                     <option 
                         v-for="list in foods" 
-                        v-bind:value="list.id" 
+                        v-bind:value="list.fdid" 
                         >
-                        {{list.fd_name}}
+                        {{list.fdname}}
                     </option>
                 </select>
                 <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                <span >{{foods[fruit].cal*newAdd_number}}</span>
+                <span >{{foods[fruit-1].fdcal*newAdd_number}}</span>
                 <button @click='addNewList_1'><img src="./img/add_icon.svg"></button>
                 <!-- 動態新增項目 -->
             
                 <ul>
                     <li v-for='(list,index) in lists' v-bind:key='list.id'>
-                        <span> {{foods[list.fd_id].fd_name}}</span>
+                        <span> {{foods[list.food_id-1].fdname}}</span>
                         <input v-model="list.number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                        <span>{{foods[list.fd_id].cal*list.number}}</span>
+                        <span>{{foods[list.food_id-1].fdcal*list.number}}</span>
                         <button v-on:click='lists.splice(index, 1)'>
                             <img src="./img/del_icon.svg">
                         </button>
                     </li>
                 </ul>
-            
-              
+                
             </div>
             <button class="r-btn add_fd_btn_2">Add</button>
-            <!-- <div class="add_meal">
-                <input v-model="newAddText" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                <input v-model="newAddCal" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                <button @click='addNewList'><img src="add_icon.svg"></button>
-                <ul>
-                    <li v-for='(list,index) in lists' v-bind:key='list.id'>
-                        {{list.title}} 
-                        {{list.cal}} 
-                        <input v-model="list.title" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                        <input v-model="list.cal" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                        <button v-on:click='lists.splice(index, 1)'>
-                            <img src="del_icon.svg">
-                        </button>
-                    </li>
-                </ul>
-            </div> -->
         </div>
     </div>
     <script>
-        var app = new Vue({
-        el: '#app',
+    const  inputfoodV = new Vue({
+        el: '#app2',
         data: {
-        fruit: 0,
-        isShow: true,
-        newAdd_number:'1',
-        newAddText:'1',
-        newAddCal:'1',
-        newAdd_fdname:'',
-        lists:[],
-        nextTodoId: 0,
-        foods:[
-          { id:0,fd_name:'Hamberger', cal:200},
-          { id:1,fd_name:'Sandwich', cal:150},
-          { id:2,fd_name:'French fries', cal:180},
-          { id:3,fd_name:'Pasta', cal:220},
-          { id:4,fd_name:'Steak', cal:300},
-          { id:5,fd_name:'Cake', cal:155},
-          { id:6,fd_name:'Bear', cal:95},
-          { id:7,fd_name:'Milk tea', cal:90},
-          { id:8,fd_name:'Cola', cal:120}
-        ]
+            selecteddate:"",
+            todaydatesave:"",
+            datesave:"",
+            fruit: 1,
+            isShow: true,
+            newAdd_number:'1',
+            newAddText:'1',
+            newAddCal:'1',
+            newAdd_fdname:'',
+            lists:[],
+            nextTodoId: 0,
+            foods:[
+              { fdid:0,fdname:'Hamberger', fdcal:250}
+            //   { fdid:1,fdname:'Sandwich', fdcal:150},
+            //   { fdid:2,fdname:'French fries', fdcal:180},
+            //   { fdid:3,fdname:'Pasta', fdcal:220},
+            //   { fdid:4,fdname:'Steak', fdcal:300},
+            //   { fdid:5,fdname:'Cake', fdcal:155},
+            //   { fdid:6,fdname:'Bear', fdcal:95},
+            //   { fdid:7,fdname:'Milk tea', fdcal:90},
+            //   { fdid:8,fdname:'Cola', fdcal:120}
+            ],
         },
         methods:{
-            test(e){
-                console.log(e.target)
-                console.log('work')
-            },
+          
             close(){
             this.isShow=! this.isShow
             },
             open(){
             this.isShow=! this.isShow
             },
+            checkdate:function(){
+                if(Date.parse(this.selecteddate) > Date.parse(this.todaydatesave)){
+                    alert("Please select a correct date!");
+                    this.selecteddate=this.datesave;
+                }else{
+                    this.datesave=this.selecteddate;
+                    changedate2();
+                }
+            },
             addNewList_1:function(){
                 this.lists.push({
-                    id:this.nextTodoId++,
-                    name:'ham',
+                    fdid:this.nextTodoId++,
                     number:this.newAdd_number,
-                    fd_id:this.fruit
+                    food_id:this.fruit
                 })
                 this.newAdd_number='1'
             },
             addNewList:function(){
                 this.lists.push({
-                    id:this.nextTodoId++,
+                    fdid:this.nextTodoId++,
                     title:this.newAddText,
-                    cal:this.newAddCal
+                    fdcal:this.newAddCal
                 })
                 this.newAddText='1',
                 this.newAddCal='1'
             },
+           
+               
+        }    
+    })
+    </script>
+    <script>
+        function getProducts(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                prodRows = JSON.parse(xhr.responseText);
+                // console.log(prodRows);
+                inputfoodV.foods = prodRows;
+                foodrecordchange.foods=prodRows;
+            }
+            xhr.open("get", "./php/getMore2_JSON.php", true);
+            xhr.send(null);
         }
+        window.addEventListener("load", function(){
+            //-----------------使用ajax 回server端取回資料
+            getProducts();
         })
-        </script>
-    
+    </script>   
 </body>
 </html>

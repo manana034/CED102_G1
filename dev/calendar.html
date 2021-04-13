@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <style>
-         html{
+      /* html{
         text-align: center;
-      }
+      } */
       .app{
         border-radius: 8px;
         overflow: hidden;
+        text-align: center;
       }
       .app_content{
         display: grid;
@@ -21,6 +22,10 @@
         height: 45px;
         background-color: #f4f1ec;
         grid-template-columns: 15% 70% 15%;
+      }
+      .app_content span{
+        padding: 14px;
+        font-size: 16px;
       }
       .app_content button{
         border: none;
@@ -36,7 +41,7 @@
       }
       .weekDay{
         color: #fff;
-        background-color: #D25541;
+        background-color: #889674;
       }
       .weekDay,.week{
         display: flex;
@@ -63,7 +68,11 @@
         height: 32px;
         color: #fff;
         border-radius: 50%;
-        background-color: #EAA565;
+        background-color: #c4dda2;
+      }
+      .dayon{
+        background-color: #c4dda2;
+        border-radius: 50%;
       }
       .week>div:before{
         position: absolute;
@@ -80,7 +89,7 @@
 
       .today:before{
         color: #fff;
-        background-color: #D25541;
+        background-color: #889674;
         border-radius: 50%;
       }
 
@@ -98,12 +107,13 @@
             <!-- <button @click="adjustMonth(-1)">上個月</button> -->
             <!-- <h3>{{calendar.year}} 年 {{calendar.month+1}} 月</h3> -->
             <button @click="adjustMonth(-1)"><img src="./img/arr_r_icon.svg"></button>
-            <h3>{{en[calendar.month]}} {{calendar.year}}</h3>
+            <span>{{en[calendar.month]}} {{calendar.year}}</span>
             <button @click="adjustMonth(1)"><img src="./img/arr_l_icon.svg"></button>
             <!-- <button @click="setToday">今天</button> -->
             <!-- <button @click="adjustMonth(1)">下個月</button> -->
             <!-- <button @click="adjustYear(1)">下一年</button> -->
         </div>
+        <!-- <xxx-xxx></xxx-xxx> -->
         <div class="calendar">
           <div class="weekDay">
               <div>S</div>
@@ -120,17 +130,21 @@
               :class="{
                today:calendarMonth[(i-1)*7+j-1].year === today.year && calendarMonth[(i-1)*7+j-1].month === today.month && calendarMonth[(i-1)*7+j-1].date === today.date,
                other:calendarMonth[(i-1)*7+j-1].month !== calendar.month
-              }"
+              ,dayon:selectcheckI === i && selectcheckJ === j && selectcheckM ===calendarMonth[(i-1)*7+j-1].month }" @click="selecdate(i,j)" id="day"
             >
             </div>
           </div>
         </div>
       </div>
     <script>
-        new Vue({
+        const calendarV = new Vue({
           el: "#app",
           data() {
             return {
+              selectcheckI:-1,
+              selectcheckJ:-1,
+              selectcheckM:-1,
+              selecdateS:"",
               today:{
                 year:0,
                 month:0,
@@ -185,8 +199,27 @@
               }else{
                 this.calendar.month = month
               }
-
+            },
+            selecdate(i,j){
+              let time=this.calendarMonth;
+              // alert(this.calendarMonth[(i-1)*7+j-1].date);
+              // alert(this.calendar.month);
+              if(time[(i-1)*7+j-1].year <= this.today.year && time[(i-1)*7+j-1].month <= this.today.month){
+                if(time[(i-1)*7+j-1].month === this.today.month && time[(i-1)*7+j-1].date > this.today.date){
+                  alert("Please select a correct date!");
+                }else{
+                console.log(this.selectcheckI);
+                this.selectcheckI=i;
+                this.selectcheckJ=j;
+                this.selectcheckM=this.calendar.month;
+                this.selecdateS=time[(i-1)*7+j-1].year.toString() +'-'+ (time[(i-1)*7+j-1].month+1).toString().padStart(2,'0')+'-'+ time[(i-1)*7+j-1].date.toString().padStart(2,'0');
+                changedate();
+                }
+              }else{
+                alert("Please select a correct date!");
+              }
             }
+
           },
           computed:{
             // monthFirstDay(){
@@ -226,7 +259,8 @@
 
           }
         })
-    </script>  
-    
+    </script> 
+
+    <script src="./js/putdate_in.js"></script>
 </body>
 </html>

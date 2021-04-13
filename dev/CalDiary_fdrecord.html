@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<title>無標題文件</title>
+<style>
+    /* .daily_food_data_context{
+        display: grid;
+     grid-template-columns: 15% 20% 20% 15% 15% 15%;
+    }
+    .daily_food_data_context img{
+        width: 20px;
+        margin: 0 auto;
+        cursor: pointer;
+    } */
+</style>
+
+</head>
+
+<body>
+<div id="app3">
+  <!-- 會員id:<input type="text"id="mNo"/> -->
+  <!-- 日期:<input type="text"id="dtTime"/>
+  <input type="button"  onclick="getfoodrecord()"/> -->
+  <div v-for="(item,index) in fdrecord" class="daily_food_data_context">
+
+      <p>{{item.dtTime}}</p>
+      <p>{{item.fdNo}}</p>
+      <p>{{item.fdQty}}</p>
+      <p>{{item.spItemCal}}</p>
+      <img class="recordEdit" src="./img/rewrite_icon_y.svg" @click='addEdit(index)'>
+      <img class="recordDelet"src="./img/del_icon_y.svg">
+
+  </div>
+  <!-- 會員id:<input type="text"id="mNo"/>"
+  日期:<input type="text"id="dtTime"/>
+  <input type="button"  onclick="getProducts()"/>
+  <div v-for="item in fdrecord">日期:{{item.dtTime}} 食物編號:{{item.fdNo}} 數量:{{item.fdQty}} 單項卡路里:{{item.spItemCal}}</div>
+  <div>{{caltotal}}</div> -->
+
+</div>
+
+
+
+
+
+
+<script>
+    const foodrecordV = new Vue({
+      el:"#app3",
+      data() {
+          return {
+            fdrecord:[],
+            caltotal:'0',
+            fdrecordday:"2021-02-04"
+          }
+      },
+      methods: {
+        addEdit:function(e){
+            chageFdRecord(e);
+            openFdChange();
+        }
+      },
+    })
+</script>
+<script>
+    function getfoodrecord(){
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            let prodRows = JSON.parse(xhr.responseText);
+            foodrecordV.fdrecord = prodRows;
+            foodrecordV.caltotal= foodrecordV.fdrecord[0].dtCalTal;
+            foodrecordchange.fdrecord = prodRows;
+        }
+        // xhr.open("get", "./php/food_info.php", true);
+        var url = "./php/food_info.php?mNo=" +  1 + "&dtTime=" +  foodrecordV.fdrecordday;
+        xhr.open("Get", url, true);
+        xhr.send(null);
+    }
+   
+</script>  
+</body>
+</html>
