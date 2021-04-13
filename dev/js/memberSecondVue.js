@@ -1,851 +1,801 @@
-//用來傳遞 資料用的
-const passValueVue = new Vue();
 
 
-//status-order 的showDetail 用的
-const orderDetail = document.querySelector('.orderDetail');
-// orderDetail 沒有寫在 vue 裡面所以只能寫在外面
-// 不是用vue 一開始就有, vue一開始沒有要建過內容才有東西可以抓
-const orderDetailClose = document.querySelector('.orderDetail>.detailBody>button.nc-btn')
-
-orderDetailClose.addEventListener('click', () => {
-    orderDetail.removeAttribute('style')
-})
+//第二層
 
 
-
-
-//vue 第三層------
-
-
-
-//是 edit-person 的child
-Vue.component('profile-body', {
+//編輯個資,帳號的地方(一開始關閉狀態)
+Vue.component('edit-person', {
     template: `
-        <div class="profileBody">
-            <div class="row-1">
-                <h4>edit profile</h4>
-            </div>
-            <form class="row-2">
-                <label class="protrait">
-                    <input 
-                        type="file" 
-                        name="protraitImg"
-                        @change="getImg"
-                        hidden>
+        <section 
+            class="edit">
 
-                    <div>
-                        <img src="./icon/upfile.svg">
-                    </div>
-                </label>
+            <div class="bg"></div>
+            <div class="editBody">
 
-                <div class="name">
-                    <p>Name</p>
-                    <p>Dorothy Weber</p>
-                </div>
-
-                <label class="birthday">
-                    <p>birthday *</p>
-                    <input 
-                        type="text" 
-                        name="birthday"
-                        v-model="birthday"
-                        placeholder="YY/MM/DD">
-
-                </label>
-
-
-                <div class="gender">
-                    <p>gender *</p>
-                    <label>
-                        <p>male</p>
+                <div class="labelrow">
+                    <label class="profile">
+                        <input 
+                            type="radio" 
+                            name="edit" 
+                            @change="change"
+                            checked hidden>
+                        <p>profile</p>
+                    </label>
+                    <label 
+                        class="account">
                         
                         <input 
                             type="radio" 
-                            name="gender"
-                            v-model="gender"
-                            value="male" 
+                            name="edit" 
+                            @change="change"
                             hidden>
-
-                        <div></div>
-                    </label>
-                    <label>
-                        <p>female</p>
-
-                        <input 
-                            type="radio" 
-                            name="gender"
-                            v-model="gender"
-                            value="female" 
-                            hidden>
-
-                        <div></div>
+                        <p>account</p>
                     </label>
                 </div>
 
-                <label class="weight">
-                    <p>weight *</p>
-                    <input 
-                        type="text" 
-                        name="weight" 
-                        v-model="weight"
-                        maxlength="3">
+                <profile-body v-show="profileStauts"></profile-body>
 
-                </label>
+                <account-body v-show="accountStauts"></account-body>
 
-                <label class="height">
-                    <p>height *</p>
-                    <input 
-                        type="text" 
-                        name="height" 
-                        v-model="height"
-                        maxlength="3">
+            </div>
 
-                </label>
-
-                <label class="email">
-                    <p>email</p>
-                    <input 
-                        type="text" 
-                        name="email" 
-                        v-model="email">
-                </label>
-
-                <label class="phone">
-                    <p>phone</p>
-                    <input 
-                        type="text" 
-                        name="phone"
-                        v-model="phone"
-                        maxlength="12">
-                </label>
-
-                <label class="intro">
-                    <p>introduction</p>
-                    <textarea 
-                        maxlength="200"
-                        name="intro"
-                        v-model="intro"></textarea>
-                </label>
-
-                <div>
-                    <button 
-                        class="l-btn leaveEdit" 
-                        type="button"
-                        @click="leave">
-                        cancel
-
-                    </button>
-                    <button class="p-btn">
-                        save
-                    </button> 
-                </div>
-
-            </form>
-        </div>
+        </section>
     `,
     data() {
         return {
-            birthday: '',
-            gender: '',
-            weight: '',
-            height: '',
-            email: 'jfds32y18438@gmail.com',
-            phone: '0298876543',
-            intro: '',
+            profileStauts: true,
+            accountStauts: false,
         }
     },
     methods: {
-        getImg(e) {
-            //當 change 事件發生 就會執行這methods
+        change() {
+            this.profileStauts = !this.profileStauts
+            this.accountStauts = !this.accountStauts
+        },
+    },
+})
 
-            let file = e.target.files[0]
-            //當有 file 就會執行下面那段
+//在最左邊 個人資訊區
+Vue.component('person-info', {
+    template: `
+        <div class="col-2 col-lg-8 col-md-6 col-sm-4 personConainer">
+                <div>
+                    <div class="personInfo container">
+                        <div class="portrait">
+                            <img :src="mImg" />
+                        </div>
 
-            if (file) {
-                let readFile = new FileReader()
-                readFile.readAsDataURL(file)
+                        <div class="mainInfo">
+                            <section class="one-info">
+                                <p>level <span>{{mLevel}}</span></p>
+                                <p class="name">
+                                    {{mName}}
+                                </p>
+                                <p>
+                                    {{mBday}}
+                                </p>
+                            </section>
 
-                readFile.addEventListener('load', function (e) {
-                    let image = document.querySelector('.protrait>div>img')
-                    image.src = readFile.result
-                    image.style.width = '100%'
-                    image.style.height = '100%'
-                    image.style.objectFit = 'cover'
-                    console.log(image)
-                })
+                            <section class="two-info">
+                                <div class="age">
+                                    <div>
+                                        <img src="./icon/age.svg" />
+                                        <p>age</p>
+                                    </div>
+                                    <p>
+                                        {{getAge}}
+                                    </p>
+                                </div>
+                                <div class="gender">
+                                    <div>
+                                        <img src="./icon/gender.svg" />
+                                        <p>gender</p>
+                                    </div>
+                                    <p>{{getSex}}</p>
+                                </div>
+                                <div class="height">
+                                    <div>
+                                        <img src="./icon/height.svg" /> 
+                                        <p>height(cm)</p>
+                                    </div>
+                                    <p>{{mHeight}}</p>
+                                </div>
+                                <div class="weight">
+                                    <div>
+                                        <img src="./icon/weight.svg"/>
+                                        <p>weight(kg)</p>
+                                    </div>
+                                    <p>{{wWeight}}</p>
+                                </div>
+                                <div class="bmr">
+                                    <div>
+                                        <img src="./icon/BMR.svg" />
+                                        <p>bmr</p>
+                                    </div>
+                                    <p>{{getBMR}}</p>
+                                </div>
+                            </section>
+
+                            <hr/>
+
+                            <section class="three-info">
+                                <p class="email">
+                                    {{mMail}}
+                                </p>
+                                <p class="phone">
+                                    {{mPhone}}
+                                </p>
+                                <p class="intro">
+                                    {{mIntro}}
+                                </p>
+                            </section>
+
+                            <section class="edit-signout-button">
+                                <div>
+                                    <button class="l-btn">sign out</button>
+                                </div>
+                                <div>
+                                    <button 
+                                        class="l-btn" 
+                                        @click="openEdit">
+                                        <img src="./icon/pen.svg"/>
+                                        edit
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="level container">
+                        <div>
+                            <p>Member Level</p>
+                            <img 
+                                src="./icon/question.svg" class="o-5"
+                                @click="openLevelInfo">
+                        </div>
+                        
+
+                        <div class="levelBar">
+                            <div class="currentBar"></div>
+                        </div>
+
+                        <div>
+                            <h6 id="levelPointer">80</h6>
+                            /
+                            <span>100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    `,
+
+    data() {
+        return {
+        }
+    },
+    methods: {
+        openEdit() {
+            this.$emit('open-edit', true)
+        },
+        openLevelInfo() {
+            levelInfoBody.style.display = 'flex'
+        },
+    },
+    computed: {
+        getAge() {
+            const birth = Date.parse(this.mBday)
+            const y = 1000 * 60 * 60 * 24 * 365
+            const now = new Date()
+            const birthday = new Date(birth)
+            const age = parseInt((now - birthday) / y)
+
+            return age
+        },
+        getSex() {
+            return this.mSex == '1' ? 'male' : 'female'
+        },
+        getBMR() {
+            const w = this.wWeight * 10
+            const h = this.mHeight * 6.25
+            const a = this.getAge * 5 + 5
+
+            return w + h - a
+        },
+
+        ...mapState([
+            'mName',
+            'mLevel',
+            'mMail',
+            'mPhone',
+            'mSex',
+            'mImg',
+            'mIntro',
+            'mHeight',
+            'wWeight',
+            'mBday',
+            'wDate',
+        ]),
+    },
+})
+
+//在中間主要 目標訂單資訊區
+Vue.component('main-content', {
+    template: `
+     <div class="col-7 col-lg-8 col-md-6 col-sm-4 mainConainter">
+                <div class="container">
+                    <div class="goal">
+                        <h6>your goal</h6>
+
+                        <goal-body></goal-body>
+
+                    </div>
+
+                    <status-order></status-order>
+
+                    <fav-poster></fav-poster>
+                </div>
+            </div>
+    `,
+})
+
+//在最右邊 點數報表區
+Vue.component('second-info', {
+    template: `
+    <div class="col-3 col-lg-8 col-md-6 col-sm-4 secondContainer">
+                <div 
+                    class="label"
+                    @click="toggleAside">
+
+                    <p>Report & points</p>
+
+                    <img src="./icon/down.svg">
+                </div>
+
+                <aside class="r-aside">
+
+                    <button 
+                        class="nc-btn reportBtn"
+                        @click="toggleReport">
+                        your report
+                        <img src="./icon/down.svg">
+                    </button>
+
+                    <report-body></report-body>
+
+
+                    <div class="points card">
+                        <div>
+                            <img src="./icon/points.svg">
+                            points
+                        </div>
+
+                        <div>
+                            <div>
+                                <h6>{{mPoints}}</h6>
+                                <p>points</p>
+                            </div>
+                            <a class="p-btn" href="./shop.html">
+                                shopping
+                            </a>
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+    `,
+    methods: {
+        toggleReport() {
+            const reportBody = document.querySelector('.reportBody')
+            const card = document.querySelector('.reportBody>.card')
+
+            //trainsition 會影響 ↓↓↓↓↓↓↓↓↓↓↓↓↓發生的時間
+            reportBody.style.height = `${card.clientHeight}px`
+            if (reportBody.clientHeight > 0) {
+                reportBody.style.height = 0
+            } else if (reportBody.clientHeight == 0) {
+                reportBody.style.height = `${card.clientHeight}px`
             }
         },
-        leave() {
-            passValueVue.$emit('leave-profile')
+
+        toggleAside() {
+            const asideBody = document.querySelector('.myAccount>:last-child>.label').parentElement
+            const asideBodyShadow = asideBody.children[1]
+
+            const state = getComputedStyle(asideBody).transform
+
+            if (state == 'matrix(1, 0, 0, 1, 0, 0)') {
+                asideBody.removeAttribute('style')
+                asideBodyShadow.removeAttribute('style')
+            } else {
+                asideBody.style.transform = 'translate(0,0)'
+                asideBodyShadow.style.boxShadow = '-3px 3px 5px 2px rgba(0, 0, 0, 0.3)'
+            }
         },
     },
-    mounted() {
-        new Cleave('.profileBody .birthday>input', {
-            date: true,
-            datePattern: ['Y', 'm', 'd'],
-        })
-        new Cleave('.profileBody label.phone>input', {
-            blocks: [2, 4, 4],
-            // delimiter: '-',
-            //無法一起 使用
-            // phone: true, // 電話模式
-            // phoneRegionCode: 'tw', // 需仔入 taiwan 的cdn
-        })
-        new Cleave('.profileBody label.height>input', {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
-        })
-          new Cleave('.profileBody label.weight>input', {
-              numeral: true,
-              numeralIntegerScale: 3,
-              numeralDecimalScale: 0,
-          })
+    computed: {
+        ...mapState(['mPoints']),
     },
 })
 
-Vue.component('account-body', {
+//登入註冊區 (一開始關閉狀態)
+Vue.component('login-signup', {
     template: `
-        <div class="accountBody">
-            <div class="row-1">
-                <h4>edit account</h4>
-            </div>
-            <form class="row-2">
-            
-                <div class="userid">
-                    <p>userid</p>
-                    <p>Archie343829030</p>
+        <section class="logIn_signUp">
+            <div class="container card">
+
+                <div class="changBtn">
+                    <button class="l-btn o-3">LOG IN</button>
+                    <button class="l-btn">SIGN UP</button>
                 </div>
 
-                <label class="email">
-                    <p>email</p>
-                    
-                    <input type="text" 
-                        name="email" 
-                        v-model="email">
+                <div class="under">
+                    <div class="login">
+                        <h4>log in</h4>
+                        <form>
 
-                </label>
+                            <label class="userid">
+                                <p>userid <span></span></p>
+                                <input type="text" 
+                                    name="userid" 
+                                    maxlength="10" 
+                                    minlength="6"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
+                            <label class="psd">
+                                <p>password <span></span></p>
+                                <input 
+                                    type="password" 
+                                    name="psd" 
+                                    maxlength="10" 
+                                    minlength="6"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-                <label class="oldPwd">
-                    <p>old password *</p>
-
-                    <input 
-                        type="password" 
-                        name="oldPwd" 
-                        v-model="oldPwd"
-                        maxlength="10">
-                        
-                </label>
-
-                <label class="newPwd">
-                    <p>new password *</p>
-
-                    <input 
-                        type="password" 
-                        name="newPwd"
-                        v-model="newPwd"
-                        maxlength="10">
-
-                </label>
-            
-
-                <label class="cfmPwd">
-                    <p>confirm password *</p>
-
-                    <input 
-                        type="password" 
-                        name="cfmPwd"
-                        v-model="cfmPwd"
-                        maxlength="10">
-
-                </label>
-
-                <div>
-                    <button 
-                        class="l-btn leaveEdit" 
-                        type="button"
-                        @click="leave">
-
-                        cancel
-                    </button>
-                    <button class="p-btn">
-                        save
-                    </button>
-                </div>
-
-            </form>
-        </div>
-    `,
-    data() {
-        return {
-            email: 'archie12321@gmail.com',
-            oldPwd: '',
-            newPwd: '',
-            cfmPwd: '',
-        }
-    },
-    methods: {
-        leave(){
-            passValueVue.$emit('leave-account')
-        }
-    },
-})
-
-//是 main-content 的child
-Vue.component('goal-body', {
-    template: `
-        <form class="card goalBody">
-                            <div class="goal-row-1">
-                                <p>start Date</p>
-                                <div class="dateLine">
-                                    <div class="crrentLine">
-                                        <p id="moveDate">
-                                           {{getCurrentDate}}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <p>end date</p>
+                            <div>
+                                <button class="nc-btn o-5" type="button">forget your password ?</button>
                             </div>
-
-                            <div class="goal-row-2">
-                                <p class="starDate">
-                                    {{startDate}}
-                                </p>
-
-                                <p class="endDate">
-                                    {{endDate}}
-                                </p>
-                            </div>
-
-                            <div class="goal-row-3">
-                                <div class="durationTime">
-                                    <p>duration time of goal</p>
-                                    <div>
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime"
-                                                v-model="goalTime" 
-                                                value="30" 
-                                                @click="clickSetTime"
-                                                hidden/>
-                                            <p>30</p>
-                                        </label>
-
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="60" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>60</p>
-                                        </label>
-
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="90" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>90</p>
-                                        </label>
-
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="180" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>180</p>
-                                        </label>
-
-                                        <label class="enterDurTime">
-                                            <input 
-                                                type="text" 
-                                                name="goalTime"
-                                                v-model="goalTime"
-                                                @input="setDurTime"/>
-                                            <p><img src="./icon/pen.svg" /></p>
-                                        </label>
-
-                                    </div>
-                                </div>
-                                <div class="customDate">
-                                    <p>Custom end date</p>
-                                    <div>
-                                        <input type="text" placeholder="YY/MM/DD" name="goalTime"
-                                        @input="setCustomDate"
-                                        v-model="customEndDate"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="goal-row-4">
-                                <div class="block currentState">
-                                    <p>current state</p>
-                                    <div>
-                                        <div class="l-side">
-                                            <div>
-                                                <img src="./icon/gender.svg" />
-                                                <p>male</p>
-                                            </div>
-
-                                            <div>
-                                                <img src="./icon/age.svg" />
-                                                <p><span>20</span> y</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/height.svg" />
-                                                <p><span>180</span> cm</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="r-side">
-                                            <div>
-                                                <img src="./icon/weight.svg" />
-                                                <p><span>100</span> kg</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/BMR.svg" />
-                                                <p><span>2200</span> cal</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block goalWeight">
-                                    <p>goal weight</p>
-                                    <label>
-                                        <input 
-                                            type="text"
-                                            v-model="goalWeight"
-                                            maxlength="3"
-                                            @input="setGoalWeight"/>
-
-                                        <img src="./icon/pen.svg" />
-                                    </label>
-                                </div>
-                                <div class="block restCal">
-                                    <p>rest Calories</p>
-                                    <div>
-                                        <div class="peopleInfoGraphic">
-                                            <div class="tookCal"></div>
-                                            <p>0 <span>%</span></p>
-                                        </div>
-
-                                        <div class="infoNum">
-                                            <div class="row-1">
-                                                <p>12000</p>
-                                                <span>rest cal</span>
-                                            </div>
-                                            <div class="hr"></div>
-                                            <div class="row-2">
-                                                <p>24000</p>
-                                                <span>daliy cal</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block">
-                                    <div>
-                                        <button class="l-btn">
-                                            <img src="./icon/pen.svg" />
-                                            create goal
-                                        </button>
-                                    </div>
-                                </div>
+                            <div>
+                                <button 
+                                    class="g-btn" 
+                                    id="login" 
+                                    type="button"
+                                    @click.stop="loginMember">log in</button>
                             </div>
                         </form>
-    `,
-    data() {
-        return {
-            startDate: '2020/04/03',
-            endDate: '2099/05/06',
+                    </div>
 
-            goalTime: '',
-            customEndDate: '',
-            goalWeight: '',
-        }
-    },
-    methods: {
-        clickSetTime(e) {
-            const input = e.target.parentElement.parentElement.children[4]
-            const p = input.children[1]
+                    <div class="signup">
+                        <h4>sign up</h4>
+                        <form action="">
 
-            if (this.customEndDate) {
-                input.style.backgroundColor = '#F2F2F2'
-                p.style.opacity = 1
-                this.customEndDate = ''
-            } else if (this.goalTime) {
-                input.removeAttribute('style')
-                p.removeAttribute('style')
-            }
-        },
+                            <label class="Name">
+                                <p>name <span>*</span></p>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    maxlength="20"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-        setDurTime(e) {
-            const label = e.target.parentElement
-            const p = label.children[1]
+                            <label class="email">
+                                <p>email <span>*</span></p>
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-            const inputs = document.querySelectorAll('.goalBody input[name=goalTime]')
-            if (e.target.value) {
-                inputs.forEach((input) => (input.checked = false))
-                label.style.backgroundColor = '#EAA565'
-                p.style.opacity = 0
-                this.customEndDate = ''
-            } else {
-                //沒有值會執行以下
-                console.log('work')
-                label.removeAttribute('style')
-                p.removeAttribute('style')
-            }
-        },
+                            <label class="userid">
+                                <p>userid <span>*</span></p>
+                                <input 
+                                    type="text" 
+                                    name="userid" 
+                                    maxlength="10" 
+                                    minlength="6"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-        setCustomDate() {
-            if (this.goalTime) {
-                const input = document.querySelector('.goalBody .enterDurTime')
-                const img = input.children[1]
-                this.goalTime = ''
-                input.style.backgroundColor = '#F2F2F2'
-                img.style.opacity = 1
-            }
-        },
+                            <label class="psd">
+                                <p>password <span>*</span></p>
+                                <input 
+                                    type="password" 
+                                    name="psd" 
+                                    maxlength="10" 
+                                    minlength="6"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-        setGoalWeight() {
-            const input = document.querySelector('.goalBody .goalWeight label')
-            const img = input.children[1]
+                            <label class="cfmPsd">
+                                <p>confirm password <span>*</span></p>
+                                <input 
+                                    type="password" 
+                                    name="cfmPsd" 
+                                    maxlength="10"
+                                    @focus="movePlaceholder($event,'focus')"
+                                    @blur="movePlaceholder($event,'blur')"/>
+                            </label>
 
-            // console.log(input)
-            if (this.goalWeight) {
-                input.style.backgroundColor = '#EAA565'
-                img.style.opacity = 0
-            } else {
-                input.removeAttribute('style')
-                img.removeAttribute('style')
-            }
-        },
-    },
-
-    computed: {
-        getCurrentDate() {
-            const y = new Date().getFullYear()
-            const m = new Date().getMonth()
-            const d = new Date().getDate()
-
-            return `${y}/${m + 1}/${d}`
-        },
-    },
-    //Vue 開始時執行
-    mounted() {
-        //js 轉換日期格式
-        let formatDate = function (date) {
-            let y = date.getFullYear()
-            let m = date.getMonth() + 1
-            m = m < 10 ? '0' + m : m
-            let d = date.getDate()
-            d = d < 10 ? '0' + d : d
-            return y + '-' + m + '-' + d
-        }
-
-        //限制input輸入的最大時間
-        let getMaxDate = function (date) {
-            let y = date.split('-')[0]
-            let m = date.split('-')[1]
-            let d = date.split('-')[2]
-
-            y = parseInt(y) + 3
-            //最大時間年
-            return y + '-' + m + '-' + d
-        }
-
-        const currentDate = formatDate(new Date()) //目前日期
-        const maxDate = getMaxDate(currentDate)
-
-        new Cleave('.enterDurTime>input', {
-            numeral: true,
-            //整數最大輸入多少
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
-        })
-
-        //表單 格式限制設定
-        new Cleave('.customDate input', {
-            date: true,
-            datePattern: ['Y', 'm', 'd'],
-            //要以下面的格式才可以接收
-            dateMin: `${currentDate}`,
-            dateMax: `${maxDate}`,
-        })
-
-        new Cleave('.goalWeight input', {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
-        })
-    },
-})
-
-Vue.component('status-order', {
-    template: `
-        <div class="statusOrder">
-            <div>
-                <button 
-                    class="nc-btn"
-                    @click="toggleStatusOrder">Status of the Order
-                    <img src="./icon/down.svg">
-                </button>
-
-                <form>
-                    <input 
-                        type="text" 
-                        placeholder="Eenter Name"
-                        v-model="search">
-
-                    <button class="nc-btn" type="button">
-                        <img src="./icon/magnifier.png">
-                    </button>
-                </form>
-            </div>
-            
-            <div class="listBody">
-                <div class="card ">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID Number</th>
-                                <th>Time</th>
-                                <th>detail</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr 
-                                v-for="order in filteredList"
-                                @click="showDetail">
-
-                                <td data-label="ID">
-                                    {{order.ID}}
-                                </td>
-
-                                <td data-label="TIME">
-                                    {{order.TIME}}
-                                </td>
-
-                                <td data-label="DETAIL">
-                                    {{order.name}}--{{order.qty}}
-                                </td>
-
-                                <td data-label="PRICE">
-                                    NT$ 
-                                    {{order.PRICE}} 
-                                </td>
-                                
-                                <td data-label="STATUS">
-                                    {{order.STATUS}}
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                            <div>
+                                <button class="p-btn" id="signup" type="button">sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="upper">
+                    <div>
+                        <h4>Hello, Friend !</h4>
+                        <p>Enter your personal details and start journey with us</p>
+                        <div>
+                            <button 
+                                data-state="login" 
+                                class="w-btn"
+                                @click="toggleMember">sing up</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div> 
+        </section>
     `,
     data() {
         return {
-            search: '',
-            orderList: [
-                {
-                    ID: 32898843,
-                    TIME: '2020/02/21',
-                    PRICE: '200',
-                    STATUS: 'ARRIVAL',
+            //全域變數都寫在這裡
+            //當template mounted data也就會抓地到東西
+            upperInfo: {
+                login: ['Hello, Friend !', 'Enter your personal details and start journey with us', 'sing up'],
+                signup: [
+                    'Welcome Back !',
+                    'Can get 2000 points for Sign Up<br>Able to doing more features in FT.  ',
+                    'log in',
+                ],
+            },
 
-                    name: 'vegetables',
-                    qty: 2,
-                },
-                {
-                    ID: 88433289,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
+            //登入 將資料載入VueX
+            checkMember(data) {
+                const enter = document.querySelector('.logIn_signUp')
 
-                    name: 'chocolate bar',
-                    qty: 1,
-                },
-                {
-                    ID: 88984332,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
+                if (data === '{}') {
+                    alert('帳號密碼錯誤')
+                } else {
+                    let member = JSON.parse(data)
 
-                    name: 'banna juice',
-                    qty: 1,
-                },
-                {
-                    ID: 32888439,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
+                    //寫入 VueX
+                    this.$store.commit({
+                        type: 'updateStatus',
 
-                    name: 'Apple juice',
-                    qty: 1,
-                },
-            ],
+                        goalType: member.goalType,
+                        loginDate: member.loginDate,
+                        mBday: member.mBday,
+                        mFoled: member.mFoled,
+                        mGoalE: member.mGoalE,
+                        mGoalS: member.mGoalS,
+                        mGoalW: member.mGoalW,
+                        mHeight: member.mHeight,
+                        mId: member.mId,
+                        mImg: member.mImg,
+                        mIntro: member.mIntro,
+                        mLevel: member.mLevel,
+                        mMail: member.mMail,
+                        mName: member.mName,
+                        mPhone: member.mPhone,
+                        mPoints: member.mPoints,
+                        mPsw: member.mPsw,
+                        mSex: member.mSex,
+                        mWriteD: member.mWriteD,
+                        mTotal: member.mTotal,
+
+                        wWeight: member.wWeight,
+                        wDate: member.wDate,
+                    })
+
+                    //將登入登出關閉
+                    enter.style.display = 'none'
+                }
+            },
+
+            updataMWeightData(data) {
+                if (data === '{}') {
+                    console.log('沒有weight體重資料')
+                } else {
+                    let wData = JSON.parse(data)
+                    // console.log(wData)
+                    this.$store.commit('updateWeightData', wData)
+                }
+            },
+
+            updataMExerciseData(data) {
+                if (data === '{}') {
+                    console.log('沒有weight體重資料')
+                } else {
+                    let eData = JSON.parse(data)
+                    // console.log(eData)
+                    this.$store.commit('updataExerciseData', eData)
+                }
+            },
+
+            updataMNowCalDate(data) {
+                if (data === '{}') {
+                    console.log('沒有weight體重資料')
+                } else {
+                    let cData = JSON.parse(data)
+                    // console.log(cData)
+                    this.$store.commit('updataNowCalData', cData)
+                }
+            },
+            updataMLastCalDate(data) {
+                if (data === '{}') {
+                    console.log('沒有weight體重資料')
+                } else {
+                    let cData = JSON.parse(data)
+                    // console.log(cData)
+                    this.$store.commit('updataLastCalData', cData)
+                }
+            },
+
+            updataMOrderListDate(data){
+                if (data === '{}') {
+                    console.log('沒有weight體重資料')
+                } else {
+                    let mOData = JSON.parse(data)
+                    console.log(mOData)
+                    this.$store.commit('updataOrderListDate', mOData)
+                }
+            },
+
+            firstSetReport: ()=> {
+                const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
+
+                const filterEData = this.eData.filter((data) => {
+                    return Date.parse(data.spTime) > thisMonth
+                })
+
+                const labelArray = filterEData.map((data) => data.spTime.slice(5))
+                const dataArray = filterEData.map((data) => data.spCalTal)
+
+                let barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labelArray,
+                        datasets: [
+                            {
+                                label: 'EXERCICE',
+                                fill: true,
+                                backgroundColor: '#95b17c',
+                                data: dataArray,
+                            },
+                        ],
+                    },
+                    options: {
+                        animation: {
+                            duration: 2000,
+                        },
+                        legend: {
+                            display: false,
+                        },
+                        scales: {
+                            yAxes: [
+                                {
+                                    ticks: {
+                                        beginAtZero: true,
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                })
+            },
         }
     },
     methods: {
-        showDetail() {
-            orderDetail.style.display = 'flex'
-        },
-        toggleStatusOrder(){
-            const listBody = document.querySelector('.statusOrder>.listBody')
-            const card = document.querySelector('.statusOrder>.listBody>div')
+        toggleMember(e) {
+            const state = e.target.dataset.state
+            const upper = document.querySelector('.upper')
 
-            listBody.style.height = `${card.clientHeight}px`
-            if (listBody.clientHeight > 0) {
-                listBody.style.height = 0
+            const h4 = upper.children[0].children[0]
+            const p = upper.children[0].children[1]
+            const button = upper.children[0].children[2].children[0]
+
+            if (state == 'login') {
+                upper.style.transform = 'translate(0,0)'
+                upper.style.backgroundColor = '#EAA565'
+                e.target.dataset.state = 'signup'
+
+                h4.textContent = this.upperInfo.signup[0]
+                p.innerHTML = this.upperInfo.signup[1]
+                button.innerHTML = this.upperInfo.signup[2]
             } else {
-                listBody.style.height = `${card.clientHeight}px`
+                upper.style.transform = 'translate(100%,0)'
+                upper.style.backgroundColor = '#95b17c'
+                e.target.dataset.state = 'login'
+
+                h4.textContent = this.upperInfo.login[0]
+                p.textContent = this.upperInfo.login[1]
+                button.textContent = this.upperInfo.login[2]
             }
-        }
-    },
-    computed: {
-        filteredList() {
-            return this.orderList.filter((post) => {
-                return post.name.toLowerCase().includes(this.search.toLowerCase())
-            })
         },
-    },
-})
+        movePlaceholder(event, state) {
+            const inputVal = event.target.value
+            const placeholder = event.target.parentElement.children[0]
+            const ta = event.target
 
-Vue.component('fav-poster', {
-    template: `
-        <div class="favPoster">
-            <div>
-                <button 
-                    class="nc-btn"
-                    @click="toggleFavPoster">Favorites poster
-                    
-                    <img src="./icon/down.svg">
-                </button>
+            const signUpPsd = select('.under .signup .psd>input')
+            const signUpCfmPsd = select('.under .signup .cfmPsd>input')
 
-                <form>
-                    <input 
-                        type="text" 
-                        placeholder="Enter Name"
-                        v-model="search">
+            if (state == 'focus') {
+                //如果再focus 狀態 將會提升
+                placeholder.style.top = '-20px'
+                placeholder.style.transform = 'scale(.9)'
+            } else if (state == 'blur') {
+                //如果在blur 狀態
+                if (!inputVal) {
+                    //檢查裡面 是否有內容 ,沒有內容就會掉下來
+                    placeholder.style.top = '-5px'
+                    placeholder.style.transform = 'scale(1)'
+                }
+                switch (ta.name) {
+                    case 'cfmPsd':
+                        //如果目標是 cfmPsd
+                        if (signUpPsd.value) {
+                            //如果有值
 
-                    <button class="nc-btn" type="button">
-                        <img src="./icon/magnifier.png">
-                    </button>
-                </form>
-            </div>
+                            console.log(ta.value)
+                            if (ta.value) {
+                                if (signUpPsd.value.indexOf(ta.value) > -1) {
+                                    //如果值是一樣的
+                                    const Psd = signUpPsd.parentElement.children[0].children[0]
+                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
 
-            <div class="listBody">
-                <div class="card">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>poster type</th>
-                                <th>poster name</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(post,i) in filteredList">
-                                <td data-label="TYPE">{{post.TYPE}}</td>
-                                <td data-label="NAME">{{post.NAME}}</td>
+                                    fmPsd.textContent = '* 正確'
+                                    fmPsd.style.color = 'green'
 
-                                <td>
-                                    <a 
-                                        class="l-btn" 
-                                        :href="post.href">
-                                        CHECK POST
-                                    </a>
-                                </td>
-                                
-                                <td>
-                                    <button 
-                                        class="l-btn"
-                                        @click="deletPost(i)">DELETE
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        
-                    </table>
+                                    Psd.textContent = '* 正確'
+                                    Psd.style.color = 'green'
+                                } else {
+                                    //如果不一樣
+                                    const Psd = signUpPsd.parentElement.children[0].children[0]
+                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
 
-                </div>
-            </div>
+                                    fmPsd.textContent = '* 兩個密碼不符合'
+                                    fmPsd.style.color = 'red'
+
+                                    Psd.textContent = '*'
+                                    Psd.removeAttribute('style')
+                                }
+                            }
+                        }
+                        break
+                }
+            }
+        },
+
+        loginMember() {
+            const login_id = select('.login input[name="userid"]')
+            const login_psw = select('.login input[name="psd"]')
+
+            const id_prompt = login_id.parentElement.children[0].children[0]
+            const psw_prompt = login_psw.parentElement.children[0].children[0]
+
+            // 在function的 this 會指向 本身自己
+            // 所以要在先指向 vue 的物件, 再提供給裡面使用
+            const Vthis = this
+
+            function getMemberData() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    // console.log(this.test)
+                    Vthis.checkMember(xhr.responseText)
+                    // console.log(xhr.responseText)
+                }
+                xhr.open('post', 'php/login.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+
+
+                // let data = new FormData();
+
+                // let payload = {
+                //     memid: login_id.value,
+                //     memPsw: login_psw.value,
+                // }
+                // data.append('json', encodeURI(JSON.stringify(payload)))
+
+                // fetch('php/login.php', {
+                //     method: 'POST',
+                //     body: data,
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //     },
+                // }).then((res) => console.log(res.json()))
+
+                    // .then((res) => res.json())
+                    // .then((res) => checkMember(res))
+                    // .then((res) => console.log(res))
+            }
+
+            function getMWeightDate() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMWeightData(xhr.responseText)
+                }
+                xhr.open('post', 'php/getMWeightDate.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+
+            //如果撈好資料 就會執行firstSetReport
+            function getMExerciseDate() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMExerciseData(xhr.responseText)
+                    //載入好資料之後 就安裝一開始的Report
+                    Vthis.firstSetReport()
+                }
+                xhr.open('post', 'php/getMExerciseDate.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+
+            function getMNowCalDate() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMNowCalDate(xhr.responseText)
+                }
+                xhr.open('post', 'php/getMNowCalData.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+            function getMLastCalDate() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMLastCalDate(xhr.responseText)
+                }
+                xhr.open('post', 'php/getMLastCalData.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+
+
+            //撈取 orderData 的資料
+            function getMOrderListData(){
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMOrderListDate(xhr.responseText)
+                }
+                xhr.open('post', 'php/getOrderListData.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+
+
+            getMemberData()
+            getMWeightDate()
+            getMExerciseDate()
+            getMNowCalDate()
+            getMLastCalDate()
             
-        </div>
-    `,
-
-    data() {
-        return {
-            search: '',
-            posterList: [
-                {
-                    TYPE: 'health',
-                    NAME: 'Eat and Fit',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'get fatness',
-                    NAME: 'how to eat',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-            ],
-        }
-    },
-    methods: {
-        deletPost(i) {
-            //刪除item
-            this.posterList.splice(i, 1)
+            getMOrderListData()
         },
-        toggleFavPoster(){
-            const listBody = document.querySelector('.favPoster>.listBody')
-            const card = document.querySelector('.favPoster>.listBody>div')
-
-            listBody.style.height = `${card.clientHeight}px`
-            if (listBody.clientHeight > 0) {
-                listBody.style.height = 0
-            } else {
-                listBody.style.height = `${card.clientHeight}px`
-            }
-        }
     },
     computed: {
-        filteredList() {
-            return this.posterList.filter((post) => {
-                return post.NAME.toLowerCase().includes(this.search.toLowerCase())
-            })
-        },
+        ...mapState(['eData']),
     },
 })
-

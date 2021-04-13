@@ -1,20 +1,40 @@
-//--------------圖表
-const rePortBtns = [...document.querySelector('.reportBody .rePortBtns').children] //[0] 是體重長條 [1]是原餅卡路里 [2] 是折線運動
+// --------------圖表
+const rePortBtns = [...document.querySelector('.reportBody .rePortBtns').children] //[0] 是折線圖 [1]是原餅卡路里 [2] 是長條圖
 
 const barCContainer = document.querySelector('.barCContainer')
 const pieCContainer = document.querySelector('.pieCContainer')
 const lineCContainer = document.querySelector('.lineCContainer')
 
+const FEData = [
+    { time: '2020-1-2', weight: 80.5 },
+    { time: '2020-2-2', weight: 70.5 },
+    { time: '2020-4-2', weight: 60.5 },
+    { time: '2020-5-2', weight: 90.5 },
+    { time: '2020-5-2', weight: 90.5 },
+]
+
+
+console.log(FEData[0].time.slice(5))
+
+console.log(new Date(FEData[0].time))
+
+console.log(Date.parse(new Date()) + '現在時間')
+console.log(Date.parse(new Date()) - (56 * 24 * 60 * 60* 1000) + '前八個禮拜')
+
+
+
+
+// 體育 一開始reload
 let barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
     type: 'bar',
     data: {
-        labels: ['1w', '2w', '3w', '4w'],
+        labels: labelArray,
         datasets: [
             {
-                label: 'WEIGHT',
+                label: 'EXERCICE',
                 fill: true,
-                backgroundColor: ['#95b17c', '#95b17c', '#95b17c', '#95b17c'],
-                data: [55, 56, 57, 56],
+                backgroundColor: '#95b17c',
+                data: dataArray,
             },
         ],
     },
@@ -37,9 +57,8 @@ let barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
 
 
 
-// console.log(rePortBtns[0])
 
-//weight bar
+// exercice bar
 rePortBtns[0].addEventListener('click', () => {
 
     barCContainer.style.display = 'block'
@@ -53,13 +72,13 @@ rePortBtns[0].addEventListener('click', () => {
     barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: ['1w', '2w', '3w', '4w'],
+            labels: labelArray,
             datasets: [
                 {
-                    label: 'WEIGHT',
+                    label: 'EXERCICE',
                     fill: true,
-                    backgroundColor: ['#95b17c', '#95b17c', '#95b17c', '#95b17c'],
-                    data: [55, 56, 57, 56],
+                    backgroundColor: '#95b17c',
+                    data: dataArray,
                 },
             ],
         },
@@ -78,10 +97,10 @@ rePortBtns[0].addEventListener('click', () => {
             },
         },
     })
-    
+
 })
 
-//cal pie
+// cal pie
 rePortBtns[1].addEventListener('click', () => {
     barCContainer.style.display = 'none'
     pieCContainer.style.display = 'block'
@@ -107,7 +126,7 @@ rePortBtns[1].addEventListener('click', () => {
 
 })
 
-//exercice line
+//weight line
 rePortBtns[2].addEventListener('click', () => {
     barCContainer.style.display = 'none'
     pieCContainer.style.display = 'none'
@@ -126,7 +145,7 @@ rePortBtns[2].addEventListener('click', () => {
             labels: ['1w', '2w', '3w', '4w'],
             datasets: [
                 {
-                    label: 'EXERCISE',
+                    label: 'WEIGHT',
                     backgroundColor: 'transparent',
                     borderColor: '#2274A5',
                     data: [54, 52, 52, 54],
@@ -139,14 +158,6 @@ rePortBtns[2].addEventListener('click', () => {
             legend: {
                 display: false,
             },
-            // tooltips: {
-            //     callbacks: {
-            //         label: function (tooltipItem) {
-            //             console.log(tooltipItem)
-            //             return tooltipItem.yLabel
-            //         },
-            //     },
-            // },
             scales: {
                 yAxes: [
                     {

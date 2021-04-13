@@ -9,8 +9,12 @@
         <link rel="stylesheet" href="./css/page/member.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" defer></script>  
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.1.1/addons/cleave-phone.tw.js" defer></script> <!-- 要載入phone 的cdn-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js" defer></script>
+
+        <script src="./js/memberVuex.js" defer></script>
+        <script src="./js/memberFourVue.js" defer></script>
+        <script src="./js/memberThreeVue.js" defer></script>
         <script src="./js/memberSecondVue.js" defer></script>
         <script src="./js/memberVue.js" defer></script>
         
@@ -19,15 +23,13 @@
         <script src="./js/cart.js" defer></script>
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
-        <script src="./js/A_report.js" defer></script>
 
-       
 
     </head>
     <body>
   
 
-        <section class="orderDetail">
+        <!-- <section class="orderDetail">
             <div class="bg"></div>
             <div class="detailBody">
                 <button class="nc-btn">
@@ -104,7 +106,7 @@
                 </div>
             </div>
 
-        </section>
+        </section> -->
 
         <section class="levelInfo">
             <div class="bg"></div>
@@ -142,102 +144,57 @@
         @@include('./layout/cart.html')
     
 
- 
+        <div id="app">
+            <main class="row myAccount" >
 
-        <main class="row myAccount" id="myAccount">
+                <edit-person 
+                    :m-name="mName"
+                    :m-level="mLevel"
+                    :m-mail="mMail"
+                    :m-phone="mPhone"
+                    :m-sex="mSex"
+                    :m-img="mImg"
+                    :m-intro="mIntro"
+                    :m-height="mHeight"
+                    :m-bday="mBday"
+    
+                    :w-weight="wWeight"
+                    :w-date="wDate"
+    
+                    v-show="openEditPerson">
+                </edit-person>
+                
+                <!-- 自己發送自己要接收 並由parent  -->
+                <person-info
+                    :m-name="mName"
+                    :m-level="mLevel"
+                    :m-mail="mMail"
+                    :m-phone="mPhone"
+                    :m-sex="mSex"
+                    :m-img="mImg"
+                    :m-intro="mIntro"
+                    :m-height="mHeight"
+                    :m-bday="mBday"
+    
+                    :w-weight="wWeight"
+                    :w-date="wDate"
+               
+                    @open-edit="changeStauts">
+                </person-info>
+    
+                <main-content></main-content>
+    
+                <second-info 
+                    :m-points="mPoints">
+                </second-info>
+    
+            </main>
+    
+            <login-signup></login-signup>
 
-            <edit-person 
-                v-show="openEditPerson">
-            </edit-person>
-            
-            <!-- 自己發送自己要接收 並由parent  -->
-            <person-info
-                @open-edit="changeStauts">
-            </person-info>
-
-            <main-content></main-content>
-
-            <second-info></second-info>
-
-        </main>
-
-        <section class="logIn_signUp">
-            <div class="container card">
-
-                <div class="changBtn">
-                    <button class="l-btn o-3">LOG IN</button>
-                    <button class="l-btn">SIGN UP</button>
-                </div>
-
-                <div class="under">
-                    <div class="login">
-                        <h4>log in</h4>
-                        <form action="">
-                            <label class="userid">
-                                <p>userid <span></span></p>
-                                <input type="text" name="userid" maxlength="10" minlength="6"/>
-                            </label>
-                            <label class="psd">
-                                <p>password <span></span></p>
-                                <input type="password" name="psd" maxlength="10" minlength="6"/>
-                            </label>
-                            <div>
-                                <button class="nc-btn o-5" type="button">forget your password ?</button>
-                            </div>
-                            <div>
-                                <button class="g-btn" id="login" type="submit">log in</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="signup">
-                        <h4>sign up</h4>
-                        <form action="">
-                            <label class="Name">
-                                <p>name <span>*</span></p>
-                                <input type="text" name="Name" maxlength="20"/>
-                            </label>
-
-                            <label class="email">
-                                <p>email <span>*</span></p>
-                                <input type="email" name="email" />
-                            </label>
-
-                            <label class="userid">
-                                <p>userid <span>*</span></p>
-                                <input type="text" name="userid" maxlength="10" minlength="6"/>
-                            </label>
-
-                            <label class="psd">
-                                <p>password <span>*</span></p>
-                                <input type="password" name="psd" maxlength="10" minlength="6"/>
-                            </label>
-
-                            <label class="cfmPsd">
-                                <p>confirm password <span>*</span></p>
-                                <input type="password" name="cfmPsd" maxlength="10"/>
-                            </label>
-
-                            <div>
-                                <button class="p-btn" id="signup" type="submit">sign up</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="upper">
-                    <div>
-                        <h4>Hello, Friend !</h4>
-                        <p>Enter your personal details and start journey with us</p>
-                        <div>
-                            <button data-state="login" class="w-btn">sing up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-  
+         
+    
+        </div>
 
         @@include('./layout/footer.html')
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" >
