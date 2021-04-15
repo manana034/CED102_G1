@@ -52,6 +52,8 @@
             }else{
                 let xhr = new XMLHttpRequest();
                 xhr.onload = () => {
+
+                    console.log(xhr.responsetext); 
                     if(xhr.status == 200) {  // 是否已有該管理員
                         if(xhr.responseText.indexOf('無此管理員') == -1){  // 登入成功
                             // 清空欄位
@@ -66,7 +68,7 @@
                         }
                     } else{
                         alert(xhr.status);
-                        // console.log(xhr.responsetext);
+                        console.log(xhr.responsetext);
                     }
                 }
                 

@@ -62,7 +62,7 @@ Vue.component('all-info', {
                 <td>
                     <img :src="value.infoPhoto2">
                 </td>
-                <td>{{value.infoContent2}}</td>
+                <td>{{reduce_info(value.infoContent1)}}</td>
                 <td>{{value.infoTime}}</td>
                 <td>
                     <img class="edit" @click="info_edit(value.infoNo)" src="./icon/backend_edit.png">
@@ -113,6 +113,10 @@ Vue.component('all-info', {
             }
         },
         // 列出前100字
+        reduce_info(infoContent1) {
+            this.infoContent1 = infoContent1.substr(1,10);
+            // z = infoContent1;
+        }
 
         // 點擊修改後，顯示燈箱 並帶入值
         lightbox_show: function (infoNo, infoState) {

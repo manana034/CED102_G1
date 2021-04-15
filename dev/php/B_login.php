@@ -23,7 +23,6 @@
             $_SESSION["aName"] = $adminRow["aName"];
             // 傳回資料
             echo json_encode($adminRow);
-            header("Location: ../1_admin.html");
         }
     } 
     catch (PDOException $e){
