@@ -62,7 +62,7 @@ Vue.component('person-info', {
                 <div>
                     <div class="personInfo container">
                         <div class="portrait">
-                            <img :src="mImg" />
+                            <img :src="mImg?mImg:'./icon/upfile.png'" />
                         </div>
 
                         <div class="mainInfo">
@@ -72,7 +72,7 @@ Vue.component('person-info', {
                                     {{mName}}
                                 </p>
                                 <p>
-                                    {{mBday}}
+                                    {{mBday?mBday:'--'}}
                                 </p>
                             </section>
 
@@ -83,7 +83,7 @@ Vue.component('person-info', {
                                         <p>age</p>
                                     </div>
                                     <p>
-                                        {{getAge}}
+                                        {{getAge?getAge:'--'}}
                                     </p>
                                 </div>
                                 <div class="gender">
@@ -91,28 +91,28 @@ Vue.component('person-info', {
                                         <img src="./icon/gender.svg" />
                                         <p>gender</p>
                                     </div>
-                                    <p>{{getSex}}</p>
+                                    <p>{{getSex?getSex:'--'}}</p>
                                 </div>
                                 <div class="height">
                                     <div>
                                         <img src="./icon/height.svg" /> 
                                         <p>height(cm)</p>
                                     </div>
-                                    <p>{{mHeight}}</p>
+                                    <p>{{mHeight ? mHeight:'--'}}</p>
                                 </div>
                                 <div class="weight">
                                     <div>
                                         <img src="./icon/weight.svg"/>
                                         <p>weight(kg)</p>
                                     </div>
-                                    <p>{{wWeight}}</p>
+                                    <p>{{wWeight ? wWeight: '--'}}</p>
                                 </div>
                                 <div class="bmr">
                                     <div>
                                         <img src="./icon/BMR.svg" />
                                         <p>bmr</p>
                                     </div>
-                                    <p>{{getBMR}}</p>
+                                    <p>{{getBMR ? getBMR : '--' }}</p>
                                 </div>
                             </section>
 
@@ -132,7 +132,9 @@ Vue.component('person-info', {
 
                             <section class="edit-signout-button">
                                 <div>
-                                    <button class="l-btn">sign out</button>
+                                    <button 
+                                        class="l-btn"
+                                        @click="signOut">sign out</button>
                                 </div>
                                 <div>
                                     <button 
@@ -170,8 +172,7 @@ Vue.component('person-info', {
     `,
 
     data() {
-        return {
-        }
+        return {}
     },
     methods: {
         openEdit() {
@@ -180,27 +181,36 @@ Vue.component('person-info', {
         openLevelInfo() {
             levelInfoBody.style.display = 'flex'
         },
+        signOut() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = () =>{
+                this.$store.commit('toggleLoginBeforeAfter')
+                console.log('this sign out')
+            }
+            xhr.open("get","php/signout.php");
+            xhr.send(null)
+        },
     },
     computed: {
-        getAge() {
-            const birth = Date.parse(this.mBday)
-            const y = 1000 * 60 * 60 * 24 * 365
-            const now = new Date()
-            const birthday = new Date(birth)
-            const age = parseInt((now - birthday) / y)
+        // getAge() {
+        //     const birth = Date.parse(this.mBday)
+        //     const y = 1000 * 60 * 60 * 24 * 365
+        //     const now = new Date()
+        //     const birthday = new Date(birth)
+        //     const age = parseInt((now - birthday) / y)
 
-            return age
-        },
-        getSex() {
-            return this.mSex == '1' ? 'male' : 'female'
-        },
-        getBMR() {
-            const w = this.wWeight * 10
-            const h = this.mHeight * 6.25
-            const a = this.getAge * 5 + 5
+        //     return age
+        // },
+        // getSex() {
+        //     return this.mSex == '1' ? 'male' : 'female'
+        // },
+        // getBMR() {
+        //     const w = this.wWeight * 10
+        //     const h = this.mHeight * 6.25
+        //     const a = this.getAge * 5 + 5
 
-            return w + h - a
-        },
+        //     return w + h - a
+        // },
 
         ...mapState([
             'mName',
@@ -215,6 +225,7 @@ Vue.component('person-info', {
             'mBday',
             'wDate',
         ]),
+        ...mapGetters(['getAge', 'getBMR', 'getSex']),
     },
 })
 
@@ -446,8 +457,6 @@ Vue.component('login-signup', {
     `,
     data() {
         return {
-            //全域變數都寫在這裡
-            //當template mounted data也就會抓地到東西
             upperInfo: {
                 login: ['Hello, Friend !', 'Enter your personal details and start journey with us', 'sing up'],
                 signup: [
@@ -459,13 +468,13 @@ Vue.component('login-signup', {
 
             //登入 將資料載入VueX
             checkMember(data) {
-                const enter = document.querySelector('.logIn_signUp')
+                // const enter = document.querySelector('.logIn_signUp')
 
                 if (data === '{}') {
                     alert('帳號密碼錯誤')
                 } else {
                     let member = JSON.parse(data)
-
+                    console.log(member)
                     //寫入 VueX
                     this.$store.commit({
                         type: 'updateStatus',
@@ -490,13 +499,31 @@ Vue.component('login-signup', {
                         mSex: member.mSex,
                         mWriteD: member.mWriteD,
                         mTotal: member.mTotal,
+                        mNo: member.mNo,
 
                         wWeight: member.wWeight,
                         wDate: member.wDate,
                     })
 
                     //將登入登出關閉
-                    enter.style.display = 'none'
+                    // enter.style.display = 'none'
+                }
+            },
+
+            updataMnoMidMpsw(data){
+                if(data === '{}'){
+                    console.log('此無帳號密碼')
+                } else{
+                    let member = JSON.parse(data)
+                    console.log(member)
+
+                    this.$store.commit({
+                        type: 'updateMemberInfo',
+
+                        mNo: member.mNo,
+                        mId: member.mId,
+                        mPsw: member.mPsw,
+                    })
                 }
             },
 
@@ -512,17 +539,17 @@ Vue.component('login-signup', {
 
             updataMExerciseData(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有運動報表資料')
                 } else {
                     let eData = JSON.parse(data)
-                    // console.log(eData)
+                    console.log(eData)
                     this.$store.commit('updataExerciseData', eData)
                 }
             },
 
             updataMNowCalDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有這月卡路里資料(報表用)')
                 } else {
                     let cData = JSON.parse(data)
                     // console.log(cData)
@@ -531,7 +558,7 @@ Vue.component('login-signup', {
             },
             updataMLastCalDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有最後卡路里(報表用)資料')
                 } else {
                     let cData = JSON.parse(data)
                     // console.log(cData)
@@ -539,17 +566,27 @@ Vue.component('login-signup', {
                 }
             },
 
-            updataMOrderListDate(data){
+            updataMOrderListDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有orderlist資料')
                 } else {
                     let mOData = JSON.parse(data)
-                    console.log(mOData)
+                    // console.log(mOData)
                     this.$store.commit('updataOrderListDate', mOData)
                 }
             },
 
-            firstSetReport: ()=> {
+            updataMOrderData(data) {
+                if (data === '{}') {
+                    console.log('沒有order的資料')
+                } else {
+                    let mOData = JSON.parse(data)
+                    // console.log(mOData)
+                    this.$store.commit('updataOrderData', mOData)
+                }
+            },
+
+            firstSetReport: () => {
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
                 const filterEData = this.eData.filter((data) => {
@@ -591,6 +628,38 @@ Vue.component('login-signup', {
                     },
                 })
             },
+
+
+
+            updataMFavPosterData(data){
+                if(data === '{}'){
+                    console.log('沒有favPoster資料')
+                } else{
+                    let favData = JSON.parse(data)
+                    // console.log(favData)
+                    this.$store.commit('updataFavPosterData', favData)
+                }
+            },
+            getMFavPosterData(mNo){
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    this.updataMFavPosterData(xhr.responseText)
+                }
+                xhr.open('post', 'php/getFavPosterData.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `mNo=${mNo}`
+                xhr.send(data_info)
+            },
+
+
+            toggleLogin(){
+                const idInput = select('.under .login .userid input')
+                const pswInput = select('.under .login .psd input')
+                idInput.value = ""
+                pswInput.value =""
+                this.$store.commit('toggleLoginBeforeAfter')
+            }
         }
     },
     methods: {
@@ -675,6 +744,7 @@ Vue.component('login-signup', {
             }
         },
 
+
         loginMember() {
             const login_id = select('.login input[name="userid"]')
             const login_psw = select('.login input[name="psd"]')
@@ -687,18 +757,21 @@ Vue.component('login-signup', {
             const Vthis = this
 
             function getMemberData() {
+
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
-                    // console.log(this.test)
                     Vthis.checkMember(xhr.responseText)
-                    // console.log(xhr.responseText)
+                    // console.log(JSON.parse(xhr.responseText))
+                    Vthis.getMFavPosterData(JSON.parse(xhr.responseText).mNo) 
+                    if (xhr.responseText !== '{}') {
+                        Vthis.toggleLogin()
+                    }
+                    console.log('登入成功 順便寫入站存')
                 }
                 xhr.open('post', 'php/login.php', true)
-
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
                 let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
                 xhr.send(data_info)
-
 
                 // let data = new FormData();
 
@@ -708,17 +781,35 @@ Vue.component('login-signup', {
                 // }
                 // data.append('json', encodeURI(JSON.stringify(payload)))
 
-                // fetch('php/login.php', {
+                // fetch('./php/login.php', {
                 //     method: 'POST',
-                //     body: data,
+                //     body: JSON.stringify({
+                //         memid: login_id.value,
+                //         memPsw: login_psw.value,
+                //     }),
                 //     headers: {
+                //         'Accept': 'application/json',
                 //         'Content-Type': 'application/x-www-form-urlencoded',
                 //     },
-                // }).then((res) => console.log(res.json()))
-
+                // })
+                // .then((res) => console.log(res.json()))
+                // .catch(err=> console.log(err))
                     // .then((res) => res.json())
                     // .then((res) => checkMember(res))
                     // .then((res) => console.log(res))
+            }
+
+            function getMnoMidMpsw(){
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMnoMidMpsw(xhr.responseText)
+                    // console.log(xhr.responseText)
+                    console.log('再從新寫入 mno')
+                }
+                xhr.open('post', 'php/getMnoMidMpsw.php', true)
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
             }
 
             function getMWeightDate() {
@@ -739,7 +830,16 @@ Vue.component('login-signup', {
                 xhr.onload = () => {
                     Vthis.updataMExerciseData(xhr.responseText)
                     //載入好資料之後 就安裝一開始的Report
-                    Vthis.firstSetReport()
+
+
+                    const checkEData = setTimeout(()=>{
+                        if (Vthis.eData) {
+                            Vthis.firstSetReport()
+                        }
+                        clearTimeout(checkEData)
+                    },10)
+        
+                    
                 }
                 xhr.open('post', 'php/getMExerciseDate.php', true)
 
@@ -771,9 +871,8 @@ Vue.component('login-signup', {
                 xhr.send(data_info)
             }
 
-
-            //撈取 orderData 的資料
-            function getMOrderListData(){
+            //撈取 orderListData 的資料
+            function getMOrderListData() {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
                     Vthis.updataMOrderListDate(xhr.responseText)
@@ -784,18 +883,48 @@ Vue.component('login-signup', {
                 let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
                 xhr.send(data_info)
             }
+            //撈取 orderData 的資料
+            function getMOrderData() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMOrderData(xhr.responseText)
+                }
+                xhr.open('post', 'php/getOrderData.php', true)
 
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
 
             getMemberData()
+            //mNo 抓不到再從新抓一次
+            getMnoMidMpsw()
+
             getMWeightDate()
             getMExerciseDate()
             getMNowCalDate()
             getMLastCalDate()
-            
+
             getMOrderListData()
+            getMOrderData()
+
+            
+
+       
+            //登入 就叫child 執行檢查 是否存在某資料 執行另外動作
+            passValueVue.$emit('check-goalWeight')
+            passValueVue.$emit('check-goalTime')
         },
+
+
     },
     computed: {
         ...mapState(['eData']),
+    },
+    mounted() {
+        console.log('this login-signup mounted')  
+
+ 
+       
     },
 })

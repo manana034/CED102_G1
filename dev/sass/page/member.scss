@@ -405,6 +405,8 @@ h1,h2,h3,h4,h5,h6,p,button{
                                     position: absolute;
                                     // z-index: 10;
                                     top: 10px;
+                                    opacity: .5;
+                                    font-size: 12px;
                                     // right: -10;
                                     // transform: translate(-100%,0);
                                     span{
@@ -524,6 +526,17 @@ h1,h2,h3,h4,h5,h6,p,button{
                                 }
                             }
                             
+                        }
+
+                        >.restDay{
+                            width: 100%;
+                            text-align: center;
+                            >div{
+                                margin-top: 10px;
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: $gray5;
+                            }
                         }
                     }
     

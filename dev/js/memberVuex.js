@@ -31,6 +31,7 @@ const store = new Vuex.Store({
         mSex: '',
         mWriteD: '',
         mTotal: '',
+        mNo: '',
 
         wWeight: '',
         wDate: '',
@@ -43,6 +44,13 @@ const store = new Vuex.Store({
 
         //order status的資料
         orderListData: [],
+        orderData: [],
+
+        //fav poster的資料
+        favListData: [],
+
+        //登入畫面 與 登入後畫面切換
+        loginBeforeAfter: true,
     },
     mutations: {
         //登入  抓取資料之後更新到Vuex
@@ -73,9 +81,16 @@ const store = new Vuex.Store({
             state.mSex = payload.mSex
             state.mWriteD = payload.mWriteD
             state.mTotal = payload.mTotal
+            state.mNo = payload.mNo 
 
             state.wWeight = payload.wWeight
             state.wDate = payload.wDate
+        },
+
+        updateMemberInfo(state,payload){
+            state.mId = payload.mId
+            state.mPsw = payload.mPsw
+            state.mNo = payload.mNo
         },
 
         //編輯 個人資訊
@@ -122,12 +137,49 @@ const store = new Vuex.Store({
         },
 
         //status 的資料
-        updataOrderListDate(state,payload){
+        updataOrderListDate(state, payload) {
             state.orderListData = payload
-        }
+        },
+        updataOrderData(state, payload) {
+            state.orderData = payload
+        },
+
+        //favPoster 的資料
+        updataFavPosterData(state, payload) {
+            state.favListData = payload
+        },
+
+        //登入畫面切換
+        toggleLoginBeforeAfter(state) {
+            state.loginBeforeAfter = !state.loginBeforeAfter
+        },
     },
     actions: {},
-    getters: {},
+    getters: {
+        getAge: (state) => {
+            const birth = Date.parse(state.mBday)
+            const y = 1000 * 60 * 60 * 24 * 365
+            const now = new Date()
+            const birthday = new Date(birth)
+            const age = parseInt((now - birthday) / y)
+
+            return age
+        },
+        getBMR: (state, getters) => {
+            const w = state.wWeight * 10
+            const h = state.mHeight * 6.25
+            const a = getters.getAge * 5 + 5
+
+            return w + h - a
+        },
+        getSex: (state) =>{
+            return state.mSex == '1' ? 'male' : 'female'
+        },
+
+        getCalPerDay: (state,getters)=>{
+            return parseInt((getters.getBMR * 100) / 70)
+        }
+    },
 })
 
 // console.log(store.state)

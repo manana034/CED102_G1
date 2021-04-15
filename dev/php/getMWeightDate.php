@@ -1,8 +1,14 @@
 <?php
 try{
-    require_once("../../connectVarData.php");
+    require_once("../../connect_ced102g1.php");
  
-    $sql = "SELECT  wDate , wWeight , mName FROM weigth w JOIN  member m ON w.mNo = m.mNo WHERE mId=:memid AND mPsw=:memPsw AND ( now() - interval 8 week) < w.wDate ORDER BY w.wDate DESC";
+    $sql = "SELECT  wDate , wWeight , mName 
+    FROM weigth w JOIN  member m ON w.mNo = m.mNo 
+    WHERE mId=:memid 
+    AND mPsw=:memPsw 
+    AND ( now() - interval 8 week) < w.wDate 
+    ORDER BY w.wDate DESC";
+    
     $member = $pdo->prepare($sql);
 
     $member->bindValue(":memid", $_POST["memid"]);

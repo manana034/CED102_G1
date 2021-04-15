@@ -1,6 +1,6 @@
 <?php 
 try {
-  require_once("connect.php");
+  require_once("../../connect_ced102g1.php");
     // $sql = "select * from dietrecord where mNo=:mNo AND date(dtTime)=:dtTime";
     $sql = "select * from 
             dietrecord a join dtritem b on a.dtRNo=b.dtRNo

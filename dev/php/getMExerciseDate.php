@@ -1,6 +1,6 @@
 <?php
 try{
-    require_once("../../connectVarData.php");
+    require_once("../../connect_ced102g1.php");
  
     $sql = "SELECT spCalTal , spTime , mName FROM member m JOIN sprecord s ON s.mNo = m.mNo WHERE mId=:memid AND mPsw=:memPsw AND  ( now() - interval 4 week) < s.spTime ORDER BY s.spTime DESC";
     $member = $pdo->prepare($sql);
