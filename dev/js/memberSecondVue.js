@@ -182,35 +182,67 @@ Vue.component('person-info', {
             levelInfoBody.style.display = 'flex'
         },
         signOut() {
-            let xhr = new XMLHttpRequest();
-            xhr.onload = () =>{
+            //刪除暫存區 ----------
+            let xhr = new XMLHttpRequest()
+            xhr.onload = () => {
+
+                //當按登出時切換畫面
                 this.$store.commit('toggleLoginBeforeAfter')
                 console.log('this sign out')
             }
-            xhr.open("get","php/signout.php");
+            xhr.open('get', 'php/signout.php')
             xhr.send(null)
+            //刪除暫存區 ----------
+
+            //刪除 所有Vuex的 會員的資料
+            this.$store.commit({
+                type: 'updateStatus',
+
+                goalType: '',
+                loginDate: '',
+                mBday: '',
+                mFoled: '',
+                mGoalE: '',
+                mGoalS: '',
+                mGoalW: '',
+                mHeight: '',
+                mId: '',
+                mImg: '',
+                mIntro: '',
+                mLevel: '',
+                mMail: '',
+                mName: '',
+                mPhone: '',
+                mPoints: '',
+                mPsw: '',
+                mSex: '',
+                mWriteD: '',
+                mTotal: '',
+                mNo: '',
+
+                wWeight: '',
+                wDate: '',
+            })
+
+            //report 資料刪除
+            this.$store.commit('updateWeightData', [])
+
+            this.$store.commit('updataExerciseData', [])
+
+            this.$store.commit('updataNowCalData', [])
+
+            this.$store.commit('updataLastCalData', [])
+
+            //訂單狀態 status 資料刪除
+            this.$store.commit('updataOrderListDate', [])
+
+            this.$store.commit('updataOrderData', [])
+
+            //favPoster 資料刪除
+            this.$store.commit('updataFavPosterData',[])
         },
     },
     computed: {
-        // getAge() {
-        //     const birth = Date.parse(this.mBday)
-        //     const y = 1000 * 60 * 60 * 24 * 365
-        //     const now = new Date()
-        //     const birthday = new Date(birth)
-        //     const age = parseInt((now - birthday) / y)
-
-        //     return age
-        // },
-        // getSex() {
-        //     return this.mSex == '1' ? 'male' : 'female'
-        // },
-        // getBMR() {
-        //     const w = this.wWeight * 10
-        //     const h = this.mHeight * 6.25
-        //     const a = this.getAge * 5 + 5
-
-        //     return w + h - a
-        // },
 
         ...mapState([
             'mName',

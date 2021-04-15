@@ -2,7 +2,7 @@ let getTmp_mNo, getTmp_mId, getTmp_mPsw
 // 如果session 以登入 將資料寫入memberID
 
 function checkLoggedin() {
-    let xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest(); 
    xhr.onload = ()=>{
        //將獲取 id 或是 "{}"
        console.log(xhr.responseText)
@@ -17,7 +17,8 @@ function checkLoggedin() {
             console.log('這是密碼' + getTmp_mPsw)
             console.log('抓取 站存 成功')
 
-            console.log(app)
+            // console.log(app)
+
         }
    }
    xhr.open('get', 'php/checkLoggedin.php',true) 

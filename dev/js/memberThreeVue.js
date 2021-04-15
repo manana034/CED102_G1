@@ -803,9 +803,17 @@ Vue.component('status-order', {
 
     computed: {
         filteredList() {
-            return this.orderData.filter((post) => {
-                return post.fdName.toLowerCase().includes(this.search.toLowerCase())
-            })
+            // console.log(this.orderData.length)
+            if (this.orderData.length){
+                console.log('orderData 成功抓取')
+                return this.orderData.filter((post) => {
+                    return post.fdName.toLowerCase().includes(this.search.toLowerCase())
+                })
+            } else{
+                console.log('orderData 抓取失敗')
+                return {}
+            }
+
         },
 
         ...mapState(['orderData', 'orderListData']),
@@ -918,9 +926,16 @@ Vue.component('fav-poster', {
     },
     computed: {
         filteredList() {
-            return this.favListData.filter((post) => {
-                return post.infoTitle.toLowerCase().includes(this.search.toLowerCase())
-            })
+            if (this.favListData.length){
+                console.log('favOrder 抓取成功')
+                return this.favListData.filter((post) => {
+                    return post.infoTitle.toLowerCase().includes(this.search.toLowerCase())
+                })
+            } else{
+                console.log('favOrder 抓取失敗')
+                return {}
+            }
+
         },
 
         ...mapState(['favListData']),

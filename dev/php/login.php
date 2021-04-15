@@ -1,5 +1,5 @@
 <?php
-// session_start();
+
 try{
     require_once("../../connect_ced102g1.php");
     // select * from weigth w join  member m on w.mNo = m.mNo where m.mNo = 1 order by w.wDate desc limit 1;
@@ -23,11 +23,6 @@ try{
         echo "{}";
     }else{
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
-
-        //寫入session 並且命名為'mNo'
-        // $_SESSION["mNo"] = $memRow["mNo"];
-        // $_SESSION["mId"] = $memRow["mId"];
-        // $_SESSION["mPsw"] = $memRow["mPsw"];
 
         echo json_encode($memRow);
     }
