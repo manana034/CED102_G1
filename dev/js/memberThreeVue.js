@@ -1,5 +1,4 @@
-//用來傳遞 資料用的
-const passValueVue = new Vue()
+
 
 //status-order 的showDetail 用的
 
@@ -15,10 +14,10 @@ const passValueVue = new Vue()
 // })
 
 
-const mapState = Vuex.mapState
-const mapMutations = Vuex.mapMutations
-const mapActions = Vuex.mapActions
-const mapGetters = Vuex.mapGetters
+// const mapState = Vuex.mapState
+// const mapMutations = Vuex.mapMutations
+// const mapActions = Vuex.mapActions
+// const mapGetters = Vuex.mapGetters
 
 
 
@@ -426,185 +425,118 @@ Vue.component('account-body', {
 
 
 //是 main-content 的child
+//時間的部分在這裡
 Vue.component('goal-body', {
     template: `
         <form class="card goalBody">
-                            <div class="goal-row-1">
-                                <p>start Date</p>
-                                <div class="dateLine">
-                                    <div class="crrentLine">
-                                        <p id="moveDate">
-                                           {{getCurrentDate}}
-                                        </p>
-                                    </div>
-                                </div>
+            <div class="goal-row-1">
+                <p>start Date</p>
+                <div class="dateLine">
+                    <div 
+                        class="crrentLine"
+                        :style="{'width': setCurrentTimeBar + '%'}">
+                        <p id="moveDate">
+                            {{getCurrentDate}}
+                        </p>
+                    </div>
+                </div>
 
-                                <p>end date</p>
-                            </div>
+                <p>end date</p>
+            </div>
 
-                            <div class="goal-row-2">
-                                <p class="starDate">
-                                    {{startDate}}
-                                </p>
+            <div class="goal-row-2">
+                <p class="starDate">
+                    {{mGoalS}}
+                </p>
 
-                                <p class="endDate">
-                                    {{endDate}}
-                                </p>
-                            </div>
+                <p class="endDate">
+                    {{mGoalE}}
+                </p>
+            </div>
 
-                            <div class="goal-row-3">
-                                <div class="durationTime">
-                                    <p>duration time of goal</p>
-                                    <div>
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime"
-                                                v-model="goalTime" 
-                                                value="30" 
-                                                @click="clickSetTime"
-                                                hidden/>
-                                            <p>30</p>
-                                        </label>
+            <div class="goal-row-3">
+                <div class="durationTime">
+                    <p>duration time of goal</p>
+                    <div>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime"
+                                v-model="goalTime" 
+                                value="30" 
+                                @click="clickSetTime"
+                                hidden/>
+                            <p>30</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="60" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>60</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="60" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>60</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="90" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>90</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="90" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>90</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="180" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>180</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="180" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>180</p>
+                        </label>
 
-                                        <label class="enterDurTime">
-                                            <input 
-                                                type="text" 
-                                                name="goalTime"
-                                                v-model="goalTime"
-                                                @input="setDurTime"/>
-                                            <p><img src="./icon/pen.svg" /></p>
-                                        </label>
+                        <label class="enterDurTime">
+                            <input 
+                                type="text" 
+                                name="goalTime"
+                                v-model="goalTime"
+                                @input="setDurTime"/>
+                            <p><img src="./icon/pen.svg" /></p>
+                        </label>
 
-                                    </div>
-                                </div>
-                                <div class="customDate">
-                                    <p>Custom end date</p>
-                                    <div>
-                                        <input type="text" placeholder="YY/MM/DD" name="goalTime"
-                                        @input="setCustomDate"
-                                        v-model="customEndDate"/>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                </div>
 
-                            <div class="goal-row-4">
-                                <div class="block currentState">
-                                    <p>current state</p>
-                                    <div>
-                                        <div class="l-side">
-                                            <div>
-                                                <img src="./icon/gender.svg" />
-                                                <p>male</p>
-                                            </div>
+                <div class="customDate">
+                    <p>Custom end date</p>
+                    <div>
+                        <input type="text" placeholder="YY/MM/DD" name="goalTime"
+                        @input="setCustomDate"
+                        v-model="customEndDate"/>
+                    </div>
+                </div>
 
-                                            <div>
-                                                <img src="./icon/age.svg" />
-                                                <p><span>20</span> y</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/height.svg" />
-                                                <p><span>180</span> cm</p>
-                                            </div>
-                                        </div>
+                <div class="restDay">
+                    <p>Rest Day</p>
+                    <div>120</div>
+                </div> 
+            </div>
 
-                                        <div class="r-side">
-                                            <div>
-                                                <img src="./icon/weight.svg" />
-                                                <p><span>100</span> kg</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/BMR.svg" />
-                                                <p><span>2200</span> cal</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block goalWeight">
-                                    <p>goal weight</p>
-                                    <label>
-                                        <input 
-                                            type="text"
-                                            v-model="goalWeight"
-                                            maxlength="3"
-                                            @input="setGoalWeight"/>
+            <bottom-info></bottom-info>
 
-                                        <img src="./icon/pen.svg" />
-                                    </label>
-                                </div>
-                                <div class="block restCal">
-                                    <p>rest Calories</p>
-                                    <div>
-                                        <div class="peopleInfoGraphic">
-                                            <div class="tookCal"></div>
-                                            <p>0 <span>%</span></p>
-                                        </div>
-
-                                        <div class="infoNum">
-                                            <div class="row-1">
-                                                <p>12000</p>
-                                                <span>rest cal</span>
-                                            </div>
-                                            <div class="hr"></div>
-                                            <div class="row-2">
-                                                <p>24000</p>
-                                                <span>daliy cal</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block">
-                                    <div>
-                                        <button class="l-btn">
-                                            <img src="./icon/pen.svg" />
-                                            create goal
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+        </form>
     `,
     data() {
         return {
-            startDate: '2020/04/03',
-            endDate: '2099/05/06',
-
             goalTime: '',
             customEndDate: '',
-            goalWeight: '',
         }
     },
     methods: {
@@ -649,34 +581,37 @@ Vue.component('goal-body', {
                 img.style.opacity = 1
             }
         },
-
-        setGoalWeight() {
-            const input = document.querySelector('.goalBody .goalWeight label')
-            const img = input.children[1]
-
-            // console.log(input)
-            if (this.goalWeight) {
-                input.style.backgroundColor = '#EAA565'
-                img.style.opacity = 0
-            } else {
-                input.removeAttribute('style')
-                img.removeAttribute('style')
-            }
-        },
     },
 
     computed: {
         getCurrentDate() {
-            const y = new Date().getFullYear()
             const m = new Date().getMonth()
             const d = new Date().getDate()
 
-            return `${y}/${m + 1}/${d}`
+            return `${m + 1}-${d}`
         },
+
+        setCurrentTimeBar() {
+            const s = Date.parse(this.mGoalS)
+            const e = Date.parse(this.mGoalE)
+            const now = Date.parse(new Date())
+
+            const all = e - s //分母
+            const n = now - s //分子
+
+            const nInAll = n / all
+
+            if (nInAll >= 1) {
+                return 100
+            } else {
+                return nInAll * 100
+            }
+        },
+
+        ...mapState(['mGoalE', 'mGoalS', 'mGoalW']),
     },
-    //Vue 開始時執行
+
     mounted() {
-        //js 轉換日期格式
         let formatDate = function (date) {
             let y = date.getFullYear()
             let m = date.getMonth() + 1
@@ -686,7 +621,6 @@ Vue.component('goal-body', {
             return y + '-' + m + '-' + d
         }
 
-        //限制input輸入的最大時間
         let getMaxDate = function (date) {
             let y = date.split('-')[0]
             let m = date.split('-')[1]
@@ -717,10 +651,26 @@ Vue.component('goal-body', {
             dateMax: `${maxDate}`,
         })
 
-        new Cleave('.goalWeight input', {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
+        passValueVue.$on('check-goalTime', () => {
+            console.log('確認是否傳到這')
+
+            const time = setTimeout(() => {
+                const durationTime = select('.durationTime')
+                const customDate = select('.customDate')
+                const restDay = select('.restDay')
+
+                if (this.mGoalE) {
+                    durationTime.style.display = 'none'
+                    customDate.style.display = 'none'
+                    restDay.removeAttribute('style')
+                } else {
+                    durationTime.removeAttribute('style')
+                    customDate.removeAttribute('style')
+                    restDay.style.display = 'none'
+                }
+
+                clearTimeout(time)
+            }, 100)
         })
     },
 })
@@ -739,6 +689,7 @@ Vue.component('status-order', {
                     <input 
                         type="text" 
                         placeholder="Eenter Name"
+                        @input="checkList"
                         v-model="search">
 
                     <button class="nc-btn" type="button">
@@ -774,7 +725,7 @@ Vue.component('status-order', {
                                 </td>
 
                                 <td data-label="DETAIL">
-                                    {{order.fdName}}--{{order.quantity}}
+                                    {{order.fdName}}--{{order.qty}}
                                 </td>
 
                                 <td data-label="PRICE">
@@ -792,63 +743,41 @@ Vue.component('status-order', {
             </div>
 
             <!-- 原本style 必須是none 以外才有動作 -->
-            <order-detail
-                v-show="orderDetailOpen"></order-detail>
+           <order-detail
+                v-show="orderDetailOpen"
+                @close-detail="closeDetail"
+                :detail-data="detailData"></order-detail>
 
         </div> 
     `,
     data() {
         return {
             search: '',
-            orderList: [
-                {
-                    ID: 32898843,
-                    TIME: '2020/02/21',
-                    PRICE: '200',
-                    STATUS: 'ARRIVAL',
 
-                    name: 'vegetables',
-                    qty: 2,
-                },
-                {
-                    ID: 88433289,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'chocolate bar',
-                    qty: 1,
-                },
-                {
-                    ID: 88984332,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'banna juice',
-                    qty: 1,
-                },
-                {
-                    ID: 32888439,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'Apple juice',
-                    qty: 1,
-                },
-            ],
+            orderStateListEl: null,
+            orderStateLine: null,
 
             orderDetail: null,
             orderDetailOpen: false,
+
+            detailData: [],
         }
     },
+    mounted() {
+        this.orderDetail = select('.orderDetail')
+        this.orderStateListEl = select('.statusOrder tbody')
+        this.orderStateLine = select('.statusOrder thead')
+    },
     methods: {
-        showDetail() {
-            // this.orderDetail.style.display = 'flex'
+        showDetail(e) {
+            const id = e.target.parentElement.children[0].textContent.trim()
+            this.detailData = this.orderListData.filter((item) => item.orderNo == id)
+
             this.orderDetailOpen = !this.orderDetailOpen
         },
-
+        closeDetail() {
+            this.orderDetailOpen = !this.orderDetailOpen
+        },
         toggleStatusOrder() {
             const listBody = document.querySelector('.statusOrder>.listBody')
             const card = document.querySelector('.statusOrder>.listBody>div')
@@ -860,18 +789,26 @@ Vue.component('status-order', {
                 listBody.style.height = `${card.clientHeight}px`
             }
         },
+        checkList() {
+            const time = setTimeout(() => {
+                if (!this.orderStateListEl.children[0]) {
+                    this.orderStateLine.style.borderBottom = 'none'
+                } else {
+                    this.orderStateLine.removeAttribute('style')
+                }
+                clearTimeout(time)
+            }, 20)
+        },
     },
-    mounted() {
-        this.orderDetail = select('.orderDetail')
-    },
+
     computed: {
         filteredList() {
-            return this.orderListData.filter((post) => {
+            return this.orderData.filter((post) => {
                 return post.fdName.toLowerCase().includes(this.search.toLowerCase())
             })
         },
 
-        ...mapState(['orderListData']),
+        ...mapState(['orderData', 'orderListData']),
     },
 })
 
@@ -890,6 +827,7 @@ Vue.component('fav-poster', {
                     <input 
                         type="text" 
                         placeholder="Enter Name"
+                        @input="checkList"
                         v-model="search">
 
                     <button class="nc-btn" type="button">
@@ -911,13 +849,13 @@ Vue.component('fav-poster', {
                         </thead>
                         <tbody>
                             <tr v-for="(post,i) in filteredList">
-                                <td data-label="TYPE">{{post.TYPE}}</td>
-                                <td data-label="NAME">{{post.NAME}}</td>
+                                <td data-label="TYPE">{{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Heath'}}</td>
+                                <td data-label="NAME">{{post.infoTitle.slice(0,10)+'...'}}</td>
 
                                 <td>
                                     <a 
                                         class="l-btn" 
-                                        :href="post.href">
+                                        href="./info_content.html">
                                         CHECK POST
                                     </a>
                                 </td>
@@ -942,38 +880,18 @@ Vue.component('fav-poster', {
     data() {
         return {
             search: '',
-            posterList: [
-                {
-                    TYPE: 'health',
-                    NAME: 'Eat and Fit',
 
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'get fatness',
-                    NAME: 'how to eat',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-            ],
+            favListEl: null,
+            favListLine: null,
         }
+    },
+    mounted() {
+        this.favListEl = select('.favPoster tbody')
+        this.favListLine = select('.favPoster thead')
     },
     methods: {
         deletPost(i) {
-            //刪除item
-            this.posterList.splice(i, 1)
+            this.favListData.splice(i, 1)
         },
         toggleFavPoster() {
             const listBody = document.querySelector('.favPoster>.listBody')
@@ -986,13 +904,26 @@ Vue.component('fav-poster', {
                 listBody.style.height = `${card.clientHeight}px`
             }
         },
+
+        checkList() {
+            const time = setTimeout(() => {
+                if (!this.favListEl.children[0]) {
+                    this.favListLine.style.borderBottom = 'none'
+                } else {
+                    this.favListLine.removeAttribute('style')
+                }
+                clearTimeout(time)
+            }, 20)
+        },
     },
     computed: {
         filteredList() {
-            return this.posterList.filter((post) => {
-                return post.NAME.toLowerCase().includes(this.search.toLowerCase())
+            return this.favListData.filter((post) => {
+                return post.infoTitle.toLowerCase().includes(this.search.toLowerCase())
             })
         },
+
+        ...mapState(['favListData']),
     },
 })
 

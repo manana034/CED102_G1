@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>Document</title>
@@ -12,15 +12,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js" defer></script>
 
+        <script src="./js/header.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+
         <script src="./js/memberVuex.js" defer></script>
         <script src="./js/memberFourVue.js" defer></script>
         <script src="./js/memberThreeVue.js" defer></script>
         <script src="./js/memberSecondVue.js" defer></script>
         <script src="./js/memberVue.js" defer></script>
-        
         <script src="./js/member.js" defer></script>
-        <script src="./js/header.js" defer></script>
-        <script src="./js/cart.js" defer></script>
+        
+    
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
 
@@ -145,55 +147,27 @@
     
 
         <div id="app">
-            <main class="row myAccount" >
+            <main class="row myAccount"
+                v-show="!loginBeforeAfter">
 
                 <edit-person 
-                    :m-name="mName"
-                    :m-level="mLevel"
-                    :m-mail="mMail"
-                    :m-phone="mPhone"
-                    :m-sex="mSex"
-                    :m-img="mImg"
-                    :m-intro="mIntro"
-                    :m-height="mHeight"
-                    :m-bday="mBday"
-    
-                    :w-weight="wWeight"
-                    :w-date="wDate"
-    
                     v-show="openEditPerson">
                 </edit-person>
                 
                 <!-- 自己發送自己要接收 並由parent  -->
                 <person-info
-                    :m-name="mName"
-                    :m-level="mLevel"
-                    :m-mail="mMail"
-                    :m-phone="mPhone"
-                    :m-sex="mSex"
-                    :m-img="mImg"
-                    :m-intro="mIntro"
-                    :m-height="mHeight"
-                    :m-bday="mBday"
-    
-                    :w-weight="wWeight"
-                    :w-date="wDate"
-               
                     @open-edit="changeStauts">
                 </person-info>
     
                 <main-content></main-content>
     
-                <second-info 
-                    :m-points="mPoints">
-                </second-info>
+                <second-info></second-info>
     
             </main>
     
-            <login-signup></login-signup>
+            <login-signup
+                v-show="loginBeforeAfter"></login-signup>
 
-         
-    
         </div>
 
         @@include('./layout/footer.html')

@@ -1,14 +1,11 @@
 <?php
-// session_start();
+session_start();
 try{
     require_once("../../connect_ced102g1.php");
     // select * from weigth w join  member m on w.mNo = m.mNo where m.mNo = 1 order by w.wDate desc limit 1;
-    $sql = "SELECT * FROM 
-    member m LEFT JOIN weigth w ON m.mNo = w.mNo
+    $sql = "SELECT * FROM member
     WHERE mId=:memid 
-    AND mPsw=:memPsw 
-    ORDER BY w.wDate 
-    DESC LIMIT 1 "; 
+    AND mPsw=:memPsw"; 
     
     $member = $pdo->prepare($sql);
 
@@ -25,9 +22,9 @@ try{
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
         //寫入session 並且命名為'mNo'
-        // $_SESSION["mNo"] = $memRow["mNo"];
-        // $_SESSION["mId"] = $memRow["mId"];
-        // $_SESSION["mPsw"] = $memRow["mPsw"];
+        $_SESSION["mNo"] = $memRow["mNo"];
+        $_SESSION["mId"] = $memRow["mId"];
+        $_SESSION["mPsw"] = $memRow["mPsw"];
 
         echo json_encode($memRow);
     }

@@ -1,3 +1,31 @@
+let getTmp_mNo, getTmp_mId, getTmp_mPsw
+// 如果session 以登入 將資料寫入memberID
+
+function checkLoggedin() {
+    let xhr = new XMLHttpRequest();
+   xhr.onload = ()=>{
+       //將獲取 id 或是 "{}"
+       console.log(xhr.responseText)
+       member = JSON.parse(xhr.responseText)
+        if (member.mNo || member.mId || member.mPsw) {
+            getTmp_mNo = member.mNo
+            getTmp_mId = member.mId
+            getTmp_mPsw = member.mPsw
+
+            console.log('這是編號' + getTmp_mNo)
+            console.log('這是帳號' + getTmp_mId)
+            console.log('這是密碼' + getTmp_mPsw)
+            console.log('抓取 站存 成功')
+
+            console.log(app)
+        }
+   }
+   xhr.open('get', 'php/checkLoggedin.php',true) 
+   xhr.send(null)
+}
+checkLoggedin()
+
+
 let x, i, j, l, ll, selElmnt, a, b, c
 
 /*look for any elements with the class "custom-select":*/
