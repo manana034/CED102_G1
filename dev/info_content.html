@@ -79,6 +79,13 @@
             $(this).children().attr('src', src);
         });
     });
+        const infoNo = sessionStorage.getitem("infoNo");
+
+        fetch(`./php/getInfo.php?infoNo=${infoNo}`).then(res => res.json())
+        .then(data => {
+            vm.infos = data;
+            }
+        });
 
 
 </script>

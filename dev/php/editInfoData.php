@@ -8,7 +8,7 @@
         $infoState = $decoded["infoState"];
         $infoNo = $decoded["infoNo"];
 
-        $sql = "UPDATE infomation
+        $sql = "UPDATE information
                 SET infoState = :infoState
                 WHERE infoNo = :infoNo
                 ";
