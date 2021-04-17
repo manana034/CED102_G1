@@ -1,5 +1,12 @@
 let getTmp_mNo, getTmp_mId, getTmp_mPsw
 // 如果session 以登入 將資料寫入memberID
+//共用
+const select = (selector) =>{
+    return document.querySelector(selector)
+}
+const selectAll = (selector) =>{
+    return document.querySelectorAll(selector)
+}
 
 function checkLoggedin() {
     let xhr = new XMLHttpRequest(); 
@@ -155,7 +162,6 @@ menuIcon.addEventListener('click', (e) => {
         menuBody.style.transform = 'translate(0,0)'
     }
 })
-
 menuCIcon.addEventListener('click', () => {
     menuBody.style.transform = 'translate(100%,0)'
 })
@@ -163,9 +169,17 @@ document.addEventListener('click', closeMenu)
 
 // -------------------------menu open↑↑↑↑↑↑↑↑↑↑↑↑
 
+
+//搜尋bar----------------------------------------------
+//搜尋bar----------------------------------------------
+//搜尋bar----------------------------------------------
+
 const searchInput = document.querySelector('.search-input>input')
 const sugItems = searchInput.nextElementSibling
 const selectItems = document.querySelectorAll('.select-items')
+
+const submitBtn = select('.submitBtn')
+const searchType = select('.select-selected')
 
 let foodData = []
 let excericeData = []
@@ -223,6 +237,9 @@ const createSearchData = (data,type) => {
     const custom = document.querySelector('.custom-item')
     const items = document.querySelectorAll('.search-item')
 
+    custom.addEventListener('click',()=>{
+        window.location.href = './search.html'
+    })
     //如果item 有存在 就要刪掉
     if (items) {
         //remove 只能移除單一個
@@ -230,32 +247,47 @@ const createSearchData = (data,type) => {
     }
 
     if (type === 'food'){
-    for (let i in data) {
-        const item = document.createElement('a')
-        item.className = 'search-item'
-        item.setAttribute('href', './Cal_Diary.html')
-        item.innerHTML = `
-            <div>
-                <p>${data[i].fdName}</p>
-                <p><span>${data[i].fdCalPer}</span> cal</p> 
-            </div>
-        `
+        for (let i in data) {
+            const item = document.createElement('a')
+            item.className = 'search-item'
+            item.innerHTML = `
+                <div>
+                    <p>${data[i].fdName}</p>
+                    <p><span>${data[i].fdCalPer}</span> cal</p> 
+                </div>
+            `
+            //寫入session 讓一名抓地到資料
+            item.addEventListener('click', () => {
+
+                sessionStorage.setItem('type', searchType.textContent)
+                sessionStorage.setItem('no', data[i].fdNo)
+
+                window.location.href ="./Cal_Diary.html"
+            })
             list.insertBefore(item, custom)
         }
     } else if(type === 'sport'){
         for (let i in data) {
-        const item = document.createElement('a')
-        item.className = 'search-item'
-        item.setAttribute('href', './Cal_Diary.html')
-        item.innerHTML = `
-            <div>
-                <p>${data[i].spName}</p>
-                <p><span>${data[i].spCalPer}</span> cal</p> 
-            </div>
-        `
+            const item = document.createElement('a')
+            item.className = 'search-item'
+            item.innerHTML = `
+                <div>
+                    <p>${data[i].spName}</p>
+                    <p><span>${data[i].spCalPer}</span> cal</p> 
+                </div>
+            `
+            //寫入session 讓一名抓地到資料
+            item.addEventListener('click',()=>{
+                sessionStorage.setItem('type', searchType.textContent)
+                sessionStorage.setItem('no', data[i].spNo)
+
+                window.location.href = './Cal_Diary.html'
+            })
             list.insertBefore(item, custom)
         }
     }
+
+
   
 }
 
@@ -288,11 +320,26 @@ const choiceSelect = (e) => {
     }
 }
 
+// console.log(searchType.textContent)
+
 searchInput.addEventListener('focus', showSugItem)
 searchInput.addEventListener('keyup', filterData)
 selectItems.forEach((item) => item.addEventListener('click', choiceSelect))
 document.addEventListener('click', closeSugItem)
-// console.log(selectItems)
+submitBtn.addEventListener('click',()=>{
+    if (searchInput.value){
+        sessionStorage.setItem('searchInput', searchInput.value)
+        sessionStorage.setItem('searchType', searchType.textContent)
+    }
+    window.location.href ='./search.html'
+})
+
+
+
+
+
+
+
 
 // --------rwd search 使用
 const searchBody = document.querySelector('form#searchBar')

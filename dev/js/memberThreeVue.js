@@ -153,6 +153,7 @@ Vue.component('profile-body', {
             </form>
         </div>
     `,
+
     data() {
         return {
             bdayInput: '',
@@ -167,7 +168,6 @@ Vue.component('profile-body', {
             // gender: '',
         }
     },
-
     methods: {
         getImg(e) {
             //當 change 事件發生 就會執行這methods
@@ -525,7 +525,7 @@ Vue.component('goal-body', {
 
                 <div class="restDay">
                     <p>Rest Day</p>
-                    <div>120</div>
+                    <div>{{getRestDay}}</div> 
                 </div> 
             </div>
 
@@ -537,6 +537,11 @@ Vue.component('goal-body', {
         return {
             goalTime: '',
             customEndDate: '',
+
+
+            //以下為 function
+            checkGoalTimeState: null,
+            resetTimeBar: null,
         }
     },
     methods: {
@@ -592,6 +597,7 @@ Vue.component('goal-body', {
         },
 
         setCurrentTimeBar() {
+
             const s = Date.parse(this.mGoalS)
             const e = Date.parse(this.mGoalE)
             const now = Date.parse(new Date())
@@ -603,8 +609,25 @@ Vue.component('goal-body', {
 
             if (nInAll >= 1) {
                 return 100
+            } else if (!nInAll) {
+                //如果他不是 數字的話
+                return 0
             } else {
                 return nInAll * 100
+            }
+        },
+
+        getRestDay() {
+            const y = new Date().getFullYear()
+            const m = new Date().getMonth()
+            const d = new Date().getDate()
+
+            const now = `${y}-${m + 1}-${d}`
+            if (Date.parse(now) >= Date.parse(this.mGoalE)) {
+                return 0
+            } else {
+                const rest = Date.parse(this.mGoalE) - Date.parse(now)
+                return parseInt(rest / 1000 / 60 / 60 / 24)
             }
         },
 
@@ -620,7 +643,6 @@ Vue.component('goal-body', {
             d = d < 10 ? '0' + d : d
             return y + '-' + m + '-' + d
         }
-
         let getMaxDate = function (date) {
             let y = date.split('-')[0]
             let m = date.split('-')[1]
@@ -633,6 +655,12 @@ Vue.component('goal-body', {
 
         const currentDate = formatDate(new Date()) //目前日期
         const maxDate = getMaxDate(currentDate)
+
+        const nd = new Date(Date.parse(currentDate)+(1000*60*60*24*30))
+        const y = nd.getFullYear()
+        const m = nd.getMonth()+1
+        const d = nd.getDate()
+        const minDate = `${y}-${m}-${d}`
 
         new Cleave('.enterDurTime>input', {
             numeral: true,
@@ -647,30 +675,107 @@ Vue.component('goal-body', {
             datePattern: ['Y', 'm', 'd'],
             //要以下面的格式才可以接收
             delimiter: '-',
-            dateMin: `${currentDate}`,
+            dateMin: `${minDate}`,
             dateMax: `${maxDate}`,
         })
 
-        passValueVue.$on('check-goalTime', () => {
+        //將全域變數帶入
+        this.checkGoalTimeState = ()=>{
             console.log('確認是否傳到這')
 
+            const durationTime = select('.durationTime')
+            const customDate = select('.customDate')
+            const restDay = select('.restDay')
+            // const currentLine = select('.crrentLine')
+
+            if (this.mGoalE && this.mGoalE !== '--') {
+                //如果 有值 還要 不等於'--'
+                //就會 -> 選項消失 出現剩餘天數
+                durationTime.style.display = 'none'
+                customDate.style.display = 'none'
+                restDay.removeAttribute('style')
+            } else {  
+                durationTime.removeAttribute('style')
+                customDate.removeAttribute('style')
+                restDay.style.display = 'none'
+                
+            }
+
+        }
+
+        passValueVue.$on('check-goalTime', () => {
             const time = setTimeout(() => {
-                const durationTime = select('.durationTime')
-                const customDate = select('.customDate')
-                const restDay = select('.restDay')
-
-                if (this.mGoalE) {
-                    durationTime.style.display = 'none'
-                    customDate.style.display = 'none'
-                    restDay.removeAttribute('style')
-                } else {
-                    durationTime.removeAttribute('style')
-                    customDate.removeAttribute('style')
-                    restDay.style.display = 'none'
-                }
-
+                this.checkGoalTimeState()
                 clearTimeout(time)
             }, 100)
+        })
+        passValueVue.$on('clear-time',()=>{
+            this.checkGoalTimeState()
+        })
+        passValueVue.$on('create-goal', (inputEl, checkGoalWeightFun) => {
+            const y = new Date().getFullYear()
+            const m = new Date().getMonth() + 1
+            const d = new Date().getDate()
+
+            const now = `${y}-${m}-${d}` 
+            const Vthis = this
+
+            if (this.goalTime || this.customEndDate) {
+                //兩個其中有值
+                if (inputEl.value) {
+                    //將Vuex 的內容mGoalS mGoalE mGoalW 都規程零
+                    //送出Vuex 會需要點時間
+                    Vthis.$store.commit('updataGoalStart', now)
+                    // Vthis.$store.commit('updataGoalEnd', this.goalTime ? this.goalTime : this.customEndDate)
+                    if (this.goalTime) {
+                        //如果是goalTime 有值
+                        let nowDate = Date.parse(now)
+                        let addDate = this.goalTime * 1000 * 60 * 60 * 24
+                        let endDate = nowDate + addDate
+
+                        let iy = new Date(endDate).getFullYear()
+                        let im = new Date(endDate).getMonth() + 1
+                        let id = new Date(endDate).getDate()
+
+                        this.$store.commit('updataGoalEnd', `${iy}-${im}-${id}`)
+                    } else {
+                        //customEndDate 的值直接傳給Vuex
+                        console.log(this.customEndDate)
+                        this.$store.commit('updataGoalEnd', this.customEndDate)
+                    }
+
+                    Vthis.$store.commit('updataGoalWeight', inputEl.value)
+
+                    //ajax 修改 table的內容 mGoalS mGoalE mGoalW
+                    //=========================================
+                    //=========================================
+
+                    // 將button 做切換 內容作變化
+                } else {
+                    //inputEl沒有填值
+                    alert('請輸入日期、體重')
+                }
+            } else {
+                //兩個均沒有值
+                alert('請輸入日期、體重')
+            }
+
+            //檢查GoaTimel 是否有值
+            //查看GoalWeight 目前是甚麼狀態
+            const time = setTimeout(() => {
+                this.checkGoalTimeState()
+                //來自memberFourVue 的method
+                //將goalWeight 無法更動變成readonly
+                checkGoalWeightFun()
+                console.log('可以讓這裡執行 執行其他method 的function')
+                clearTimeout(time)
+            }, 100)
+
+            
+            //將內容寫入table
+            
+
+
         })
     },
 })
@@ -746,7 +851,8 @@ Vue.component('status-order', {
            <order-detail
                 v-show="orderDetailOpen"
                 @close-detail="closeDetail"
-                :detail-data="detailData"></order-detail>
+                :detail-data="detailData">
+            </order-detail>
 
         </div> 
     `,
@@ -857,13 +963,18 @@ Vue.component('fav-poster', {
                         </thead>
                         <tbody>
                             <tr v-for="(post,i) in filteredList">
-                                <td data-label="TYPE">{{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Heath'}}</td>
-                                <td data-label="NAME">{{post.infoTitle.slice(0,10)+'...'}}</td>
+                                <td data-label="TYPE">
+                                    {{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Heath'}}
+                                </td>
+                                
+                                <td data-label="NAME">
+                                    {{post.infoTitle.slice(0,10)+'...'}}
+                                </td>
 
                                 <td>
                                     <a 
-                                        class="l-btn" 
-                                        href="./info_content.html">
+                                        class="l-btn"
+                                        @click="toFavPost(post)">
                                         CHECK POST
                                     </a>
                                 </td>
@@ -923,19 +1034,24 @@ Vue.component('fav-poster', {
                 clearTimeout(time)
             }, 20)
         },
+
+        toFavPost(target) {
+            sessionStorage.setItem('infoNo', target.infoNo)
+            //跳轉到別的頁面
+            window.location.href = './info_content.html';
+        },
     },
     computed: {
         filteredList() {
-            if (this.favListData.length){
+            if (this.favListData.length) {
                 console.log('favOrder 抓取成功')
                 return this.favListData.filter((post) => {
                     return post.infoTitle.toLowerCase().includes(this.search.toLowerCase())
                 })
-            } else{
+            } else {
                 console.log('favOrder 抓取失敗')
                 return {}
             }
-
         },
 
         ...mapState(['favListData']),

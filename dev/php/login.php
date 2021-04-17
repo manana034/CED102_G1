@@ -1,12 +1,14 @@
 <?php
 
 try{
+
     require_once("../../connect_ced102g1.php");
     // select * from weigth w join  member m on w.mNo = m.mNo where m.mNo = 1 order by w.wDate desc limit 1;
     $sql = "SELECT * FROM 
     member m LEFT JOIN weigth w ON m.mNo = w.mNo
     WHERE mId=:memid 
-    AND mPsw=:memPsw 
+    AND mPsw=:memPsw
+    and mState= 1
     ORDER BY w.wDate 
     DESC LIMIT 1 "; 
     

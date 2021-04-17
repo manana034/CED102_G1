@@ -1,12 +1,5 @@
 
 
-//共用
-const select = (selector) =>{
-    return document.querySelector(selector)
-}
-const selectAll = (selector) =>{
-    return document.querySelectorAll(selector)
-}
 
 
 const store = new Vuex.Store({
@@ -48,6 +41,9 @@ const store = new Vuex.Store({
 
         //fav poster的資料
         favListData: [],
+
+        //當日攝取卡路里資料 daily Cal
+        dailySumCal: '',
 
         //登入畫面 與 登入後畫面切換
         loginBeforeAfter: true,
@@ -122,6 +118,17 @@ const store = new Vuex.Store({
             state.mImg = payload
         },
 
+        //變更goal的的資料
+        updataGoalStart(state,payload){
+            state.mGoalS = payload
+        },
+        updataGoalEnd(state,payload){
+            state.mGoalE = payload
+        },
+        updataGoalWeight(state,payload){
+            state.mGoalW = payload
+        },
+
         //report 的資料
         updateWeightData(state, payload) {
             state.wData = payload
@@ -149,6 +156,11 @@ const store = new Vuex.Store({
             state.favListData = payload
         },
 
+        //每天daily Cal 的資料
+        updataDailyCalData(state,payload){
+            state.dailySumCal = payload
+        },
+
         //登入畫面切換
         toggleLoginBeforeAfter(state) {
             state.loginBeforeAfter = !state.loginBeforeAfter
@@ -170,14 +182,22 @@ const store = new Vuex.Store({
             const h = state.mHeight * 6.25
             const a = getters.getAge * 5 + 5
 
-            return w + h - a
+            return parseInt(w + h - a)
         },
         getSex: (state) =>{
             return state.mSex == '1' ? 'male' : 'female'
         },
 
-        getCalPerDay: (state,getters)=>{
-            return parseInt((getters.getBMR * 100) / 70)
+        getCalPerDay: (state)=>{
+
+            const time = Date.parse(state.mGoalE) - Date.parse(state.mGoalS)
+            const goalDuringDate = parseInt(time/ (1000*60*60*24))
+
+            if (goalDuringDate) {
+                return parseInt((state.mGoalW * 7700) / goalDuringDate)
+            } else {   
+                return '--'
+            }
         }
     },
 })
