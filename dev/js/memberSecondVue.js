@@ -2,6 +2,9 @@
 
 //第二層
 
+//登入 之後 儲存mNo
+let login_mNo, fortest
+
 
 //編輯個資,帳號的地方(一開始關閉狀態)
 Vue.component('edit-person', {
@@ -466,7 +469,13 @@ Vue.component('login-signup', {
                             </label>
 
                             <div>
-                                <button class="p-btn" id="signup" type="button">sign up</button>
+                                <button 
+                                    class="p-btn" 
+                                    id="signup" 
+                                    type="button">
+                                    
+                                    sign up
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -776,7 +785,6 @@ Vue.component('login-signup', {
             }
         },
 
-
         loginMember() {
             const login_id = select('.login input[name="userid"]')
             const login_psw = select('.login input[name="psd"]')
@@ -796,9 +804,11 @@ Vue.component('login-signup', {
                     // console.log(JSON.parse(xhr.responseText))
                     Vthis.getMFavPosterData(JSON.parse(xhr.responseText).mNo) 
                     if (xhr.responseText !== '{}') {
+                        //如果 抓取內容不是 {} 就切換畫面
                         Vthis.toggleLogin()
                     }
                     console.log('登入成功 順便寫入站存')
+                    login_mNo = JSON.parse(xhr.responseText).mNo
                 }
                 xhr.open('post', 'php/login.php', true)
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -928,6 +938,38 @@ Vue.component('login-signup', {
                 xhr.send(data_info)
             }
 
+            function getMDailyCalData() {
+                const time = setTimeout(()=>{
+                    function formatDate(date) {
+                        let d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear()
+
+                        if (month.length < 2) month = '0' + month
+                        if (day.length < 2) day = '0' + day
+
+                        return [year, month, day].join('-')
+                    }
+                    console.log(login_mNo)
+                    const now = formatDate(new Date())
+                    fetch(`php/getDailyCal.php?mNo=${login_mNo}&curTime=${now}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            fortest = res
+                            Vthis.$store.commit(
+                                'updataDailyCalData',
+                                res.dailySumCal ? parseInt(res.dailySumCal) : 0
+                            )
+                        })
+                    //如果沒資料就回傳0
+                    console.log(`login--work --${fortest}`)
+                    clearTimeout(time)
+                },50)
+
+
+            }
+
             getMemberData()
             //mNo 抓不到再從新抓一次
             getMnoMidMpsw()
@@ -939,7 +981,7 @@ Vue.component('login-signup', {
 
             getMOrderListData()
             getMOrderData()
-
+            getMDailyCalData()
             
 
        
@@ -956,7 +998,5 @@ Vue.component('login-signup', {
     mounted() {
         console.log('this login-signup mounted')  
 
- 
-       
     },
 })

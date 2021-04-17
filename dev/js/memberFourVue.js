@@ -96,6 +96,7 @@ Vue.component('bottom-info', {
                 <p>current state</p>
                 <div>
                     <div class="l-side">
+
                         <div>
                             <img src="./icon/gender.svg" />
                             <p>{{getSex}}</p>
@@ -109,6 +110,7 @@ Vue.component('bottom-info', {
                             <img src="./icon/height.svg" />
                             <p><span>{{mHeight}}</span></p>
                         </div>
+
                     </div>
 
                     <div class="r-side">
@@ -141,14 +143,21 @@ Vue.component('bottom-info', {
                 <p>rest Calories</p>
                 <div>
                     <div class="peopleInfoGraphic">
-                        <div class="tookCal"></div>
-                        <p>0 <span>%</span></p>
+                        
+                        <div 
+                            class="tookCal"
+                            :style ="'height:'+setCalPercent+'%'">
+                        </div>
+                        <p>
+                            {{setCalPercent}}
+                            <span>%</span>
+                        </p>
                     </div>
 
                     <div class="infoNum">
                         <div class="row-1">
-                            <p>12000</p>
-                            <span>rest cal</span>
+                            <p>{{dailySumCal}}</p>
+                            <span>took cal</span>
                         </div>
                         <div class="hr"></div>
                         <div class="row-2">
@@ -161,17 +170,45 @@ Vue.component('bottom-info', {
 
             <div class="block">
                 <div>
-                    <button class="l-btn createGoal">
+                    <button 
+                        class="l-btn createGoal"
+                        type="button"
+                        @click="createGoalBtn"
+                        v-show="CBtnOpen">
+
                         <img src="./icon/pen.svg" />
                         create goal
                     </button>
 
-                     <button class="l-btn editGoal">
+        
+
+                    <button 
+                        class="l-btn editGoal"
+                        type="button"
+                        v-show="EBtnOpen"
+                        @click="editGoalBtn">
+                        
                         <img src="./icon/pen.svg" />
                         edit goal
                     </button>
 
-                    <button class="l-btn finishGoal">
+
+                    <button 
+                        class="l-btn createGoal"
+                        type="button"
+                        v-show="SBtnOpen"
+                        @click="saveGoalBtn">
+                        <img src="./icon/pen.svg" />
+
+                        save
+                    </button>
+
+                    <button 
+                        class="l-btn finishGoal"
+                        type="button"
+                        @click="finishGoalBtn"
+                        v-show="FBtnOpen">
+
                         finish goal
                     </button>
 
@@ -181,7 +218,19 @@ Vue.component('bottom-info', {
         </div>
     `,
     data() {
-        return {}
+        return {
+            //先建立變數 mounted 之後就會寫入
+            checkGoalWeightState: null,
+
+            goalWeightInput: null,
+
+            editSaveButtonState: null,
+
+            FBtnOpen: true,
+            SBtnOpen: true,
+            EBtnOpen: true,
+            CBtnOpen: true,
+        }
     },
     mounted() {
         new Cleave('.goalWeight input', {
@@ -190,49 +239,78 @@ Vue.component('bottom-info', {
             numeralDecimalScale: 1,
         })
 
-        let Vthis = this;
+        let Vthis = this
+
+        //將變數 存入function 給大家做使用
+        this.checkGoalWeightState = function () {
+            const label = select('.goalBody .goalWeight label')
+            const input = label.children[0]
+            const img = label.children[1]
+
+            const createGoal = select('.createGoal')
+            const editGoal = select('.editGoal')
+            const finishGoal = select('.finishGoal')
+
+            console.log('測試看看別的地方有沒有收到')
+            //檢查有設目標體重
+            if (input.value) {
+                console.log(input.value + '有時候可以有時候吃不到??')
+                label.style.backgroundColor = '#EAA565'
+                img.style.opacity = 0
+
+                input.setAttribute('readonly', true)
+
+                // createGoal.style.display = 'none'
+                // finishGoal.style.display = 'none'
+                // editGoal.removeAttribute('style')
+
+                this.CBtnOpen = false
+                this.FBtnOpen = false
+                this.SBtnOpen = false
+                this.EBtnOpen = true
+
+                if (Date.parse(new Date()) >= Date.parse(Vthis.mGoalE)) {
+                    // editGoal.style.display = 'none'
+                    // finishGoal.removeAttribute('style')
+                    this.EBtnOpen = false
+                    this.SBtnOpen = false
+                    this.CBtnOpen = false
+                    this.FBtnOpen = true
+                }
+            } else {
+                label.removeAttribute('style')
+                img.removeAttribute('style')
+                input.removeAttribute('readonly')
+
+                // createGoal.removeAttribute('style')
+                // editGoal.style.display = 'none'
+                // finishGoal.style.display = 'none'
+
+                this.FBtnOpen = false
+                this.SBtnOpen = false
+                this.EBtnOpen = false
+                this.CBtnOpen = true
+            }
+        }
+
+        this.editSaveButtonState = () => {
+            console.log('變更編輯的狀態')
+            const label = select('.goalBody .goalWeight label')
+            const input = label.children[0]
+            const editGoal = select('.editGoal')
+
+            input.removeAttribute('readonly')
+            editGoal.textContent = 'save'
+        }
+
+        this.goalWeightInput = select('.goalWeight input')
+
         passValueVue.$on('check-goalWeight', () => {
             const time = setTimeout(() => {
-                const label = select('.goalBody .goalWeight label')
-                const input = label.children[0]
-                const img = label.children[1]
-
-                const createGoal = select('.createGoal')
-                const editGoal = select('.editGoal')
-                const finishGoal = select('.finishGoal')
-
-                console.log('一開始登入可能沒值')
-                //檢查有設目標體重
-                if (input.value) {
-
-                    console.log(input.value+'有時候可以有時候吃不到??')
-                    label.style.backgroundColor = '#EAA565'
-                    img.style.opacity = 0
-
-                    input.setAttribute('readonly', true)
-
-                    createGoal.style.display = 'none'
-                    finishGoal.style.display = 'none'
-                    editGoal.removeAttribute('style')
-
-                    if (Date.parse(new Date()) >= Date.parse(Vthis.mGoalE)) {
-                        editGoal.style.display = 'none'
-                        finishGoal.removeAttribute('style')
-                    }
-                } else {
-                    label.removeAttribute('style')
-                    img.removeAttribute('style')
-                    input.removeAttribute('readonly')
-
-                    createGoal.removeAttribute('style')
-                    editGoal.style.display = 'none'
-                    finishGoal.style.display = 'none'
-                }
-
+                this.checkGoalWeightState()
                 clearTimeout(time)
             }, 100)
         })
-
     },
     methods: {
         setGoalWeight() {
@@ -248,11 +326,89 @@ Vue.component('bottom-info', {
                 img.removeAttribute('style')
             }
         },
+
+        finishGoalBtn() {
+            //將Vuex 的內容mGoalS mGoalE mGoalW 都規程零
+            //送出Vuex 會需要點時間
+            const y = new Date().getFullYear()
+            const m = new Date().getMonth()
+            const d = new Date().getDate()
+
+            this.$store.commit('updataGoalStart', `${y}-${m + 1}-${d}`)
+            this.$store.commit('updataGoalEnd', '--')
+            this.$store.commit('updataGoalWeight', '')
+
+            //ajax 修改 table mGoalS mGoalE mGoalW 拿掉
+            //=========================================
+            //=========================================
+
+            // 將button 做切換 內容作變化
+            setTimeout(() => {
+                this.checkGoalWeightState()
+            }, 100)
+            passValueVue.$emit('clear-time')
+        },
+        //將 element 抓入當成value 寄出
+        //讓 下一個compoent 一起處理
+        createGoalBtn() {
+            //傳到 memberThreeVue 進行動作
+            passValueVue.$emit('create-goal', this.goalWeightInput, this.checkGoalWeightState)
+
+            //button 變更成編輯
+            this.FBtnOpen = false
+            this.SBtnOpen = false
+            this.CBtnOpen = false
+            this.EBtnOpen = true
+            // this.editSaveButtonState()
+        },
+
+        editGoalBtn() {
+            //隱藏button
+            this.FBtnOpen = false
+            this.CBtnOpen = false
+            this.EBtnOpen = false
+            this.SBtnOpen = true
+
+            const label = select('.goalBody .goalWeight label')
+            const input = label.children[0]
+            const img = label.children[1]
+            //可以 開始修改內容
+            input.removeAttribute('readonly')
+        },
+
+        saveGoalBtn() {
+            const label = select('.goalBody .goalWeight label')
+            const input = label.children[0]
+            const img = label.children[1]
+
+            if (input.value) {
+                this.FBtnOpen = false
+                this.CBtnOpen = false
+                this.SBtnOpen = false
+                this.EBtnOpen = true
+
+                this.$store.commit('updataGoalWeight', input.value)
+                console.log(input.value)
+                input.setAttribute('readonly', true)
+            } else {
+                alert('請輸入目標體重')
+            }
+        },
     },
 
     computed: {
         ...mapGetters(['getAge', 'getBMR', 'getSex', 'getCalPerDay']),
-        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE']),
-    },
+        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE', 'dailySumCal']),
 
+        setCalPercent() {
+            const percent = this.dailySumCal / this.getCalPerDay
+            if (percent >= 1) {
+                return 100
+            } else if (!percent) {
+                return 0
+            } else {
+                return parseInt(percent * 100)
+            }
+        },
+    },
 })
