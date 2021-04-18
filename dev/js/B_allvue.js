@@ -389,9 +389,6 @@ Vue.component('edit-info', {
             formData.append('infoNo', this.inforNo);
             formData.append('infoType', this.infoType);
             formData.append('infoTitle', this.infoTitle);
-            formData.append('infoPhoto1', this.infoPhoto1);
-            formData.append('infoPhoto2', this.infoPhoto2);
-            formData.append('infoPhoto3', this.infoPhoto3);
             formData.append('infoContent1', this.infoContent1);
             formData.append('infoContent2', this.infoContent2);
             formData.append('infoContent3', this.infoContent3);

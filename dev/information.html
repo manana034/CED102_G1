@@ -7,7 +7,7 @@
     <title>HEALTH NEWS</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/information.css">
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
 </head>
 <body>
@@ -21,22 +21,22 @@
     <div class="filter">
         <ul>
             <li>Catrgory | </li>
-            <li @click>ALL</li>
-            <li @click="(AA) =1">FOOD</li>
-            <li @click="(AA) =2">EXERCISE</li>
-            <li @click="(AA) =3">REGIMEN</li>
+            <li :class="{'active': visibility == 'all'}" @click="visibility = 'all'">ALL</li>
+            <li :class="{'active': visibility == 'food'}" @click="visibility = 'food'">FOOD</li>
+            <li :class="{'active': visibility == 'exercise'}" @click="visibility = 'exercise'">EXERCISE</li>
+            <li :class="{'active': visibility == 'regimen'}" @click="visibility = 'regimen'">REGIMEN</li>
         </ul>
         <div class="custom-select">
             <select name="sType">
                 <option value="0">ALL</option>
                 <option value="1">FOOD</option>
                 <option value="2">EXERCISE</option>
-                <option value="3" id="regimen">REGIMEN</option>
+                <option value="3">REGIMEN</option>
             </select>
         </div>
     </div>
     <div class="main">
-        <div class="info_card" v-for="(value,key) in infos" :key="value.infoNo" >
+        <div class="info_card" v-for="(value,key) in filteredinfos" :key="value.infoNo">
             <a :href="infos.url">
                 <div class="text">
                     <p class="title">{{value.infoTitle}}</p>
@@ -59,8 +59,12 @@
             data: {
                 infos: [],
                 infoTypeName: '',
-                extensionImg: '',
+                mLevel: '',
                 tagType: '',
+                visibility: '',
+                newfood: [],
+                newexercise: [],
+                newregimen: [],
             },
             methods: {
                 //呼叫php程式，取回相關資料，並用json()轉回一般陣列
@@ -71,38 +75,69 @@
                     // 取回res值後，呼叫另一隻函式
                     this.infos = res;
                 },
+                get_level: async function () {
+                    const res = await fetch('./php/getMLevel.php', {}).then(function (data) {
+                        return data.json();
+                    });
+                    // 取回res值後，呼叫另一隻函式
+                    this.mLevel = res;
+                },
                 getId(key){
 
                     sessionStorage.setItem("infoNo", key+1);
 
-                }
-                // (value.infoPhoto1).slice(-3) == 'jpg'
-                // changetype(infoType) {
-                //     if (infoType == 1) {
-                //         return 'Food';
-                //     } else if (infoType == 2) {
-                //         return 'Exercise';
-                //     } else if (infoType == 3) {
-                //         return 'Regimen';
-                //     }
-                // },
+                },
             },
-                // template 渲染前 會先去執行以下函式
+            computed: {
+                filteredinfos: function(){
+                    if (this.visibility == 'all') {
+                        return this.infos;
+                    }else if (this.visibility == 'food') {
+                        var newfood = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '1') {
+                                newfood.push(value);
+                            }
+                        })
+                        return newfood;
+                    }else if (this.visibility == 'exercise') {
+                        var newexercise = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '2') {
+                                newexercise.push(value);
+                            }
+                        })
+                        return newexercise;
+                    }else if (this.visibility == 'regimen') {
+                        var newregimen = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '3') {
+                                newregimen.push(value);
+                            }
+                        })
+                        return newregimen;
+                    }
+                    return this.infos;
+                }
+            },
+            // template 渲染前 會先去執行以下函式
             created() {
                 this.get_info();
             },
-            mounted() {},        
+            mounted() {    
+            }, 
         })
 
         fetch("./php/getInfoNo.php").then(res => res.json())
         .then(data => {
             vm.infos = data;
             for(let i=0 ; i<data.length ; i++){
-                let url = `./php/getInfo.php?infoNo=${data[i].infoNo}`;
+                let url = `./php/getInfoNo.php?infoNo=${data[i].infoNo}`;
                 vm.infos[i].url = url;
-            // console.log(vm.products[i].url);
+                // console.log(vm.vm.infos[i].url);
             }
         });
+
     </script>
 </body>
 </html>

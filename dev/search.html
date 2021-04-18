@@ -12,17 +12,17 @@
 </head>
 <body>
     @@include('./layout/header.html')
-    <div id="create_box">
-        <div>
-            <div><img src="./icon/checked.svg">Added to customized food</div>
-            <div>
-                <button id="cancel_create">Return</button>
-                <a href="Cal_Diary.html"><button id="continus_create">Record diary</button></a>
+    <main id="app">
+        <div id="food_page" class="tab-inner" v-if="searchType == 'FOOD'">
+            <div id="create_box">
+                <div>
+                    <div><img src="./icon/checked.svg">Added to customized food</div>
+                    <div>
+                        <button id="cancel_create">Return</button>
+                        <a href="Cal_Diary.html"><button id="continus_create">Record diary</button></a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <main>
-        <div id="food_page" class="tab-inner">
             <div class="top">
                 <div class="overflow_hidden">
                     <div class="banner"></div>
@@ -31,13 +31,13 @@
                     <div class="food">FOOD</div>
                     <div id="exercise">EXERCISE</div>
                 </div>
-                <form id="search_bar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                <form id="search_bar_f" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
-                        <input type="search" placeholder="SEARCH WHAT YOU TOOK">
+                        <input type="search" v-model="searchInput" placeholder="SEARCH WHAT YOU TOOK">
                     </div>
-                    <div class="custom-select">
+                    <div class="custom-select" @click="pricePick">
                         <select name="sType">
-                            <option value="0">ALL</option>
+                            <option value="0" >ALL</option>
                             <option value="0">ALL</option>
                             <option value="1">FT. SHOP</option>
                             <option value="2">RICE</option>
@@ -47,17 +47,17 @@
                             <option value="6">FRIED</option>
                             <option value="7">DESSERT</option>
                             <option value="8">DRINK</option>
-                            <option value="9">CUSTOM</option>
+                            <option value="9">CUSTOMIZED</option>
                         </select>
                     </div>
                     <button class="nc-btn o-5">
-                        <img src="./icon/search_magnifier.png" alt="">
+                        <img src="./icon/search_magnifier.png">
                     </button>  
                 </form>
                 
             </div>
             <div class="middle">
-                <div>CREATE YOU OWN FOOD, RECORD IT!</div>
+                <div>Create You Own Food, Record It!</div>
                 <input type="text" placeholder="FOOD NAME">
                 <input type="text" placeholder="CAL / PER SERVING">
                 <div class="create">
@@ -68,26 +68,39 @@
                 </div>
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>RESULT OF 麥當勞(10 ITEMS)</h6></div>
+                <div class="result_number"><h6>Result Of {{searchInput}}( {{count}} Items)</h6></div>
                 <div class="result_items">
-                    <a href="Cal_Diary.html">
+                    <a href="Cal_Diary.html" v-for="(value,key) in filteredfood">
                         <div class="cal_card">
                             <div class="cal_title">
-                                <div>麥當勞ALMONDS SALTED BAR</div>
+                                <div>{{value.fdName}}</div>
                                 <img src="./icon/add_food.png">
                             </div>
-                            <h5>999</h5>
-                            <div class="cal">CAL / PER SERVING</div>
+                            <h5>{{value.fdCalPer}}</h5>
+                            <div class="cal">Cal / Per Serving</div>
                         </div>
                     </a>
                 </div>
-            <div class="load">load more +</div>                
+                <div class="pagination">
+                    <!-- <ul>
+                        <li v-bind:class="{'disabled': (currPage === 1)}" 
+                          @click.prevent="setPage(currPage-1)"><a href="#"><img src="./icon/left-arrow.svg" alt=""></a></li>
+                        <li v-for="n in totalPage"
+                          v-bind:class="{'active': (currPage === (n+1))}" 
+                          @click.prevent="setPage(n+1)"><a href="#">{{n+1}}</a></li>
+                        <li>/</li>
+                        <li v-for="n in totalPage"
+                          v-bind:class="{'active': (currPage === (n+1))}" 
+                          @click.prevent="setPage(n+1)"><a href="#">totalPage</a></li>
+                        <li v-bind:class="{'disabled': (currPage === totalPage)}" 
+                          @click.prevent="setPage(currPage+1)"><a href="#"><img src="./icon/right-arrow.svg" alt=""></a></li>
+                    </ul> -->
+                </div>
+            <!-- <div class="load">load more +</div>                 -->
             </div>
         </div>
-
-        
 <!-- 以下是運動分頁 -->
-        <div id="exercise_page" class="tab-inner">
+        <div id="exercise_page" class="tab-inner" v-else>
             <div class="top">
                 <div class="overflow_hidden">
                     <div class="banner"></div>
@@ -96,11 +109,11 @@
                     <div id="food">FOOD</div>
                     <div class="exercise">EXERCISE</div>
                 </div>
-                <form id="search_bar" class="col-4 col-lg-2 col-md-2 col-sm-1">
+                <form id="search_bar_e" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
                         <input type="search" placeholder="SERACH">
                     </div>
-                    <div class="custom-select">
+                    <div class="custom-select" @click="pricePick">
                         <select name="sType">
                             <option value="0">ALL</option>
                             <option value="0">ALL</option>
@@ -125,7 +138,7 @@
                                 <img src="./icon/add_exercise.png">
                             </div>
                             <h5>30</h5>
-                            <div class="cal">CAL / PER MINUTE</div>
+                            <div class="cal">Cal / 30 Minutes Per Kg</div>
                         </div>
                     </a>
                 </div>
@@ -137,28 +150,140 @@
     @@include('./layout/footer.html')
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+
 <script>
-$(document).ready(function(){
-    $('#exercise').click(function(){
-            $('#food_page').css('display','none');
-            $('#exercise_page').css('display','block');
-    });
-    $('#food').click(function(){
-            $('#exercise_page').css('display','none');
-            $('#food_page').css('display','');
-    });
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            foodData: [],
+            newfood: [],
+            exerciseData: [],
+            searchType: 'FOOD',
+            searchInput: '',
+            status: '',
+            selectFType: '',
+            count: 0,
+        },
+        methods: {
+            //呼叫php程式，取回相關資料，並用json()轉回一般陣列
+            get_food: async function () {
+                const res = await fetch('./php/getFoodData.php', {}).then(function (data) {
+                    return data.json();
+                });
+                // 取回res值後，呼叫另一隻函式
+                this.foodData = res;
+                
+            },
+            get_exercise: async function () {
+                const res = await fetch('./php/getSportData.php', {}).then(function (data) {
+                    return data.json();
+                });
+                // 取回res值後，呼叫另一隻函式
+                this.exerciseData = res;
+            },
+            pricePick(e){
+                const status = e.target.textContent;
+                if (status === 'ALL') {
+                    selectFType = 0;
+                } else if (status === 'FT. SHOP' || status === 'LOW') {
+                    selectFType = 1;
+                } else if (status === 'RICE' || status === 'MEDIUM') {
+                    selectFType = 2;
+                } else if (status === 'NOODLES' || status === 'HIGH') {
+                    selectFType = 3;
+                } else if (status === 'MEAT') {
+                    selectFType = 4;
+                } else if (status === 'FRUIT & VEG') {
+                    selectFType = 5;
+                } else if (status === 'FRIED') {
+                    selectFType = 6;
+                } else if (status === 'DESSERT') {
+                    selectFType = 7;
+                } else if (status === 'DRINK') {
+                    selectFType = 8;
+                } else if (status === 'CUSTOMIZED') {
+                    selectFType = 9;
+                }
+                console.log(selectFType);
+            },
+            getId(key){
+                sessionStorage.setItem("infoNo", key+1);
+            },
 
-    $('#create').click(function(){
-                $('#create_box').css('display','block');
-        });
-        $('#cancel_create').click(function(){
-                $('#create_box').css('display','none');
 
-        });
-        $('#continus_create').click(function(){
-                $('#create_box').css('display','none');
-        });
-});
+        },
+        // this.foodData.fdName.toUpperCase().indexOf(searchInput) > -1 && 
+        computed: {
+            filteredfood() {
+                if(saerchInput = '')
+                return foodData;
+            }
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_food();
+            // this.get_exercise();
+        },
+        mounted() {},        
+    })
+    // const toExercise = document.getElementById("exercise");
+    // const toFood = document.getElementById("Food");
+    // const foodPage = document.getElementById("food_page");
+    // const exercisePage = document.getElementById("exercise_page");
+
+    // toExercise.addEventListener('click', function(){
+    //     foodPage.style.display = "none";
+    //     exercisePage.style.display = "block";
+        // 把session設為EXERCISE;
+        // 每次都要重取
+    // }, false);
+    // toFood.addEventListener('click', function(){
+    //     foodPage.style.display = "";
+    //     exercisePage.style.display = "none"; 
+        // 把session設為FOOD;
+    // }, false);
+
+// +++++++++++++++++++++++++++++
+    // const searchInput = document.querySelector('.search-input>input')
+
+    // const filterData = () => {
+    //     const inputVal = searchInput.value.toUpperCase()
+    // }
+
+    // const choiceSelect = (e) => {
+    //     const status = e.target.textContent
+    //     if (status === 'FOOD') {
+    //         getFoodData()
+    //     } else if {
+    //         getSportData()
+    //     }
+    // }
+
+    // searchInput.addEventListener('keyup', filterData)
+    // selectItems.forEach((item) => item.addEventListener('click', choiceSelect))
+
+// $(document).ready(function(){
+//     $('#exercise').click(function(){
+//             $('#food_page').css('display','none');
+//             $('#exercise_page').css('display','block');
+//     });
+//     $('#food').click(function(){
+//             $('#exercise_page').css('display','none');
+//             $('#food_page').css('display','');
+//     });
+
+//     $('#create').click(function(){
+//                 $('#create_box').css('display','block');
+//         });
+//         $('#cancel_create').click(function(){
+//                 $('#create_box').css('display','none');
+
+//         });
+//         $('#continus_create').click(function(){
+//                 $('#create_box').css('display','none');
+//         });
+// });
 </script>
 </body>
 </html>

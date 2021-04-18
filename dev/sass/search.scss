@@ -66,7 +66,7 @@ main {
                     }
                 }
             }
-            form#search_bar{
+            form#search_bar_f{
                 width: 100%;
                 position: absolute;
                 top: 50%;
@@ -287,6 +287,23 @@ main {
                 }
             }
         }
+        .pagination {
+            > ul {
+                display: flex;
+                // justify-content: space-between;
+                align-items: flex-start;
+                > li {
+                    display:inline;
+                    img {
+                        width: 20px;
+                    }
+                }
+                li:first-child {
+    
+                }
+
+            }
+        }
         div.load{
             border-bottom: 1px solid black;
             text-align: center;
@@ -304,7 +321,7 @@ main {
 
 // ================以下是運動
     div#exercise_page {
-        display: none;
+        // display: none;
         margin: auto;
         div.top {
             margin: 0 auto;
@@ -364,7 +381,7 @@ main {
                     }
                 }
             }
-            form#search_bar{
+            form#search_bar_e{
                 width: 100%;
                 position: absolute;
                 top: 50%;

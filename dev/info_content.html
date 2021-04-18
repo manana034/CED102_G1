@@ -14,78 +14,93 @@
 <body>
     @@include('./layout/header.html')
     @@include('./layout/cart.html')
-    <div id="bookmark_box">
-        <div>
-            <img src="../icon/checked.svg">
-            <div>Added to favorites</div>
-        </div>
-    </div>
-    <main>
-        <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-        <div class="date">
-            <div>2021-03-10</div>
-            <div id="bookmark">
-                <img class="bookmark" src="./img/bookmark-white.png">
-                <p>KEEP</p>
+    <div id="app">
+        <div id="bookmark_box">
+            <div>
+                <img src="../icon/checked.svg">
+                <div>Added to favorites</div>
             </div>
-        </div>    
-        <video width="1200" height="675" controls poster="./img/info_logo.png" id="infovideo1">
-            <source src="./img/info2_1.mp4" type="video/mp4">
-        </video>
-        <p>蕎麥含維生素B1、維生素B2、維生素E、膳食纖維、鉀、鈣、磷等，其中維生素B1、B2含量比白米來得高，身體代謝、修護時不可缺的營養素，且鉀含量也是白米的４倍，有助於改善水腫，穩定血壓。<br>
-            常見的蕎麥有兩種，一種是俗稱「甜蕎」的普通蕎麥；另一種韃靼蕎麥具有苦味，也稱作「苦蕎」。蕎麥主要功能性成分為：芸香苷、槲皮素、異槲皮素、兒茶素等。<br>
-            芸香苷(Rutin)在醫學上已被確定對視網膜出血、毛血管中風及冠狀動脈阻塞有顯著療效，另外，對血管具擴張強化作用。</p>
-        
-        <section class="top">
-            <div><img src="./img/info2_2.jpg"></div>
-            <p>蕎麥這樣吃最對味<br>
-                蕎麥脫殼後，可分為蕎麥粒和蕎麥粉。蕎麥粒通常加入餅乾或麵包中；蕎麥粉則因不含麩質，不像一般麵粉可直接形成有彈性的麵糰，所以蕎麥粉需要搭配一定比例的麵粉才能製成相關產品，例如蕎麥麵條。有麩質過敏的民眾，可選擇蕎麥比例較高的產品當作主食。
-            </p>
-        </section>
-
-        <section class="bottom">
-            <div><img src="./img/info2_3.jpg"></div>
-            <p>現代飲食過於精緻，膳食纖維攝取不足，六大類食物中的主食也強調「全穀雜糧類」，建議可以在白米中添加蕎麥，補充膳食纖維，適量的全穀類主食，對於糖尿病患者的血糖上升幅度也會相對穩定，但是有腸胃道潰瘍的民眾，可先諮詢營養師確認是否可食用。<br>
-                除了豐富的膳食纖維，蕎麥當中的磷和鉀含量也相對較高，腎臟病患者於食用前應詢問醫師或營養師，避免增加腎臟負擔。
-            </p>
-        </section>
-        <div>
-            <a href="information.html">
-                <button>VIEW MORE</button>
-            </a>
         </div>
-    </main>
-    <div class="bottom">
-        <h6>MORE FITNESS?</h6>  
-        @@include('./layout/moreproduct.html')
+        <main>
+            <p class="title">{{infoTitle}}</p>
+            <div class="date">
+                <div>{{infoTime}}</div>
+                <div id="bookmark" @click="info_edit(infoNo)">
+                    <img class="bookmark" src="./img/bookmark-white.png">
+                    <p>KEEP</p>
+                </div>
+            </div>
+            <img class="infophoto1" :src="value.infoPhoto1" v-if="(infoPhoto1).slice(-3) == 'jpg'">
+            <video :src="value.infoPhoto1" width="1200" height="675" controls poster="./img/info_logo.png" id="infovideo1" class="infovideo1" v-else></video>
+            <p>{{infoContent1}}</p>
+            
+            <section class="top">
+                <div><img :src="infoPhoto2"></div>
+                <p>{{infoContent2}}</p>
+            </section>
+
+            <section class="bottom">
+                <div><img :src="infoPhoto3"></div>
+                <p>{{infoContent3}}</p>
+            </section>
+            <div>
+                <a href="information.html">
+                    <button>VIEW MORE</button>
+                </a>
+            </div>
+        </main>
+        <div class="bottom">
+            <h6>MORE FITNESS?</h6>  
+            @@include('./layout/moreproduct.html')
+        </div>
     </div>
     @@include('./layout/footer.html')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#bookmark').click(function(){
-            $('#bookmark_box').css('display','block').animate({
-                opacity: 0 },{duration: 2500,},{
-                    complete: function() {
-                        $( this ).css('display' , 'none');
-                    } 
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            infos: [],
+        },
+        methods: {
+            //呼叫php程式，取回相關資料，並用json()轉回一般陣列
+            get_info: async function () {
+                const res = await fetch('./php/getOneInfoData.php', {}).then(function (data) {
+                    return data.json();
                 });
-        });
-        $('#bookmark').bind("click",function() {
-            var src = ($(this).children().attr('src') === './img/bookmark-white.png')
-                ? './img/bookmark-black.png' 
-                : './img/bookmark-white.png';
-            $(this).children().attr('src', src);
-        });
-    });
-        const infoNo = sessionStorage.getitem("infoNo");
-
+                // 取回res值後，呼叫另一隻函式
+                this.infos = res;
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_info();
+        },
+        mounted() {},        
+    })
+    // $(document).ready(function(){
+    //     $('#bookmark').click(function(){
+    //         $('#bookmark_box').css('display','block').animate({
+    //             opacity: 0 },{duration: 2500,},{
+    //                 complete: function() {
+    //                     $( this ).css('display' , 'none');
+    //                 } 
+    //             });
+    //     });
+    //     $('#bookmark').bind("click",function() {
+    //         var src = ($(this).children().attr('src') === './img/bookmark-white.png')
+    //             ? './img/bookmark-black.png' 
+    //             : './img/bookmark-white.png';
+    //         $(this).children().attr('src', src);
+    //     });
+    // });
+        // });
+    const infoNo = sessionStorage.getitem("infoNo");
         fetch(`./php/getInfo.php?infoNo=${infoNo}`).then(res => res.json())
         .then(data => {
             vm.infos = data;
-            }
-        });
+        };
 
 
 </script>
