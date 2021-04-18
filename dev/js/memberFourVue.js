@@ -108,7 +108,7 @@ Vue.component('bottom-info', {
                         </div>
                         <div>
                             <img src="./icon/height.svg" />
-                            <p><span>{{mHeight}}</span></p>
+                            <p><span>{{mHeight?mHeight:'--'}}</span></p>
                         </div>
 
                     </div>
@@ -116,7 +116,7 @@ Vue.component('bottom-info', {
                     <div class="r-side">
                         <div>
                             <img src="./icon/weight.svg" />
-                            <p><span>{{wWeight}}</span></p>
+                            <p><span>{{wWeight?wWeight:'--'}}</span></p>
                         </div>
                         <div>
                             <img src="./icon/BMR.svg" />
@@ -351,15 +351,25 @@ Vue.component('bottom-info', {
         //將 element 抓入當成value 寄出
         //讓 下一個compoent 一起處理
         createGoalBtn() {
-            //傳到 memberThreeVue 進行動作
-            passValueVue.$emit('create-goal', this.goalWeightInput, this.checkGoalWeightState)
+            if (this.mHeight && this.wWeight && this.getSex !== '--' && this.getAge !== '--') {
+                //傳到 memberThreeVue 進行動作
+                passValueVue.$emit('create-goal', this.goalWeightInput, this.checkGoalWeightState)
 
-            //button 變更成編輯
-            this.FBtnOpen = false
-            this.SBtnOpen = false
-            this.CBtnOpen = false
-            this.EBtnOpen = true
-            // this.editSaveButtonState()
+                //button 變更成編輯
+                this.FBtnOpen = false
+                this.SBtnOpen = false
+                this.CBtnOpen = false
+                this.EBtnOpen = true
+                // this.editSaveButtonState()
+            } else {
+                alert('請先填上、生日、性別、體重、身高等資訊')
+            }
+            // console.log(this.getAge)
+            // console.log(this.getSex)
+            // console.log(this.wWeight)
+            // console.log(this.mHeight)
+
+
         },
 
         editGoalBtn() {

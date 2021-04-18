@@ -1,4 +1,4 @@
-let getTmp_mNo, getTmp_mId, getTmp_mPsw
+let getTmp_mNo=null, getTmp_mId=null, getTmp_mPsw=null
 // 如果session 以登入 將資料寫入memberID
 //共用
 const select = (selector) =>{
@@ -185,18 +185,23 @@ let foodData = []
 let excericeData = []
 
 const getFoodData = () => {
-    let xhr = new XMLHttpRequest()
-    xhr.onload = function () {
+    // let xhr = new XMLHttpRequest()
+    // xhr.onload = function () {
 
-        foodRows = JSON.parse(xhr.responseText)
-        foodData = foodRows
-        createSearchData(foodData,'food')
-    }
-    xhr.open('get', 'php/getFoodData.php', true)
-    xhr.send(null) 
+    //     foodRows = JSON.parse(xhr.responseText)
+    //     foodData = foodRows
+    //     createSearchData(foodData,'food')
+    // }
+    // xhr.open('get', 'php/getFoodData.php', true)
+    // xhr.send(null)
 
+    fetch(`php/getFoodData.php?mNo=${getTmp_mNo}`)
+    .then(res => res.json()) //這個可以直接解json
+    .then((res) => {
+        foodData = res
+        createSearchData(foodData, 'food')
+    })
 
-    // fetch('php/getFoodData.php', {method: 'GET'}).then(res => console.log(res.json()))
 }
 
 getFoodData()
