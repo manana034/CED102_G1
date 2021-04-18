@@ -43,7 +43,6 @@ const app = new Vue({
 
         //reload 之後一段時間 就會看看 mid 有沒有被寫入
         //如果有就自動登入 沒有就要自己登入
-
         const timeCheckLoggedin = setTimeout(() => {
             if (getTmp_mNo || getTmp_mId || getTmp_mPsw) {
                 console.log(getTmp_mNo)
@@ -301,6 +300,26 @@ const app = new Vue({
                     xhr.send(data_info)
                 }
 
+                //取得 當天攝取卡路里 資料
+                function getMDailyCalData(){
+                    function formatDate(date) {
+                        let d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear()
+
+                        if (month.length < 2) month = '0' + month
+                        if (day.length < 2) day = '0' + day
+
+                        return [year, month, day].join('-')
+                    }
+                    const now = formatDate(new Date())
+                    fetch(`php/getDailyCal.php?mNo=${getTmp_mNo}&curTime=${now}`)
+                        .then((res) => res.json())
+                        .then((res) => Vthis.$store.commit('updataDailyCalData', res.dailySumCal? parseInt(res.dailySumCal):0))
+                        //如果沒資料就回傳0
+                }
+
                 getMemberData()
                 //自動登入 執行這段
                 getMnoMidMpsw()
@@ -312,6 +331,8 @@ const app = new Vue({
 
                 getMOrderListData()
                 getMOrderData()
+
+                getMDailyCalData()
 
                 passValueVue.$emit('check-goalWeight')
                 passValueVue.$emit('check-goalTime')
