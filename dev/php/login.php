@@ -17,8 +17,6 @@ try{
     $member->bindValue(":memid", $_POST["memid"]);
     $member->bindValue(":memPsw",$_POST["memPsw"]); 
 
-    // $val = $_GET["memid"]
-
     $member->execute();
 
     if( $member->rowCount() == 0 ){

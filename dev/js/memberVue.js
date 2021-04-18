@@ -99,6 +99,12 @@ const app = new Vue({
                                     Vthis.$store.commit('updataFavPosterData', favData)
                                 }
                                 updataMFavPosterData(xhr.responseText)
+                                console.log('取完會員再取完favPost 才開始checkList 是否有內容')
+                                const time = setTimeout(()=>{
+                                    checkOrderAndFavList()
+                                    clearTimeout(time)
+                                },50)
+                                
                             }
                             xhr.open('post', 'php/getFavPosterData.php', true)
 
@@ -106,7 +112,8 @@ const app = new Vue({
                             let data_info = `mNo=${mNo}`
                             xhr.send(data_info)
                         }
-                        getMFavPosterData(JSON.parse(xhr.responseText).mNo) 
+
+                        getMFavPosterData(JSON.parse(xhr.responseText).mNo)
                     }
                     xhr.open('post', 'php/login.php', true)
                     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -118,23 +125,22 @@ const app = new Vue({
                     let xhr = new XMLHttpRequest()
                     xhr.onload = () => {
                         function updataMnoMidMpsw(data) {
-                             if (data === '{}') {
-                                 console.log('此無帳號密碼')
-                             } else {
-                                 let member = JSON.parse(data)
-                                 console.log(member)
+                            if (data === '{}') {
+                                console.log('此無帳號密碼')
+                            } else {
+                                let member = JSON.parse(data)
+                                console.log(member)
 
-                                 Vthis.$store.commit({
-                                     type: 'updateMemberInfo',
+                                Vthis.$store.commit({
+                                    type: 'updateMemberInfo',
 
-                                     mNo: member.mNo,
-                                     mId: member.mId,
-                                     mPsw: member.mPsw,
-                                 })
-                             }
+                                    mNo: member.mNo,
+                                    mId: member.mId,
+                                    mPsw: member.mPsw,
+                                })
+                            }
                         }
                         updataMnoMidMpsw(xhr.responseText)
-
                     }
                     xhr.open('post', 'php/getMnoMidMpsw.php', true)
                     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -218,14 +224,12 @@ const app = new Vue({
                                 },
                             })
                         }
-                        const checkEData = setTimeout(()=>{
+                        const checkEData = setTimeout(() => {
                             if (Vthis.eData) {
                                 firstSetReport()
                             }
                             clearTimeout(checkEData)
-                        },10)
-                
-                        
+                        }, 10)
                     }
                     xhr.open('post', 'php/getMExerciseDate.php', true)
 
@@ -301,7 +305,7 @@ const app = new Vue({
                 }
 
                 //取得 當天攝取卡路里 資料
-                function getMDailyCalData(){
+                function getMDailyCalData() {
                     function formatDate(date) {
                         let d = new Date(date),
                             month = '' + (d.getMonth() + 1),
@@ -316,8 +320,43 @@ const app = new Vue({
                     const now = formatDate(new Date())
                     fetch(`php/getDailyCal.php?mNo=${getTmp_mNo}&curTime=${now}`)
                         .then((res) => res.json())
-                        .then((res) => Vthis.$store.commit('updataDailyCalData', res.dailySumCal? parseInt(res.dailySumCal):0))
-                        //如果沒資料就回傳0
+                        .then((res) =>
+                            Vthis.$store.commit('updataDailyCalData', res.dailySumCal ? parseInt(res.dailySumCal) : 0)
+                        )
+                    //如果沒資料就回傳0
+                }
+
+                // 寫在取得 getMemberData的資料之後
+                //執行getMFavPosterData 的資料之後
+                //執行 checkOrderAndFavList()這支
+                function checkOrderAndFavList() {
+                    const listBody = selectAll('.listBody tbody')
+                    const listHead = selectAll('.listBody thead')
+
+                    //檢查list 是否有無值, thead 的黑線就會消失
+                    // const time = setTimeout(()=>{
+                    //
+
+                    //     clearTimeout(time)
+                    // },1000)
+
+                    //orderlist 的table
+                    if (listBody[0].children.length == 0) {
+                        listHead[0].setAttribute('style', 'border-bottom: none')
+                        console.log('orderlist 沒有內容')
+                    } else {
+                        listHead[0].removeAttribute('style')
+                        console.log('oderlist 有內容')
+                    }
+
+                    //favlist 的table
+                    if (listBody[1].children.length == 0) {
+                        listHead[1].setAttribute('style', 'border-bottom: none')
+                        console.log('favlist 沒有內容')
+                    } else {
+                        listHead[0].removeAttribute('style')
+                        console.log('favlist 有內容')
+                    }
                 }
 
                 getMemberData()
@@ -334,8 +373,13 @@ const app = new Vue({
 
                 getMDailyCalData()
 
-                passValueVue.$emit('check-goalWeight')
-                passValueVue.$emit('check-goalTime')
+
+                const checkGoaltime = setTimeout(()=>{
+                    passValueVue.$emit('check-goalWeight')
+                    passValueVue.$emit('check-goalTime')
+                    clearTimeout(checkGoaltime)
+                },100)
+       
                 console.log('自動登入這裡 成功')
                 clearTimeout(timeCheckLoggedin)
             }

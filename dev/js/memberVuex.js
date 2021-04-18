@@ -169,23 +169,41 @@ const store = new Vuex.Store({
     actions: {},
     getters: {
         getAge: (state) => {
-            const birth = Date.parse(state.mBday)
-            const y = 1000 * 60 * 60 * 24 * 365
-            const now = new Date()
-            const birthday = new Date(birth)
-            const age = parseInt((now - birthday) / y)
+            if (state.mBday){
+                const birth = Date.parse(state.mBday)
+                const y = 1000 * 60 * 60 * 24 * 365
+                const now = new Date()
+                const birthday = new Date(birth)
+                const age = parseInt((now - birthday) / y)
+                return age
+            } else {
+                return '--'
+            }   
 
-            return age
+           
         },
-        getBMR: (state, getters) => {
-            const w = state.wWeight * 10
-            const h = state.mHeight * 6.25
-            const a = getters.getAge * 5 + 5
 
-            return parseInt(w + h - a)
+
+        getBMR: (state, getters) => {
+            if (state.wWeight && state.mHeight && getters.getAge !== '--'){
+                const w = state.wWeight * 10
+                const h = state.mHeight * 6.25
+                const a = getters.getAge * 5 + 5
+
+                return parseInt(w + h - a)
+            } else {
+                return '--'
+            }
+ 
         },
         getSex: (state) =>{
-            return state.mSex == '1' ? 'male' : 'female'
+
+            if(state.mSex){
+                return state.mSex == '1' ? 'male' : 'female'
+            } else {
+                return '--'
+            }
+            // return state.mSex == '1' ? 'male' : 'female'
         },
 
         getCalPerDay: (state)=>{

@@ -363,7 +363,7 @@ Vue.component('second-info', {
     },
 })
 
-//登入註冊區 (一開始關閉狀態)
+//登入註冊區 (一開始關閉狀態) log in 在這裡
 Vue.component('login-signup', {
     template: `
         <section class="logIn_signUp">
@@ -385,8 +385,8 @@ Vue.component('login-signup', {
                                     name="userid" 
                                     maxlength="10" 
                                     minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
+                                    @focus.stop="movePlaceholder($event,'focus')"
+                                    @blur.stop="movePlaceholder($event,'blur')"/>
                             </label>
 
                             <label class="psd">
@@ -396,8 +396,8 @@ Vue.component('login-signup', {
                                     name="psd" 
                                     maxlength="10" 
                                     minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
+                                    @focus.stop="movePlaceholder($event,'focus')"
+                                    @blur.stop="movePlaceholder($event,'blur')"/>
                             </label>
 
                             <div>
@@ -412,73 +412,9 @@ Vue.component('login-signup', {
                             </div>
                         </form>
                     </div>
-
-                    <div class="signup">
-                        <h4>sign up</h4>
-                        <form action="">
-
-                            <label class="Name">
-                                <p>name <span>*</span></p>
-                                <input 
-                                    type="text" 
-                                    name="name" 
-                                    maxlength="20"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="email">
-                                <p>email <span>*</span></p>
-                                <input 
-                                    type="email" 
-                                    name="email"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="userid">
-                                <p>userid <span>*</span></p>
-                                <input 
-                                    type="text" 
-                                    name="userid" 
-                                    maxlength="10" 
-                                    minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="psd">
-                                <p>password <span>*</span></p>
-                                <input 
-                                    type="password" 
-                                    name="psd" 
-                                    maxlength="10" 
-                                    minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="cfmPsd">
-                                <p>confirm password <span>*</span></p>
-                                <input 
-                                    type="password" 
-                                    name="cfmPsd" 
-                                    maxlength="10"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <div>
-                                <button 
-                                    class="p-btn" 
-                                    id="signup" 
-                                    type="button">
-                                    
-                                    sign up
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                    
+                    <sign-up></sign-up>
+ 
                 </div>
     
                 <div class="upper">
@@ -551,10 +487,10 @@ Vue.component('login-signup', {
                 }
             },
 
-            updataMnoMidMpsw(data){
-                if(data === '{}'){
+            updataMnoMidMpsw(data) {
+                if (data === '{}') {
                     console.log('此無帳號密碼')
-                } else{
+                } else {
                     let member = JSON.parse(data)
                     console.log(member)
 
@@ -670,18 +606,16 @@ Vue.component('login-signup', {
                 })
             },
 
-
-
-            updataMFavPosterData(data){
-                if(data === '{}'){
+            updataMFavPosterData(data) {
+                if (data === '{}') {
                     console.log('沒有favPoster資料')
-                } else{
+                } else {
                     let favData = JSON.parse(data)
                     // console.log(favData)
                     this.$store.commit('updataFavPosterData', favData)
                 }
             },
-            getMFavPosterData(mNo){
+            getMFavPosterData(mNo) {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
                     this.updataMFavPosterData(xhr.responseText)
@@ -693,14 +627,13 @@ Vue.component('login-signup', {
                 xhr.send(data_info)
             },
 
-
-            toggleLogin(){
+            toggleLogin() {
                 const idInput = select('.under .login .userid input')
                 const pswInput = select('.under .login .psd input')
-                idInput.value = ""
-                pswInput.value =""
+                idInput.value = ''
+                pswInput.value = ''
                 this.$store.commit('toggleLoginBeforeAfter')
-            }
+            },
         }
     },
     methods: {
@@ -735,55 +668,53 @@ Vue.component('login-signup', {
             const placeholder = event.target.parentElement.children[0]
             const ta = event.target
 
-            const signUpPsd = select('.under .signup .psd>input')
-            const signUpCfmPsd = select('.under .signup .cfmPsd>input')
-
             if (state == 'focus') {
                 //如果再focus 狀態 將會提升
                 placeholder.style.top = '-20px'
                 placeholder.style.transform = 'scale(.9)'
+
+                if (ta.name == 'userid') {
+                    const span = select('.login .userid p>span')
+
+                    span.textContent = ""
+                    span.removeAttribute('style')
+                }
             } else if (state == 'blur') {
-                //如果在blur 狀態
                 if (!inputVal) {
                     //檢查裡面 是否有內容 ,沒有內容就會掉下來
                     placeholder.style.top = '-5px'
                     placeholder.style.transform = 'scale(1)'
-                }
-                switch (ta.name) {
-                    case 'cfmPsd':
-                        //如果目標是 cfmPsd
-                        if (signUpPsd.value) {
-                            //如果有值
-
-                            console.log(ta.value)
-                            if (ta.value) {
-                                if (signUpPsd.value.indexOf(ta.value) > -1) {
-                                    //如果值是一樣的
-                                    const Psd = signUpPsd.parentElement.children[0].children[0]
-                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
-
-                                    fmPsd.textContent = '* 正確'
-                                    fmPsd.style.color = 'green'
-
-                                    Psd.textContent = '* 正確'
-                                    Psd.style.color = 'green'
-                                } else {
-                                    //如果不一樣
-                                    const Psd = signUpPsd.parentElement.children[0].children[0]
-                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
-
-                                    fmPsd.textContent = '* 兩個密碼不符合'
-                                    fmPsd.style.color = 'red'
-
-                                    Psd.textContent = '*'
-                                    Psd.removeAttribute('style')
-                                }
+                } else {
+                    if (ta.name == 'userid') {
+                        const span = select('.login .userid p>span')
+                        fetch(`php/checkMemberID.php?memid=${inputVal}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            // console.log(res.length)
+                            if (!res.length) {
+                                span.textContent = '帳號錯誤'
+                                span.setAttribute('style', 'color:red')
+                            } else {
+                                span.textContent = '正確'
+                                span.setAttribute('style', 'color: green')
                             }
-                        }
-                        break
+                        })
+                    }
                 }
+
+ 
+
+
+                    // let xhr = new XMLHttpRequest()
+                    // xhr.onload = function(){
+                    //     mid = JSON.parse(xhr.responseText)
+                    //     console.log(mid)
+                    // }
+                    // xhr.open('get', `php/checkMemberID.php?mId=${inputVal}`,true)
+                    // xhr.send(null)
+                
             }
-        },
+        }, 
 
         loginMember() {
             const login_id = select('.login input[name="userid"]')
@@ -797,17 +728,15 @@ Vue.component('login-signup', {
             const Vthis = this
 
             function getMemberData() {
-
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
                     Vthis.checkMember(xhr.responseText)
                     // console.log(JSON.parse(xhr.responseText))
-                    Vthis.getMFavPosterData(JSON.parse(xhr.responseText).mNo) 
+                    Vthis.getMFavPosterData(JSON.parse(xhr.responseText).mNo)
                     if (xhr.responseText !== '{}') {
                         //如果 抓取內容不是 {} 就切換畫面
                         Vthis.toggleLogin()
                     }
-                    console.log('登入成功 順便寫入站存')
                     login_mNo = JSON.parse(xhr.responseText).mNo
                 }
                 xhr.open('post', 'php/login.php', true)
@@ -836,17 +765,17 @@ Vue.component('login-signup', {
                 // })
                 // .then((res) => console.log(res.json()))
                 // .catch(err=> console.log(err))
-                    // .then((res) => res.json())
-                    // .then((res) => checkMember(res))
-                    // .then((res) => console.log(res))
+                // .then((res) => res.json())
+                // .then((res) => checkMember(res))
+                // .then((res) => console.log(res))
             }
 
-            function getMnoMidMpsw(){
+            function getMnoMidMpsw() {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
                     Vthis.updataMnoMidMpsw(xhr.responseText)
                     // console.log(xhr.responseText)
-                    console.log('再從新寫入 mno')
+                    console.log('這裡寫入 php 的暫存區')
                 }
                 xhr.open('post', 'php/getMnoMidMpsw.php', true)
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -873,15 +802,12 @@ Vue.component('login-signup', {
                     Vthis.updataMExerciseData(xhr.responseText)
                     //載入好資料之後 就安裝一開始的Report
 
-
-                    const checkEData = setTimeout(()=>{
+                    const checkEData = setTimeout(() => {
                         if (Vthis.eData) {
                             Vthis.firstSetReport()
                         }
                         clearTimeout(checkEData)
-                    },10)
-        
-                    
+                    }, 10)
                 }
                 xhr.open('post', 'php/getMExerciseDate.php', true)
 
@@ -939,7 +865,7 @@ Vue.component('login-signup', {
             }
 
             function getMDailyCalData() {
-                const time = setTimeout(()=>{
+                const time = setTimeout(() => {
                     function formatDate(date) {
                         let d = new Date(date),
                             month = '' + (d.getMonth() + 1),
@@ -957,17 +883,12 @@ Vue.component('login-signup', {
                         .then((res) => res.json())
                         .then((res) => {
                             fortest = res
-                            Vthis.$store.commit(
-                                'updataDailyCalData',
-                                res.dailySumCal ? parseInt(res.dailySumCal) : 0
-                            )
+                            Vthis.$store.commit('updataDailyCalData', res.dailySumCal ? parseInt(res.dailySumCal) : 0)
                         })
                     //如果沒資料就回傳0
                     console.log(`login--work --${fortest}`)
                     clearTimeout(time)
-                },50)
-
-
+                }, 50)
             }
 
             getMemberData()
@@ -982,21 +903,21 @@ Vue.component('login-signup', {
             getMOrderListData()
             getMOrderData()
             getMDailyCalData()
-            
 
-       
             //登入 就叫child 執行檢查 是否存在某資料 執行另外動作
-            passValueVue.$emit('check-goalWeight')
-            passValueVue.$emit('check-goalTime')
+            const checkGoaltime = setTimeout(() => {
+                passValueVue.$emit('check-goalWeight')
+                passValueVue.$emit('check-goalTime')
+                clearTimeout(checkGoaltime)
+            }, 100)
+            // passValueVue.$emit('check-goalWeight')
+            // passValueVue.$emit('check-goalTime')
         },
-
-
     },
     computed: {
         ...mapState(['eData']),
     },
     mounted() {
-        console.log('this login-signup mounted')  
-
+        console.log('this login-signup mounted')
     },
 })
