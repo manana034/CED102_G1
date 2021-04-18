@@ -92,14 +92,14 @@
     }
 }
 
-.main_food, .main_exercise, .main {
+.main_food, .main_exercise, .main, .report {
     padding-left: 5%;
     max-width: calc(95% - 250px);
     position: absolute;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: column;
-    div.main_top {
+    div.main_top, .postpage, .messagepage {
         div.page {
             margin-bottom: 40px;
             display: flex;
@@ -289,6 +289,9 @@
             }
         }
     }
+    .messagepage {
+        display: none;
+    }
     div.main_bottom {
         max-height: 65vh;
         overflow: auto;
@@ -422,6 +425,7 @@
         }
     }
 }
-.main_exercise, .main_level, .main_message {
+.main_exercise, .main_level {
     display: none;
 }
+

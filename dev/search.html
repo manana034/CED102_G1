@@ -33,24 +33,24 @@
                 </div>
                 <form id="search_bar_f" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
-                        <input type="search" v-model="searchInput" placeholder="SEARCH WHAT YOU TOOK">
+                        <input type="search" v-model.trim="filterText" @keyup="selectFType ='search'" placeholder="SEARCH WHAT YOU TOOK">
                     </div>
                     <div class="custom-select" @click="pricePick">
                         <select name="sType">
-                            <option value="0" >ALL</option>
-                            <option value="0">ALL</option>
-                            <option value="1">FT. SHOP</option>
-                            <option value="2">RICE</option>
-                            <option value="3">NOODLES</option>
-                            <option value="4">MEAT</option>
-                            <option value="5">FRUIT & VEG</option>
-                            <option value="6">FRIED</option>
-                            <option value="7">DESSERT</option>
-                            <option value="8">DRINK</option>
-                            <option value="9">CUSTOMIZED</option>
+                            <option>ALL</option>
+                            <option>ALL</option>
+                            <option>FT. SHOP</option>
+                            <option>RICE</option>
+                            <option>NOODLES</option>
+                            <option>MEAT</option>
+                            <option>FRUIT & VEG</option>
+                            <option>FRIED</option>
+                            <option>DESSERT</option>
+                            <option>DRINK</option>
+                            <option>CUSTOMIZED</option>
                         </select>
                     </div>
-                    <button class="nc-btn o-5">
+                    <button class="nc-btn o-5" @click="selectFType ='search'">
                         <img src="./icon/search_magnifier.png">
                     </button>  
                 </form>
@@ -68,9 +68,9 @@
                 </div>
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>Result Of {{searchInput}}( {{count}} Items)</h6></div>
+                <div class="result_number"><h6>Result Of {{filterText}}( {{count}} Items)</h6></div>
                 <div class="result_items">
-                    <a href="Cal_Diary.html" v-for="(value,key) in filteredfood">
+                    <a href="Cal_Diary.html" v-for="(value,key) in filterData">
                         <div class="cal_card">
                             <div class="cal_title">
                                 <div>{{value.fdName}}</div>
@@ -158,12 +158,12 @@
         data: {
             foodData: [],
             newfood: [],
-            exerciseData: [],
             searchType: 'FOOD',
-            searchInput: '',
-            status: '',
+            filterText: '',
             selectFType: '',
             count: 0,
+            tempData: [],
+            newData: [],
         },
         methods: {
             //呼叫php程式，取回相關資料，並用json()轉回一般陣列
@@ -173,14 +173,6 @@
                 });
                 // 取回res值後，呼叫另一隻函式
                 this.foodData = res;
-                
-            },
-            get_exercise: async function () {
-                const res = await fetch('./php/getSportData.php', {}).then(function (data) {
-                    return data.json();
-                });
-                // 取回res值後，呼叫另一隻函式
-                this.exerciseData = res;
             },
             pricePick(e){
                 const status = e.target.textContent;
@@ -213,19 +205,84 @@
 
 
         },
-        // this.foodData.fdName.toUpperCase().indexOf(searchInput) > -1 && 
         computed: {
-            filteredfood() {
-                if(saerchInput = '')
-                return foodData;
-            }
+            filterData() {
+                const vm = this;
+                let tempData = [];
+                vm.newData = [];
+                let resultData = this.foodData
+                let fil = this.filterText.toLowerCase()
+
+                switch (this.selectFType) {
+                    case 'search':
+                        tempData = vm.foodData.filter((value) => {
+                            if (vm.filterText == '') {
+                                return vm.foodData
+                            } else {
+                                return value.fdName.toLowerCase().match(fil);
+                            }
+                        });
+                        break;
+                    case '0':
+                        tempData = vm.foodData.filter((value) => {
+                            return vm.foodData;
+                        });
+                        break;
+                    case '1':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 1;
+                        });
+                        break;
+                    case '2':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 2;
+                        });
+                        break;
+                    case '3':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 3;
+                        });
+                        break;
+                    case '4':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 4;
+                        });
+                        break;
+                    case '5':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 5;
+                        });
+                        break;
+                    case '6':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 6;
+                        });
+                        break;
+                    case '7':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 7;
+                        });
+                        break;
+                    case '8':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 8;
+                        });
+                        break;
+                    case '9':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 9;
+                        });
+                        break;
+                }
+            },
         },
         // template 渲染前 會先去執行以下函式
         created() {
             this.get_food();
-            // this.get_exercise();
+
         },
-        mounted() {},        
+        mounted() {
+        },        
     })
     // const toExercise = document.getElementById("exercise");
     // const toFood = document.getElementById("Food");
