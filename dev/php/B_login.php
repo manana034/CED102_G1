@@ -1,8 +1,11 @@
 <?php
     try {
-        require_once("../../connect_ced102g1.php");
+        require_once("../../connect_ced102g1.php"); 
         // 建立SQL
-        $sql = "SELECT * FROM `admin` WHERE aId=:aId AND aPsw=:aPsw"; 
+        
+        $sql = "SELECT * FROM `admin` 
+        WHERE aId=:aId AND aPsw=:aPsw";
+
         // 執行
         $admin = $pdo->prepare($sql);
         // 給值

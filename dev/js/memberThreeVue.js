@@ -1,27 +1,5 @@
 
 
-//status-order 的showDetail 用的
-
-// const orderDetail = document.querySelector('.orderDetail')
-
-// orderDetail 沒有寫在 vue 裡面所以只能寫在外面
-// 不是用vue 一開始就有, vue一開始沒有要建過內容才有東西可以抓
-
-// const orderDetailClose = document.querySelector('.orderDetail>.detailBody>button.nc-btn')
-
-// orderDetailClose.addEventListener('click', () => {
-//     orderDetail.removeAttribute('style')
-// })
-
-
-// const mapState = Vuex.mapState
-// const mapMutations = Vuex.mapMutations
-// const mapActions = Vuex.mapActions
-// const mapGetters = Vuex.mapGetters
-
-
-
-
 
 //vue 第三層------
 
@@ -41,7 +19,7 @@ Vue.component('profile-body', {
                         hidden>
 
                     <div>
-                        <img :src="mImg">
+                        <img :src="mImg?mImg : './icon/upfile.png' ">
                     </div>
                 </label>
 
@@ -230,11 +208,9 @@ Vue.component('profile-body', {
                 }
                 if (this.mImgInput.src) {
                     this.$store.commit('updateImg', this.mImgInput.src)
-                    console.log('work')
-                    // console.log(this.mImgInput.src)
-                    // console.log(this.mImg)
                 }
 
+                // fetch('php/')
                 passValueVue.$emit('leave-profile')
             }
         },
@@ -982,7 +958,7 @@ Vue.component('fav-poster', {
                                 <td>
                                     <button 
                                         class="l-btn"
-                                        @click="deletPost(i)">DELETE
+                                        @click="deletPost(i,post.infoNo)">DELETE
                                     </button>
                                 </td>
                             </tr>
@@ -1009,8 +985,20 @@ Vue.component('fav-poster', {
         this.favListLine = select('.favPoster thead')
     },
     methods: {
-        deletPost(i) {
+        deletPost: async function (i, infoNo) {
             this.favListData.splice(i, 1)
+
+            const res = await fetch('./php/deleteFavPoster.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'infoNo': infoNo,
+                    'mNo': getTmp_mNo,
+                }),
+            }).then(res => {console.log(res)})
+
         },
         toggleFavPoster() {
             const listBody = document.querySelector('.favPoster>.listBody')
@@ -1038,7 +1026,7 @@ Vue.component('fav-poster', {
         toFavPost(target) {
             sessionStorage.setItem('infoNo', target.infoNo)
             //跳轉到別的頁面
-            window.location.href = './info_content.html';
+            window.location.href = './info_content.html'
         },
     },
     computed: {
@@ -1256,17 +1244,22 @@ Vue.component('report-body', {
             this.checkCContainer(this.pieCContainer, 'pie')
 
             if (this.selectedOption.value == 'now') {
-                const labelArray = this.nowCData.map((data) => {
-                    switch (data.dtPd) {
-                        case '1':
-                            return 'BREAKFAST'
-                        case '2':
-                            return 'LUNCH'
-                        case '3':
-                            return 'DINNER'
-                    }
-                })
-                const dataArray = this.nowCData.map((data) => data.dtCalTal)
+                let labelArray, dataArray
+                
+                //來判斷 是否有無內容 有就裝載資料
+                if(this.nowCData.length){
+                    labelArray = this.nowCData.map((data) => {
+                        switch (data.dtPd) {
+                            case '1':
+                                return 'BREAKFAST'
+                            case '2':
+                                return 'LUNCH'
+                            case '3':
+                                return 'DINNER'
+                        }
+                    })
+                    dataArray = this.nowCData.map((data) => data.dtCalTal)
+                }
 
                 const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                     type: 'doughnut',
@@ -1286,18 +1279,21 @@ Vue.component('report-body', {
                     },
                 })
             } else if (this.selectedOption.value == 'last') {
-                const labelArray = this.lastCData.map((data) => {
-                    switch (data.dtPd) {
-                        case '1':
-                            return 'BREAKFAST'
-                        case '2':
-                            return 'LUNCH'
-                        case '3':
-                            return 'DINNER'
-                    }
-                })
-                const dataArray = this.lastCData.map((data) => data.dtCalTal)
-
+                let labelArray, dataArray
+                if(this.lastCData.length){
+                    labelArray = this.lastCData.map((data) => {
+                        switch (data.dtPd) {
+                            case '1':
+                                return 'BREAKFAST'
+                            case '2':
+                                return 'LUNCH'
+                            case '3':
+                                return 'DINNER'
+                        }
+                    })
+                    dataArray = this.lastCData.map((data) => data.dtCalTal)
+                }
+                
                 const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                     type: 'doughnut',
                     data: {
@@ -1330,17 +1326,19 @@ Vue.component('report-body', {
             this.checkCContainer(this.lineCContainer, 'line')
 
             if (this.selectedOption.value == 'now') {
+                let filterWData, labelArray, dataArray
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
-                const filterWData = this.wData.filter((data) => {
-                    return Date.parse(data.wDate) > thisMonth
-                })
+                if (this.wData.length){
+                    filterWData = this.wData.filter((data) => {
+                        return Date.parse(data.wDate) > thisMonth
+                    })
 
-                const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                const dataArray = filterWData.map((data) => data.wWeight)
+                    labelArray = filterWData.map((data) => data.wDate.slice(5))
+                    dataArray = filterWData.map((data) => data.wWeight)
+                }
 
-                // console.log('labelArray' + labelArray)
-                // console.log('dataArray' + dataArray)
+
                 const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                     // The type of chart we want to create
                     type: 'line',
@@ -1375,14 +1373,19 @@ Vue.component('report-body', {
                     },
                 })
             } else if (this.selectedOption.value == 'last') {
+                let filterWData, labelArray, dataArray
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
                 const lastMonth = Date.parse(new Date()) - 56 * 24 * 60 * 60 * 1000
-                const filterWData = this.wData.filter((data) => {
-                    return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
-                })
 
-                const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                const dataArray = filterWData.map((data) => data.wWeight)
+                if (this.wData.length){
+                    filterWData = this.wData.filter((data) => {
+                        return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
+                    })
+
+                    labelArray = filterWData.map((data) => data.wDate.slice(5))
+                    dataArray = filterWData.map((data) => data.wWeight)
+                }
+               
 
                 const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                     // The type of chart we want to create
@@ -1419,6 +1422,7 @@ Vue.component('report-body', {
                 })
             }
         },
+
 
         changeReport(){
             const position = select('.rePortBtns .o-3').textContent.trim()
@@ -1515,18 +1519,20 @@ Vue.component('report-body', {
                     this.checkCContainer(this.pieCContainer, 'pie')
 
                     if (this.selectedOption.value == 'now') {
-                        const labelArray = this.nowCData.map((data) => {
-                            switch (data.dtPd) {
-                                case '1':
-                                    return 'BREAKFAST'
-                                case '2':
-                                    return 'LUNCH'
-                                case '3':
-                                    return 'DINNER'
-                            }
-                        })
-                        const dataArray = this.nowCData.map((data) => data.dtCalTal)
-
+                        let labelArray, dataArray
+                        if (this.nowCData.length){
+                            labelArray = this.nowCData.map((data) => {
+                                switch (data.dtPd) {
+                                    case '1':
+                                        return 'BREAKFAST'
+                                    case '2':
+                                        return 'LUNCH'
+                                    case '3':
+                                        return 'DINNER'
+                                }
+                            })
+                            dataArray = this.nowCData.map((data) => data.dtCalTal)
+                        }
                         const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                             type: 'doughnut',
                             data: {
@@ -1545,17 +1551,21 @@ Vue.component('report-body', {
                             },
                         })
                     } else if (this.selectedOption.value == 'last') {
-                        const labelArray = this.lastCData.map((data) => {
-                            switch (data.dtPd) {
-                                case '1':
-                                    return 'BREAKFAST'
-                                case '2':
-                                    return 'LUNCH'
-                                case '3':
-                                    return 'DINNER'
-                            }
-                        })
-                        const dataArray = this.lastCData.map((data) => data.dtCalTal)
+                        let labelArray, dataArray
+
+                        if (this.lastCData.length){
+                            labelArray = this.lastCData.map((data) => {
+                                switch (data.dtPd) {
+                                    case '1':
+                                        return 'BREAKFAST'
+                                    case '2':
+                                        return 'LUNCH'
+                                    case '3':
+                                        return 'DINNER'
+                                }
+                            })
+                            dataArray = this.lastCData.map((data) => data.dtCalTal)
+                        }
 
                         const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                             type: 'doughnut',
@@ -1578,19 +1588,19 @@ Vue.component('report-body', {
                     break;
                 case 'weight':
                     this.checkCContainer(this.lineCContainer, 'line')
-
+                    
                     if (this.selectedOption.value == 'now') {
+                        let filterWData, labelArray, dataArray
                         const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
-                        const filterWData = this.wData.filter((data) => {
-                            return Date.parse(data.wDate) > thisMonth
-                        })
-
-                        const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                        const dataArray = filterWData.map((data) => data.wWeight)
-
-                        // console.log('labelArray' + labelArray)
-                        // console.log('dataArray' + dataArray)
+                        if (this.wData.length){
+                            filterWData = this.wData.filter((data) => {
+                                return Date.parse(data.wDate) > thisMonth
+                            })
+                            labelArray = filterWData.map((data) => data.wDate.slice(5))
+                            dataArray = filterWData.map((data) => data.wWeight)
+                        }
+      
                         const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                             // The type of chart we want to create
                             type: 'line',
@@ -1625,14 +1635,18 @@ Vue.component('report-body', {
                             },
                         })
                     } else if (this.selectedOption.value == 'last') {
+                        let filterWData, labelArray, dataArray
+
                         const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
                         const lastMonth = Date.parse(new Date()) - 56 * 24 * 60 * 60 * 1000
-                        const filterWData = this.wData.filter((data) => {
-                            return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
-                        })
+                        if (this.wData.length){
+                            filterWData = this.wData.filter((data) => {
+                                return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
+                            })
 
-                        const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                        const dataArray = filterWData.map((data) => data.wWeight)
+                            labelArray = filterWData.map((data) => data.wDate.slice(5))
+                            dataArray = filterWData.map((data) => data.wWeight)
+                        }
 
                         const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                             // The type of chart we want to create
@@ -1674,5 +1688,504 @@ Vue.component('report-body', {
     },
     computed: {
         ...mapState(['eData', 'nowCData', 'lastCData', 'wData']),
+    },
+})
+
+
+
+//是 login-signup 的child 這裡存放sign up
+Vue.component('sign-up', {
+    template: `
+        <div class="signup">
+            <h4>sign up</h4>
+            <form action="">
+
+                <label class="name">
+                    <p>name <span>*</span></p>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        maxlength="20"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="email">
+                    <p>email <span>*</span></p>
+                    <input 
+                        type="email" 
+                        name="email"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="userid">
+                    <p>userid <span>*</span></p>
+                    <input 
+                        type="text" 
+                        name="userid" 
+                        maxlength="10" 
+                        minlength="6"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="psd">
+                    <p>password <span>*</span></p>
+                    <input 
+                        type="password" 
+                        name="psd" 
+                        maxlength="10" 
+                        minlength="6"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="cfmPsd">
+                    <p>confirm password <span>*</span></p>
+                    <input 
+                        type="password" 
+                        name="cfmPsd" 
+                        maxlength="10"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <div>
+                    <button 
+                        class="p-btn" 
+                        id="signup" 
+                        type="button"
+                        @click="signUpMember">
+                        
+                        sign up
+                    </button>
+                </div>
+            </form>
+        </div>
+    `,
+    data() {
+        return {
+            signUpLogin(mId,mPsw,mNo){
+                this.$store.commit('toggleLoginBeforeAfter')
+
+                let Vthis = this
+                function getMemberData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function checkMember(data) {
+                            let member = JSON.parse(data)
+
+                            //寫入 VueX
+                            Vthis.$store.commit({
+                                type: 'updateStatus',
+
+                                goalType: member.goalType,
+                                loginDate: member.loginDate,
+                                mBday: member.mBday,
+                                mFoled: member.mFoled,
+                                mGoalE: member.mGoalE,
+                                mGoalS: member.mGoalS,
+                                mGoalW: member.mGoalW,
+                                mHeight: member.mHeight,
+                                mId: member.mId,
+                                mImg: member.mImg,
+                                mIntro: member.mIntro,
+                                mLevel: member.mLevel,
+                                mMail: member.mMail,
+                                mName: member.mName,
+                                mPhone: member.mPhone,
+                                mPoints: member.mPoints,
+                                mPsw: member.mPsw,
+                                mSex: member.mSex,
+                                mWriteD: member.mWriteD,
+                                mTotal: member.mTotal,
+                                mNo: member.mNo,
+
+                                wWeight: member.wWeight,
+                                wDate: member.wDate,
+                            })
+                        }
+                        checkMember(xhr.responseText)
+
+                        function getMFavPosterData(mNo) {
+                            let xhr = new XMLHttpRequest()
+                            xhr.onload = () => {
+                                function updataMFavPosterData(data) {
+                                    let favData = JSON.parse(data)
+                                    Vthis.$store.commit('updataFavPosterData', favData)
+                                }
+                                updataMFavPosterData(xhr.responseText)
+                            }
+                            xhr.open('post', 'php/getFavPosterData.php', true)
+
+                            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                            let data_info = `mNo=${mNo}`
+                            xhr.send(data_info)
+                        }
+                        getMFavPosterData(JSON.parse(xhr.responseText).mNo)
+                    }
+                    xhr.open('post', 'php/login.php', true)
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMnoMidMpsw() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMnoMidMpsw(data) {
+                            if (data === '{}') {
+                                console.log('此無帳號密碼')
+                            } else {
+                                let member = JSON.parse(data)
+                                console.log(member)
+
+                                Vthis.$store.commit({
+                                    type: 'updateMemberInfo',
+
+                                    mNo: member.mNo,
+                                    mId: member.mId,
+                                    mPsw: member.mPsw,
+                                })
+                            }
+                        }
+                        updataMnoMidMpsw(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMnoMidMpsw.php', true)
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMWeightDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMWeightData(data) {
+                            let wData = JSON.parse(data)
+
+                            Vthis.$store.commit('updateWeightData', wData)
+                        }
+                        updataMWeightData(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMWeightDate.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMExerciseDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMExerciseData(data) {
+                            if (data === '{}') {
+                                console.log('沒有weight體重資料')
+                            } else {
+                                let eData = JSON.parse(data)
+
+                                Vthis.$store.commit('updataExerciseData', eData)
+                            }
+                        }
+                        updataMExerciseData(xhr.responseText)
+                        //載入好資料之後 就安裝一開始的Report
+
+                        function firstSetReport() {
+                            const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
+
+                            console.log(Vthis.eData)
+                            const filterEData = Vthis.eData.filter((data) => {
+                                return Date.parse(data.spTime) > thisMonth
+                            })
+
+                            const labelArray = filterEData.map((data) => data.spTime.slice(5))
+                            const dataArray = filterEData.map((data) => data.spCalTal)
+
+                            let barChart = new Chart(
+                                document.getElementById('barChart').getContext('2d'),
+                                {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labelArray,
+                                        datasets: [
+                                            {
+                                                label: 'EXERCICE',
+                                                fill: true,
+                                                backgroundColor: '#95b17c',
+                                                data: dataArray,
+                                            },
+                                        ],
+                                    },
+                                    options: {
+                                        animation: {
+                                            duration: 2000,
+                                        },
+                                        legend: {
+                                            display: false,
+                                        },
+                                        scales: {
+                                            yAxes: [
+                                                {
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                }
+                            )
+                        }
+                        const checkEData = setTimeout(() => {
+                            if (Vthis.eData) {
+                                firstSetReport()
+                            }
+                            clearTimeout(checkEData)
+                        }, 10)
+                    }
+                    xhr.open('post', 'php/getMExerciseDate.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMNowCalDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMNowCalDate(data) {
+                            let cData = JSON.parse(data)
+
+                            Vthis.$store.commit('updataNowCalData', cData)
+                        }
+                        updataMNowCalDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMNowCalData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMLastCalDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMLastCalDate(data) {
+                            let cData = JSON.parse(data)
+                            Vthis.$store.commit('updataLastCalData', cData)
+                        }
+                        updataMLastCalDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMLastCalData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                //撈取 orderListData 的資料
+                function getMOrderListData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMOrderListDate(data) {
+                            let mOData = JSON.parse(data)
+                            Vthis.$store.commit('updataOrderListDate', mOData)
+                        }
+                        updataMOrderListDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getOrderListData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+                //撈取 orderData 的資料
+                function getMOrderData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMOrderData(data) {
+                            let mOData = JSON.parse(data)
+                            Vthis.$store.commit('updataOrderData', mOData)
+                        }
+                        updataMOrderData(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getOrderData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                //取得 當天攝取卡路里 資料
+                function getMDailyCalData() {
+                    function formatDate(date) {
+                        let d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear()
+
+                        if (month.length < 2) month = '0' + month
+                        if (day.length < 2) day = '0' + day
+
+                        return [year, month, day].join('-')
+                    }
+                    const now = formatDate(new Date())
+                    fetch(`php/getDailyCal.php?mNo=${mNo}&curTime=${now}`)
+                        .then((res) => res.json())
+                        .then((res) =>
+                            Vthis.$store.commit('updataDailyCalData', res.dailySumCal ? parseInt(res.dailySumCal) : 0)
+                        )
+                    //如果沒資料就回傳0
+                }
+
+                getMemberData()
+                //自動登入 執行這段
+                getMnoMidMpsw()
+
+                getMWeightDate()
+                getMExerciseDate()
+                getMNowCalDate()
+                getMLastCalDate()
+
+                getMOrderListData()
+                getMOrderData()
+
+                getMDailyCalData()
+
+                const checkGoaltime = setTimeout(() => {
+                    passValueVue.$emit('check-goalWeight')
+                    passValueVue.$emit('check-goalTime')
+                    clearTimeout(checkGoaltime)
+                }, 100)
+            }
+        }
+    },
+    methods: {
+        movePlaceholder(event, state) {
+            const inputVal = event.target.value
+            const placeholder = event.target.parentElement.children[0]
+            const ta = event.target
+
+            const signUpPsd = select('.under .signup .psd>input')
+            const signUpCfmPsd = select('.under .signup .cfmPsd>input')
+
+            //提示小字
+            const span = select(`.signup .${ta.name} p>span`)
+
+            if (state == 'focus') {
+                //如果再focus 狀態 將會提升
+                placeholder.style.top = '-20px'
+                placeholder.style.transform = 'scale(.9)'
+
+                span.textContent = '*'
+                span.removeAttribute('style')
+
+            } else if (state == 'blur') {
+                //如果在blur 狀態
+                if (!inputVal) {
+                    //檢查裡面 是否有內容 ,沒有內容就會掉下來
+                    placeholder.style.top = '-5px'
+                    placeholder.style.transform = 'scale(1)'
+                }
+
+                if (ta.name == 'cfmPsd') {
+                    if (signUpPsd.value) {
+                        //如果有值
+                        console.log(ta.value)
+                        if (ta.value) {
+                            if (signUpPsd.value.indexOf(ta.value) > -1) {
+                                //如果值是一樣的
+                                const Psd = signUpPsd.parentElement.children[0].children[0]
+                                const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
+
+                                fmPsd.textContent = '* 正確'
+                                fmPsd.style.color = 'green'
+
+                                Psd.textContent = '* 正確'
+                                Psd.style.color = 'green'
+                            } else {
+                                //如果不一樣
+                                const Psd = signUpPsd.parentElement.children[0].children[0]
+                                const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
+
+                                fmPsd.textContent = '* 兩個密碼不符合'
+                                fmPsd.style.color = 'red'
+
+                                Psd.textContent = '*'
+                                Psd.removeAttribute('style')
+                            }
+                        }
+                    }
+                }
+
+                if (ta.name == 'userid') {
+                    // const span = select('.signup .userid p>span')
+                    fetch(`php/checkMemberID.php?memid=${inputVal}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            // console.log(res.length)
+                            if (!res.length) {
+                                span.textContent = '* 可以使用該帳號'
+                                span.setAttribute('style', 'color:green')
+                            } else {
+                                span.textContent = '已被使用'
+                                span.setAttribute('style', 'color: red')
+                            }
+                        })
+                }
+
+                if(ta.name == 'email'){
+                    if (inputVal){
+                        emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
+
+                        if (inputVal.search(emailRule) != -1) {
+                            span.textContent = '* 正確'
+                            span.setAttribute('style', 'color:green')
+                        } else {
+                            span.textContent = '* 格式錯誤'
+                            span.setAttribute('style', 'color:red')
+                        }
+                    } 
+                }
+            }
+        },
+
+        signUpMember() {
+            const name = select('.signup .name input').value
+            const email = select('.signup .email input').value
+            const userid = select('.signup .userid input').value
+            const psd = select('.signup .psd input').value
+            const cfmPsd = select('.signup .cfmPsd input').value
+
+            const mailSpan = select('.signup .email span').style.color
+            const idSpan = select('.signup .userid span').style.color
+            const psdSpan = select('.signup .psd span').style.color
+            const cfmSpan = select('.signup .cfmPsd span').style.color
+
+
+            //註冊成功 將直接登入
+            if (name&&email&&userid&&psd&&cfmPsd) {
+               if(mailSpan=='red'|| idSpan=='red'||psdSpan=='red'||cfmSpan=='red'){
+                   alert('請輸入正確格式') 
+               } else {
+                   alert('恭喜加入FT.')
+
+                   fetch(`php/createMAccount.php?mName=${name}&mId=${userid}&mPsw=${psd}&mMail=${email}`)
+                   .then(res=>res.json())
+                   .then(res=>{
+                        const signUp_id = userid
+                        const signUp_psd = psd
+                        const signUp_mNo = res
+                        console.log('signUp之後直接登入')
+
+                        this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
+
+                    })
+               }
+            } else{
+                alert('請填寫帳戶資料')
+            }
+ 
+        },
     },
 })
