@@ -2,7 +2,6 @@
 Vue.component('all-info', {
     data() {
         return {
-            //撈出來的 課程資料
             infos: '',
             lightbox: false,
             lightbox_delete: false,
@@ -46,15 +45,15 @@ Vue.component('all-info', {
     <div class="main_bottom">
         <table>
             <tr>
-              <th>No</th>
-              <th>Type</th>
-              <th>Title</th>
-              <th>Photo</th>
-              <th>Content</th>
-              <th>Publish Date</th>
-              <th>Edit</th>
-              <th>Delete</th>
-              <th>State</th>
+                <th>No</th>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Photo</th>
+                <th>Content</th>
+                <th>Publish Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>State</th>
             </tr>
             <tr v-for="(value,key) in infos" >
                 <td>{{value.infoNo}}</td>
@@ -340,15 +339,15 @@ Vue.component('edit-info', {
             this.$emit('changelightbox');
         },
 
-        changetype() {
-            if (this.infoType == 1) {
-                this.infoTypeName = 'Food';
-            } else if (this.infoType == 2) {
-                this.infoTypeName = 'Exercise';
-            } else if (this.infoType == 3) {
-                this.infoTypeName = 'Regimen';
-            }
-        },
+        // changetype() {
+        //     if (this.infoType == 1) {
+        //         this.infoTypeName = 'Food';
+        //     } else if (this.infoType == 2) {
+        //         this.infoTypeName = 'Exercise';
+        //     } else if (this.infoType == 3) {
+        //         this.infoTypeName = 'Regimen';
+        //     }
+        // },
 
         //點擊 確認修改後將資料傳至DB
         edit_info_func: async function (infoType,infoTitle,infoPhoto1,infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3) {
@@ -415,6 +414,176 @@ Vue.component('edit-info', {
         this.get_info();
     },
     watch: {},
+});
+
+
+// HEALTH NEWS ADD
+Vue.component('add-info', {
+    data() {
+        return {
+            infoNo: '',
+            infoType: '',
+            infoTitle: '',
+            infoPhoto1: '',
+            infoPhoto2: '',
+            infoPhoto3: '',
+            infoContent1: '',
+            infoContent2: '',
+            infoContent3: '',
+            error_text: '',
+            error_text1: '',
+            error_text2: '',
+            error_text3: '',
+            error_text4: '',
+        };
+    },
+    props: [],
+
+    template: `
+<div class="lightbox_add_black">
+    <div class="lightbox" >                                        
+        <h6>Add Article</h6>
+        <div>
+            <div class="acc_title">Type</div>
+            <div>
+                <select class="acc_con" v-model="infoType"">
+                    <option value="1">Food</option>
+                    <option value="2">Exercise</option>
+                    <option value="3">Regimen</option>
+                </select>
+                <div class="acc_tip">{{error_text}}</div>
+            </div>
+        </div>                             
+        <div>
+            <div class="acc_title">Title</div>
+            <div>
+                <input type="text" required="required" maxlength="50" class="acc_con" v-model="infoTitle">
+                <div class="acc_tip">{{error_text1}}</div>
+            </div>
+        </div>
+        <div>
+            <div class="acc_title">Photo1</div>
+            <div>
+                <input type="file" accept=".jpg,.png,.mp4" class="acc_con" id="infoPhoto1" name="upFile[]">
+                <!-- <img :src="infoPhoto1" alt="" > -->
+            </div>
+        </div>
+        <div>
+            <div class="acc_title">Photo2</div>
+            <div>
+                <input type="file" accept=".jpg,.png" class="acc_con" id="infoPhoto2" name="upFile[]">
+                <!-- <img :src="infoPhoto2" alt="" > -->
+            </div>
+        </div>
+        <div>
+            <div class="acc_title">Photo3</div>
+            <div>
+                <input type="file" accept=".jpg,.png" class="acc_con" id="infoPhoto3" name="upFile[]">
+                <!-- <img :src="infoPhoto3" alt="" > -->
+            </div>
+        </div>              
+        <div>
+            <div class="acc_title">Content1</div>
+            <div>
+                <textarea rows="3" cols="60" required="required" maxlength="800" class="acc_con" v-model="infoContent1"></textarea>
+                <div class="acc_tip">{{error_text2}}</div>
+            </div>
+        </div>
+        <div>
+            <div class="acc_title">Content2</div>
+            <div>
+                <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con" v-model="infoContent2"></textarea>
+                <div class="acc_tip">{{error_text3}}</div>
+            </div>
+        </div>
+        <div>
+            <div class="acc_title">Content3</div>
+            <div>
+                <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con" v-model="infoContent3"></textarea>
+                <div class="acc_tip">{{error_text4}}</div>
+            </div>
+        </div>
+        <div>
+            <button class="cancel" @click="changelightbox">Cancel</button>
+            <button class="continus" @click="add_info_func(infoType,infoTitle,infoPhoto1,
+                infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3)">Add</button>
+        </div>                                                                                                            
+    </div>
+</div>
+        `,
+    methods: {
+        //關燈箱
+        changelightbox() {
+            this.$emit('changelightbox');
+        },
+        //點擊 確認新增後將資料傳至DB
+        add_info_func: async function (infoType, infoTitle, infoPhoto1, infoPhoto2, infoPhoto3, infoContent1, infoContent2, infoContent3) {
+            console.log(infoType, infoTitle, infoPhoto1, infoPhoto2, infoPhoto3, infoContent1, infoContent2, infoContent3);
+
+            //送出編輯前 確認欄位 是否符合規定
+            if (infoType !== '') {
+                console.log('type OK')
+            } else {
+                this.error_text = 'Please select a type.';
+                return '';
+            }
+            if (infoTitle.length >= 1 && infoTitle.length <= 50) {
+                console.log('title OK')
+            } else {
+                this.error_text1 = 'Please enter within 50 characters.';
+                return '';
+            }
+
+            if (infoContent1.length >= 1 && infoContent1.length <= 800) {
+                console.log('內容1 OK') 
+            } else {
+                this.error_text2 = 'Please enter within 800 characters.';
+                return '';
+            }
+            if (infoContent2.length >= 1 && infoContent2.length <= 500) {
+                console.log('內容2 OK')
+            } else {
+                this.error_text3 = 'Please enter within 500 characters.';
+                return '';
+            }
+            if (infoContent3.length >= 1 && infoContent3.length <= 500) {
+                console.log('內容3 OK')
+            } else {
+                this.error_text4 = 'Please enter within 500 characters.';
+                return '';
+            }
+
+            const res = await fetch('./php/addInfoData.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    infoType: infoType,
+                    infoTitle: infoTitle,
+                    infoPhoto1: infoPhoto1,
+                    infoPhoto2: infoPhoto2,
+                    infoPhoto3: infoPhoto3,
+                    infoContent1: infoContent1,
+                    infoContent2: infoContent2,
+                    infoContent3: infoContent3,
+                }),
+            }).then(function () {
+                console.log('in');
+            });
+            console.log('完成');
+
+            //關燈箱
+            this.changelightbox();
+            //完成後 重新撈取一次資料
+            this.get_info();
+        },
+    },
+    created() {
+        this.get_info();
+    },
 });
 
 

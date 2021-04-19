@@ -1,17 +1,51 @@
-@@include("./layout/B_head.html");
-<title>Report</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/B_lightbox.css">
+    <script src="./js/B_all.js" defer></script>
+    <script src="./js/B_logout.js" defer></script>
+    <script src="./js/B_7vue.js" defer></script>
+    <script src="./js/B_header.js" defer></script>
+    <title>Report</title>
+
+</head>
 
 </head>
 <body>
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="main_post main">
+<div class="report">
+    <div class="postpage">
+        <div class="page">
+            <div class="post">POST</div>
+            <div id="message">MESSAGE</div>
+        </div>
+        <div id="app1">
+            <all-post></all-post>
+        </div>
+    </div>
+    <div class="messagepage">
+        <div class="page">
+            <div id="post">POST</div>
+            <div class="message">MESSAGE</div>
+        </div>
+        <div id="app2">
+            <all-message></all-message>
+        </div>
+    </div>
+</div>
+
+    <!-- <div class="main_post main">
         <div class="main_top">
-            <div class="page">
-                <div class="post">POST</div>
-                <div id="message">MESSAGE</div>
-            </div>
             <div class="search_bar">
                 <div class="custom-select">
                     <select name="sType">
@@ -21,12 +55,6 @@
                         <option value="2">Passed</option>
                         <option value="3">Failed</option>
                     </select>
-                </div>
-                <div class="daterange">
-                    <input type="text" name="daterange"/>
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
                 </div>
             </div>
         </div>
@@ -59,9 +87,9 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </div> -->
         <!-- 確認改狀態的燈箱 -->
-        <div class="lightbox_black">
+        <!-- <div class="lightbox_black">
             <div class="lightbox" >
                 <div class="content">Do you want to <span>hide</span>  post no.<span>1</span> ?</div>
                 <div>
@@ -86,12 +114,6 @@
                         <option value="2">Passed</option>
                         <option value="3">Failed</option>
                     </select>
-                </div>
-                <div class="daterange">
-                    <input type="text" name="daterange"/>
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
                 </div>
             </div>
         </div>
@@ -121,7 +143,7 @@
                 </tr>
             </table>
         </div>
-        <!-- 確認改狀態的燈箱 -->
+        確認改狀態的燈箱
         <div class="lightbox_black">
             <div class="lightbox" >
                 <div class="content">Do you want to <span>hide</span>  message no.<span>66</span> ?</div>
@@ -132,20 +154,17 @@
             </div>
         </div>
     </div>
+</div> --->
 
 <script>
-    $(function(){
-        // 改狀態的 lightbox
-        $('.Type').change(function(){
-            $('.lightbox_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-        });
+    $('#message').click(function(){
+        $('.postpage').css('display','none');
+        $('.messagepage').css('display','block');
     });
-    </script>
+    $('#post').click(function(){
+        $('.messagepage').css('display','none');
+        $('.postpage').css('display','block');
+    });
+</script>
 </body>
 </html>

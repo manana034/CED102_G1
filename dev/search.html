@@ -53,6 +53,7 @@
 
                 <form id="search_bar_f" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
+<<<<<<< HEAD
 
                         <input 
                             type="search" 
@@ -60,26 +61,29 @@
                             placeholder="SEARCH WHAT YOU TOOK"
                             @keyup="filterData">
 
+=======
+                        <input type="search" v-model.trim="filterText" @keyup="selectFType ='search'" placeholder="SEARCH WHAT YOU TOOK">
+>>>>>>> 8e6742b53a57c8408b7d026748880b6421bc706c
                     </div>
                     <div 
                         class="custom-select"
                         @click="typeSelect">
 
                         <select name="sType">
-                            <option value="0" >ALL</option>
-                            <option value="0">ALL</option>
-                            <option value="1">FT. SHOP</option>
-                            <option value="2">RICE</option>
-                            <option value="3">NOODLES</option>
-                            <option value="4">MEAT</option>
-                            <option value="5">FRUIT & VEG</option>
-                            <option value="6">FRIED</option>
-                            <option value="7">DESSERT</option>
-                            <option value="8">DRINK</option>
-                            <option value="9">CUSTOMIZED</option>
+                            <option>ALL</option>
+                            <option>ALL</option>
+                            <option>FT. SHOP</option>
+                            <option>RICE</option>
+                            <option>NOODLES</option>
+                            <option>MEAT</option>
+                            <option>FRUIT & VEG</option>
+                            <option>FRIED</option>
+                            <option>DESSERT</option>
+                            <option>DRINK</option>
+                            <option>CUSTOMIZED</option>
                         </select>
                     </div>
-                    <button class="nc-btn o-5">
+                    <button class="nc-btn o-5" @click="selectFType ='search'">
                         <img src="./icon/search_magnifier.png">
                     </button>  
                 </form>
@@ -97,13 +101,17 @@
                 </div>
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>Result Of {{searchInput}}( {{count}} Items)</h6></div>
+                <div class="result_number"><h6>Result Of {{filterText}}( {{count}} Items)</h6></div>
                 <div class="result_items">
+<<<<<<< HEAD
 
                     <a 
                         href="Cal_Diary.html" 
                         v-for="(value,key) in foodData"
                         :data-type="value.fdType">
+=======
+                    <a href="Cal_Diary.html" v-for="(value,key) in filterData">
+>>>>>>> 8e6742b53a57c8408b7d026748880b6421bc706c
                         <div class="cal_card">
 
                             <div class="cal_title">
@@ -209,6 +217,189 @@
     </main>
     @@include('./layout/footer.html')
     
+<<<<<<< HEAD
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            foodData: [],
+            newfood: [],
+            searchType: 'FOOD',
+            filterText: '',
+            selectFType: '',
+            count: 0,
+            tempData: [],
+            newData: [],
+        },
+        methods: {
+            //呼叫php程式，取回相關資料，並用json()轉回一般陣列
+            get_food: async function () {
+                const res = await fetch('./php/getFoodData.php', {}).then(function (data) {
+                    return data.json();
+                });
+                // 取回res值後，呼叫另一隻函式
+                this.foodData = res;
+            },
+            pricePick(e){
+                const status = e.target.textContent;
+                if (status === 'ALL') {
+                    selectFType = 0;
+                } else if (status === 'FT. SHOP' || status === 'LOW') {
+                    selectFType = 1;
+                } else if (status === 'RICE' || status === 'MEDIUM') {
+                    selectFType = 2;
+                } else if (status === 'NOODLES' || status === 'HIGH') {
+                    selectFType = 3;
+                } else if (status === 'MEAT') {
+                    selectFType = 4;
+                } else if (status === 'FRUIT & VEG') {
+                    selectFType = 5;
+                } else if (status === 'FRIED') {
+                    selectFType = 6;
+                } else if (status === 'DESSERT') {
+                    selectFType = 7;
+                } else if (status === 'DRINK') {
+                    selectFType = 8;
+                } else if (status === 'CUSTOMIZED') {
+                    selectFType = 9;
+                }
+                console.log(selectFType);
+            },
+            getId(key){
+                sessionStorage.setItem("infoNo", key+1);
+            },
+
+
+        },
+        computed: {
+            filterData() {
+                const vm = this;
+                let tempData = [];
+                vm.newData = [];
+                let resultData = this.foodData
+                let fil = this.filterText.toLowerCase()
+
+                switch (this.selectFType) {
+                    case 'search':
+                        tempData = vm.foodData.filter((value) => {
+                            if (vm.filterText == '') {
+                                return vm.foodData
+                            } else {
+                                return value.fdName.toLowerCase().match(fil);
+                            }
+                        });
+                        break;
+                    case '0':
+                        tempData = vm.foodData.filter((value) => {
+                            return vm.foodData;
+                        });
+                        break;
+                    case '1':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 1;
+                        });
+                        break;
+                    case '2':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 2;
+                        });
+                        break;
+                    case '3':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 3;
+                        });
+                        break;
+                    case '4':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 4;
+                        });
+                        break;
+                    case '5':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 5;
+                        });
+                        break;
+                    case '6':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 6;
+                        });
+                        break;
+                    case '7':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 7;
+                        });
+                        break;
+                    case '8':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 8;
+                        });
+                        break;
+                    case '9':
+                        tempData = vm.foodData.filter((value) => {
+                            return value.fdType == 9;
+                        });
+                        break;
+                }
+            },
+        },
+        // template 渲染前 會先去執行以下函式
+        created() {
+            this.get_food();
+
+        },
+        mounted() {
+        },        
+    })
+    // const toExercise = document.getElementById("exercise");
+    // const toFood = document.getElementById("Food");
+    // const foodPage = document.getElementById("food_page");
+    // const exercisePage = document.getElementById("exercise_page");
+
+    // toExercise.addEventListener('click', function(){
+    //     foodPage.style.display = "none";
+    //     exercisePage.style.display = "block";
+        // 把session設為EXERCISE;
+        // 每次都要重取
+    // }, false);
+    // toFood.addEventListener('click', function(){
+    //     foodPage.style.display = "";
+    //     exercisePage.style.display = "none"; 
+        // 把session設為FOOD;
+    // }, false);
+
+// +++++++++++++++++++++++++++++
+    // const searchInput = document.querySelector('.search-input>input')
+
+    // const filterData = () => {
+    //     const inputVal = searchInput.value.toUpperCase()
+    // }
+
+    // const choiceSelect = (e) => {
+    //     const status = e.target.textContent
+    //     if (status === 'FOOD') {
+    //         getFoodData()
+    //     } else if {
+    //         getSportData()
+    //     }
+    // }
+
+    // searchInput.addEventListener('keyup', filterData)
+    // selectItems.forEach((item) => item.addEventListener('click', choiceSelect))
+
+// $(document).ready(function(){
+//     $('#exercise').click(function(){
+//             $('#food_page').css('display','none');
+//             $('#exercise_page').css('display','block');
+//     });
+//     $('#food').click(function(){
+//             $('#exercise_page').css('display','none');
+//             $('#food_page').css('display','');
+//     });
+>>>>>>> 8e6742b53a57c8408b7d026748880b6421bc706c
 
 
 </body>

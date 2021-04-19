@@ -26,20 +26,64 @@
      }
         
         .prod{
-            display: flex;
-            justify-content: space-around;
+            // display: flex;
+            justify-content: space-between;
             align-items: center;
             padding: 30px 0;
 
             .prodcart{
-                width: 50%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
                 // border: 1px solid #000;
                 p{
-                    // width: 150px;
+                    width: 200px;
                     margin: 15px 20px;
+                    // border: 1px solid #000;
+
                 }    
                 .qty{
                     display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    width:100%;
+                    margin-left: 30px;
+                    form{
+                        // border: 1px solid #000;
+                        width: 250px;
+                        label{
+                            font-size: 16px;
+                        }
+                        #quantity{
+                            outline: none;
+                            border: none;
+                            width: 50px;
+                            text-align: center;
+                            background-color: transparent;
+                            border-bottom: 2px solid white;
+                            margin: 10px;
+                            padding-bottom: 5px;
+                        }
+                        .btn_number{
+                            display: inline-block;
+                            // border-bottom: 1px solid gray;
+                            padding: 5px 15px 5px 15px;
+                            
+                        }
+                        span{
+                            font-size: 20px;
+                            cursor: pointer;
+                            text-align: center;
+                            // border: 1px solid gray;
+                        }
+                       
+                    }
+                    p{
+                        // border: 1px solid #000;
+                        margin-left: 0px;
+                    }
                 }  
             }
             .cartimg{
@@ -47,12 +91,15 @@
                 // border: 1px solid #000;
                 text-align: center;
                 img{
-                    width: 100%;
+                    width: 70%;
                 }
             }
-            img{
+            .trash{
                 width: 20px;
+                height: 20px;
                 cursor: pointer;
+                vertical-align: middle;
+                margin-right:10px;
             }
          
         }    

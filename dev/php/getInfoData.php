@@ -2,7 +2,7 @@
     try {
         require_once "../../connect_ced102g1.php";
         // 建立SQL
-        $sql = "SELECT infoNo, infoType, infoTitle, infoPhoto1, infoPhoto2, infoPhoto3, infoContent1, infoContent2, infoContent3, infoState, DATE(infoTime) as 'infoTime', CONCAT(SUBSTR(infoContent1,1,60),'...') as 'reductinfo', 
+        $sql = "SELECT infoNo, infoType, infoTitle, infoPhoto1, infoPhoto2, infoPhoto3, infoContent1, infoContent2, infoContent3, infoState, DATE(infoTime) as 'infoTime', CONCAT(SUBSTR(infoContent1,1,60),'...') as 'reductinfo'
                 FROM information
                 ORDER BY infoNo desc
                 ";
