@@ -19,55 +19,63 @@
     </div>
     
     <div class="productAll">
-        <div class="filterAll">  
-            <div class="choose">
-                <p>FILTER</p>
-                <img src="./img/filter-filled-tool-symbol.png">
-            </div>
-            <div class="chooseall">     
-                <div class="typearrow">
-                    <p>TYPE</p>
-                    <!-- <img src="./img/arrow-down-sign-to-navigate.png">
-                    <img class="arrowwhite" src="./img/arrow_white.png"> -->
-                </div>
-                <form>
-                    <div class="filter">
-                        <input class="custom" type="checkbox" name="type" id="gain">
-                        <label class="orange cus1" for="gain">GAIN WEIGHT</label>
-                    </div>
-                    <div class="filter">
-                        <input class="custom" type="checkbox" name="type" id="lose">
-                        <label class="orange cus2" for="lose">LOSE WEIGHT</label>
-                    </div>
-                    <div class="filter">
-                        <input class="custom" type="checkbox" name="type" id="regimen">
-                        <label class="orange cus3" for="regimen">REGIMEN</label>
-                    </div>
-            </form>
-
-                <div class="ourarrow">
-                        <p>OUR PRODUCTS</p>
-                        <!-- <img src="./img/arrow-down-sign-to-navigate.png">
-                        <img class="arrowwhite" src="./img/arrow_white.png"> -->
-                </div>
-
-                <form>     
-                    <div class="filter1">
-                        <input class="custom" type="checkbox" name="type" id="cereal">
-                        <label class="orange" for="cereal">CEREAL</label>
-                    </div>
-                    <div class="filter1">
-                        <input class="custom" type="checkbox" name="type" id="crackers">
-                        <label class="orange" for="crackers">CRACKERS</label>
-                    </div>
-                    <div class="filter1">
-                        <input class="custom" type="checkbox" name="type" id="energy">
-                        <label class="orange" for="energy">ENERGY BAR</label>
-                    </div>
-                </form>
-           </div>  
-        </div>   
             <div class="products" id="app">
+                <div class="filterAll">  
+                    <div class="choose">
+                        <p>FILTER</p>
+                        <img src="./img/filter-filled-tool-symbol.png">
+                    </div>
+                    <div class="chooseall">     
+                        <div class="typearrow">
+                            <p>TYPE</p>
+                            <!-- <img src="./img/arrow-down-sign-to-navigate.png">
+                            <img class="arrowwhite" src="./img/arrow_white.png"> -->
+                        </div>
+                        <form>
+                            <div class="filter">
+                                <input class="custom" type="radio" name="type" id="all" @change="filter" checked >
+                                <label class="orange cus4" for="all">ALL</label>
+                            </div>
+                            <div class="filter">
+                                <input class="custom" type="radio" name="type" id="gain" @change="filter" >
+                                <label class="orange cus1" for="gain">GAIN WEIGHT</label>
+                            </div>
+                            <div class="filter">
+                                <input class="custom" type="radio" name="type" id="lose" @change="filter">
+                                <label class="orange cus2" for="lose">LOSE WEIGHT</label>
+                            </div>
+                            <div class="filter">
+                                <input class="custom" type="radio" name="type" id="regimen" @change="filter">
+                                <label class="orange cus3" for="regimen">REGIMEN</label>
+                            </div>
+                    </form>
+        
+                        <div class="ourarrow">
+                                <p>OUR PRODUCTS</p>
+                                <!-- <img src="./img/arrow-down-sign-to-navigate.png">
+                                <img class="arrowwhite" src="./img/arrow_white.png"> -->
+                        </div>
+        
+                        <form>     
+                            <div class="filter1">
+                                <input class="custom"  type="radio" name="type" id="alls" @change="filter1" checked>
+                                <label class="orange" for="alls">ALL</label>
+                            </div>
+                            <div class="filter1">
+                                <input class="custom" type="radio" name="type" id="cereal" @change="filter1">
+                                <label class="orange" for="cereal">CEREAL</label>
+                            </div>
+                            <div class="filter1">
+                                <input class="custom" type="radio" name="type" id="crackers" @change="filter1">
+                                <label class="orange" for="crackers">CRACKERS</label>
+                            </div>
+                            <div class="filter1">
+                                <input class="custom" type="radio" name="type" id="energy" @change="filter1">
+                                <label class="orange" for="energy">ENERGY BAR</label>
+                            </div>
+                        </form>
+                   </div>  
+                </div>   
                 <div class="custom-select sort" style="width:200px;">
                     <select>
                       <option value="0">SORT BY</option>
@@ -76,64 +84,145 @@
                     </select>
                   </div>
                 <ul>
-                    <li class="prod1" v-for="item in products"> 
-                        <a href="./product.html">   
-                            <div class="bg" v-bind:style="item">
-                                <img v-bind:src="item.img">
+                    <li class="prod1" v-for="(item,index) in products" :data-type="item.prodType" :data-rate="item.calRate" :data-no="item.prodNo"> 
+                        <a v-bind:href="item.url" @click="prodInfo(index)">   
+                            <div class="bg" v-bind:style="item" v-if="item.calRate > 1" style="backgroundColor:#bf4659">
+                                <img v-bind:src="item.prodpic1">
+                            </div>
+                            <div class="bg" v-bind:style="item" v-else-if="item.calRate < 1" style="backgroundColor:#2d6ca6">
+                                <img v-bind:src="item.prodpic1">
+                            </div>
+                            <div class="bg" v-bind:style="item" v-else-if="item.calRate = 1" style="backgroundColor:#f9c530">
+                                <img v-bind:src="item.prodpic1">
                             </div>
                             <div class="prodinfo">
-                                <p>{{item.name}}</p>
-                                <p>{{item.price}}</p> 
+                                <p>{{item.fdName}}</p>
+                                <p v-if="item.calRate > 1">  Get 150% Cal Plus</p>
+                                <p v-else-if="item.calRate < 1">  Consume 50% Cal</p>
+                                <p v-else> </p>
+                                <p>NT${{item.price}}</p> 
                             </div>
                         </a>
-                            <button class="byn">BUY NOW</button>   
+                            <button class="byn" @click="buy">BUY NOW</button>   
                     </li>
                 </ul>
             </div>
    </div>
     <script>
-        new Vue({
+        let vm = new Vue({
             el:"#app",
             data:{
-                products: [{
-                    img: "./img/prod1.png",
-                    backgroundColor: "#2d6ca6",
-                    name: "ALMONDS BAR (CONSUME 0.5 cal)",
-                    price:"NT$250",
+                products:[],
+                value:[],
+                // products: [{
+                //     img: "./img/prod1.png",
+                //     backgroundColor: "#2d6ca6",
+                //     name: "ALMONDS BAR (CONSUME 0.5 cal)",
+                //     price:"NT$250",
+                // },
+                // {
+                //     img: "./img/prod2.png",
+                //     backgroundColor: "#f9c530",
+                //     name: "BANANA BAR",
+                //     price:"NT$300",
+                // },
+                // {
+                //     img: "./img/prod3.png",
+                //     backgroundColor: "#bf4659",
+                //     name: "STRABERRY BITES (PLUS 1.5 cal)",
+                //     price:"NT$230",
+                // },
+                // {
+                //     img: "./img/prod4.png",
+                //     backgroundColor: "#2d6ca6",
+                //     name: "COCO ALMONDS (CONSUME 0.5 cal)",
+                //     price:"NT$250",
+                // },
+                // {
+                //     img: "./img/prod5.png",
+                //     name: "ENERGY BALL",
+                //     backgroundColor: "#f9c530",
+                //     price:"NT$200",
+                // },
+                // {
+                //     img: "./img/prod1.png",
+                //     name: "ALMONDS BAR (CONSUME 0.5 cal)",
+                //     backgroundColor: "#2d6ca6",
+                //     price:"NT$250",
+                // },]
                 },
-                {
-                    img: "./img/prod2.png",
-                    backgroundColor: "#f9c530",
-                    name: "BANANA BAR",
-                    price:"NT$300",
-                },
-                {
-                    img: "./img/prod3.png",
-                    backgroundColor: "#bf4659",
-                    name: "STRABERRY BITES (PLUS 1.5 cal)",
-                    price:"NT$230",
-                },
-                {
-                    img: "./img/prod4.png",
-                    backgroundColor: "#2d6ca6",
-                    name: "COCO ALMONDS (CONSUME 0.5 cal)",
-                    price:"NT$250",
-                },
-                {
-                    img: "./img/prod5.png",
-                    name: "ENERGY BALL",
-                    backgroundColor: "#f9c530",
-                    price:"NT$200",
-                },
-                {
-                    img: "./img/prod1.png",
-                    name: "ALMONDS BAR (CONSUME 0.5 cal)",
-                    backgroundColor: "#2d6ca6",
-                    price:"NT$250",
-                },]
-                }
-        });
+                methods:{
+                    buy(){
+                        cart.classList.add("opencart");
+                    },
+                    filter(e){
+                        const prod1 = document.querySelectorAll(".prod1");
+                        for(var i = 0; i<prod1.length; i++){
+                            switch (e.target.nextSibling.nextSibling.innerText){
+                                case "ALL":
+                                     prod1[i].style.display = "block"
+                                break
+                                case "GAIN WEIGHT":
+                                    if(parseFloat(prod1[i].dataset.rate) > 1){
+                                         prod1[i].style.display = "block"
+                                    }else{
+                                         prod1[i].style.display = "none"
+                                    }
+                                break
 
+                                case "LOSE WEIGHT":
+                                    if(parseFloat(prod1[i].dataset.rate) < 1){
+                                        prod1[i].style.display = "block"
+                                    }else {
+                                        prod1[i].style.display = "none"
+                                    }
+                                break
+
+                                case "REGIMEN":
+                                    if(parseFloat(prod1[i].dataset.rate) == 1 ){
+                                        prod1[i].style.display = "block"
+                                    }else {
+                                        prod1[i].style.display = "none"
+                                } 
+                            } 
+                        }
+                    },
+                    filter1(e){
+                        const prod1 = document.querySelectorAll(".prod1");
+                        for(var i = 0; i<prod1.length; i++){
+                            switch (e.target.nextSibling.nextSibling.innerText){
+                                case "ALL":
+                                     prod1[i].style.display = "block"
+                                break
+                                case "CEREAL":
+                                    if(prod1[i].dataset.type == "1"){
+                                         prod1[i].style.display = "block"
+                                    }else{
+                                         prod1[i].style.display = "none"
+                                    }
+                                break
+                                case "CRACKERS":
+                                    if(prod1[i].dataset.type == "2"){
+                                         prod1[i].style.display = "block"
+                                    }else{
+                                         prod1[i].style.display = "none"
+                                    }
+                                break
+                                case "ENERGY BAR":
+                                    if(prod1[i].dataset.type == "3"){
+                                         prod1[i].style.display = "block"
+                                    }else{
+                                         prod1[i].style.display = "none"
+                                    }
+                                break
+                            }
+                        }
+                    },
+                    prodInfo(index){
+                        sessionStorage.setItem("info",index+1);
+                    }
+                },
+        });              
 
         // filter
         const choose = document.querySelector(".choose");
@@ -145,9 +234,34 @@
 
         });
 
-            
+
+
+
+
+        //資料庫
+        fetch("./php/getProduct.php").then(res => res.json())
+                                     .then(data => {
+                                        vm.products = data;
+                                        for(let i=0 ; i<data.length ; i++){
+                                        let url = `./product.html?id=${data[i].prodNo}`;
+                                        vm.products[i].url = url;
+                                        // console.log(vm.products[i].url);
+                                        }
+                                     });
+        //最新商品    
+        // fetch("./php/newArrival.php").then(res => res.json())
+        //                              .then(data => {
+        //                              vm.products = data;
+        //                             //  console.log(vm.products);
+        //                              });
+        // //暢銷商品
+        // fetch("./php/popularProduct.php").then(res => res.json())
+        //                              .then(data => {
+        //                                 vm.products = data;
+        //                                 // console.log(vm.products);
+        //                              });
         
-        
+
     </script>
         @@include('./layout/footer.html')
     <script src="./js/cart.js"></script>
