@@ -1,11 +1,30 @@
-@@include("./layout/B_head.html");
-<title>Member</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/B_lightbox_none.css">
+    <script src="./js/B_header.js" defer></script>
+    <script src="./js/B_all.js" defer></script>
+    <script src="./js/B_logout.js" defer></script>
+    <script src="./js/B_allvue.js" defer></script>
+    <title>Member</title>
 
 </head>
 <body>
 <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
-<!-- 右邊主欄 會員 -->
+    
+
+    <!-- 右邊主欄 會員 -->
     <div class="main_member main">
         <div class="main_top">
             <div class="page">
@@ -23,34 +42,41 @@
         </div>
         <div class="main_bottom">
             <table>
-                <tr>
-                    <th>No</th>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Mail</th>
-                    <th>Phone</th>
-                    <th>Level</th>
-                    <th>Delete</th>
-                    <th>State</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>fatchen01</td>
-                    <td>陳大胖</td>
-                    <td>fatchen01@gmail.com</td>
-                    <td>0912345678</td>
-                    <td>Diamond</td>
-                    <td>
-                        <img class="delete" src="./icon/backend_trash.png">
-                    </td>
-                    <td>  
-                        <div class="button">
-                            <input type="checkbox">
-                            <label></label>
-                        </div>
-                    </td>
-                </tr>
-                
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Phone</th>
+                        <th>Level</th>
+                        <th>Delete</th>
+                        <th>State</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="member in memberData">
+                        <td>{{member.mNo}}</td>
+                        <td>{{member.mId}}</td>
+                        <td>{{member.mName}}</td>
+                        <td>{{member.mMail}}</td>
+                        <td>{{member.mPhone}}</td>
+                        <td>{{getLevel}}</td>
+                        <td>
+                            <img class="delete" src="./icon/backend_trash.png">
+                        </td>
+                        <td>  
+                            <div 
+                                class="button"
+                                >
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
             </table>
         </div>
     <!-- 確認停權/復權的燈箱 -->
@@ -74,7 +100,7 @@
             </div>
         </div>
     </div>
-<!-- 右邊主欄 level -->
+    <!-- 右邊主欄 level -->
     <div class="main_level main">
         <div class="main_top">
             <div class="page">
@@ -145,6 +171,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
