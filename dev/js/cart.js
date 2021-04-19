@@ -61,7 +61,6 @@ function display(){
         }
         function minusValue(e){
             this.parentNode.children[1].stepDown(1);
-            for
         }
     }
 }

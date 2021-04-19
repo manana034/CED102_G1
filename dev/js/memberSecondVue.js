@@ -2,6 +2,9 @@
 
 //第二層
 
+//登入 之後 儲存mNo
+let login_mNo, fortest
+
 
 //編輯個資,帳號的地方(一開始關閉狀態)
 Vue.component('edit-person', {
@@ -62,7 +65,7 @@ Vue.component('person-info', {
                 <div>
                     <div class="personInfo container">
                         <div class="portrait">
-                            <img :src="mImg" />
+                            <img :src="mImg?mImg:'./icon/upfile.png'" />
                         </div>
 
                         <div class="mainInfo">
@@ -72,7 +75,7 @@ Vue.component('person-info', {
                                     {{mName}}
                                 </p>
                                 <p>
-                                    {{mBday}}
+                                    {{mBday?mBday:'--'}}
                                 </p>
                             </section>
 
@@ -83,7 +86,7 @@ Vue.component('person-info', {
                                         <p>age</p>
                                     </div>
                                     <p>
-                                        {{getAge}}
+                                        {{getAge?getAge:'--'}}
                                     </p>
                                 </div>
                                 <div class="gender">
@@ -91,28 +94,28 @@ Vue.component('person-info', {
                                         <img src="./icon/gender.svg" />
                                         <p>gender</p>
                                     </div>
-                                    <p>{{getSex}}</p>
+                                    <p>{{getSex?getSex:'--'}}</p>
                                 </div>
                                 <div class="height">
                                     <div>
                                         <img src="./icon/height.svg" /> 
                                         <p>height(cm)</p>
                                     </div>
-                                    <p>{{mHeight}}</p>
+                                    <p>{{mHeight ? mHeight:'--'}}</p>
                                 </div>
                                 <div class="weight">
                                     <div>
                                         <img src="./icon/weight.svg"/>
                                         <p>weight(kg)</p>
                                     </div>
-                                    <p>{{wWeight}}</p>
+                                    <p>{{wWeight ? wWeight: '--'}}</p>
                                 </div>
                                 <div class="bmr">
                                     <div>
                                         <img src="./icon/BMR.svg" />
                                         <p>bmr</p>
                                     </div>
-                                    <p>{{getBMR}}</p>
+                                    <p>{{getBMR ? getBMR : '--' }}</p>
                                 </div>
                             </section>
 
@@ -132,7 +135,9 @@ Vue.component('person-info', {
 
                             <section class="edit-signout-button">
                                 <div>
-                                    <button class="l-btn">sign out</button>
+                                    <button 
+                                        class="l-btn"
+                                        @click="signOut">sign out</button>
                                 </div>
                                 <div>
                                     <button 
@@ -170,8 +175,7 @@ Vue.component('person-info', {
     `,
 
     data() {
-        return {
-        }
+        return {}
     },
     methods: {
         openEdit() {
@@ -180,27 +184,68 @@ Vue.component('person-info', {
         openLevelInfo() {
             levelInfoBody.style.display = 'flex'
         },
+        signOut() {
+            //刪除暫存區 ----------
+            let xhr = new XMLHttpRequest()
+            xhr.onload = () => {
+
+                //當按登出時切換畫面
+                this.$store.commit('toggleLoginBeforeAfter')
+                console.log('this sign out')
+            }
+            xhr.open('get', 'php/signout.php')
+            xhr.send(null)
+            //刪除暫存區 ----------
+
+            //刪除 所有Vuex的 會員的資料
+            this.$store.commit({
+                type: 'updateStatus',
+
+                goalType: '',
+                loginDate: '',
+                mBday: '',
+                mFoled: '',
+                mGoalE: '',
+                mGoalS: '',
+                mGoalW: '',
+                mHeight: '',
+                mId: '',
+                mImg: '',
+                mIntro: '',
+                mLevel: '',
+                mMail: '',
+                mName: '',
+                mPhone: '',
+                mPoints: '',
+                mPsw: '',
+                mSex: '',
+                mWriteD: '',
+                mTotal: '',
+                mNo: '',
+
+                wWeight: '',
+                wDate: '',
+            })
+
+            //report 資料刪除
+            this.$store.commit('updateWeightData', [])
+
+            this.$store.commit('updataExerciseData', [])
+
+            this.$store.commit('updataNowCalData', [])
+
+            this.$store.commit('updataLastCalData', [])
+
+            //訂單狀態 status 資料刪除
+            this.$store.commit('updataOrderListDate', [])
+
+            this.$store.commit('updataOrderData', [])
+
+            //favPoster 資料刪除
+            this.$store.commit('updataFavPosterData',[])
+        },
     },
     computed: {
-        getAge() {
-            const birth = Date.parse(this.mBday)
-            const y = 1000 * 60 * 60 * 24 * 365
-            const now = new Date()
-            const birthday = new Date(birth)
-            const age = parseInt((now - birthday) / y)
-
-            return age
-        },
-        getSex() {
-            return this.mSex == '1' ? 'male' : 'female'
-        },
-        getBMR() {
-            const w = this.wWeight * 10
-            const h = this.mHeight * 6.25
-            const a = this.getAge * 5 + 5
-
-            return w + h - a
-        },
 
         ...mapState([
             'mName',
@@ -215,6 +260,7 @@ Vue.component('person-info', {
             'mBday',
             'wDate',
         ]),
+        ...mapGetters(['getAge', 'getBMR', 'getSex']),
     },
 })
 
@@ -317,7 +363,7 @@ Vue.component('second-info', {
     },
 })
 
-//登入註冊區 (一開始關閉狀態)
+//登入註冊區 (一開始關閉狀態) log in 在這裡
 Vue.component('login-signup', {
     template: `
         <section class="logIn_signUp">
@@ -339,8 +385,8 @@ Vue.component('login-signup', {
                                     name="userid" 
                                     maxlength="10" 
                                     minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
+                                    @focus.stop="movePlaceholder($event,'focus')"
+                                    @blur.stop="movePlaceholder($event,'blur')"/>
                             </label>
 
                             <label class="psd">
@@ -350,8 +396,8 @@ Vue.component('login-signup', {
                                     name="psd" 
                                     maxlength="10" 
                                     minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
+                                    @focus.stop="movePlaceholder($event,'focus')"
+                                    @blur.stop="movePlaceholder($event,'blur')"/>
                             </label>
 
                             <div>
@@ -366,67 +412,9 @@ Vue.component('login-signup', {
                             </div>
                         </form>
                     </div>
-
-                    <div class="signup">
-                        <h4>sign up</h4>
-                        <form action="">
-
-                            <label class="Name">
-                                <p>name <span>*</span></p>
-                                <input 
-                                    type="text" 
-                                    name="name" 
-                                    maxlength="20"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="email">
-                                <p>email <span>*</span></p>
-                                <input 
-                                    type="email" 
-                                    name="email"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="userid">
-                                <p>userid <span>*</span></p>
-                                <input 
-                                    type="text" 
-                                    name="userid" 
-                                    maxlength="10" 
-                                    minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="psd">
-                                <p>password <span>*</span></p>
-                                <input 
-                                    type="password" 
-                                    name="psd" 
-                                    maxlength="10" 
-                                    minlength="6"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <label class="cfmPsd">
-                                <p>confirm password <span>*</span></p>
-                                <input 
-                                    type="password" 
-                                    name="cfmPsd" 
-                                    maxlength="10"
-                                    @focus="movePlaceholder($event,'focus')"
-                                    @blur="movePlaceholder($event,'blur')"/>
-                            </label>
-
-                            <div>
-                                <button class="p-btn" id="signup" type="button">sign up</button>
-                            </div>
-                        </form>
-                    </div>
+                    
+                    <sign-up></sign-up>
+ 
                 </div>
     
                 <div class="upper">
@@ -446,8 +434,6 @@ Vue.component('login-signup', {
     `,
     data() {
         return {
-            //全域變數都寫在這裡
-            //當template mounted data也就會抓地到東西
             upperInfo: {
                 login: ['Hello, Friend !', 'Enter your personal details and start journey with us', 'sing up'],
                 signup: [
@@ -459,13 +445,13 @@ Vue.component('login-signup', {
 
             //登入 將資料載入VueX
             checkMember(data) {
-                const enter = document.querySelector('.logIn_signUp')
+                // const enter = document.querySelector('.logIn_signUp')
 
                 if (data === '{}') {
                     alert('帳號密碼錯誤')
                 } else {
                     let member = JSON.parse(data)
-
+                    console.log(member)
                     //寫入 VueX
                     this.$store.commit({
                         type: 'updateStatus',
@@ -490,13 +476,31 @@ Vue.component('login-signup', {
                         mSex: member.mSex,
                         mWriteD: member.mWriteD,
                         mTotal: member.mTotal,
+                        mNo: member.mNo,
 
                         wWeight: member.wWeight,
                         wDate: member.wDate,
                     })
 
                     //將登入登出關閉
-                    enter.style.display = 'none'
+                    // enter.style.display = 'none'
+                }
+            },
+
+            updataMnoMidMpsw(data) {
+                if (data === '{}') {
+                    console.log('此無帳號密碼')
+                } else {
+                    let member = JSON.parse(data)
+                    console.log(member)
+
+                    this.$store.commit({
+                        type: 'updateMemberInfo',
+
+                        mNo: member.mNo,
+                        mId: member.mId,
+                        mPsw: member.mPsw,
+                    })
                 }
             },
 
@@ -512,17 +516,17 @@ Vue.component('login-signup', {
 
             updataMExerciseData(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有運動報表資料')
                 } else {
                     let eData = JSON.parse(data)
-                    // console.log(eData)
+                    console.log(eData)
                     this.$store.commit('updataExerciseData', eData)
                 }
             },
 
             updataMNowCalDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有這月卡路里資料(報表用)')
                 } else {
                     let cData = JSON.parse(data)
                     // console.log(cData)
@@ -531,7 +535,7 @@ Vue.component('login-signup', {
             },
             updataMLastCalDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有最後卡路里(報表用)資料')
                 } else {
                     let cData = JSON.parse(data)
                     // console.log(cData)
@@ -539,17 +543,27 @@ Vue.component('login-signup', {
                 }
             },
 
-            updataMOrderListDate(data){
+            updataMOrderListDate(data) {
                 if (data === '{}') {
-                    console.log('沒有weight體重資料')
+                    console.log('沒有orderlist資料')
                 } else {
                     let mOData = JSON.parse(data)
-                    console.log(mOData)
+                    // console.log(mOData)
                     this.$store.commit('updataOrderListDate', mOData)
                 }
             },
 
-            firstSetReport: ()=> {
+            updataMOrderData(data) {
+                if (data === '{}') {
+                    console.log('沒有order的資料')
+                } else {
+                    let mOData = JSON.parse(data)
+                    // console.log(mOData)
+                    this.$store.commit('updataOrderData', mOData)
+                }
+            },
+
+            firstSetReport: () => {
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
                 const filterEData = this.eData.filter((data) => {
@@ -591,6 +605,35 @@ Vue.component('login-signup', {
                     },
                 })
             },
+
+            updataMFavPosterData(data) {
+                if (data === '{}') {
+                    console.log('沒有favPoster資料')
+                } else {
+                    let favData = JSON.parse(data)
+                    // console.log(favData)
+                    this.$store.commit('updataFavPosterData', favData)
+                }
+            },
+            getMFavPosterData(mNo) {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    this.updataMFavPosterData(xhr.responseText)
+                }
+                xhr.open('post', 'php/getFavPosterData.php', true)
+
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `mNo=${mNo}`
+                xhr.send(data_info)
+            },
+
+            toggleLogin() {
+                const idInput = select('.under .login .userid input')
+                const pswInput = select('.under .login .psd input')
+                idInput.value = ''
+                pswInput.value = ''
+                this.$store.commit('toggleLoginBeforeAfter')
+            },
         }
     },
     methods: {
@@ -625,55 +668,53 @@ Vue.component('login-signup', {
             const placeholder = event.target.parentElement.children[0]
             const ta = event.target
 
-            const signUpPsd = select('.under .signup .psd>input')
-            const signUpCfmPsd = select('.under .signup .cfmPsd>input')
-
             if (state == 'focus') {
                 //如果再focus 狀態 將會提升
                 placeholder.style.top = '-20px'
                 placeholder.style.transform = 'scale(.9)'
+
+                if (ta.name == 'userid') {
+                    const span = select('.login .userid p>span')
+
+                    span.textContent = ""
+                    span.removeAttribute('style')
+                }
             } else if (state == 'blur') {
-                //如果在blur 狀態
                 if (!inputVal) {
                     //檢查裡面 是否有內容 ,沒有內容就會掉下來
                     placeholder.style.top = '-5px'
                     placeholder.style.transform = 'scale(1)'
-                }
-                switch (ta.name) {
-                    case 'cfmPsd':
-                        //如果目標是 cfmPsd
-                        if (signUpPsd.value) {
-                            //如果有值
-
-                            console.log(ta.value)
-                            if (ta.value) {
-                                if (signUpPsd.value.indexOf(ta.value) > -1) {
-                                    //如果值是一樣的
-                                    const Psd = signUpPsd.parentElement.children[0].children[0]
-                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
-
-                                    fmPsd.textContent = '* 正確'
-                                    fmPsd.style.color = 'green'
-
-                                    Psd.textContent = '* 正確'
-                                    Psd.style.color = 'green'
-                                } else {
-                                    //如果不一樣
-                                    const Psd = signUpPsd.parentElement.children[0].children[0]
-                                    const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
-
-                                    fmPsd.textContent = '* 兩個密碼不符合'
-                                    fmPsd.style.color = 'red'
-
-                                    Psd.textContent = '*'
-                                    Psd.removeAttribute('style')
-                                }
+                } else {
+                    if (ta.name == 'userid') {
+                        const span = select('.login .userid p>span')
+                        fetch(`php/checkMemberID.php?memid=${inputVal}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            // console.log(res.length)
+                            if (!res.length) {
+                                span.textContent = '帳號錯誤'
+                                span.setAttribute('style', 'color:red')
+                            } else {
+                                span.textContent = '正確'
+                                span.setAttribute('style', 'color: green')
                             }
-                        }
-                        break
+                        })
+                    }
                 }
+
+ 
+
+
+                    // let xhr = new XMLHttpRequest()
+                    // xhr.onload = function(){
+                    //     mid = JSON.parse(xhr.responseText)
+                    //     console.log(mid)
+                    // }
+                    // xhr.open('get', `php/checkMemberID.php?mId=${inputVal}`,true)
+                    // xhr.send(null)
+                
             }
-        },
+        }, 
 
         loginMember() {
             const login_id = select('.login input[name="userid"]')
@@ -689,16 +730,19 @@ Vue.component('login-signup', {
             function getMemberData() {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
-                    // console.log(this.test)
                     Vthis.checkMember(xhr.responseText)
-                    // console.log(xhr.responseText)
+                    // console.log(JSON.parse(xhr.responseText))
+                    Vthis.getMFavPosterData(JSON.parse(xhr.responseText).mNo)
+                    if (xhr.responseText !== '{}') {
+                        //如果 抓取內容不是 {} 就切換畫面
+                        Vthis.toggleLogin()
+                    }
+                    login_mNo = JSON.parse(xhr.responseText).mNo
                 }
                 xhr.open('post', 'php/login.php', true)
-
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
                 let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
                 xhr.send(data_info)
-
 
                 // let data = new FormData();
 
@@ -708,17 +752,35 @@ Vue.component('login-signup', {
                 // }
                 // data.append('json', encodeURI(JSON.stringify(payload)))
 
-                // fetch('php/login.php', {
+                // fetch('./php/login.php', {
                 //     method: 'POST',
-                //     body: data,
+                //     body: JSON.stringify({
+                //         memid: login_id.value,
+                //         memPsw: login_psw.value,
+                //     }),
                 //     headers: {
+                //         'Accept': 'application/json',
                 //         'Content-Type': 'application/x-www-form-urlencoded',
                 //     },
-                // }).then((res) => console.log(res.json()))
+                // })
+                // .then((res) => console.log(res.json()))
+                // .catch(err=> console.log(err))
+                // .then((res) => res.json())
+                // .then((res) => checkMember(res))
+                // .then((res) => console.log(res))
+            }
 
-                    // .then((res) => res.json())
-                    // .then((res) => checkMember(res))
-                    // .then((res) => console.log(res))
+            function getMnoMidMpsw() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMnoMidMpsw(xhr.responseText)
+                    // console.log(xhr.responseText)
+                    console.log('這裡寫入 php 的暫存區')
+                }
+                xhr.open('post', 'php/getMnoMidMpsw.php', true)
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
             }
 
             function getMWeightDate() {
@@ -739,7 +801,13 @@ Vue.component('login-signup', {
                 xhr.onload = () => {
                     Vthis.updataMExerciseData(xhr.responseText)
                     //載入好資料之後 就安裝一開始的Report
-                    Vthis.firstSetReport()
+
+                    const checkEData = setTimeout(() => {
+                        if (Vthis.eData) {
+                            Vthis.firstSetReport()
+                        }
+                        clearTimeout(checkEData)
+                    }, 10)
                 }
                 xhr.open('post', 'php/getMExerciseDate.php', true)
 
@@ -771,9 +839,8 @@ Vue.component('login-signup', {
                 xhr.send(data_info)
             }
 
-
-            //撈取 orderData 的資料
-            function getMOrderListData(){
+            //撈取 orderListData 的資料
+            function getMOrderListData() {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
                     Vthis.updataMOrderListDate(xhr.responseText)
@@ -784,18 +851,73 @@ Vue.component('login-signup', {
                 let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
                 xhr.send(data_info)
             }
+            //撈取 orderData 的資料
+            function getMOrderData() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = () => {
+                    Vthis.updataMOrderData(xhr.responseText)
+                }
+                xhr.open('post', 'php/getOrderData.php', true)
 
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
+                xhr.send(data_info)
+            }
+
+            function getMDailyCalData() {
+                const time = setTimeout(() => {
+                    function formatDate(date) {
+                        let d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear()
+
+                        if (month.length < 2) month = '0' + month
+                        if (day.length < 2) day = '0' + day
+
+                        return [year, month, day].join('-')
+                    }
+                    console.log(login_mNo)
+                    const now = formatDate(new Date())
+                    fetch(`php/getDailyCal.php?mNo=${login_mNo}&curTime=${now}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            fortest = res
+                            Vthis.$store.commit('updataDailyCalData', res.dailySumCal ? parseInt(res.dailySumCal) : 0)
+                        })
+                    //如果沒資料就回傳0
+                    console.log(`login--work --${fortest}`)
+                    clearTimeout(time)
+                }, 50)
+            }
 
             getMemberData()
+            //mNo 抓不到再從新抓一次
+            getMnoMidMpsw()
+
             getMWeightDate()
             getMExerciseDate()
             getMNowCalDate()
             getMLastCalDate()
-            
+
             getMOrderListData()
+            getMOrderData()
+            getMDailyCalData()
+
+            //登入 就叫child 執行檢查 是否存在某資料 執行另外動作
+            const checkGoaltime = setTimeout(() => {
+                passValueVue.$emit('check-goalWeight')
+                passValueVue.$emit('check-goalTime')
+                clearTimeout(checkGoaltime)
+            }, 100)
+            // passValueVue.$emit('check-goalWeight')
+            // passValueVue.$emit('check-goalTime')
         },
     },
     computed: {
         ...mapState(['eData']),
+    },
+    mounted() {
+        console.log('this login-signup mounted')
     },
 })

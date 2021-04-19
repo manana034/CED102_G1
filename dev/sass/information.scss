@@ -28,7 +28,7 @@ div.filter {
             display: none;
         }
         margin: auto;
-        max-width: 400px;
+        max-width: 500px;
         display: flex;
         justify-content: space-around;
         color: $black;
@@ -36,10 +36,39 @@ div.filter {
             text-align: center;
             font-size: 16px;
             color: $black;
-            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
         }
         li:nth-child(2) {
-            font-family: NotoSans-B;
+            cursor: pointer;
+            color: $primary;
+            &:hover {
+                font-weight: 900;
+            }
+        }
+        li:nth-child(3) {
+            cursor: pointer;
+            color: $red-d;
+            &:hover {
+                font-weight: 900;
+            }
+        }
+        li:nth-child(4) {
+            cursor: pointer;
+            color: $blue-d;
+            &:hover {
+                font-weight: 900;
+            }
+        }
+        li:nth-child(5) {
+            cursor: pointer;
+            color: $green-d;
+            &:hover {
+                font-weight: 900;
+            }
+        }
+        li.active {
+            font-weight: bold;
         }
     }
     .custom-select {
@@ -128,6 +157,7 @@ div.main {
         position: relative;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         .text{
+            cursor: pointer;
             margin: auto;
             height: 100%;
             width: 300px;

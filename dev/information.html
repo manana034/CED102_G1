@@ -7,12 +7,12 @@
     <title>HEALTH NEWS</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/information.css">
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
 </head>
 <body>
     @@include('./layout/header.html')
-    
+<div id="app">
     <div class="banner">
         <div class="banner_img">
             <h4>More Fitness,<br>Less Fatness!</h4>
@@ -21,10 +21,10 @@
     <div class="filter">
         <ul>
             <li>Catrgory | </li>
-            <li>ALL</li>
-            <li>FOOD</li>
-            <li>EXERCISE</li>
-            <li>REGIMEN</li>
+            <li :class="{'active': visibility == 'all'}" @click="visibility = 'all'">ALL</li>
+            <li :class="{'active': visibility == 'food'}" @click="visibility = 'food'">FOOD</li>
+            <li :class="{'active': visibility == 'exercise'}" @click="visibility = 'exercise'">EXERCISE</li>
+            <li :class="{'active': visibility == 'regimen'}" @click="visibility = 'regimen'">REGIMEN</li>
         </ul>
         <div class="custom-select">
             <select name="sType">
@@ -36,84 +36,108 @@
         </div>
     </div>
     <div class="main">
-        <div class="info_card">
-            <a href="info_content.html">
+        <div class="info_card" v-for="(value,key) in filteredinfos" :key="value.infoNo">
+            <a :href="infos.url">
                 <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
+                    <p class="title">{{value.infoTitle}}</p>
+                    <p class="content">{{value.infoContent}}.</p>
                     <img class="arrow" src="./img/right-arrow.png">
                 </div>
+                <img class="infophoto1" :src="value.infoPhoto1" v-if="(value.infoPhoto1).slice(-3) == 'jpg'">
+                <video :src="value.infoPhoto1" width="544" height="306" controls class="infovideo1" v-else></video>
             </a>
-            <img class="infophoto1" src="./img/info1_2.jpg">
         </div>
-        <div class="info_card">
-            <a href="info_content.html">
-                <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                    <img class="arrow" src="./img/right-arrow.png">
-                </div>
-            </a>
-            <video width="544" height="306" controls class="infovideo1">
-                <source src="./img/info2_1.mp4" type="video/mp4">
-            </video>
-        </div>
-        <!-- ==============================================刪除 -->
-        <div class="info_card">
-            <a href="info_content.html">
-                <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                    <img class="arrow" src="./img/right-arrow.png">
-                </div>
-            </a>
-            <img class="infophoto1" src="./img/info1_3.jpg">
-        </div>
-        <div class="info_card">
-            <a href="info_content.html">
-                <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                    <img class="arrow" src="./img/right-arrow.png">
-                </div>
-            </a>
-            <img class="infophoto1" src="./img/info2_2.jpg">
-        </div>
-        <div class="info_card">
-            <a href="info_content.html">
-                <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                    <img class="arrow" src="./img/right-arrow.png">
-                </div>
-            </a>
-            <img class="infophoto1" src="./img/info2_3.jpg">
-        </div>
-        <div class="info_card">
-            <a href="info_content.html">
-                <div class="text">
-                    <p class="title">Buckwheat can reduce weight and blood lipids.</p>
-                    <p class="content">蕎麥是一種營養豐富的全穀物，許多人認為它是一種超級食品。在其健康益處中...</p>
-                    <img class="arrow" src="./img/right-arrow.png">
-                </div>
-            </a>
-            <img class="infophoto1" src="./img/info1_2.jpg">
-        </div>
-<!-- ============================= -->
     </div>
 <div class="load">load more +</div>
-
+</div>
     @@include('./layout/footer.html')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script>
-        // $(document).ready(function(){
-        //     $('.infovideo1').hover(function(){
-		// 		$(this).css('clip-path','polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%')
-		// 	},function(){
-		// 		$(this).css('clip-path','polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%')
-		// 	});
-        // });
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                infos: [],
+                infoTypeName: '',
+                mLevel: '',
+                tagType: '',
+                visibility: '',
+                newfood: [],
+                newexercise: [],
+                newregimen: [],
+            },
+            methods: {
+                //呼叫php程式，取回相關資料，並用json()轉回一般陣列
+                get_info: async function () {
+                    const res = await fetch('./php/allInfoData.php', {}).then(function (data) {
+                        return data.json();
+                    });
+                    // 取回res值後，呼叫另一隻函式
+                    this.infos = res;
+                },
+                get_level: async function () {
+                    const res = await fetch('./php/getMLevel.php', {}).then(function (data) {
+                        return data.json();
+                    });
+                    // 取回res值後，呼叫另一隻函式
+                    this.mLevel = res;
+                },
+                getId(key){
+
+                    sessionStorage.setItem("infoNo", key+1);
+
+                },
+            },
+            computed: {
+                filteredinfos: function(){
+                    if (this.visibility == 'all') {
+                        return this.infos;
+                    }else if (this.visibility == 'food') {
+                        var newfood = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '1') {
+                                newfood.push(value);
+                            }
+                        })
+                        return newfood;
+                    }else if (this.visibility == 'exercise') {
+                        var newexercise = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '2') {
+                                newexercise.push(value);
+                            }
+                        })
+                        return newexercise;
+                    }else if (this.visibility == 'regimen') {
+                        var newregimen = [];
+                        this.infos.forEach(function (value){
+                            if ((value.infoType) === '3') {
+                                newregimen.push(value);
+                            }
+                        })
+                        return newregimen;
+                    }
+                    return this.infos;
+                }
+            },
+            // template 渲染前 會先去執行以下函式
+            created() {
+                this.get_info();
+            },
+            mounted() {    
+            }, 
+        })
+
+        fetch("./php/getInfoNo.php").then(res => res.json())
+        .then(data => {
+            vm.infos = data;
+            for(let i=0 ; i<data.length ; i++){
+                let url = `./php/getInfoNo.php?infoNo=${data[i].infoNo}`;
+                vm.infos[i].url = url;
+                // console.log(vm.vm.infos[i].url);
+            }
+        });
+
     </script>
 </body>
 </html>

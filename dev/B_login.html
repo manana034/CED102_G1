@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FT.</title>
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/page/B_login.css">
+    <script src="./js/B_login.js" defer></script>
 </head>
 <body>
-    <form action="" class="card">
+    <form action="./php/B_login.php" method="post" class="card">
         <div>
             <h6>FT. 後臺登入</h6>
         </div>
 
         <label>
             <p>ID</p>
-            <input type="text">
+            <input type="text" name="userid" id="login_id">
         </label>
         <label>
             <p>PASSWORD</p>
-            <input type="text">
+            <input type="password" name="psd" id="login_psw">
         </label>
 
         <div>
@@ -27,8 +29,10 @@
         </div>
 
         <div>
-            <a class="p-btn" href="1_admin.html">登入</a>
+            <a class="p-btn" id="login">登入</a>
         </div>
     </form>
 </body>
+<script>
+</script>
 </html>

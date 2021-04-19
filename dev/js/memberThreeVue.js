@@ -1,26 +1,3 @@
-//用來傳遞 資料用的
-const passValueVue = new Vue()
-
-//status-order 的showDetail 用的
-
-// const orderDetail = document.querySelector('.orderDetail')
-
-// orderDetail 沒有寫在 vue 裡面所以只能寫在外面
-// 不是用vue 一開始就有, vue一開始沒有要建過內容才有東西可以抓
-
-// const orderDetailClose = document.querySelector('.orderDetail>.detailBody>button.nc-btn')
-
-// orderDetailClose.addEventListener('click', () => {
-//     orderDetail.removeAttribute('style')
-// })
-
-
-const mapState = Vuex.mapState
-const mapMutations = Vuex.mapMutations
-const mapActions = Vuex.mapActions
-const mapGetters = Vuex.mapGetters
-
-
 
 
 
@@ -42,7 +19,7 @@ Vue.component('profile-body', {
                         hidden>
 
                     <div>
-                        <img :src="mImg">
+                        <img :src="mImg?mImg : './icon/upfile.png' ">
                     </div>
                 </label>
 
@@ -154,6 +131,7 @@ Vue.component('profile-body', {
             </form>
         </div>
     `,
+
     data() {
         return {
             bdayInput: '',
@@ -168,7 +146,6 @@ Vue.component('profile-body', {
             // gender: '',
         }
     },
-
     methods: {
         getImg(e) {
             //當 change 事件發生 就會執行這methods
@@ -231,11 +208,9 @@ Vue.component('profile-body', {
                 }
                 if (this.mImgInput.src) {
                     this.$store.commit('updateImg', this.mImgInput.src)
-                    console.log('work')
-                    // console.log(this.mImgInput.src)
-                    // console.log(this.mImg)
                 }
 
+                // fetch('php/')
                 passValueVue.$emit('leave-profile')
             }
         },
@@ -426,185 +401,123 @@ Vue.component('account-body', {
 
 
 //是 main-content 的child
+//時間的部分在這裡
 Vue.component('goal-body', {
     template: `
         <form class="card goalBody">
-                            <div class="goal-row-1">
-                                <p>start Date</p>
-                                <div class="dateLine">
-                                    <div class="crrentLine">
-                                        <p id="moveDate">
-                                           {{getCurrentDate}}
-                                        </p>
-                                    </div>
-                                </div>
+            <div class="goal-row-1">
+                <p>start Date</p>
+                <div class="dateLine">
+                    <div 
+                        class="crrentLine"
+                        :style="{'width': setCurrentTimeBar + '%'}">
+                        <p id="moveDate">
+                            {{getCurrentDate}}
+                        </p>
+                    </div>
+                </div>
 
-                                <p>end date</p>
-                            </div>
+                <p>end date</p>
+            </div>
 
-                            <div class="goal-row-2">
-                                <p class="starDate">
-                                    {{startDate}}
-                                </p>
+            <div class="goal-row-2">
+                <p class="starDate">
+                    {{mGoalS}}
+                </p>
 
-                                <p class="endDate">
-                                    {{endDate}}
-                                </p>
-                            </div>
+                <p class="endDate">
+                    {{mGoalE}}
+                </p>
+            </div>
 
-                            <div class="goal-row-3">
-                                <div class="durationTime">
-                                    <p>duration time of goal</p>
-                                    <div>
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime"
-                                                v-model="goalTime" 
-                                                value="30" 
-                                                @click="clickSetTime"
-                                                hidden/>
-                                            <p>30</p>
-                                        </label>
+            <div class="goal-row-3">
+                <div class="durationTime">
+                    <p>duration time of goal</p>
+                    <div>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime"
+                                v-model="goalTime" 
+                                value="30" 
+                                @click="clickSetTime"
+                                hidden/>
+                            <p>30</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="60" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>60</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="60" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>60</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="90" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>90</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="90" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>90</p>
+                        </label>
 
-                                        <label>
-                                            <input 
-                                                type="radio" 
-                                                name="goalTime" 
-                                                value="180" 
-                                                v-model="goalTime"
-                                                @click="clickSetTime"
-                                                hidden />
-                                            <p>180</p>
-                                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="goalTime" 
+                                value="180" 
+                                v-model="goalTime"
+                                @click="clickSetTime"
+                                hidden />
+                            <p>180</p>
+                        </label>
 
-                                        <label class="enterDurTime">
-                                            <input 
-                                                type="text" 
-                                                name="goalTime"
-                                                v-model="goalTime"
-                                                @input="setDurTime"/>
-                                            <p><img src="./icon/pen.svg" /></p>
-                                        </label>
+                        <label class="enterDurTime">
+                            <input 
+                                type="text" 
+                                name="goalTime"
+                                v-model="goalTime"
+                                @input="setDurTime"/>
+                            <p><img src="./icon/pen.svg" /></p>
+                        </label>
 
-                                    </div>
-                                </div>
-                                <div class="customDate">
-                                    <p>Custom end date</p>
-                                    <div>
-                                        <input type="text" placeholder="YY/MM/DD" name="goalTime"
-                                        @input="setCustomDate"
-                                        v-model="customEndDate"/>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                </div>
 
-                            <div class="goal-row-4">
-                                <div class="block currentState">
-                                    <p>current state</p>
-                                    <div>
-                                        <div class="l-side">
-                                            <div>
-                                                <img src="./icon/gender.svg" />
-                                                <p>male</p>
-                                            </div>
+                <div class="customDate">
+                    <p>Custom end date</p>
+                    <div>
+                        <input type="text" placeholder="YY/MM/DD" name="goalTime"
+                        @input="setCustomDate"
+                        v-model="customEndDate"/>
+                    </div>
+                </div>
 
-                                            <div>
-                                                <img src="./icon/age.svg" />
-                                                <p><span>20</span> y</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/height.svg" />
-                                                <p><span>180</span> cm</p>
-                                            </div>
-                                        </div>
+                <div class="restDay">
+                    <p>Rest Day</p>
+                    <div>{{getRestDay}}</div> 
+                </div> 
+            </div>
 
-                                        <div class="r-side">
-                                            <div>
-                                                <img src="./icon/weight.svg" />
-                                                <p><span>100</span> kg</p>
-                                            </div>
-                                            <div>
-                                                <img src="./icon/BMR.svg" />
-                                                <p><span>2200</span> cal</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block goalWeight">
-                                    <p>goal weight</p>
-                                    <label>
-                                        <input 
-                                            type="text"
-                                            v-model="goalWeight"
-                                            maxlength="3"
-                                            @input="setGoalWeight"/>
+            <bottom-info></bottom-info>
 
-                                        <img src="./icon/pen.svg" />
-                                    </label>
-                                </div>
-                                <div class="block restCal">
-                                    <p>rest Calories</p>
-                                    <div>
-                                        <div class="peopleInfoGraphic">
-                                            <div class="tookCal"></div>
-                                            <p>0 <span>%</span></p>
-                                        </div>
-
-                                        <div class="infoNum">
-                                            <div class="row-1">
-                                                <p>12000</p>
-                                                <span>rest cal</span>
-                                            </div>
-                                            <div class="hr"></div>
-                                            <div class="row-2">
-                                                <p>24000</p>
-                                                <span>daliy cal</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block">
-                                    <div>
-                                        <button class="l-btn">
-                                            <img src="./icon/pen.svg" />
-                                            create goal
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+        </form>
     `,
     data() {
         return {
-            startDate: '2020/04/03',
-            endDate: '2099/05/06',
-
             goalTime: '',
             customEndDate: '',
-            goalWeight: '',
+
+
+            //以下為 function
+            checkGoalTimeState: null,
+            resetTimeBar: null,
         }
     },
     methods: {
@@ -649,34 +562,55 @@ Vue.component('goal-body', {
                 img.style.opacity = 1
             }
         },
-
-        setGoalWeight() {
-            const input = document.querySelector('.goalBody .goalWeight label')
-            const img = input.children[1]
-
-            // console.log(input)
-            if (this.goalWeight) {
-                input.style.backgroundColor = '#EAA565'
-                img.style.opacity = 0
-            } else {
-                input.removeAttribute('style')
-                img.removeAttribute('style')
-            }
-        },
     },
 
     computed: {
         getCurrentDate() {
+            const m = new Date().getMonth()
+            const d = new Date().getDate()
+
+            return `${m + 1}-${d}`
+        },
+
+        setCurrentTimeBar() {
+
+            const s = Date.parse(this.mGoalS)
+            const e = Date.parse(this.mGoalE)
+            const now = Date.parse(new Date())
+
+            const all = e - s //分母
+            const n = now - s //分子
+
+            const nInAll = n / all
+
+            if (nInAll >= 1) {
+                return 100
+            } else if (!nInAll) {
+                //如果他不是 數字的話
+                return 0
+            } else {
+                return nInAll * 100
+            }
+        },
+
+        getRestDay() {
             const y = new Date().getFullYear()
             const m = new Date().getMonth()
             const d = new Date().getDate()
 
-            return `${y}/${m + 1}/${d}`
+            const now = `${y}-${m + 1}-${d}`
+            if (Date.parse(now) >= Date.parse(this.mGoalE)) {
+                return 0
+            } else {
+                const rest = Date.parse(this.mGoalE) - Date.parse(now)
+                return parseInt(rest / 1000 / 60 / 60 / 24)
+            }
         },
+
+        ...mapState(['mGoalE', 'mGoalS', 'mGoalW']),
     },
-    //Vue 開始時執行
+
     mounted() {
-        //js 轉換日期格式
         let formatDate = function (date) {
             let y = date.getFullYear()
             let m = date.getMonth() + 1
@@ -685,8 +619,6 @@ Vue.component('goal-body', {
             d = d < 10 ? '0' + d : d
             return y + '-' + m + '-' + d
         }
-
-        //限制input輸入的最大時間
         let getMaxDate = function (date) {
             let y = date.split('-')[0]
             let m = date.split('-')[1]
@@ -699,6 +631,12 @@ Vue.component('goal-body', {
 
         const currentDate = formatDate(new Date()) //目前日期
         const maxDate = getMaxDate(currentDate)
+
+        const nd = new Date(Date.parse(currentDate)+(1000*60*60*24*30))
+        const y = nd.getFullYear()
+        const m = nd.getMonth()+1
+        const d = nd.getDate()
+        const minDate = `${y}-${m}-${d}`
 
         new Cleave('.enterDurTime>input', {
             numeral: true,
@@ -713,14 +651,107 @@ Vue.component('goal-body', {
             datePattern: ['Y', 'm', 'd'],
             //要以下面的格式才可以接收
             delimiter: '-',
-            dateMin: `${currentDate}`,
+            dateMin: `${minDate}`,
             dateMax: `${maxDate}`,
         })
 
-        new Cleave('.goalWeight input', {
-            numeral: true,
-            numeralIntegerScale: 3,
-            numeralDecimalScale: 0,
+        //將全域變數帶入
+        this.checkGoalTimeState = ()=>{
+            console.log('確認是否傳到這')
+
+            const durationTime = select('.durationTime')
+            const customDate = select('.customDate')
+            const restDay = select('.restDay')
+            // const currentLine = select('.crrentLine')
+
+            if (this.mGoalE && this.mGoalE !== '--') {
+                //如果 有值 還要 不等於'--'
+                //就會 -> 選項消失 出現剩餘天數
+                durationTime.style.display = 'none'
+                customDate.style.display = 'none'
+                restDay.removeAttribute('style')
+            } else {  
+                durationTime.removeAttribute('style')
+                customDate.removeAttribute('style')
+                restDay.style.display = 'none'
+                
+            }
+
+        }
+
+        passValueVue.$on('check-goalTime', () => {
+            const time = setTimeout(() => {
+                this.checkGoalTimeState()
+                clearTimeout(time)
+            }, 100)
+        })
+        passValueVue.$on('clear-time',()=>{
+            this.checkGoalTimeState()
+        })
+        passValueVue.$on('create-goal', (inputEl, checkGoalWeightFun) => {
+            const y = new Date().getFullYear()
+            const m = new Date().getMonth() + 1
+            const d = new Date().getDate()
+
+            const now = `${y}-${m}-${d}` 
+            const Vthis = this
+
+            if (this.goalTime || this.customEndDate) {
+                //兩個其中有值
+                if (inputEl.value) {
+                    //將Vuex 的內容mGoalS mGoalE mGoalW 都規程零
+                    //送出Vuex 會需要點時間
+                    Vthis.$store.commit('updataGoalStart', now)
+                    // Vthis.$store.commit('updataGoalEnd', this.goalTime ? this.goalTime : this.customEndDate)
+                    if (this.goalTime) {
+                        //如果是goalTime 有值
+                        let nowDate = Date.parse(now)
+                        let addDate = this.goalTime * 1000 * 60 * 60 * 24
+                        let endDate = nowDate + addDate
+
+                        let iy = new Date(endDate).getFullYear()
+                        let im = new Date(endDate).getMonth() + 1
+                        let id = new Date(endDate).getDate()
+
+                        this.$store.commit('updataGoalEnd', `${iy}-${im}-${id}`)
+                    } else {
+                        //customEndDate 的值直接傳給Vuex
+                        console.log(this.customEndDate)
+                        this.$store.commit('updataGoalEnd', this.customEndDate)
+                    }
+
+                    Vthis.$store.commit('updataGoalWeight', inputEl.value)
+
+                    //ajax 修改 table的內容 mGoalS mGoalE mGoalW
+                    //=========================================
+                    //=========================================
+
+                    // 將button 做切換 內容作變化
+                } else {
+                    //inputEl沒有填值
+                    alert('請輸入日期、體重')
+                }
+            } else {
+                //兩個均沒有值
+                alert('請輸入日期、體重')
+            }
+
+            //檢查GoaTimel 是否有值
+            //查看GoalWeight 目前是甚麼狀態
+            const time = setTimeout(() => {
+                this.checkGoalTimeState()
+                //來自memberFourVue 的method
+                //將goalWeight 無法更動變成readonly
+                checkGoalWeightFun()
+                console.log('可以讓這裡執行 執行其他method 的function')
+                clearTimeout(time)
+            }, 100)
+
+            
+            //將內容寫入table
+            
+
+
         })
     },
 })
@@ -739,6 +770,7 @@ Vue.component('status-order', {
                     <input 
                         type="text" 
                         placeholder="Eenter Name"
+                        @input="checkList"
                         v-model="search">
 
                     <button class="nc-btn" type="button">
@@ -774,7 +806,7 @@ Vue.component('status-order', {
                                 </td>
 
                                 <td data-label="DETAIL">
-                                    {{order.fdName}}--{{order.quantity}}
+                                    {{order.fdName}}--{{order.qty}}
                                 </td>
 
                                 <td data-label="PRICE">
@@ -792,63 +824,42 @@ Vue.component('status-order', {
             </div>
 
             <!-- 原本style 必須是none 以外才有動作 -->
-            <order-detail
-                v-show="orderDetailOpen"></order-detail>
+           <order-detail
+                v-show="orderDetailOpen"
+                @close-detail="closeDetail"
+                :detail-data="detailData">
+            </order-detail>
 
         </div> 
     `,
     data() {
         return {
             search: '',
-            orderList: [
-                {
-                    ID: 32898843,
-                    TIME: '2020/02/21',
-                    PRICE: '200',
-                    STATUS: 'ARRIVAL',
 
-                    name: 'vegetables',
-                    qty: 2,
-                },
-                {
-                    ID: 88433289,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'chocolate bar',
-                    qty: 1,
-                },
-                {
-                    ID: 88984332,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'banna juice',
-                    qty: 1,
-                },
-                {
-                    ID: 32888439,
-                    TIME: '2021/12/11',
-                    PRICE: '400',
-                    STATUS: 'CANCEL',
-
-                    name: 'Apple juice',
-                    qty: 1,
-                },
-            ],
+            orderStateListEl: null,
+            orderStateLine: null,
 
             orderDetail: null,
             orderDetailOpen: false,
+
+            detailData: [],
         }
     },
+    mounted() {
+        this.orderDetail = select('.orderDetail')
+        this.orderStateListEl = select('.statusOrder tbody')
+        this.orderStateLine = select('.statusOrder thead')
+    },
     methods: {
-        showDetail() {
-            // this.orderDetail.style.display = 'flex'
+        showDetail(e) {
+            const id = e.target.parentElement.children[0].textContent.trim()
+            this.detailData = this.orderListData.filter((item) => item.orderNo == id)
+
             this.orderDetailOpen = !this.orderDetailOpen
         },
-
+        closeDetail() {
+            this.orderDetailOpen = !this.orderDetailOpen
+        },
         toggleStatusOrder() {
             const listBody = document.querySelector('.statusOrder>.listBody')
             const card = document.querySelector('.statusOrder>.listBody>div')
@@ -860,18 +871,34 @@ Vue.component('status-order', {
                 listBody.style.height = `${card.clientHeight}px`
             }
         },
+        checkList() {
+            const time = setTimeout(() => {
+                if (!this.orderStateListEl.children[0]) {
+                    this.orderStateLine.style.borderBottom = 'none'
+                } else {
+                    this.orderStateLine.removeAttribute('style')
+                }
+                clearTimeout(time)
+            }, 20)
+        },
     },
-    mounted() {
-        this.orderDetail = select('.orderDetail')
-    },
+
     computed: {
         filteredList() {
-            return this.orderListData.filter((post) => {
-                return post.fdName.toLowerCase().includes(this.search.toLowerCase())
-            })
+            // console.log(this.orderData.length)
+            if (this.orderData.length){
+                console.log('orderData 成功抓取')
+                return this.orderData.filter((post) => {
+                    return post.fdName.toLowerCase().includes(this.search.toLowerCase())
+                })
+            } else{
+                console.log('orderData 抓取失敗')
+                return {}
+            }
+
         },
 
-        ...mapState(['orderListData']),
+        ...mapState(['orderData', 'orderListData']),
     },
 })
 
@@ -890,6 +917,7 @@ Vue.component('fav-poster', {
                     <input 
                         type="text" 
                         placeholder="Enter Name"
+                        @input="checkList"
                         v-model="search">
 
                     <button class="nc-btn" type="button">
@@ -911,13 +939,18 @@ Vue.component('fav-poster', {
                         </thead>
                         <tbody>
                             <tr v-for="(post,i) in filteredList">
-                                <td data-label="TYPE">{{post.TYPE}}</td>
-                                <td data-label="NAME">{{post.NAME}}</td>
+                                <td data-label="TYPE">
+                                    {{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Heath'}}
+                                </td>
+                                
+                                <td data-label="NAME">
+                                    {{post.infoTitle.slice(0,10)+'...'}}
+                                </td>
 
                                 <td>
                                     <a 
-                                        class="l-btn" 
-                                        :href="post.href">
+                                        class="l-btn"
+                                        @click="toFavPost(post)">
                                         CHECK POST
                                     </a>
                                 </td>
@@ -925,7 +958,7 @@ Vue.component('fav-poster', {
                                 <td>
                                     <button 
                                         class="l-btn"
-                                        @click="deletPost(i)">DELETE
+                                        @click="deletPost(i,post.infoNo)">DELETE
                                     </button>
                                 </td>
                             </tr>
@@ -942,38 +975,30 @@ Vue.component('fav-poster', {
     data() {
         return {
             search: '',
-            posterList: [
-                {
-                    TYPE: 'health',
-                    NAME: 'Eat and Fit',
 
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'get fatness',
-                    NAME: 'how to eat',
-
-                    href: './info_content.html',
-                },
-                {
-                    TYPE: 'excrice',
-                    NAME: 'ease excrice',
-
-                    href: './info_content.html',
-                },
-            ],
+            favListEl: null,
+            favListLine: null,
         }
     },
+    mounted() {
+        this.favListEl = select('.favPoster tbody')
+        this.favListLine = select('.favPoster thead')
+    },
     methods: {
-        deletPost(i) {
-            //刪除item
-            this.posterList.splice(i, 1)
+        deletPost: async function (i, infoNo) {
+            this.favListData.splice(i, 1)
+
+            const res = await fetch('./php/deleteFavPoster.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'infoNo': infoNo,
+                    'mNo': getTmp_mNo,
+                }),
+            }).then(res => {console.log(res)})
+
         },
         toggleFavPoster() {
             const listBody = document.querySelector('.favPoster>.listBody')
@@ -986,13 +1011,38 @@ Vue.component('fav-poster', {
                 listBody.style.height = `${card.clientHeight}px`
             }
         },
+
+        checkList() {
+            const time = setTimeout(() => {
+                if (!this.favListEl.children[0]) {
+                    this.favListLine.style.borderBottom = 'none'
+                } else {
+                    this.favListLine.removeAttribute('style')
+                }
+                clearTimeout(time)
+            }, 20)
+        },
+
+        toFavPost(target) {
+            sessionStorage.setItem('infoNo', target.infoNo)
+            //跳轉到別的頁面
+            window.location.href = './info_content.html'
+        },
     },
     computed: {
         filteredList() {
-            return this.posterList.filter((post) => {
-                return post.NAME.toLowerCase().includes(this.search.toLowerCase())
-            })
+            if (this.favListData.length) {
+                console.log('favOrder 抓取成功')
+                return this.favListData.filter((post) => {
+                    return post.infoTitle.toLowerCase().includes(this.search.toLowerCase())
+                })
+            } else {
+                console.log('favOrder 抓取失敗')
+                return {}
+            }
         },
+
+        ...mapState(['favListData']),
     },
 })
 
@@ -1194,17 +1244,22 @@ Vue.component('report-body', {
             this.checkCContainer(this.pieCContainer, 'pie')
 
             if (this.selectedOption.value == 'now') {
-                const labelArray = this.nowCData.map((data) => {
-                    switch (data.dtPd) {
-                        case '1':
-                            return 'BREAKFAST'
-                        case '2':
-                            return 'LUNCH'
-                        case '3':
-                            return 'DINNER'
-                    }
-                })
-                const dataArray = this.nowCData.map((data) => data.dtCalTal)
+                let labelArray, dataArray
+                
+                //來判斷 是否有無內容 有就裝載資料
+                if(this.nowCData.length){
+                    labelArray = this.nowCData.map((data) => {
+                        switch (data.dtPd) {
+                            case '1':
+                                return 'BREAKFAST'
+                            case '2':
+                                return 'LUNCH'
+                            case '3':
+                                return 'DINNER'
+                        }
+                    })
+                    dataArray = this.nowCData.map((data) => data.dtCalTal)
+                }
 
                 const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                     type: 'doughnut',
@@ -1224,18 +1279,21 @@ Vue.component('report-body', {
                     },
                 })
             } else if (this.selectedOption.value == 'last') {
-                const labelArray = this.lastCData.map((data) => {
-                    switch (data.dtPd) {
-                        case '1':
-                            return 'BREAKFAST'
-                        case '2':
-                            return 'LUNCH'
-                        case '3':
-                            return 'DINNER'
-                    }
-                })
-                const dataArray = this.lastCData.map((data) => data.dtCalTal)
-
+                let labelArray, dataArray
+                if(this.lastCData.length){
+                    labelArray = this.lastCData.map((data) => {
+                        switch (data.dtPd) {
+                            case '1':
+                                return 'BREAKFAST'
+                            case '2':
+                                return 'LUNCH'
+                            case '3':
+                                return 'DINNER'
+                        }
+                    })
+                    dataArray = this.lastCData.map((data) => data.dtCalTal)
+                }
+                
                 const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                     type: 'doughnut',
                     data: {
@@ -1268,17 +1326,19 @@ Vue.component('report-body', {
             this.checkCContainer(this.lineCContainer, 'line')
 
             if (this.selectedOption.value == 'now') {
+                let filterWData, labelArray, dataArray
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
-                const filterWData = this.wData.filter((data) => {
-                    return Date.parse(data.wDate) > thisMonth
-                })
+                if (this.wData.length){
+                    filterWData = this.wData.filter((data) => {
+                        return Date.parse(data.wDate) > thisMonth
+                    })
 
-                const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                const dataArray = filterWData.map((data) => data.wWeight)
+                    labelArray = filterWData.map((data) => data.wDate.slice(5))
+                    dataArray = filterWData.map((data) => data.wWeight)
+                }
 
-                // console.log('labelArray' + labelArray)
-                // console.log('dataArray' + dataArray)
+
                 const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                     // The type of chart we want to create
                     type: 'line',
@@ -1313,14 +1373,19 @@ Vue.component('report-body', {
                     },
                 })
             } else if (this.selectedOption.value == 'last') {
+                let filterWData, labelArray, dataArray
                 const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
                 const lastMonth = Date.parse(new Date()) - 56 * 24 * 60 * 60 * 1000
-                const filterWData = this.wData.filter((data) => {
-                    return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
-                })
 
-                const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                const dataArray = filterWData.map((data) => data.wWeight)
+                if (this.wData.length){
+                    filterWData = this.wData.filter((data) => {
+                        return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
+                    })
+
+                    labelArray = filterWData.map((data) => data.wDate.slice(5))
+                    dataArray = filterWData.map((data) => data.wWeight)
+                }
+               
 
                 const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                     // The type of chart we want to create
@@ -1357,6 +1422,7 @@ Vue.component('report-body', {
                 })
             }
         },
+
 
         changeReport(){
             const position = select('.rePortBtns .o-3').textContent.trim()
@@ -1453,18 +1519,20 @@ Vue.component('report-body', {
                     this.checkCContainer(this.pieCContainer, 'pie')
 
                     if (this.selectedOption.value == 'now') {
-                        const labelArray = this.nowCData.map((data) => {
-                            switch (data.dtPd) {
-                                case '1':
-                                    return 'BREAKFAST'
-                                case '2':
-                                    return 'LUNCH'
-                                case '3':
-                                    return 'DINNER'
-                            }
-                        })
-                        const dataArray = this.nowCData.map((data) => data.dtCalTal)
-
+                        let labelArray, dataArray
+                        if (this.nowCData.length){
+                            labelArray = this.nowCData.map((data) => {
+                                switch (data.dtPd) {
+                                    case '1':
+                                        return 'BREAKFAST'
+                                    case '2':
+                                        return 'LUNCH'
+                                    case '3':
+                                        return 'DINNER'
+                                }
+                            })
+                            dataArray = this.nowCData.map((data) => data.dtCalTal)
+                        }
                         const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                             type: 'doughnut',
                             data: {
@@ -1483,17 +1551,21 @@ Vue.component('report-body', {
                             },
                         })
                     } else if (this.selectedOption.value == 'last') {
-                        const labelArray = this.lastCData.map((data) => {
-                            switch (data.dtPd) {
-                                case '1':
-                                    return 'BREAKFAST'
-                                case '2':
-                                    return 'LUNCH'
-                                case '3':
-                                    return 'DINNER'
-                            }
-                        })
-                        const dataArray = this.lastCData.map((data) => data.dtCalTal)
+                        let labelArray, dataArray
+
+                        if (this.lastCData.length){
+                            labelArray = this.lastCData.map((data) => {
+                                switch (data.dtPd) {
+                                    case '1':
+                                        return 'BREAKFAST'
+                                    case '2':
+                                        return 'LUNCH'
+                                    case '3':
+                                        return 'DINNER'
+                                }
+                            })
+                            dataArray = this.lastCData.map((data) => data.dtCalTal)
+                        }
 
                         const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
                             type: 'doughnut',
@@ -1516,19 +1588,19 @@ Vue.component('report-body', {
                     break;
                 case 'weight':
                     this.checkCContainer(this.lineCContainer, 'line')
-
+                    
                     if (this.selectedOption.value == 'now') {
+                        let filterWData, labelArray, dataArray
                         const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
 
-                        const filterWData = this.wData.filter((data) => {
-                            return Date.parse(data.wDate) > thisMonth
-                        })
-
-                        const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                        const dataArray = filterWData.map((data) => data.wWeight)
-
-                        // console.log('labelArray' + labelArray)
-                        // console.log('dataArray' + dataArray)
+                        if (this.wData.length){
+                            filterWData = this.wData.filter((data) => {
+                                return Date.parse(data.wDate) > thisMonth
+                            })
+                            labelArray = filterWData.map((data) => data.wDate.slice(5))
+                            dataArray = filterWData.map((data) => data.wWeight)
+                        }
+      
                         const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                             // The type of chart we want to create
                             type: 'line',
@@ -1563,14 +1635,18 @@ Vue.component('report-body', {
                             },
                         })
                     } else if (this.selectedOption.value == 'last') {
+                        let filterWData, labelArray, dataArray
+
                         const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
                         const lastMonth = Date.parse(new Date()) - 56 * 24 * 60 * 60 * 1000
-                        const filterWData = this.wData.filter((data) => {
-                            return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
-                        })
+                        if (this.wData.length){
+                            filterWData = this.wData.filter((data) => {
+                                return Date.parse(data.wDate) > lastMonth && Date.parse(data.wDate) < thisMonth
+                            })
 
-                        const labelArray = filterWData.map((data) => data.wDate.slice(5))
-                        const dataArray = filterWData.map((data) => data.wWeight)
+                            labelArray = filterWData.map((data) => data.wDate.slice(5))
+                            dataArray = filterWData.map((data) => data.wWeight)
+                        }
 
                         const lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
                             // The type of chart we want to create
@@ -1612,5 +1688,504 @@ Vue.component('report-body', {
     },
     computed: {
         ...mapState(['eData', 'nowCData', 'lastCData', 'wData']),
+    },
+})
+
+
+
+//是 login-signup 的child 這裡存放sign up
+Vue.component('sign-up', {
+    template: `
+        <div class="signup">
+            <h4>sign up</h4>
+            <form action="">
+
+                <label class="name">
+                    <p>name <span>*</span></p>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        maxlength="20"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="email">
+                    <p>email <span>*</span></p>
+                    <input 
+                        type="email" 
+                        name="email"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="userid">
+                    <p>userid <span>*</span></p>
+                    <input 
+                        type="text" 
+                        name="userid" 
+                        maxlength="10" 
+                        minlength="6"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="psd">
+                    <p>password <span>*</span></p>
+                    <input 
+                        type="password" 
+                        name="psd" 
+                        maxlength="10" 
+                        minlength="6"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <label class="cfmPsd">
+                    <p>confirm password <span>*</span></p>
+                    <input 
+                        type="password" 
+                        name="cfmPsd" 
+                        maxlength="10"
+                        @focus="movePlaceholder($event,'focus')"
+                        @blur="movePlaceholder($event,'blur')"/>
+                </label>
+
+                <div>
+                    <button 
+                        class="p-btn" 
+                        id="signup" 
+                        type="button"
+                        @click="signUpMember">
+                        
+                        sign up
+                    </button>
+                </div>
+            </form>
+        </div>
+    `,
+    data() {
+        return {
+            signUpLogin(mId,mPsw,mNo){
+                this.$store.commit('toggleLoginBeforeAfter')
+
+                let Vthis = this
+                function getMemberData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function checkMember(data) {
+                            let member = JSON.parse(data)
+
+                            //寫入 VueX
+                            Vthis.$store.commit({
+                                type: 'updateStatus',
+
+                                goalType: member.goalType,
+                                loginDate: member.loginDate,
+                                mBday: member.mBday,
+                                mFoled: member.mFoled,
+                                mGoalE: member.mGoalE,
+                                mGoalS: member.mGoalS,
+                                mGoalW: member.mGoalW,
+                                mHeight: member.mHeight,
+                                mId: member.mId,
+                                mImg: member.mImg,
+                                mIntro: member.mIntro,
+                                mLevel: member.mLevel,
+                                mMail: member.mMail,
+                                mName: member.mName,
+                                mPhone: member.mPhone,
+                                mPoints: member.mPoints,
+                                mPsw: member.mPsw,
+                                mSex: member.mSex,
+                                mWriteD: member.mWriteD,
+                                mTotal: member.mTotal,
+                                mNo: member.mNo,
+
+                                wWeight: member.wWeight,
+                                wDate: member.wDate,
+                            })
+                        }
+                        checkMember(xhr.responseText)
+
+                        function getMFavPosterData(mNo) {
+                            let xhr = new XMLHttpRequest()
+                            xhr.onload = () => {
+                                function updataMFavPosterData(data) {
+                                    let favData = JSON.parse(data)
+                                    Vthis.$store.commit('updataFavPosterData', favData)
+                                }
+                                updataMFavPosterData(xhr.responseText)
+                            }
+                            xhr.open('post', 'php/getFavPosterData.php', true)
+
+                            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                            let data_info = `mNo=${mNo}`
+                            xhr.send(data_info)
+                        }
+                        getMFavPosterData(JSON.parse(xhr.responseText).mNo)
+                    }
+                    xhr.open('post', 'php/login.php', true)
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMnoMidMpsw() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMnoMidMpsw(data) {
+                            if (data === '{}') {
+                                console.log('此無帳號密碼')
+                            } else {
+                                let member = JSON.parse(data)
+                                console.log(member)
+
+                                Vthis.$store.commit({
+                                    type: 'updateMemberInfo',
+
+                                    mNo: member.mNo,
+                                    mId: member.mId,
+                                    mPsw: member.mPsw,
+                                })
+                            }
+                        }
+                        updataMnoMidMpsw(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMnoMidMpsw.php', true)
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMWeightDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMWeightData(data) {
+                            let wData = JSON.parse(data)
+
+                            Vthis.$store.commit('updateWeightData', wData)
+                        }
+                        updataMWeightData(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMWeightDate.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMExerciseDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMExerciseData(data) {
+                            if (data === '{}') {
+                                console.log('沒有weight體重資料')
+                            } else {
+                                let eData = JSON.parse(data)
+
+                                Vthis.$store.commit('updataExerciseData', eData)
+                            }
+                        }
+                        updataMExerciseData(xhr.responseText)
+                        //載入好資料之後 就安裝一開始的Report
+
+                        function firstSetReport() {
+                            const thisMonth = Date.parse(new Date()) - 28 * 24 * 60 * 60 * 1000
+
+                            console.log(Vthis.eData)
+                            const filterEData = Vthis.eData.filter((data) => {
+                                return Date.parse(data.spTime) > thisMonth
+                            })
+
+                            const labelArray = filterEData.map((data) => data.spTime.slice(5))
+                            const dataArray = filterEData.map((data) => data.spCalTal)
+
+                            let barChart = new Chart(
+                                document.getElementById('barChart').getContext('2d'),
+                                {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labelArray,
+                                        datasets: [
+                                            {
+                                                label: 'EXERCICE',
+                                                fill: true,
+                                                backgroundColor: '#95b17c',
+                                                data: dataArray,
+                                            },
+                                        ],
+                                    },
+                                    options: {
+                                        animation: {
+                                            duration: 2000,
+                                        },
+                                        legend: {
+                                            display: false,
+                                        },
+                                        scales: {
+                                            yAxes: [
+                                                {
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    },
+                                }
+                            )
+                        }
+                        const checkEData = setTimeout(() => {
+                            if (Vthis.eData) {
+                                firstSetReport()
+                            }
+                            clearTimeout(checkEData)
+                        }, 10)
+                    }
+                    xhr.open('post', 'php/getMExerciseDate.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMNowCalDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMNowCalDate(data) {
+                            let cData = JSON.parse(data)
+
+                            Vthis.$store.commit('updataNowCalData', cData)
+                        }
+                        updataMNowCalDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMNowCalData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                function getMLastCalDate() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMLastCalDate(data) {
+                            let cData = JSON.parse(data)
+                            Vthis.$store.commit('updataLastCalData', cData)
+                        }
+                        updataMLastCalDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getMLastCalData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                //撈取 orderListData 的資料
+                function getMOrderListData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMOrderListDate(data) {
+                            let mOData = JSON.parse(data)
+                            Vthis.$store.commit('updataOrderListDate', mOData)
+                        }
+                        updataMOrderListDate(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getOrderListData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+                //撈取 orderData 的資料
+                function getMOrderData() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = () => {
+                        function updataMOrderData(data) {
+                            let mOData = JSON.parse(data)
+                            Vthis.$store.commit('updataOrderData', mOData)
+                        }
+                        updataMOrderData(xhr.responseText)
+                    }
+                    xhr.open('post', 'php/getOrderData.php', true)
+
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                    let data_info = `memid=${mId}&memPsw=${mPsw}`
+                    xhr.send(data_info)
+                }
+
+                //取得 當天攝取卡路里 資料
+                function getMDailyCalData() {
+                    function formatDate(date) {
+                        let d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear()
+
+                        if (month.length < 2) month = '0' + month
+                        if (day.length < 2) day = '0' + day
+
+                        return [year, month, day].join('-')
+                    }
+                    const now = formatDate(new Date())
+                    fetch(`php/getDailyCal.php?mNo=${mNo}&curTime=${now}`)
+                        .then((res) => res.json())
+                        .then((res) =>
+                            Vthis.$store.commit('updataDailyCalData', res.dailySumCal ? parseInt(res.dailySumCal) : 0)
+                        )
+                    //如果沒資料就回傳0
+                }
+
+                getMemberData()
+                //自動登入 執行這段
+                getMnoMidMpsw()
+
+                getMWeightDate()
+                getMExerciseDate()
+                getMNowCalDate()
+                getMLastCalDate()
+
+                getMOrderListData()
+                getMOrderData()
+
+                getMDailyCalData()
+
+                const checkGoaltime = setTimeout(() => {
+                    passValueVue.$emit('check-goalWeight')
+                    passValueVue.$emit('check-goalTime')
+                    clearTimeout(checkGoaltime)
+                }, 100)
+            }
+        }
+    },
+    methods: {
+        movePlaceholder(event, state) {
+            const inputVal = event.target.value
+            const placeholder = event.target.parentElement.children[0]
+            const ta = event.target
+
+            const signUpPsd = select('.under .signup .psd>input')
+            const signUpCfmPsd = select('.under .signup .cfmPsd>input')
+
+            //提示小字
+            const span = select(`.signup .${ta.name} p>span`)
+
+            if (state == 'focus') {
+                //如果再focus 狀態 將會提升
+                placeholder.style.top = '-20px'
+                placeholder.style.transform = 'scale(.9)'
+
+                span.textContent = '*'
+                span.removeAttribute('style')
+
+            } else if (state == 'blur') {
+                //如果在blur 狀態
+                if (!inputVal) {
+                    //檢查裡面 是否有內容 ,沒有內容就會掉下來
+                    placeholder.style.top = '-5px'
+                    placeholder.style.transform = 'scale(1)'
+                }
+
+                if (ta.name == 'cfmPsd') {
+                    if (signUpPsd.value) {
+                        //如果有值
+                        console.log(ta.value)
+                        if (ta.value) {
+                            if (signUpPsd.value.indexOf(ta.value) > -1) {
+                                //如果值是一樣的
+                                const Psd = signUpPsd.parentElement.children[0].children[0]
+                                const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
+
+                                fmPsd.textContent = '* 正確'
+                                fmPsd.style.color = 'green'
+
+                                Psd.textContent = '* 正確'
+                                Psd.style.color = 'green'
+                            } else {
+                                //如果不一樣
+                                const Psd = signUpPsd.parentElement.children[0].children[0]
+                                const fmPsd = signUpCfmPsd.parentElement.children[0].children[0]
+
+                                fmPsd.textContent = '* 兩個密碼不符合'
+                                fmPsd.style.color = 'red'
+
+                                Psd.textContent = '*'
+                                Psd.removeAttribute('style')
+                            }
+                        }
+                    }
+                }
+
+                if (ta.name == 'userid') {
+                    // const span = select('.signup .userid p>span')
+                    fetch(`php/checkMemberID.php?memid=${inputVal}`)
+                        .then((res) => res.json())
+                        .then((res) => {
+                            // console.log(res.length)
+                            if (!res.length) {
+                                span.textContent = '* 可以使用該帳號'
+                                span.setAttribute('style', 'color:green')
+                            } else {
+                                span.textContent = '已被使用'
+                                span.setAttribute('style', 'color: red')
+                            }
+                        })
+                }
+
+                if(ta.name == 'email'){
+                    if (inputVal){
+                        emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
+
+                        if (inputVal.search(emailRule) != -1) {
+                            span.textContent = '* 正確'
+                            span.setAttribute('style', 'color:green')
+                        } else {
+                            span.textContent = '* 格式錯誤'
+                            span.setAttribute('style', 'color:red')
+                        }
+                    } 
+                }
+            }
+        },
+
+        signUpMember() {
+            const name = select('.signup .name input').value
+            const email = select('.signup .email input').value
+            const userid = select('.signup .userid input').value
+            const psd = select('.signup .psd input').value
+            const cfmPsd = select('.signup .cfmPsd input').value
+
+            const mailSpan = select('.signup .email span').style.color
+            const idSpan = select('.signup .userid span').style.color
+            const psdSpan = select('.signup .psd span').style.color
+            const cfmSpan = select('.signup .cfmPsd span').style.color
+
+
+            //註冊成功 將直接登入
+            if (name&&email&&userid&&psd&&cfmPsd) {
+               if(mailSpan=='red'|| idSpan=='red'||psdSpan=='red'||cfmSpan=='red'){
+                   alert('請輸入正確格式') 
+               } else {
+                   alert('恭喜加入FT.')
+
+                   fetch(`php/createMAccount.php?mName=${name}&mId=${userid}&mPsw=${psd}&mMail=${email}`)
+                   .then(res=>res.json())
+                   .then(res=>{
+                        const signUp_id = userid
+                        const signUp_psd = psd
+                        const signUp_mNo = res
+                        console.log('signUp之後直接登入')
+
+                        this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
+
+                    })
+               }
+            } else{
+                alert('請填寫帳戶資料')
+            }
+ 
+        },
     },
 })

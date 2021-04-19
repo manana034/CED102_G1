@@ -250,6 +250,7 @@ h1,h2,h3,h4,h5,h6,p,button{
                         margin-bottom: 20px;
                         border-radius: 100%;
                         box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+                        background-color: $gray4;
                     }
                 }
     
@@ -405,6 +406,8 @@ h1,h2,h3,h4,h5,h6,p,button{
                                     position: absolute;
                                     // z-index: 10;
                                     top: 10px;
+                                    opacity: .5;
+                                    font-size: 12px;
                                     // right: -10;
                                     // transform: translate(-100%,0);
                                     span{
@@ -524,6 +527,17 @@ h1,h2,h3,h4,h5,h6,p,button{
                                 }
                             }
                             
+                        }
+
+                        >.restDay{
+                            width: 100%;
+                            text-align: center;
+                            >div{
+                                margin-top: 10px;
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: $gray5;
+                            }
                         }
                     }
     

@@ -1,280 +1,31 @@
-@@include("./layout/B_head.html");
-<title>Health News</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/B_lightbox.css">
+    <script src="./js/B_all.js" defer></script>
+    <script src="./js/B_logout.js" defer></script>
+    <script src="./js/B_8vue.js" defer></script>
+    <script src="./js/B_header.js" defer></script>
+    <title>Health News</title>
 
 </head>
 <body>
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="main">
-        <div class="main_top">
-            <div class="search_bar">
-                <div class="search-input">
-                    <input type="search" placeholder="Enter No. Or Title">
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">ALL</option>
-                        <option value="0">ALL</option>
-                        <option value="1">Food</option>
-                        <option value="2">Exercise</option>
-                        <option value="3">Regimen</option>
-                    </select>
-                </div>
-            </div>
-            <div class="add">
-                <button>
-                    <img src="./icon/add_white.png">
-                    ADD
-                </button>
-            </div>
-        </div>
-        <div class="main_bottom">
-            <table>
-                <tr>
-                  <th>No</th>
-                  <th>Type</th>
-                  <th>Title</th>
-                  <th>Photo</th>
-                  <th>Content</th>
-                  <th>Publish Date</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                  <th>State</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Food</td>
-                    <td>What’s for dinner?</td>
-                    <td>
-                        <img src="./infoImg/info3_1.jpg">
-                    </td>
-                    <td>Even if you enjoy cooking, chances are you find yourself wondering what to make for dinner once in a...</td>
-                    <td>2021-03-13 13:33</td>
-                    <td>
-                        <img class="edit" src="./icon/backend_edit.png">
-                    </td>
-                    <td>
-                        <img class="delete" src="./icon/backend_trash.png">
-                    </td>
-                    <td>  
-                        <div class="button">
-                            <input type="checkbox">
-                            <label></label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <!-- 確認 上架/下架 的燈箱 -->
-        <div class="lightbox_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>hide</span> article no.<span>1</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
-        </div>
-        <!-- 確認刪除的燈箱 -->
-        <div class="lightbox_delete_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> article no.<span>1</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
-        </div>
-        <!-- 新增的燈箱 沒有No. -->
-        <div class="lightbox_add_black">
-            <div class="lightbox" >                                        
-                <h6>Add Article</h6>
-                <div>
-                    <div class="acc_title">Type</div>
-                    <select class="acc_con">
-                        <option value="1">Food</option>
-                        <option value="2">Exercise</option>
-                        <option value="3">Regimen</option>
-                    </select>
-                </div>                             
-                <div>
-                    <div class="acc_title">Title</div>
-                    <div>
-                        <input type="text" required="required" maxlength="50" class="acc_con">
-                        <div class="acc_tip">Please enter within 50 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo1</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png,.mp4" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo2</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo3</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>              
-                <div>
-                    <div class="acc_title">Content1</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="800" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 800 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Content2</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 500 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Content3</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 500 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
-                </div>                                                                                                                 
-            </div>
-        </div>
-        <!-- 修改的燈箱 -->
-        <div class="lightbox_edit_black">
-            <div class="lightbox" >                                        
-                <h6>Edit Article</h6>
-                <div>
-                    <div class="acc_title">No</div>
-                    <div class="acc_acc_con">1</div>
-                </div>
-                <div>
-                    <div class="acc_title">Type</div>
-                    <select class="acc_con">
-                        <option value="1">Food</option>
-                        <option value="2">Exercise</option>
-                        <option value="3">Regimen</option>
-                    </select>
-                </div>                             
-                <div>
-                    <div class="acc_title">Title</div>
-                    <div>
-                        <input type="text" required="required" maxlength="50" class="acc_con">
-                        <div class="acc_tip">Please enter within 50 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo1</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png,.mp4" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo2</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Photo3</div>
-                    <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
-                    </div>
-                </div>              
-                <div>
-                    <div class="acc_title">Content1</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="800" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 800 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Content2</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 500 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Content3</div>
-                    <div>
-                        <textarea rows="3" cols="60" required="required" maxlength="500" class="acc_con"></textarea>
-                        <div class="acc_tip">Please enter within 500 characters.</div>
-                    </div>
-                </div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Edit</button>
-                </div>                                                                                                            
-            </div>
-        </div>
+    <div id="app" class="main"> <!--HTML DOM template-->
+        <all-info></all-info>
     </div>
-
-<script>
-    $(function(){
-        // 確認 lightbox
-        $('div.button>label').click(function(){
-            $('.lightbox_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $(this).siblings().attr('checked', function(index, attr){
-                return attr == 'checked' ? null : 'checked';
-            });
-        });
-        // 刪除 lightbox
-        $('img.delete').click(function(){
-            $('.lightbox_delete_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-        });
-        // 新增 lightbox
-        $('.add>button').click(function(){
-            $('.lightbox_add_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_add_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_add_black').css('display','none');
-            });
-        });
-        // 修改 lightbox
-        $('img.edit').click(function(){
-            $('.lightbox_edit_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_edit_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_edit_black').css('display','none');
-            });
-        });
-    });
-    </script>
 </body>
+<script>
+    
+</script>
 </html>

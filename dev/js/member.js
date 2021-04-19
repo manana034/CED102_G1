@@ -218,26 +218,26 @@ const account = document.querySelector('.myAccount')
 //     // xhr.send(null)
 // }
 
-const signupMember =() =>{
-    const signup_name = select('.signup input[name="name"]')
-    const signup_email = select('.signup input[name="email"]')
-    const signup_id = select('.signup input[name="userid"]')
-    const signup_psd = select('.signup input[name="psd"]')
-    const signup_cfmPsd = select('.signup input[name="cfmPsd"]')
+// const signupMember =() =>{
+//     const signup_name = select('.signup input[name="name"]')
+//     const signup_email = select('.signup input[name="email"]')
+//     const signup_id = select('.signup input[name="userid"]')
+//     const signup_psd = select('.signup input[name="psd"]')
+//     const signup_cfmPsd = select('.signup input[name="cfmPsd"]')
 
-    let xhr = new XMLHttpRequest()
-    xhr.onload = () => {
-        console.log(xhr.responseText)
-    }
-    xhr.open('post', 'php/signup.php', true)
-    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
-    let data_info = `memid=${signup_id.value}&memPsw=${signup_psd.value}`
-    xhr.send(data_info)
+//     let xhr = new XMLHttpRequest()
+//     xhr.onload = () => {
+//         console.log(xhr.responseText)
+//     }
+//     xhr.open('post', 'php/signup.php', true)
+//     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+//     let data_info = `memid=${signup_id.value}&memPsw=${signup_psd.value}`
+//     xhr.send(data_info)
 
-}
+// }
 
 // loginBtn.addEventListener('click', loginMember)
-signupBtn.addEventListener('click', signupMember)
+// signupBtn.addEventListener('click', signupMember)
 // signoutBtn.addEventListener('click', leaveAccount)
 
 
