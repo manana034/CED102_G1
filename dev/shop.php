@@ -1,3 +1,14 @@
+<?php
+    try{
+        require_once("../connect_ced102g1.php");
+        $sql = "select p.prodNo, p.fdNo, p.price, p.des, p.prodpic1, p.prodpic2, p.prodpic3, p.prodType, f.fdName, f.fdCalPer, f.calRate
+                    from product p join food f on p.fdNo = f.fdNo";
+
+        $product = $pdo->query($sql);
+    }catch(PDOException $e){
+        echo $e.getMessage();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,7 +119,7 @@
         <p class="close">&times;</p>
     </div>
     <ul class="prod">
-        <li class="prodcart">
+        <!-- <li class="prodcart">
             <p>ALMONDS SALTED CHOCOLATE BAR</p>
             <div class="cartimg">
                 <img src="productImg/prod1.png"> 
@@ -125,12 +136,12 @@
                 </form> 
                     <p>NT$250</p>
             </div>
-        </li>
+        </li> -->
         
     </ul>
     <div class="allprice">
         <div class="line"></div>
-        <p>TOTAL : NT$ 250</p>
+        <p>TOTAL : NT$ <span>250</span></p>
     </div>
     <div class="checkout">
         <a href="./mycart.html"><button>CHECK OUT</button></a>
@@ -204,21 +215,58 @@
                       <option value="2">NEW ARRIVAL</option>                     
                     </select>
                   </div>
-                <ul>
-                <li class="prod1" v-for="(item,index) in products" data-type="1" data-rate="1" data-no="item.prodNo"> 
-                        <a href="./img/info1.jpg">   
-                            <div class="bg" style="item">
-                                <img src="./img/prodPic.png">
-                            </div>
+            </div>
+            <ul>    
+                <?php
+                    while($row = $product -> fetch(PDO::FETCH_ASSOC)){
+                ?>
+                    <li class="prod1" v-for="(item,index) in products" data-type="<?=$row['prodType']?>" data-rate="<?=$row['calRate']?>" data-no="<?=$row['prodNo']?>"> 
+                        <a href="./product.html?id=<?=$row['prodNo']?>">
+                            <?php if($row['calRate'] > 1){?> 
+                                <div class="bg" style="background-color:#bf4659">
+                                    <img src="<?=$row['prodpic1']?>">
+                                </div>
+                            <?php }else if($row['calRate'] == 1){?>
+                                <div class="bg" style="background-color:#f9c530">
+                                    <img src="<?=$row['prodpic1']?>">
+                                </div>
+                            <?php }else{?>
+                                <div class="bg" style="background-color:#2d6ca6">
+                                    <img src="<?=$row['prodpic1']?>">
+                                </div>
+                            <?php }?>
                             <div class="prodinfo">
-                                <p>name</p>
-                                <p>Get 150% Cal Plus</p>
-                                <p>NT$10000</p> 
+                                <p><? echo $row['fdName']?></p>
+                                <p>Get <?=$row['calRate']*100?>% Cal Plus</p>
+                                <p>NT$<span><?=$row['price']?></span></p> 
                             </div>
                         </a>
-                            <button class="byn" @click="buy">BUY NOW</button>   
+                        <button class="byn">BUY NOW</button>   
                     </li>
+                    <?php }?>
                 </ul>
             </div>
+        </div>
    </div>
-<script>
+   <footer class="container ">
+        <div>
+            <img src="./img/logo.png" alt="">
+        </div>
+        <p class="o-5 col-8">
+            本網站為緯育TibaMe_前端設計工程師班第65期第一組學員專題成果作品，本平台僅供學習、展示之用。若有牴觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊[TibaMe-前端設計工程師養成班]，後續會由專人協助處理。<br><br>
+            Copyright © 2021  ft. All rights reserved.
+        </p>
+
+    </footer>
+    <script>
+        const prod = document.querySelectorAll(".prod1>a");
+        prod.forEach(p => p.addEventListener("click", function(){
+            sessionStorage.setItem("no", p.parentNode.dataset.no)
+        }))
+    </script>
+    <script src="./js/cart.js"></script>
+    <!-- <script src="./js/buy.js"></script> -->
+    <script src="./js/shop.js"></script>
+    <script src="./js/filter.js"></script>
+</body>
+</html>
