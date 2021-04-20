@@ -24,7 +24,7 @@ function moveMemberImg(){
 }
 
 function moveProductImg() {
-    return src('./dev/memberImg/*').pipe(dest('./dist/memberImg'))
+    return src('./dev/productImg/*').pipe(dest('./dist/productImg'))
 }
 
 function moveFont(){

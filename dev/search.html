@@ -11,7 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
     
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
-
     <script src="./js/header.js" defer></script>
     <script src="./js/search.js" defer></script>
     <script src="./js/header_customSelect.js" defer></script>
@@ -97,7 +96,8 @@
                 </div>
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>Result Of {{filterText}}( {{count}} Items)</h6></div>
+                <div class="result_number" v-if=" foodSearch == '' "><h6>All Food Items</h6></div>
+                <div class="result_number" v-else><h6>Result Of {{foodSearch}}</h6></div>
                 <div class="result_items">
 
                     <a 
@@ -117,19 +117,6 @@
                     </a>
                 </div>
                 <div class="pagination">
-                    <!-- <ul>
-                        <li v-bind:class="{'disabled': (currPage === 1)}" 
-                          @click.prevent="setPage(currPage-1)"><a href="#"><img src="./icon/left-arrow.svg" alt=""></a></li>
-                        <li v-for="n in totalPage"
-                          v-bind:class="{'active': (currPage === (n+1))}" 
-                          @click.prevent="setPage(n+1)"><a href="#">{{n+1}}</a></li>
-                        <li>/</li>
-                        <li v-for="n in totalPage"
-                          v-bind:class="{'active': (currPage === (n+1))}" 
-                          @click.prevent="setPage(n+1)"><a href="#">totalPage</a></li>
-                        <li v-bind:class="{'disabled': (currPage === totalPage)}" 
-                          @click.prevent="setPage(currPage+1)"><a href="#"><img src="./icon/right-arrow.svg" alt=""></a></li>
-                    </ul> -->
                 </div>
             <!-- <div class="load">load more +</div>                 -->
             </div>
@@ -183,7 +170,8 @@
                 
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>RESULT OF 球(5 ITEMS)</h6></div>
+                <div class="result_number" v-if=" sportSearch == '' "><h6>All Exercise Items</h6></div>
+                <div class="result_number" v-else><h6>Result Of {{sportSearch}}</h6></div>
                 <div class="result_items">
 
                     <a 

@@ -10,6 +10,7 @@ let vm = new Vue({
         sportSearch: '',
 
         isFoodState: true,
+        count: '',
 
         // selectSelected: null,
 
@@ -21,12 +22,6 @@ let vm = new Vue({
         FselectItems: null,
         SselectItems: null,
 
-        newfood: [],
-        searchType: 'FOOD',
-        searchInput: '',
-        status: '',
-        selectFType: '',
-        count: 0,
     },
     methods: {
         toggleSearchBody() {
@@ -68,7 +63,7 @@ let vm = new Vue({
             //sport 的狀態
             // const SState = this.selectSelected[2].textContent
 
-            //當事在food的page上
+            //當是在food的page上
             function FfilterType(type) {
                 let i = 0
                 while (i < Vthis.fItems.length) {
@@ -78,7 +73,8 @@ let vm = new Vue({
                             .indexOf(Vthis.foodSearch.toUpperCase()) > -1 &&
                         Vthis.fItems[i].dataset.type == type
                     ) {
-                        Vthis.fItems[i].style.display = 'inline-block'
+                        Vthis.fItems[i].style.display = 'inline-flex'
+                        Vthis.count ++
                     } else {
                         Vthis.fItems[i].style.display = 'none'
                     }
@@ -95,7 +91,7 @@ let vm = new Vue({
                             .indexOf(Vthis.sportSearch.toUpperCase()) > -1 &&
                         Vthis.SItems[i].dataset.type == type
                     ) {
-                        Vthis.SItems[i].style.display = 'inline-block'
+                        Vthis.SItems[i].style.display = 'flex'
                     } else {
                         Vthis.SItems[i].style.display = 'none'
                     }
@@ -117,7 +113,7 @@ let vm = new Vue({
                                     .toUpperCase()
                                     .indexOf(this.foodSearch.toUpperCase()) > -1
                             ) {
-                                Vthis.fItems[i].style.display = 'inline-block'
+                                Vthis.fItems[i].style.display = 'inline-flex'
                             } else {
                                 Vthis.fItems[i].style.display = 'none'
                             }
@@ -259,61 +255,3 @@ let vm = new Vue({
         }, 500)
     },
 })
-
-// const toExercise = document.getElementById("exercise");
-// const toFood = document.getElementById("Food");
-// const foodPage = document.getElementById("food_page");
-// const exercisePage = document.getElementById("exercise_page");
-
-// toExercise.addEventListener('click', function(){
-//     foodPage.style.display = "none";
-//     exercisePage.style.display = "block";
-// 把session設為EXERCISE;
-// 每次都要重取
-// }, false);
-// toFood.addEventListener('click', function(){
-//     foodPage.style.display = "";
-//     exercisePage.style.display = "none";
-// 把session設為FOOD;
-// }, false);
-
-// +++++++++++++++++++++++++++++
-// const searchInput = document.querySelector('.search-input>input')
-
-// const filterData = () => {
-//     const inputVal = searchInput.value.toUpperCase()
-// }
-
-// const choiceSelect = (e) => {
-//     const status = e.target.textContent
-//     if (status === 'FOOD') {
-//         getFoodData()
-//     } else if {
-//         getSportData()
-//     }
-// }
-
-// searchInput.addEventListener('keyup', filterData)
-// selectItems.forEach((item) => item.addEventListener('click', choiceSelect))
-
-// $(document).ready(function(){
-//     $('#exercise').click(function(){
-//             $('#food_page').css('display','none');
-//             $('#exercise_page').css('display','block');
-//     });
-//     $('#food').click(function(){
-//             $('#exercise_page').css('display','none');
-//             $('#food_page').css('display','');
-//     });
-
-//     $('#create').click(function(){
-//                 $('#create_box').css('display','block');
-//         });
-//         $('#cancel_create').click(function(){
-//                 $('#create_box').css('display','none');
-
-//         });
-//         $('#continus_create').click(function(){
-//                 $('#create_box').css('display','none');
-//         });
-// });
