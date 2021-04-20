@@ -3,7 +3,7 @@
         require_once "../../connect_ced102g1.php";
         $sql = "SELECT infoNo, infoType, infoTitle, infoPhoto1, infoPhoto2, CONCAT(SUBSTR(infoContent1,1,100),'...') as infoContent, IF(infoPhoto1 LIKE '%mp4', 2, 1) AS infoLevel
                     FROM information
-                    WHERE infoState = 1 
+                    WHERE infoState = 1 AND infoPhoto1 like '%mp4'
                     ORDER BY infoNo desc";
         
         $per_info_data = $pdo->prepare($sql);

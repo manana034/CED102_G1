@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/B_lightbox.css">
-    <script src="./js/B_all.js" defer></script>
     <script src="./js/B_logout.js" defer></script>
     <script src="./js/B_7vue.js" defer></script>
     <script src="./js/B_header.js" defer></script>
+    <script src="./js/B_all.js" defer></script>
     <title>Report</title>
 
 </head>
@@ -44,119 +45,9 @@
     </div>
 </div>
 
-    <!-- <div class="main_post main">
-        <div class="main_top">
-            <div class="search_bar">
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">ALL</option>
-                        <option value="0">ALL</option>
-                        <option value="1">Pending</option>
-                        <option value="2">Passed</option>
-                        <option value="3">Failed</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="main_bottom">
-            <table>
-                <tr>
-                    <th>informant</th>
-                    <th>post no</th>
-                    <th>post photo</th>
-                    <th>post content</th>
-                    <th>reason</th>
-                    <th>report time</th>
-                    <th>State</th>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>
-                        <img src="./infoImg/info1_1.jpg">
-                    </td>
-                    <td>今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天今天是紀錄的第一天~~</td>
-                    <td>Personal attack</td>
-                    <td>2021-04-01 12:33</td>
-                    <td>
-                        <select class="Type" name="Type">
-                            <option value="1">Pending</option>
-                            <option value="2">Passed</option>
-                            <option value="3">Failed</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div> -->
-        <!-- 確認改狀態的燈箱 -->
-        <!-- <div class="lightbox_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>hide</span>  post no.<span>1</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main_message main">
-        <div class="main_top">
-            <div class="page">
-                <div id="post">POST</div>
-                <div class="message">MESSAGE</div>
-            </div>
-            <div class="search_bar">
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">ALL</option>
-                        <option value="0">ALL</option>
-                        <option value="1">Pending</option>
-                        <option value="2">Passed</option>
-                        <option value="3">Failed</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="main_bottom">
-            <table>
-                <tr>
-                    <th>informant</th>
-                    <th>message no</th>
-                    <th>message content</th>
-                    <th>reason</th>
-                    <th>report time</th>
-                    <th>State</th>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>66</td>
-                    <td>胖子一覺醒來就會復胖喔~</td>
-                    <td>Personal attack</td>
-                    <td>2021-04-10 13:11</td>
-                    <td>
-                        <select class="Type" name="Type">
-                            <option value="1">Pending</option>
-                            <option value="2">Passed</option>
-                            <option value="3">Failed</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        確認改狀態的燈箱
-        <div class="lightbox_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>hide</span>  message no.<span>66</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --->
-
 <script>
+    $(`li:nth-child(7)`).attr('class', 'on');
+
     $('#message').click(function(){
         $('.postpage').css('display','none');
         $('.messagepage').css('display','block');
