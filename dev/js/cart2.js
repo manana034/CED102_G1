@@ -1,5 +1,5 @@
 const navCart = document.querySelector(".nav-cart") ;
-const cart_btn = document.querySelectorAll(".cart_btn") ;
+const cart_btn = document.querySelectorAll(".byn") ;
 const cart_slide = document.querySelector(".cart_slide") ;
 const close_btn = document.querySelector(".close_btn") ;
 const cart_info = document.querySelector(".cart_info") ;
