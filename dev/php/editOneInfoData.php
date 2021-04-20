@@ -1,7 +1,7 @@
 <?php
     try {
         require_once "../../connect_ced102g1.php";
-
+        // var_dump($_POST);die;
         $infoNo = $_POST["infoNo"];
         $infoType = $_POST["infoType"];
         $infoTitle = $_POST["infoTitle"];
@@ -26,10 +26,14 @@
         $per_info_data->bindValue(":infoContent3", $infoContent3);
         $per_info_data->execute();
 
+        var_dump($_FILES);die;
         foreach ($_FILES["upFile"]["error"] as $i => $data) {
             if ($_FILES['upFile']['error'][$i] == UPLOAD_ERR_OK) {
                 $dir = "../infoImg";
-                $fileName = "info{$i+1}_{$infoNo}.{$fileInfoArr["extension"]}"; //1.gif
+                // $fileName = "info{$i+1}_{$infoNo}.{$fileInfoArr["extension"]}"; //1.gif
+                var_dump($fileInfoArr);die;
+                $fileName = "info".($i+1)."_".$infoNo.$fileInfoArr["extension"]; //1.gif
+                echo $fileName;die;
                 if(file_exists($dir) == false){ //若資料夾不存在就創建它
                     mkdir($dir, 0777, true);//創建資料夾
                 }

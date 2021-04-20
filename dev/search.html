@@ -7,14 +7,25 @@
     <title>CALORIES SEARCH</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/search.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+    
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
+    <script src="./js/search.js" defer></script>
+    <script src="./js/header_customSelect.js" defer></script>
+
+
 </head>
 <body>
     @@include('./layout/header.html')
     <main id="app">
-        <div id="food_page" class="tab-inner" v-if="searchType == 'FOOD'">
-            <div id="create_box">
+        <div 
+            id="food_page" 
+            class="tab-inner" 
+            v-show="isFoodState">
+
+            <div id="create_box">se
                 <div>
                     <div><img src="./icon/checked.svg">Added to customized food</div>
                     <div>
@@ -28,14 +39,31 @@
                     <div class="banner"></div>
                 </div>
                 <div class="tab_title">
-                    <div class="food">FOOD</div>
-                    <div id="exercise">EXERCISE</div>
+                    <div 
+                        class="food">
+                        FOOD
+                    </div>
+                    <div 
+                        id="exercise"
+                        @click="toggleSearchBody">
+                        EXERCISE
+                    </div>
                 </div>
+
                 <form id="search_bar_f" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
-                        <input type="search" v-model.trim="filterText" @keyup="selectFType ='search'" placeholder="SEARCH WHAT YOU TOOK">
+
+                        <input 
+                            type="search" 
+                            v-model="foodSearch" 
+                            placeholder="SEARCH WHAT YOU TOOK"
+                            @keyup="filterData">
+
                     </div>
-                    <div class="custom-select" @click="pricePick">
+                    <div 
+                        class="custom-select"
+                        @click="typeSelect">
+
                         <select name="sType">
                             <option>ALL</option>
                             <option>ALL</option>
@@ -68,52 +96,65 @@
                 </div>
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>Result Of {{filterText}}( {{count}} Items)</h6></div>
+                <div class="result_number" v-if=" foodSearch == '' "><h6>All Food Items</h6></div>
+                <div class="result_number" v-else><h6>Result Of {{foodSearch}}</h6></div>
                 <div class="result_items">
-                    <a href="Cal_Diary.html" v-for="(value,key) in filterData">
+
+                    <a 
+                        href="Cal_Diary.html" 
+                        v-for="(value,key) in foodData"
+                        :data-type="value.fdType">
                         <div class="cal_card">
+
                             <div class="cal_title">
                                 <div>{{value.fdName}}</div>
                                 <img src="./icon/add_food.png">
                             </div>
+
                             <h5>{{value.fdCalPer}}</h5>
                             <div class="cal">Cal / Per Serving</div>
                         </div>
                     </a>
                 </div>
                 <div class="pagination">
-                    <!-- <ul>
-                        <li v-bind:class="{'disabled': (currPage === 1)}" 
-                          @click.prevent="setPage(currPage-1)"><a href="#"><img src="./icon/left-arrow.svg" alt=""></a></li>
-                        <li v-for="n in totalPage"
-                          v-bind:class="{'active': (currPage === (n+1))}" 
-                          @click.prevent="setPage(n+1)"><a href="#">{{n+1}}</a></li>
-                        <li>/</li>
-                        <li v-for="n in totalPage"
-                          v-bind:class="{'active': (currPage === (n+1))}" 
-                          @click.prevent="setPage(n+1)"><a href="#">totalPage</a></li>
-                        <li v-bind:class="{'disabled': (currPage === totalPage)}" 
-                          @click.prevent="setPage(currPage+1)"><a href="#"><img src="./icon/right-arrow.svg" alt=""></a></li>
-                    </ul> -->
                 </div>
             <!-- <div class="load">load more +</div>                 -->
             </div>
         </div>
 <!-- 以下是運動分頁 -->
-        <div id="exercise_page" class="tab-inner" v-else>
+        <div 
+            id="exercise_page" 
+            class="tab-inner" 
+            v-show="!isFoodState">
+
             <div class="top">
                 <div class="overflow_hidden">
                     <div class="banner"></div>
                 </div>
                 <div class="tab_title">
-                    <div id="food">FOOD</div>
-                    <div class="exercise">EXERCISE</div>
+                    <div 
+                        id="food"
+                        @click="toggleSearchBody">
+                        FOOD
+                    </div>
+                    <div 
+                        class="exercise">
+                        EXERCISE
+                    </div>
                 </div>
                 <form id="search_bar_e" class="col-4 col-lg-2 col-md-2 col-sm-1">
                     <div class="search-input">
-                        <input type="search" placeholder="SERACH">
+
+                        <input 
+                            type="search" 
+                            placeholder="SERACH"
+                            v-model="sportSearch"
+                            @input="filterData">
+
                     </div>
-                    <div class="custom-select" @click="pricePick">
+                    <div 
+                        class="custom-select" 
+                        @click="typeSelect">
                         <select name="sType">
                             <option value="0">ALL</option>
                             <option value="0">ALL</option>
@@ -129,18 +170,25 @@
                 
             </div>
             <div class="bottom">
-                <div class="result_number"><h6>RESULT OF 球(5 ITEMS)</h6></div>
+                <div class="result_number" v-if=" sportSearch == '' "><h6>All Exercise Items</h6></div>
+                <div class="result_number" v-else><h6>Result Of {{sportSearch}}</h6></div>
                 <div class="result_items">
-                    <a href="Cal_Diary.html">
+
+                    <a 
+                        href="Cal_Diary.html"
+                        v-for="(value,key) in sportData"
+                        :data-type="value.spType">
+
                         <div class="cal_card">
                             <div class="cal_title">
-                                <div>籃球</div>
+                                <div>{{value.spName}}</div>
                                 <img src="./icon/add_exercise.png">
                             </div>
-                            <h5>30</h5>
+                            <h5>{{value.spCalPer}}</h5>
                             <div class="cal">Cal / 30 Minutes Per Kg</div>
                         </div>
                     </a>
+
                 </div>
                 <div class="load">load more +</div>
             </div>
@@ -149,198 +197,7 @@
     </main>
     @@include('./layout/footer.html')
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
-
-<script>
-    let vm = new Vue({
-        el: "#app",
-        data: {
-            foodData: [],
-            newfood: [],
-            searchType: 'FOOD',
-            filterText: '',
-            selectFType: '',
-            count: 0,
-            tempData: [],
-            newData: [],
-        },
-        methods: {
-            //呼叫php程式，取回相關資料，並用json()轉回一般陣列
-            get_food: async function () {
-                const res = await fetch('./php/getFoodData.php', {}).then(function (data) {
-                    return data.json();
-                });
-                // 取回res值後，呼叫另一隻函式
-                this.foodData = res;
-            },
-            pricePick(e){
-                const status = e.target.textContent;
-                if (status === 'ALL') {
-                    selectFType = 0;
-                } else if (status === 'FT. SHOP' || status === 'LOW') {
-                    selectFType = 1;
-                } else if (status === 'RICE' || status === 'MEDIUM') {
-                    selectFType = 2;
-                } else if (status === 'NOODLES' || status === 'HIGH') {
-                    selectFType = 3;
-                } else if (status === 'MEAT') {
-                    selectFType = 4;
-                } else if (status === 'FRUIT & VEG') {
-                    selectFType = 5;
-                } else if (status === 'FRIED') {
-                    selectFType = 6;
-                } else if (status === 'DESSERT') {
-                    selectFType = 7;
-                } else if (status === 'DRINK') {
-                    selectFType = 8;
-                } else if (status === 'CUSTOMIZED') {
-                    selectFType = 9;
-                }
-                console.log(selectFType);
-            },
-            getId(key){
-                sessionStorage.setItem("infoNo", key+1);
-            },
 
 
-        },
-        computed: {
-            filterData() {
-                const vm = this;
-                let tempData = [];
-                vm.newData = [];
-                let resultData = this.foodData
-                let fil = this.filterText.toLowerCase()
-
-                switch (this.selectFType) {
-                    case 'search':
-                        tempData = vm.foodData.filter((value) => {
-                            if (vm.filterText == '') {
-                                return vm.foodData
-                            } else {
-                                return value.fdName.toLowerCase().match(fil);
-                            }
-                        });
-                        break;
-                    case '0':
-                        tempData = vm.foodData.filter((value) => {
-                            return vm.foodData;
-                        });
-                        break;
-                    case '1':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 1;
-                        });
-                        break;
-                    case '2':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 2;
-                        });
-                        break;
-                    case '3':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 3;
-                        });
-                        break;
-                    case '4':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 4;
-                        });
-                        break;
-                    case '5':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 5;
-                        });
-                        break;
-                    case '6':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 6;
-                        });
-                        break;
-                    case '7':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 7;
-                        });
-                        break;
-                    case '8':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 8;
-                        });
-                        break;
-                    case '9':
-                        tempData = vm.foodData.filter((value) => {
-                            return value.fdType == 9;
-                        });
-                        break;
-                }
-            },
-        },
-        // template 渲染前 會先去執行以下函式
-        created() {
-            this.get_food();
-
-        },
-        mounted() {
-        },        
-    })
-    // const toExercise = document.getElementById("exercise");
-    // const toFood = document.getElementById("Food");
-    // const foodPage = document.getElementById("food_page");
-    // const exercisePage = document.getElementById("exercise_page");
-
-    // toExercise.addEventListener('click', function(){
-    //     foodPage.style.display = "none";
-    //     exercisePage.style.display = "block";
-        // 把session設為EXERCISE;
-        // 每次都要重取
-    // }, false);
-    // toFood.addEventListener('click', function(){
-    //     foodPage.style.display = "";
-    //     exercisePage.style.display = "none"; 
-        // 把session設為FOOD;
-    // }, false);
-
-// +++++++++++++++++++++++++++++
-    // const searchInput = document.querySelector('.search-input>input')
-
-    // const filterData = () => {
-    //     const inputVal = searchInput.value.toUpperCase()
-    // }
-
-    // const choiceSelect = (e) => {
-    //     const status = e.target.textContent
-    //     if (status === 'FOOD') {
-    //         getFoodData()
-    //     } else if {
-    //         getSportData()
-    //     }
-    // }
-
-    // searchInput.addEventListener('keyup', filterData)
-    // selectItems.forEach((item) => item.addEventListener('click', choiceSelect))
-
-// $(document).ready(function(){
-//     $('#exercise').click(function(){
-//             $('#food_page').css('display','none');
-//             $('#exercise_page').css('display','block');
-//     });
-//     $('#food').click(function(){
-//             $('#exercise_page').css('display','none');
-//             $('#food_page').css('display','');
-//     });
-
-//     $('#create').click(function(){
-//                 $('#create_box').css('display','block');
-//         });
-//         $('#cancel_create').click(function(){
-//                 $('#create_box').css('display','none');
-
-//         });
-//         $('#continus_create').click(function(){
-//                 $('#create_box').css('display','none');
-//         });
-// });
-</script>
 </body>
 </html>

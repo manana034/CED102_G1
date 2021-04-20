@@ -14,7 +14,7 @@ main {
             // max-width: 1600px;
             position: relative;
             div.overflow_hidden {
-                height: 800px;
+                height: 600px;
                 overflow: hidden;
                 div.banner {
                     max-width: 1600px;
@@ -34,7 +34,7 @@ main {
                 max-width: 1200px;
                 width: 100%;
                 position: absolute;
-                top: 35%;
+                top: 30%;
                 left: 50%;
                 transform: translate(-50%, 0%);
                 // background-color: cadetblue;
@@ -165,7 +165,7 @@ main {
         }
         .middle {
             position: relative;
-            top: 30px;
+            top: 10px;
             @include textStyle();
             max-width: 1200px;
             border-radius: 12px;
@@ -329,7 +329,7 @@ main {
             // max-width: 1600px;
             position: relative;
             div.overflow_hidden {
-                height: 800px;
+                height: 600px;
                 overflow: hidden;
                 div.banner {
                     max-width: 1600px;
@@ -349,7 +349,7 @@ main {
                 max-width: 1200px;
                 width: 100%;
                 position: absolute;
-                top: 35%;
+                top: 30%;
                 left: 50%;
                 transform: translate(-50%, 0%);
                 // background-color: cadetblue;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1:3306
--- 產生時間： 2021-04-15 07:49:44
+-- 產生時間： 2021-04-19 12:16:23
 -- 伺服器版本： 8.0.21
 -- PHP 版本： 7.3.21
 
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `chatbot`;
 CREATE TABLE IF NOT EXISTS `chatbot` (
   `keyNo` int NOT NULL AUTO_INCREMENT,
   `keyType` tinyint(1) NOT NULL,
-  `keyW` varchar(5) NOT NULL,
+  `keyW` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `keyQ` varchar(50) NOT NULL,
   `keyA` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`keyNo`)
@@ -68,18 +68,18 @@ CREATE TABLE IF NOT EXISTS `chatbot` (
 --
 
 INSERT INTO `chatbot` (`keyNo`, `keyType`, `keyW`, `keyQ`, `keyA`) VALUES
-(1, 1, 'exerc', 'How do I use my exercise diary?', 'Go to your <a href=\"search.html\">CALORIES SEARCH</a> page and click on \"exercise\". Select a date to record all the activity. To add an exercise, click on \"add exercise\" and select one of the exercise types from the database provided and then select the amount of time spent doing that exercise.'),
-(2, 1, 'custo', 'How do I create my own personal diet?', 'Go to your <a href=\"search.html\">CALORIES SEARCH</a> page and click on \"create\" button after enter food name and calories ,then you can customize the food.'),
+(1, 1, 'exercise', 'How do I use my exercise diary?', 'Go to your <a href=\"search.html\">CALORIES SEARCH</a> page and click on \"exercise\". Select a date to record all the activity. To add an exercise, click on \"add exercise\" and select one of the exercise types from the database provided and then select the amount of time spent doing that exercise.'),
+(2, 1, 'customize', 'How do I create my own personal diet?', 'Go to your <a href=\"search.html\">CALORIES SEARCH</a> page and click on \"create\" button after enter food name and calories ,then you can customize the food.'),
 (3, 1, 'weigh', 'How do I weigh in?', 'Go to your<a href=\"Cal_Diary.html\">CALORIES DIARY</a> page and above is the report area, here is your two-month weight record. You can update your current weight in <a href=\"Cal_Diary.html\">CALORIES DIARY</a> and <a href=\"member.html\">MEMBER</a>.'),
-(4, 2, 'log i', 'I can\'t log in to my account.', 'Please ensure that you are logging in with the correct member name and password. If you cannot log in on the site, Ft. may cancel memberships if they violate the site\'s terms and conditions.'),
-(5, 2, 'passw', 'I forgot my password.', 'You can retrieve your password by clicking <a href=\"member.html\">here</a>. You will need to enter the member ID that we have on file for your account. We\'ll then email your password to that address.'),
-(6, 2, 'upgra', 'What are the benefits of upgrading?', 'You can record in the <a href=\"search.html\">CALORIES SEARCH</a> and get the report.<br>You can watch articles with videos in the <a href=\"information.html\">HEALTH NEWS</a><br>You can get points, which can be used in the <a href=\"shop.html\">FT. SHOP</a>'),
-(7, 3, 'cance', 'Can I cancel my order after I\'ve placed it?', 'You can cancel orders that haven\'t entered the shipping process yet.'),
-(8, 3, 'refun', 'I’ve cancelled my order – when will my money be av', 'Your payment provider will reserve the funds ready for us to take. You may notice the amount on your bank statement with a \'Pending or Reserved status\'.'),
-(9, 3, 'missi', 'I\'m missing an item from my order, what do I do?', 'If you have an item missing from your order, please let us know within 30 days of of your order being delivered and we’ll do our best to help you.'),
-(10, 4, 'lose ', 'How to help me lose weight?', 'Some products in the <a href=\"shop.html\">FT. SHOP</a> can help you lose weight, the calories you consume of the meal gets 50% discount.'),
-(11, 4, 'gain ', 'How to help me gain weight?', 'Some products in the <a href=\"shop.html\">FT. SHOP</a> can help you gain weight, the calories you get the meal 150% plus.'),
-(12, 4, 'shipp', 'How much is the shipping fee?', 'All products in ft.shop are free shipping.');
+(4, 2, 'log in', 'I can\'t log in to my account.', 'Please ensure that you are logging in with the correct member name and password. If you cannot log in on the site, Ft. may cancel memberships if they violate the site\'s terms and conditions.'),
+(5, 2, 'password', 'I forgot my password.', 'You can retrieve your password by clicking <a href=\"member.html\">here</a>. You will need to enter the member ID that we have on file for your account. We\'ll then email your password to that address.'),
+(6, 2, 'upgrade', 'What are the benefits of upgrading?', 'You can record in the <a href=\"search.html\">CALORIES SEARCH</a> and get the report.<br>You can watch articles with videos in the <a href=\"information.html\">HEALTH NEWS</a><br>You can get points, which can be used in the <a href=\"shop.html\">FT. SHOP</a>'),
+(7, 3, 'cancel', 'Can I cancel my order after I\'ve placed it?', 'You can cancel orders that haven\'t entered the shipping process yet.'),
+(8, 3, 'refund', 'I’ve cancelled my order – when will my money be av', 'Your payment provider will reserve the funds ready for us to take. You may notice the amount on your bank statement with a \'Pending or Reserved status\'.'),
+(9, 3, 'missing', 'I\'m missing an item from my order, what do I do?', 'If you have an item missing from your order, please let us know within 30 days of of your order being delivered and we’ll do our best to help you.'),
+(10, 4, 'lose weigh', 'How to help me lose weight?', 'Some products in the <a href=\"shop.html\">FT. SHOP</a> can help you lose weight, the calories you consume of the meal gets 50% discount.'),
+(11, 4, 'gain weigh', 'How to help me gain weight?', 'Some products in the <a href=\"shop.html\">FT. SHOP</a> can help you gain weight, the calories you get the meal 150% plus.'),
+(12, 4, 'shipping fee', 'How much is the shipping fee?', 'All products in ft.shop are free shipping.');
 
 -- --------------------------------------------------------
 
@@ -388,6 +388,33 @@ CREATE TABLE IF NOT EXISTS `favoritea` (
   KEY `mNo` (`mNo`),
   KEY `infoNo` (`infoNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `favoritea`
+--
+
+INSERT INTO `favoritea` (`mNo`, `infoNo`) VALUES
+(1, 2),
+(1, 6),
+(1, 7),
+(1, 10),
+(1, 15),
+(1, 16),
+(1, 19),
+(1, 20),
+(2, 1),
+(2, 4),
+(2, 5),
+(2, 15),
+(2, 16),
+(3, 5),
+(3, 8),
+(3, 16),
+(4, 1),
+(4, 9),
+(4, 10),
+(4, 16),
+(4, 17);
 
 -- --------------------------------------------------------
 
@@ -702,7 +729,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 INSERT INTO `member` (`mNo`, `mName`, `mId`, `mPsw`, `mMail`, `mPhone`, `mImg`, `mBday`, `mSex`, `mHeight`, `mIntro`, `mPoints`, `mLevel`, `mWriteD`, `mTotal`, `mFoled`, `mGoalW`, `mGoalS`, `mGoalE`, `goalType`, `mState`, `loginDate`) VALUES
 (1, '陳大胖', 'fatchen01', 'pwdfatchen', 'fatchen01@gmail.com', '0912345678', './memberImg/M_fatChen.jpg', '1996-02-21', 1, 180, '我是來自台中的大胖，喜歡拍照,並上傳到社群軟體上面,喜歡這種方式來記錄我的生活, 目前正在持續減重的我,意外地發現了ft這個網站,可以很輕易的控制我的體重,明顯數據可以讓我離清楚我現在的狀況。', 0, 3, 40, 5750, 5, '85.0', '2021-02-21', '2021-04-22', 3, 1, '2021-04-20'),
 (2, '王小胖', 'fatwang02', 'A12345', 'fatwang02@gmail.com', '0923456781', './memberImg/M_fatWang.jpg', '1994-11-25', 1, 175, 'hi!~我是小胖,我是個好吃西餐的廚師助理,我因為工作的關係,常常吃到好吃的餐點,也常常會把我喜歡的食物組合在一起變成一個創意餐點,再一口氣吃光,讓我有點職業傷害,意外發現ft.的商城所賣商品,不但天然又能夠減肥,真的覺得很不錯。', 0, 3, 15, 3410, 5, '73.0', '2021-02-22', '2021-04-23', 3, 1, '2021-04-20'),
-(3, '張瘦瘦', 'thinZhang', 'B12345', 'thinZhang@gmail.com', '0934567812', './memberImg/F_thinZhang.jpg', '1997-01-01', 2, 168, '目前就讀很厲害大學,服裝設計系的設計師,喜歡歐美設計風格,常常會把元素套用到我的設計作品上，為了把衣服撐起來所以靠ft來讓我達到目標體重,商城的產品,也讓我更輕易的增重。', 200, 2, 18, 2220, 2, '55.0', '2021-02-22', '2021-06-22', 3, 1, '2021-04-20'),
+(3, '張瘦瘦', 'thinZhang', 'B12345', 'thinZhang@gmail.com', '0934567812', './memberImg/F_thinZhang.jpg', '1997-01-01', 2, 168, '目前就讀很厲害大學,服裝設計系的設計師,喜歡歐美設計風格,常常會把元素套用到我的設計作品上，為了把衣服撐起來所以靠ft來讓我達到目標體重,商城的產品,也讓我更輕易的增重。', 200, 2, 18, 2220, 2, '55.0', '2021-02-22', '2021-04-01', 3, 1, '2021-04-20'),
 (4, '戴廚神', 'chefDai', 'C12345', 'chefDai@gmail.com', '0945678123', './memberImg/F_chefDai.jpg', '1984-11-28', 2, 173, '我是更好吃西餐的主廚兼老闆, 平時喜歡研發菜色, 品酒,閱讀,做瑜珈,有氧運動。', 100, 1, 5, 0, 5, '60.0', '2021-03-02', '2021-05-02', 3, 1, '2021-04-20'),
 (5, '黃愛買', 'shopHuang', 'D12345', 'shopHuang@gmail.com', '0956781234', './memberImg/F_shopHuang.jpg', '1990-04-07', 2, 168, '徵公，會養，會疼，要帥、有健身，月薪10萬,您祖母就是有錢!', 0, 3, 0, 41520, 4, NULL, NULL, NULL, 3, 1, '2021-04-20'),
 (6, 'Archie', 'Archie06', 'E12345', 'Archie06@gmail.com', NULL, './memberImg/M_archie.jpg', NULL, 1, 182, NULL, 100, 1, 0, 0, 2, NULL, NULL, NULL, 3, 1, '2021-04-20'),
@@ -836,6 +863,7 @@ CREATE TABLE IF NOT EXISTS `messagereport` (
 --
 
 INSERT INTO `messagereport` (`mNo`, `mesNo`, `mesRepTime`, `mesRepFor`, `mesRevState`) VALUES
+(1, 11, '2021-04-19 12:20:00', '2', 1),
 (1, 31, '2021-03-14 23:22:00', '1', 1),
 (1, 63, '2021-04-03 11:12:00', '1', 1);
 
@@ -954,7 +982,7 @@ CREATE TABLE IF NOT EXISTS `point` (
   `poNo` int NOT NULL AUTO_INCREMENT,
   `poDur` tinyint(1) NOT NULL,
   `poType` tinyint(1) NOT NULL,
-  `poName` varchar(20) NOT NULL,
+  `poName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `startTime` date NOT NULL,
   `endTime` date DEFAULT NULL,
   `points` int NOT NULL,
@@ -966,10 +994,10 @@ CREATE TABLE IF NOT EXISTS `point` (
 --
 
 INSERT INTO `point` (`poNo`, `poDur`, `poType`, `poName`, `startTime`, `endTime`, `points`) VALUES
-(1, 2, 1, '註冊', '2021-04-05', NULL, 100),
-(2, 2, 3, '升級Gold會員', '2021-04-05', NULL, 200),
-(3, 2, 3, '升級Diamond會員', '2021-04-05', NULL, 300),
-(4, 1, 2, '母親節', '2021-04-15', '2021-05-09', 20);
+(1, 2, 1, 'Registered', '2021-04-05', NULL, 100),
+(2, 2, 3, 'Upgrade Gold Member', '2021-04-05', NULL, 200),
+(3, 2, 3, 'Upgrade Diamond Member', '2021-04-05', NULL, 300),
+(4, 1, 2, 'Celebrate mother\'s day', '2021-04-15', '2021-05-09', 20);
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1071,10 @@ CREATE TABLE IF NOT EXISTS `postreport` (
 --
 
 INSERT INTO `postreport` (`mNo`, `postNo`, `postRepTime`, `postRepFor`, `postRevState`) VALUES
-(1, 25, '2021-04-03 15:34:00', '3', 1);
+(1, 25, '2021-04-03 15:34:00', '3', 1),
+(5, 6, '2021-04-19 12:14:33', '2', 1),
+(8, 5, '2021-04-19 12:14:33', '2', 1),
+(10, 11, '2021-04-19 12:17:45', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -1062,7 +1093,6 @@ CREATE TABLE IF NOT EXISTS `product` (
   `prodPic3` varchar(255) NOT NULL,
   `prodState` tinyint(1) NOT NULL DEFAULT '1',
   `prodType` tinyint(1) NOT NULL,
-  `quantity` int NOT NULL DEFAULT '0',
   `postTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`prodNo`),
   KEY `fdNo` (`fdNo`)
@@ -1072,27 +1102,27 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- 傾印資料表的資料 `product`
 --
 
-INSERT INTO `product` (`prodNo`, `fdNo`, `price`, `des`, `prodPic1`, `prodPic2`, `prodPic3`, `prodState`, `prodType`, `quantity`, `postTime`) VALUES
-(1, 101, 250, 'The calories you consume of the meal gets 50% discount.\nIngredients dark chocolate (49%)\n(cacao mass, coconut sugar,cacao butter),\nroasted almonds (49%), cocoa powder, salt.for allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod1.png', './productImg/prod1_1.jpg', './productImg/prod1_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(2, 102, 300, 'Ingredients dates (60%), almonds (22%), cacao (9%), almond butter (7%), coconut oil, salt.\nmade in a facility that handles nuts and peanuts – for more information on this please click here\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod2.png', './productImg/prod2_1.jpg', './productImg/prod2_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(3, 103, 230, 'The calories you gain of the meal gets 110% PLUS.\nroasted almond butter (26%), roasted cashew butter (7%) gluten free oats (5%), freeze dried raspberries (4%).\nmade in a facility that handles nuts and peanuts – for more information on this please click here\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod3.png', './productImg/prod3_1.jpg', './productImg/prod3_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(4, 104, 250, 'The calories you consume of the meal gets 50% discount.dark chocolate (49%) (cacao mass, coconut sugar, cacao butter), roasted almonds (49%), cocoa powder, salt.\nmade in a facility that handles nuts and peanuts – for more information on this please click here\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod4.png', './productImg/prod4_1.jpg', './productImg/prod4_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(5, 105, 200, 'Ingredients dates (60%), almonds (22%), cacao (9%), almond butter (7%), coconut oil, salt.\nMade in a facility that handles nuts and peanuts.', './productImg/prod5.png', './productImg/prod5_1.jpg', './productImg/prod5_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(6, 106, 300, 'Ingredients gluten free oats (44%), brown rice syrup, coconut oil, raisins (8%), coconut sugar, sunflower oil, dried apple pieces (5%), ground cinnamon.', './productImg/prod6.png', './productImg/prod6_1.jpg', './productImg/prod6_2.jpg', 1, 3, 0, '2021-04-04 00:00:00'),
-(7, 107, 250, 'Ingredients gluten free oats (25.6%), brown rice syrup, peanuts (15%), sultanas (10%), cashews (6.5%), brazil nuts (6%), walnuts (6%), coconut sugar, coconut oil, sunflower oil.', './productImg/prod7.png', './productImg/prod7_1.jpg', './productImg/prod7_2.jpg', 1, 3, 0, '2021-04-05 00:00:00'),
-(8, 108, 250, 'Ingredients gluten free oats (41%), brown rice syrup, roasted peanuts (15%), coconut oil, coconut sugar, date syrup, roasted peanut butter (4%), sunflower oil, salt.', './productImg/prod8.png', './productImg/prod8_1.jpg', './productImg/prod8_2.jpg', 1, 3, 0, '2021-04-05 00:00:00'),
-(9, 109, 300, 'Ingredients dark chocolate (50%) (cacao mass, coconut sugar, cacao butter), roasted almonds (50%), orange oil.', './productImg/prod9.png', './productImg/prod9_1.jpg', './productImg/prod9_2.jpg', 1, 3, 0, '2021-04-05 00:00:00'),
-(10, 110, 350, 'Ingredients date syrup, gluten free oats (26%) coconut oil, dark chocolate (11%) (cacao nibs, coconut sugar, cacao butter), coconut sugar, cacao powder (6%), roasted almond butter maple syrup, salt.', './productImg/prod10.png', './productImg/prod10_1.jpg', './productImg/prod10_2.jpg', 1, 3, 0, '2021-04-05 00:00:00'),
-(11, 111, 450, 'Ingredients gluten free oats (85%), dried apple (6%), raisins (5%), sunflower seeds (2%), chia (salvia hispanica) seeds, freeze dried raspberries (1%).', './productImg/prod11.png', './productImg/prod11_1.jpg', './productImg/prod11_2.jpg', 1, 1, 0, '2021-04-05 00:00:00'),
-(12, 112, 420, 'The calories you consume of the meal gets 50% discount. Ingredients gluten free oats (60%), mixed nuts (13%), (cashews (6%), almonds (4%), hazelnuts (3%)), date syrup, sunflower oil, maple syrup (4%), sunflower seeds (3%), orange juice (3%), pumpkin seeds (2%).', './productImg/prod12.png', './productImg/prod12_1.jpg', './productImg/prod12_2.jpg', 1, 1, 0, '2021-04-05 00:00:00'),
-(13, 113, 480, 'Ingredients\nmaize (34%), brown rice flour (25.8%), roasted hazelnuts (12%), raisins (12%), coconut sugar (8.9%), amaranth flour (3.7%), toasted coconut chips, millet flour, salt.', './productImg/prod13.png', './productImg/prod13_1.jpg', './productImg/prod13_2.jpg', 1, 1, 0, '2021-04-06 00:00:00'),
-(14, 114, 450, 'Ingredients gluten free oats (73%), date syrup, sunflower oil, orange juice, freeze dried mixed berries (3%) (raspberries, blackcurrants, blueberries), sunflower seeds (2%).', './productImg/prod14.png', './productImg/prod14_1.jpg', './productImg/prod14_2.jpg', 1, 1, 0, '2021-04-06 00:00:00'),
-(15, 115, 420, 'Ingredients gluten free oats (40%), roasted buckwheat (19%), date syrup, sunflower seeds (8%), puffed brown rice (6%), raisins (6%), sunflower oil, pumpkin seeds (3%), orange juice, desiccated coconut chips (2%), desiccated coconut.', './productImg/prod15.png', './productImg/prod15_1.jpg', './productImg/prod15_2.jpg', 1, 1, 0, '2021-04-06 00:00:00'),
-(16, 116, 450, 'Ingredients gluten free jumbo oats (72%), raisins (10%), almonds (7%) dried apricots (5%), pumpkin seeds (5%), chia (salvia hispanica) seeds (2%).', './productImg/prod16.png', './productImg/prod16_1.jpg', './productImg/prod16_2.jpg', 1, 1, 0, '2021-04-06 00:00:00'),
-(17, 117, 400, 'Ingredients rice flour, cassava flour, chickpea flour (13%), corn flour, wholegrain rice flour, brown rice syrup, rapeseed oil, chia (salvia hispanica) seeds, salt, nigella seeds, smoked paprika, dried coriander, dried cumin, jalapeno chilli.', './productImg/prod17.png', './productImg/prod17_1.jpg', './productImg/prod17_2.jpg', 1, 2, 0, '2021-04-06 00:00:00'),
-(18, 118, 420, 'Ingredients rice flour, cassava flour, sweet potato flour (13%), corn flour, rapeseed oil, wholegrain rice flour, brown rice syrup, chia (salvia hispanica) seeds, dried rosemary, salt, nigella seeds, paprika, turmeric.', './productImg/prod18.png', './productImg/prod18_1.jpg', './productImg/prod18_2.jpg', 1, 2, 0, '2021-04-06 00:00:00'),
-(19, 119, 400, 'Ingredients rice flour, cassava flour, corn flour, wholegrain rice flour, rapeseed oil, brown rice syrup, beetroot flour (6%), mixed seeds (3%) (chia (salvia hispanica) seeds, poppy seeds, nigella seeds), salt.', './productImg/prod19.png', './productImg/prod19_1.jpg', './productImg/prod19_2.jpg', 1, 2, 0, '2021-04-06 00:00:00'),
-(20, 120, 450, 'Ingredients rice flour, cassava flour, sweet potato flour, seeds (10.5%) (chia, nigella, poppy), corn flour, brown rice syrup, wholegrain rice flour, canola/rapeseed oil, sea salt (3%), olive oil (1.2%), black pepper (0.8%), paprika.', './productImg/prod20.png', './productImg/prod20_1.jpg', './productImg/prod20_2.jpg', 1, 2, 0, '2021-04-06 00:00:00');
+INSERT INTO `product` (`prodNo`, `fdNo`, `price`, `des`, `prodPic1`, `prodPic2`, `prodPic3`, `prodState`, `prodType`, `postTime`) VALUES
+(1, 101, 250, '<span>The calories you consume of the meal gets 50% discount.</span><br>\r\nIngredients dark chocolate (49%)\r\n(cacao mass, coconut sugar,cacao butter),\r\nroasted almonds (49%), cocoa powder, salt.for allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod1.png', './productImg/prod1_1.jpg', './productImg/prod1_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(2, 102, 300, 'Ingredients dates (60%), almonds (22%), cacao (9%), almond butter (7%), coconut oil, salt.\r\nmade in a facility that handles nuts and peanuts â for more information on this please click here\r\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod2.png', './productImg/prod2_1.jpg', './productImg/prod2_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(3, 103, 230, '<span>The calories you gain of the meal gets 150% PLUS.</span><br>\r\nroasted almond butter (26%), roasted cashew butter (7%) gluten free oats (5%), freeze dried raspberries (4%).\r\nmade in a facility that handles nuts and peanuts â for more information on this please click here\r\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod3.png', './productImg/prod3_1.jpg', './productImg/prod3_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(4, 104, 250, '<span>The calories you consume of the meal gets 50% discount.</span><br> Dark chocolate (49%) (cacao mass, coconut sugar, cacao butter), roasted almonds (49%), cocoa powder, salt.\r\nmade in a facility that handles nuts and peanuts â for more information on this please click here\r\nfor allergens, including cereals containing gluten, see ingredients in bold.', './productImg/prod4.png', './productImg/prod4_1.jpg', './productImg/prod4_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(5, 105, 200, '<span>The calories you consume of the meal gets 50% discount.</span><br> Ingredients dates (60%), almonds (22%), cacao (9%), almond butter (7%), coconut oil, salt.\r\nMade in a facility that handles nuts and peanuts.', './productImg/prod5.png', './productImg/prod5_1.jpg', './productImg/prod5_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(6, 106, 300, 'Ingredients gluten free oats (44%), brown rice syrup, coconut oil, raisins (8%), coconut sugar, sunflower oil, dried apple pieces (5%), ground cinnamon.', './productImg/prod6.png', './productImg/prod6_1.jpg', './productImg/prod6_2.jpg', 1, 3, '2021-04-04 00:00:00'),
+(7, 107, 250, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients gluten free oats (25.6%), brown rice syrup, peanuts (15%), sultanas (10%), cashews (6.5%), brazil nuts (6%), walnuts (6%), coconut sugar, coconut oil, sunflower oil.', './productImg/prod7.png', './productImg/prod7_1.jpg', './productImg/prod7_2.jpg', 1, 3, '2021-04-05 00:00:00'),
+(8, 108, 250, 'Ingredients gluten free oats (41%), brown rice syrup, roasted peanuts (15%), coconut oil, coconut sugar, date syrup, roasted peanut butter (4%), sunflower oil, salt.', './productImg/prod8.png', './productImg/prod8_1.jpg', './productImg/prod8_2.jpg', 1, 3, '2021-04-05 00:00:00'),
+(9, 109, 300, 'Ingredients dark chocolate (50%) (cacao mass, coconut sugar, cacao butter), roasted almonds (50%), orange oil.', './productImg/prod9.png', './productImg/prod9_1.jpg', './productImg/prod9_2.jpg', 1, 3, '2021-04-05 00:00:00'),
+(10, 110, 350, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients date syrup, gluten free oats (26%) coconut oil, dark chocolate (11%) (cacao nibs, coconut sugar, cacao butter), coconut sugar, cacao powder (6%), roasted almond butter maple syrup, salt.', './productImg/prod10.png', './productImg/prod10_1.jpg', './productImg/prod10_2.jpg', 1, 3, '2021-04-05 00:00:00'),
+(11, 111, 450, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients gluten free oats (85%), dried apple (6%), raisins (5%), sunflower seeds (2%), chia (salvia hispanica) seeds, freeze dried raspberries (1%).', './productImg/prod11.png', './productImg/prod11_1.jpg', './productImg/prod11_2.jpg', 1, 1, '2021-04-05 00:00:00'),
+(12, 112, 420, 'Ingredients gluten free oats (60%), mixed nuts (13%), (cashews (6%), almonds (4%), hazelnuts (3%)), date syrup, sunflower oil, maple syrup (4%), sunflower seeds (3%), orange juice (3%), pumpkin seeds (2%).', './productImg/prod12.png', './productImg/prod12_1.jpg', './productImg/prod12_2.jpg', 1, 1, '2021-04-05 00:00:00'),
+(13, 113, 480, '<span>The calories you consume of the meal gets 50% discount.</span><br> Ingredients maize (34%), brown rice flour (25.8%), roasted hazelnuts (12%), raisins (12%), coconut sugar (8.9%), amaranth flour (3.7%), toasted coconut chips, millet flour, salt.', './productImg/prod13.png', './productImg/prod13_1.jpg', './productImg/prod13_2.jpg', 1, 1, '2021-04-06 00:00:00'),
+(14, 114, 450, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients gluten free oats (73%), date syrup, sunflower oil, orange juice, freeze dried mixed berries (3%) (raspberries, blackcurrants, blueberries), sunflower seeds (2%).', './productImg/prod14.png', './productImg/prod14_1.jpg', './productImg/prod14_2.jpg', 1, 1, '2021-04-06 00:00:00'),
+(15, 115, 420, 'Ingredients gluten free oats (40%), roasted buckwheat (19%), date syrup, sunflower seeds (8%), puffed brown rice (6%), raisins (6%), sunflower oil, pumpkin seeds (3%), orange juice, desiccated coconut chips (2%), desiccated coconut.', './productImg/prod15.png', './productImg/prod15_1.jpg', './productImg/prod15_2.jpg', 1, 1, '2021-04-06 00:00:00'),
+(16, 116, 450, 'Ingredients gluten free jumbo oats (72%), raisins (10%), almonds (7%) dried apricots (5%), pumpkin seeds (5%), chia (salvia hispanica) seeds (2%).', './productImg/prod16.png', './productImg/prod16_1.jpg', './productImg/prod16_2.jpg', 1, 1, '2021-04-06 00:00:00'),
+(17, 117, 400, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients rice flour, cassava flour, chickpea flour (13%), corn flour, wholegrain rice flour, brown rice syrup, rapeseed oil, chia (salvia hispanica) seeds, salt, nigella seeds, smoked paprika, dried coriander, dried cumin, jalapeno chilli.', './productImg/prod17.png', './productImg/prod17_1.jpg', './productImg/prod17_2.jpg', 1, 2, '2021-04-06 00:00:00'),
+(18, 118, 420, 'Ingredients rice flour, cassava flour, sweet potato flour (13%), corn flour, rapeseed oil, wholegrain rice flour, brown rice syrup, chia (salvia hispanica) seeds, dried rosemary, salt, nigella seeds, paprika, turmeric.', './productImg/prod18.png', './productImg/prod18_1.jpg', './productImg/prod18_2.jpg', 1, 2, '2021-04-06 00:00:00'),
+(19, 119, 400, '<span>The calories you gain of the meal gets 150% PLUS.</span><br> Ingredients rice flour, cassava flour, corn flour, wholegrain rice flour, rapeseed oil, brown rice syrup, beetroot flour (6%), mixed seeds (3%) (chia (salvia hispanica) seeds, poppy seeds, nigella seeds), salt.', './productImg/prod19.png', './productImg/prod19_1.jpg', './productImg/prod19_2.jpg', 1, 2, '2021-04-06 00:00:00'),
+(20, 120, 450, 'Ingredients rice flour, cassava flour, sweet potato flour, seeds (10.5%) (chia, nigella, poppy), corn flour, brown rice syrup, wholegrain rice flour, canola/rapeseed oil, sea salt (3%), olive oil (1.2%), black pepper (0.8%), paprika.', './productImg/prod20.png', './productImg/prod20_1.jpg', './productImg/prod20_2.jpg', 1, 2, '2021-04-06 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1275,105 +1305,99 @@ INSERT INTO `weigth` (`mNo`, `wDate`, `wWeight`) VALUES
 -- 資料表的限制式 `dietrecord`
 --
 ALTER TABLE `dietrecord`
-  ADD CONSTRAINT `dietrecord_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dietrecord_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `dtritem`
 --
 ALTER TABLE `dtritem`
-  ADD CONSTRAINT `dtritem_ibfk_1` FOREIGN KEY (`fdNo`) REFERENCES `food` (`fdNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `dtritem_ibfk_2` FOREIGN KEY (`dtRNo`) REFERENCES `dietrecord` (`dtRNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dtritem_ibfk_1` FOREIGN KEY (`fdNo`) REFERENCES `food` (`fdNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dtritem_ibfk_2` FOREIGN KEY (`dtRNo`) REFERENCES `dietrecord` (`dtRNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `favoritea`
 --
 ALTER TABLE `favoritea`
-  ADD CONSTRAINT `favoritea_ibfk_1` FOREIGN KEY (`infoNo`) REFERENCES `information` (`infoNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `favoritea_ibfk_2` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `favoritea_ibfk_1` FOREIGN KEY (`infoNo`) REFERENCES `information` (`infoNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favoritea_ibfk_2` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `follow`
 --
 ALTER TABLE `follow`
-  ADD CONSTRAINT `follow_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `follow_ibfk_2` FOREIGN KEY (`mNoFollow`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `follow_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `follow_ibfk_2` FOREIGN KEY (`mNoFollow`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `food`
 --
 ALTER TABLE `food`
-  ADD CONSTRAINT `food_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `food_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `member`
 --
 ALTER TABLE `member`
-  ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`mLevel`) REFERENCES `level` (`mLevel`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`mLevel`) REFERENCES `level` (`mLevel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`postNo`) REFERENCES `post` (`postNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`postNo`) REFERENCES `post` (`postNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `messagereport`
 --
 ALTER TABLE `messagereport`
-  ADD CONSTRAINT `messagereport_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `messagereport_ibfk_2` FOREIGN KEY (`mesNo`) REFERENCES `message` (`mesNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `messagereport_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messagereport_ibfk_2` FOREIGN KEY (`mesNo`) REFERENCES `message` (`mesNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `orderlist`
 --
 ALTER TABLE `orderlist`
-  ADD CONSTRAINT `orderlist_ibfk_1` FOREIGN KEY (`orderNo`) REFERENCES `orders` (`orderNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `orderlist_ibfk_2` FOREIGN KEY (`prodNo`) REFERENCES `product` (`prodNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- 資料表的限制式 `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `orderlist_ibfk_1` FOREIGN KEY (`orderNo`) REFERENCES `orders` (`orderNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderlist_ibfk_2` FOREIGN KEY (`prodNo`) REFERENCES `product` (`prodNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `postreport`
 --
 ALTER TABLE `postreport`
-  ADD CONSTRAINT `postreport_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `postreport_ibfk_2` FOREIGN KEY (`postNo`) REFERENCES `post` (`postNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `postreport_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `postreport_ibfk_2` FOREIGN KEY (`postNo`) REFERENCES `post` (`postNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`fdNo`) REFERENCES `food` (`fdNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`fdNo`) REFERENCES `food` (`fdNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `sprecord`
 --
 ALTER TABLE `sprecord`
-  ADD CONSTRAINT `sprecord_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `sprecord_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `spritem`
 --
 ALTER TABLE `spritem`
-  ADD CONSTRAINT `spritem_ibfk_1` FOREIGN KEY (`spNo`) REFERENCES `sport` (`spNo`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `spritem_ibfk_2` FOREIGN KEY (`spRNo`) REFERENCES `sprecord` (`spRNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `spritem_ibfk_1` FOREIGN KEY (`spNo`) REFERENCES `sport` (`spNo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `spritem_ibfk_2` FOREIGN KEY (`spRNo`) REFERENCES `sprecord` (`spRNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `weigth`
 --
 ALTER TABLE `weigth`
-  ADD CONSTRAINT `weigth_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `weigth_ibfk_1` FOREIGN KEY (`mNo`) REFERENCES `member` (`mNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

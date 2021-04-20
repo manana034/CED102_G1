@@ -1,189 +1,57 @@
-@@include("./layout/B_head.html");
-<title>Member</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/B_lightbox.css">
+    <script src="./js/B_logout.js" defer></script>
+    <script src="./js/B_2vue.js" defer></script>
+    <script src="./js/B_header.js" defer></script>
+    <script src="./js/B_all.js" defer></script>
+    <title>Member</title>
 
 </head>
+
 <body>
 <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
-<!-- 右邊主欄 會員 -->
-    <div class="main_member main">
-        <div class="main_top">
-            <div class="page">
-                <div class="member">MEMBER</div>
-                <div id="level">LEVEL</div>
-            </div>
-            <div class="search_bar">
-                <div class="search-input">
-                    <input type="search" placeholder="Enter No. Or Name">
-                    <button>
-                        <img src="./icon/magnifier_white.png">
-                    </button>  
-                </div>
-            </div>
+<div class="member_management">
+    <div class="memberpage">
+        <div class="page">
+            <div class="member">MEMBER</div>
+            <div id="level">LEVEL</div>
         </div>
-        <div class="main_bottom">
-            <table>
-                <tr>
-                    <th>No</th>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Mail</th>
-                    <th>Phone</th>
-                    <th>Level</th>
-                    <th>Delete</th>
-                    <th>State</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>fatchen01</td>
-                    <td>陳大胖</td>
-                    <td>fatchen01@gmail.com</td>
-                    <td>0912345678</td>
-                    <td>Diamond</td>
-                    <td>
-                        <img class="delete" src="./icon/backend_trash.png">
-                    </td>
-                    <td>  
-                        <div class="button">
-                            <input type="checkbox">
-                            <label></label>
-                        </div>
-                    </td>
-                </tr>
-                
-            </table>
-        </div>
-    <!-- 確認停權/復權的燈箱 -->
-        <div class="lightbox_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>suspend</span> <span>fatchen01</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
-        </div>
-    <!-- 確認刪除的燈箱 -->
-        <div class="lightbox_delete_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>fatchen01</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
-                </div>
-            </div>
+        <div id="app1">
+            <all-member></all-member>
         </div>
     </div>
-<!-- 右邊主欄 level -->
-    <div class="main_level main">
-        <div class="main_top">
-            <div class="page">
-                <div id="member">MEMBER</div>
-                <div class="level">LEVEL</div>
-            </div>
+    <div class="levelpage">
+        <div class="page">
+            <div id="member">MEMBER</div>
+            <div class="level">LEVEL</div>
         </div>
-        <div class="main_bottom">
-            <table>
-                <tr>
-                    <th>Level</th>
-                    <th>Days on record</th>
-                    <th>Accumulated amount</th>
-                    <th>Edit</th>
-                </tr>
-                <tr>
-                    <td>Silver</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>
-                        <img class="edit" src="./icon/backend_edit.png">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Gold</td>
-                    <td>15</td>
-                    <td>1500</td>
-                    <td>
-                        <img class="edit" src="./icon/backend_edit.png">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Diamond</td>
-                    <td>30</td>
-                    <td>3000</td>
-                    <td>
-                        <img class="edit" src="./icon/backend_edit.png">
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <!-- 修改的燈箱 -->
-        <div class="lightbox_edit_black">
-            <div class="lightbox" >                                        
-                <h6>Edit Upgrade Conditions</h6>
-                <div>
-                    <div class="acc_title">Level</div>
-                    <div class="acc_acc_con">Gold</div>
-                </div>
-                <div>
-                    <div class="acc_title">Days</div>
-                    <div>
-                        <input type="text" required="required" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="acc_title">Amount</div>
-                    <div>
-                        <input type="text" required="required" class="acc_con">
-                        <div class="acc_tip">Please enter only numbers.</div>
-                    </div>
-                </div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Edit</button>
-                </div>                                                                                                                        
-            </div>
+        <div id="app2">
+            <all-level></all-level>
         </div>
     </div>
-
-
+</div>
 
 <script>
-    $(function(){
-        // 確認 lightbox
-        $('div.button>label').click(function(){
-            $('.lightbox_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-            $(this).siblings().attr('checked', function(index, attr){
-                return attr == 'checked' ? null : 'checked';
-            });
-        });
-        // 刪除 lightbox
-        $('img.delete').click(function(){
-            $('.lightbox_delete_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-        });
-        // 修改 lightbox
-        $('img.edit').click(function(){
-            $('.lightbox_edit_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_edit_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_edit_black').css('display','none');
-            });
-        });
+    $(`li:nth-child(2)`).attr('class', 'on');
+    $('#level').click(function(){
+        $('.memberpage').css('display','none');
+        $('.levelpage').css('display','block');
     });
-    </script>
+    $('#member').click(function(){
+        $('.levelpage').css('display','none');
+        $('.memberpage').css('display','block');
+    });
+</script>
 </body>
 </html>

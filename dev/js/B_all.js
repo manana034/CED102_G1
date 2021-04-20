@@ -1,13 +1,6 @@
 $(document).ready(function(){
-    // 2_Member 切換分頁
-    $('#level').click(function(){
-        $('.main_member').css('display','none');
-        $('.main_level').css('display','inline-flex');
-    });
-    $('#member').click(function(){
-        $('.main_level').css('display','none');
-        $('.main_member').css('display','inline-flex');
-    });
+    setTimeout(() => {
+        
     // 3_Calories Item 切換分頁
     $('#exercise').click(function(){
         $('.main_food').css('display','none');
@@ -16,15 +9,6 @@ $(document).ready(function(){
     $('#food').click(function(){
         $('.main_exercise').css('display','none');
         $('.main_food').css('display','inline-flex');
-    });
-    // 7_Report 切換分頁
-    $('#message').click(function(){
-        $('.main_post').css('display','none');
-        $('.main_message').css('display','inline-flex');
-    });
-    $('#post').click(function(){
-        $('.main_message').css('display','none');
-        $('.main_post').css('display','inline-flex');
     });
     // tabla內的icon hover效果
     $('img.delete').hover(function(){
@@ -39,7 +23,7 @@ $(document).ready(function(){
     });
     // menu底色變
     let x = parseInt(location.pathname.substr(1,1));
-    $(`li:nth-child(${x})`).attr('class', 'on');
+    $`(li:nth-child(${x}))`.attr('class', 'on');
     // 日曆
     // var drp = $('#daterange').data('daterangepicker');
     // $('input[name="dates"]').daterangepicker();
@@ -63,4 +47,5 @@ $(document).ready(function(){
     }, function(start, end, label) {
         console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
+    },500);
 });

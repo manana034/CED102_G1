@@ -92,14 +92,14 @@
     }
 }
 
-.main_food, .main_exercise, .main, .report {
+.main_food, .main_exercise, .main, .report, .member_management {
     padding-left: 5%;
     max-width: calc(95% - 250px);
     position: absolute;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: column;
-    div.main_top, .postpage, .messagepage {
+    div.main_top, .postpage, .messagepage, .memberpage, .levelpage {
         div.page {
             margin-bottom: 40px;
             display: flex;
@@ -289,7 +289,7 @@
             }
         }
     }
-    .messagepage {
+    .messagepage, .levelpage {
         display: none;
     }
     div.main_bottom {
@@ -425,7 +425,7 @@
         }
     }
 }
-.main_exercise, .main_level {
+.main_exercise {
     display: none;
 }
 

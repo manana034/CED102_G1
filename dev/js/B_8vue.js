@@ -351,7 +351,7 @@ Vue.component('edit-info', {
 
         //點擊 確認修改後將資料傳至DB
         edit_info_func: async function (infoType,infoTitle,infoPhoto1,infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3) {
-            // console.log(infoType,infoTitle,infoPhoto1,infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3);
+            console.log(infoType,infoTitle,infoPhoto1,infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3);
 
             //送出編輯前 確認欄位 是否符合規定
             if (infoTitle.length >= 1 && infoTitle.length <= 50) {
@@ -385,7 +385,7 @@ Vue.component('edit-info', {
             let Photo3 = document.getElementById('infoPhoto3').files;
 
             let formData = new FormData();
-            formData.append('infoNo', this.inforNo);
+            formData.append('infoNo', this.infoNo);
             formData.append('infoType', this.infoType);
             formData.append('infoTitle', this.infoTitle);
             formData.append('infoContent1', this.infoContent1);
@@ -394,6 +394,7 @@ Vue.component('edit-info', {
             formData.append('infoPhoto1', Photo1);
             formData.append('infoPhoto2', Photo2);
             formData.append('infoPhoto3', Photo3);
+            console.log(formData);
 
             //=====ajax
             let xhr = new XMLHttpRequest();

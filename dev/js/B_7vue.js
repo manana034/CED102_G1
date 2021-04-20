@@ -48,11 +48,12 @@ Vue.component('all-post', {
                 <td>{{changetype(value.postRepFor)}}</td>
                 <td>{{value.postRepTime}}</td>
                 <td>
-                    <select class="Type" name="Type" v-model="value.postRevState" @change="lightbox_show(value.postNo,value.postRevState)">
+                    <select class="Type" name="Type" v-model="value.postRevState" v-if="value.postRevState == 1" @change="lightbox_show(value.postNo,value.postRevState)">
                         <option value="1">Pending</option>
                         <option value="2">Passed</option>
                         <option value="3">Failed</option>
                     </select>
+                    <span v-else>{{changestatetype(value.postRevState)}}</span>
                 </td>
             </tr>
         </table>
@@ -86,6 +87,14 @@ Vue.component('all-post', {
                 return 'Indecent words';
             } else if (postRepFor == 3) {
                 return 'Other';
+            }
+        },
+
+        changestatetype(postRevState) {
+            if (postRevState == 2) {
+                return 'Passed';
+            } else if (postRevState == 3) {
+                return 'Failed';
             }
         },
 
@@ -181,11 +190,12 @@ Vue.component('all-message', {
                 <td>{{changetype(value.mesRepFor)}}</td>
                 <td>{{value.mesRepTime}}</td>
                 <td>
-                    <select class="Type" name="Type" v-model="value.mesRevState" @change="lightbox_show(value.mesNo,value.mesRevState)">
+                    <select class="Type" name="Type" v-model="value.mesRevState" v-if="value.mesRevState == 1" @change="lightbox_show(value.mesNo,value.mesRevState)">
                         <option value="1">Pending</option>
                         <option value="2">Passed</option>
                         <option value="3">Failed</option>
                     </select>
+                    <span v-else>{{changestatetype(value.mesRevState)}}</span>
                 </td>
             </tr>
         </table>
@@ -219,6 +229,14 @@ Vue.component('all-message', {
                 return 'Indecent words';
             } else if (mesRepFor == 3) {
                 return 'Other';
+            }
+        },
+
+        changestatetype(mesRevState) {
+            if (mesRevState == 2) {
+                return 'Passed';
+            } else if (mesRevState == 3) {
+                return 'Failed';
             }
         },
 
