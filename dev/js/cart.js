@@ -61,6 +61,69 @@ function display(){
         }
         function minusValue(e){
             this.parentNode.children[1].stepDown(1);
+            for(let i = 0; i <localProduct.length; i++){
+                if(e.target.parentElement.parentElement.parentElement.children[0].innerText === localProduct[i].product){
+                    let newValue = e.target.parentElement.children[1].value;
+                    localProduct[i].value = newValue;
+                    update();
+                    total();
+                    break;
+                }
+            }
         }
+        plus.forEach(plus =>plus.addEventListener("click",plusValue));
+        minus.forEach(minus =>minus.addEventListener("click",minusValue));
     }
+
+    //更新localStorage資料
+    function update(){
+        localStorage.setItem('localProduct', JSON.stringify(localProduct));
+    }
+    show();
+
+    //按 add to cart 新增清單
+    byn.forEach(btn =>btn.addEventListener("click",e=>{
+        let item ={
+            src: e.target.parentNode.children[0].children[0].children[0].src,
+            product: e.target.parentNode.children[1].children[0].innerText,
+            price: e.target.parentNode.children[1].children[1].dataset.price,
+            value: e.target.parentNode.dataset.value
+        }
+        
+        displayProduct(item)
+        
+        localProduct.push(item)
+
+        update(item)
+
+        total()
+    }))
+
+    //點按 X 刪除鍵
+    displayArea.addEventListener('click', event =>{
+        if(event.target.tagName !== 'SPAN') {return}
+        const li = event.target.parentElement
+        li.remove();
+        for(let i = 0; i <localProduct.length; i++){
+            if(li.children[1].children[0].textContent === localProduct[i].product){
+                localProduct.splice(i,1);
+                break;
+            }
+        }
+        total()
+        update()
+    });
+
+    // 更新total的值
+    function total() {
+        let subtotal = 0;
+        const total = document.querySelector(".total h3 span");
+        for(let i =0; i<localProduct.length ; i++){
+            let item = localProduct[i];
+            subtotal += (item.price * item.value);
+        }
+        total.innerText = subtotal;
+    };
+    total();
 }
+display();

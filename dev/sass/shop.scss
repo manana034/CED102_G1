@@ -487,6 +487,8 @@
   .select-items div,.select-selected {
     padding: 5px;
     border: 1px solid transparent;
+    position: relative;
+    bottom: 14px;
     // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     // cursor: pointer;
     user-select: none;
@@ -585,6 +587,9 @@
     } 
 
      .products{
+         display: flex;
+         flex-direction: column;
+         align-items: center;
         .sort{
             position:absolute;
             top: 10px;
@@ -597,7 +602,7 @@
      .products{
          ul{
                 li{
-                   margin: 65px;
+                   margin: 145px;
                      &:nth-child(2n+2){
                          margin: 65px;
                      } 

@@ -1,5 +1,4 @@
 //moreproduct.html / shop.html
-
    //buy now to cart
    const buynow = document.querySelectorAll(".byn");
     console.log(buynow);
