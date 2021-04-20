@@ -1,19 +1,31 @@
-<section class="moreproduct">  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>    
+
+<section class="moreproduct" id="moreproduct">  
     <ul>
-        <li class="prod1">
+        <li v-for="(more,index) in prods" class="prod1">
             <a href="./product.html">   
-                <div class="bg">
-                     <img src="./img/prod1.png">
-                </div>
+                <a v-bind:href="more.url" @click="prodInfo(index)">   
+                    <div class="bg" v-bind:style="more" v-if="parseFloat(more.calRate) > 1" style="backgroundColor:#bf4659">
+                        <img v-bind:src="more.prodpic1">
+                    </div>
+                    <div class="bg" v-bind:style="more" v-else-if="more.calRate < 1" style="backgroundColor:#2d6ca6">
+                        <img v-bind:src="more.prodpic1">
+                    </div>
+                    <div class="bg" v-bind:style="more" v-else-if="more.calRate = 1" style="backgroundColor:#f9c530">
+                        <img v-bind:src="more.prodpic1">
+                    </div>
                 <div class="prodinfo">
-                    <p>ALMONDS BAR<br> (CONSUME 0.5 cal)</p>
-                    <p>NT$250</p>      
+                    <p>{{more.fdName}}}</p>
+                    <!-- <p v-if="more.calRate > 1">  Get 150% Cal Plus</p>
+                    <p v-else-if="more.calRate < 1">  Consume 50% Cal</p>
+                    <p v-else> </p> -->
+                    <p>NT${{more.price}}</p>       
                 </div>
              </a>   
-            <!-- <button class="byn">BUY NOW</button>   -->
+            <button class="byn">BUY NOW</button>  
         </li>
-       <li class="prod2">
-            <a href="./product.html">
+       <!-- <li class="prod2"> -->
+            <!-- <a href="./product.html">
                 <div class="bg">   
                      <img src="./img/prod2.png">    
                 </div>   
@@ -21,9 +33,9 @@
                     <p>BANANA BAR</p>
                     <p>NT$300</p>              
                 </div>
-            </a> 
+            </a>  -->
             <!-- <button class="byn">BUY NOW</button>       -->
-        </li>
+        <!-- </li>
         <li class="prod3">
             <a href="./product.html">
                 <div class="bg"> 
@@ -33,9 +45,9 @@
                     <p>STRABERRY BITES<br> (PLUS 1.5 cal)</p>
                     <p>NT$230</p> 
                 </div> 
-            </a>  
+            </a>   -->
             <!-- <button class="byn">BUY NOW</button>  -->
-        </li>
+        <!-- </li>
         <li class="prod4">
             <a href="./product.html">
                 <div class="bg">
@@ -45,9 +57,9 @@
                     <p>COCO ALMONDS<br> (CONSUME 0.5 cal)</p>
                     <p>NT$250</p>      
                 </div>
-            </a>
+            </a> -->
             <!-- <button class="byn">BUY NOW</button>   -->
-        </li>
+        <!-- </li>
         <li class="prod5">
             <a href="./product.html">
                 <div class="bg">
@@ -57,10 +69,31 @@
                     <p>ENERGY BALL</p>
                     <p>NT$200</p> 
                 </div>
-            </a>
+            </a> -->
              <!-- <button class="byn">BUY NOW</button>   -->
-        </li>
     </ul>
 </section>
 
+<script>
+
+    let vm1 = new Vue({
+        el:"#moreproduct",
+        data:{
+            prods:[],
+
+        }
+    })
+
+    // 資料庫
+     fetch(`./php/getMoreProduct.php`).then(res => res.json())
+                                    .then(data => {
+                                        console.log(data);
+                                        data.forEach(d => {
+                                                vm1.prods.push(d);
+                                                // console.log(vm.prod);
+                                        })
+                                        // vm.prod = data;                                 
+                                    });
+                                    console.log(vm1.prods);
+</script>
 <!-- <script src="./js/buy.js"></script> -->

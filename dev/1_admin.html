@@ -1,5 +1,23 @@
-@@include("./layout/B_head.html");
-<title>Admin</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/common/all.css">
+    <link rel="stylesheet" href="./css/common/B_lightbox_none.css">
+    
+    <script src="./js/B_header.js" defer></script>
+    <script src="./js/B_all.js" defer></script>
+    <script src="./js/B_logout.js" defer></script>
+    <script src="./js/B_allvue.js" defer></script>
+    <title>Admin</title>
 
 </head>
 <body>
@@ -9,7 +27,8 @@
     <div class="main">
         <div class="main_top">
             <div class="add">
-                <button>
+                <button
+                    @click="OpenCreateBox">
                     <img src="./icon/add_white.png">
                     ADD
                 </button>
@@ -17,29 +36,46 @@
         </div>
         <div class="main_bottom">
             <table>
-                <tr>
-                  <th>No</th>
-                  <th>Name</th>
-                  <th>Id</th>
-                  <th>Delete</th>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>adminB</td>
-                    <td>adminBid</td>
-                    <td>
-                        <img class="delete" src="./icon/backend_trash.png">
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Id</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="admin in adminData">
+                        <td>{{admin.aNo}}</td>
+                        <td>{{admin.aName}}</td>
+                        <td>{{admin.aId}}</td>
+                        <td>
+                            <img 
+                                class="delete" 
+                                src="./icon/backend_trash.png"
+                                @click="deleteAdmin(admin.aNo)">
+                        </td>
+                    </tr>
+                </tbody>
+    
             </table>
         </div>
         <!-- 確認刪除的燈箱 -->
         <div class="lightbox_delete_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>adminA</span> ?</div>
+                <div class="content">Do you want to <span>delete</span> <span>this admin</span> ?</div>
                 <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
+                    <button 
+                        @click="delCancelBtn"
+                        class="cancel">
+                        Cancel
+                    </button>
+                    <button 
+                        class="continus"
+                        @click="delContinusBtn">
+                        Continus
+                    </button>
                 </div>
             </div>
         </div>
@@ -50,62 +86,216 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" maxlength="20" required="required" class="acc_con">
+                        <input 
+                            type="text" 
+                            maxlength="20" 
+                            required="required" 
+                            class="acc_con"
+                            v-model="aName"
+                            placeholder="請輸入20字內">
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Id</div>
                     <div>
-                        <input type="text" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <input 
+                            type="text" 
+                            minlength="6" 
+                            maxlength="10" 
+                            required="required" 
+                            class="acc_con"
+                            placeholder="請輸入6~10字內"
+                            v-model="aId">
                         <div class="acc_tip">Please enter 6~10 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Password</div>
                     <div>
-                        <input type="password" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <input 
+                            type="password" 
+                            minlength="6" 
+                            maxlength="10" 
+                            required="required" 
+                            class="acc_con"
+                            placeholder="請輸入6~10字內"
+                            v-model="aPsw">
                         <div class="acc_tip">Please enter 6~10 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Confirm Password</div>
                     <div>
-                        <input type="password" minlength="6" maxlength="10" required="required" class="acc_con">
+                        <input 
+                            type="password" 
+                            minlength="6" 
+                            maxlength="10" 
+                            required="required" 
+                            class="acc_con"
+                            placeholder="再次確認密碼"
+                            v-model="aCfmPsw">
                         <div class="acc_tip">Please enter 6~10 characters.</div>
                     </div>                    
                 </div>
                 <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
+                    <button 
+                        class="cancel"
+                        @click="CloseCreateBox">
+                        Cancel
+                    </button>
+
+                    <button 
+                        class="continus"
+                        @click="AddCreateBox">
+                        Add
+                    </button>
                 </div>                                                                                                                 
             </div>
         </div>
     </div>
 
 <script>
-    $(function(){
-        // 刪除 lightbox
-        $('img.delete').click(function(){
-            $('.lightbox_delete_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_delete_black').css('display','none');
-            });
-        });
-        // 新增 lightbox
-        $('.add>button').click(function(){
-            $('.lightbox_add_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_add_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_add_black').css('display','none');
-            });
-        });
-    });
+    const select = (selector) =>{
+        return document.querySelector(selector)
+    }
+    const selectAll = (selector) =>{
+        return document.querySelectorAll(selector)
+    }
+
+    const main = new Vue({
+        el: '.main',
+        data() {
+            return {
+                adminData: [],
+
+                //這是delbutton
+                delBox: null,
+                beDeletedAdminNo: '',
+
+                createBox: null,
+
+                aName: '',
+                aId: '',
+                aPsw: '',
+                aCfmPsw: '',
+
+                getAdminDate: null,
+
+            }
+        },
+        methods: {
+            deleteAdmin(aNo){
+                this.delBox.style.display = "block"
+                this.beDeletedAdminNo = aNo
+            },
+            delCancelBtn(){
+                this.delBox.style.display = "none"
+                this.beDeletedAdminNo = ''
+            },
+            delContinusBtn(){
+                // alert(this.beDeletedAdminNo)
+                fetch('php/deleteAdmin.php',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'aNo': this.beDeletedAdminNo,
+                    }),
+                }).then(res => {console.log(res)})
+
+                this.delBox.style.display = "none"
+                this.adminData = this.adminData.filter(i=> i.aNo !== this.beDeletedAdminNo)
+            },
+
+            OpenCreateBox(){
+                this.createBox.style.display = 'block';
+            },
+            CloseCreateBox(){
+                this.createBox.removeAttribute('style')
+            },
+
+            AddCreateBox(){
+                // this.readerAdmin = 
+                let Vthis = this;
+                function createNewAdmin(name,id,psw){
+                    fetch('php/createAdmin.php',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            'aName': name,
+                            'aId':id,
+                            'aPsw':psw
+                        }),
+                    })
+                    .then(res=>{
+                        if(res.ok){
+                            Vthis.getAdminDate()
+                            console.log(res.json())
+                        }
+
+                    })
+                }
+
+                if(this.aCfmPsw&&this.aName&&this.aId&&this.aPsw){
+                    if(this.aCfmPsw.length < 6 ||this.aPsw.length<6||this.aId.length<6 ){
+                        alert('請輸入有效格式')
+                    } else{
+                        if(this.aCfmPsw == this.aPsw){
+                            
+                            fetch('php/checkAdmin.php',{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    'aId': this.aId,
+                                }),
+                            }).then(res=>{
+                                if(res.ok) {
+                                    return res.json()
+                                }
+                            }).then(res =>{ 
+                                if(res.aNo){
+                                    alert('ID已經被使用了,請更換')
+                                } else{
+                                    console.log('可以使用該帳號了')
+                                    createNewAdmin(this.aName,this.aId,this.aPsw)
+                                    this.createBox.removeAttribute('style')
+                                }
+                            })
+
+                        }else{
+                            alert('確認密碼不一致')
+                        }
+                    }
+                } else {
+                    alert('請填寫所有表格')
+                }
+            }
+
+        },
+
+        mounted() {
+            this.delBox = select('.lightbox_delete_black')
+            this.createBox = select('.lightbox_add_black')
+
+
+            this.getAdminDate = function(){
+                fetch('php/getAdminDate.php')
+                .then(res=>res.json())
+                .then(res =>{
+                    console.log(res)
+                    this.adminData = res
+                })
+            }
+            this.getAdminDate()
+
+        },
+    })
     </script>
 </body>
 </html>

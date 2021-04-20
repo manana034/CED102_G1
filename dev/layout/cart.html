@@ -4,19 +4,27 @@
         <h5>Your Cart</h5>
         <p class="close">&times;</p>
     </div>
-    <div class="prod">
-        <div class="prodcart">
+    <ul class="prod">
+        <li class="prodcart">
             <p>ALMONDS SALTED CHOCOLATE BAR</p>
+            <div class="cartimg">
+                <img src="productImg/prod1.png"> 
+            </div>
+            <img class="trash" src="./img/trash.png">
             <div class="qty">
-                    <p>QTY:1</p> 
+                <form>
+                    <label for="quantity">QUANTITY : </label>
+                    <div class="btn_number">
+                        <span class="btn_minus"> &minus; </span>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="10">
+                        <span class="btn_add">  &plus; </span>
+                    </div>                    
+                </form> 
                     <p>NT$250</p>
             </div>
-        </div>
-        <div class="cartimg">
-            <img src="./img/prod1.png"> 
-        </div>
-        <img class="trash" src="./img/trash.png">
-    </div>
+        </li>
+        
+    </ul>
     <div class="allprice">
         <div class="line"></div>
         <p>TOTAL : NT$ 250</p>
