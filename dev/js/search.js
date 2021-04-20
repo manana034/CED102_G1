@@ -6,7 +6,7 @@ let vm = new Vue({
         foodData: [],
         foodSearch: '',
 
-        sportData: [],
+        sportData: [], 
         sportSearch: '',
 
         isFoodState: true,
