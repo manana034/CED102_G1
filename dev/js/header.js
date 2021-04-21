@@ -7,6 +7,7 @@ const select = (selector) => {
 const selectAll = (selector) => {
     return document.querySelectorAll(selector)
 }
+
 function checkLoggedin() {
     let xhr = new XMLHttpRequest()
     xhr.onload = () => {
@@ -77,6 +78,7 @@ menuIcon.addEventListener('click', (e) => {
 menuCIcon.addEventListener('click', () => {
     menuBody.style.transform = 'translate(100%,0)'
 })
+
 document.addEventListener('click', closeMenu)
 
 // -------------------------menu open↑↑↑↑↑↑↑↑↑↑↑↑

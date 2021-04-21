@@ -375,7 +375,7 @@ const app = new Vue({
                 console.log('自動登入這裡 成功')
                 clearTimeout(timeCheckLoggedin)
             }
-        },100)
+        },300)
     },
 })
 

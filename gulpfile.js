@@ -15,6 +15,10 @@ function movePhp(){
     return src('./dev/php/*').pipe(dest('./dist/php'))
 }
 
+function movePhpFromHtml() {
+    return src('./dev/*.php').pipe(dest('./dist'))
+}
+
 function movePostImg(){
     return src('./dev/postImg/*').pipe(dest('./dist/postImg'))
 }
@@ -135,6 +139,8 @@ exports.browser = function browsersync() {
     //與browser同步
     // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle).on('change', reload);
     watch('./dev/php/*', movePhp).on('change', reload)
+    watch('./dev/*.php', movePhpFromHtml).on('change',reload)
+
     watch('./dev/infoImg/*', moveInfoImg).on('change', reload)
     watch('./dev/memberImg/*', moveMemberImg).on('change', reload)
     watch('./dev/productImg/*', moveProductImg).on('change', reload)
@@ -154,6 +160,8 @@ exports.w = function watchFiles() {
     // watch(['./dev/sass/**/*.scss', '!dev/sass/pages/*.scss'], commonStyle);
     // watch('./dev/sass/page/*', pageStyle);
     watch('./dev/php/*', movePhp);
+    watch('./dev/*.php', movePhpFromHtml);
+
     watch('./dev/infoImg/*', moveInfoImg);
     watch('./dev/memberImg/*', moveMemberImg);
     watch('./dev/productImg/*', moveProductImg);
