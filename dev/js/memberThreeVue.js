@@ -246,7 +246,7 @@ Vue.component('profile-body', {
                     }
                     xhr.open('POST', 'php/updateMemberImg.php', true)
                     let data_info = new FormData(select('#profileForm'))
-                    xhr.send(data_info)
+                    xhr.send(data_info) 
                 } 
 
                 //如果體重 Vuex的資料 跟 現場資料不一樣 

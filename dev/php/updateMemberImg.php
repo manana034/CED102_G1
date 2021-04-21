@@ -25,7 +25,7 @@ try{
 		$to = "../memberImg/$fileName";
 
 
-		if(copy( $from, $to) === true) {
+		if(copy( $from, $to) === true) { 
 			$sql = "SET SQL_SAFE_UPDATES=0;
 			UPDATE member
 			set mImg =:mImg 
