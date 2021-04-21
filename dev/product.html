@@ -63,10 +63,11 @@
         </div>
        
     </div>
+
     <h6>MORE FITNESS?</h6>  
     @@include('./layout/moreproduct.html')
     
-
+    @@include('./layout/footer.html')
     <script>
     //buy now to cart
     // const buynow = document.querySelectorAll(".byn");
@@ -87,28 +88,43 @@
           cart(){
             cart.classList.add("opencart");
           },
-        }
+        },
+        mounted() {
+            // console.log('work')
+            //資料庫
+            const sessionId = sessionStorage.getItem("no");
+            // console.log(sessionId)
+            let xhr = new XMLHttpRequest()
+            xhr.onload = function(){
+                console.log('在這裡抓回資料')
+                vm.prod = JSON.parse(xhr.responseText);
+                // console.log(JSON.parse(xhr.responseText))
+                // console.log(xhr.responseText)
+                // console.log(vm)
+            }
+            xhr.open('GET',`php/getProduct.php?pNo=${sessionId}`)
+            xhr.send(null)
+        },
     })
 
 
-      //資料庫
-      const sessionId = sessionStorage.getItem("no");
 
-      fetch(`./php/getProduct.php`).then(res => res.json())
-                                    .then(data => {
-                                        // console.log(data);
-                                        data.forEach(d => {
-                                            if(d.prodNo === sessionId){
-                                                vm.prod = d;
-                                                // console.log(vm.prod);
-                                            }
-                                        })
-                                        // vm.prod = data;                                 
-                                    });
-                                                    // console.log(vm.prod);
-                                                    // console.log(vm.prod);
-                                                    // console.log(vm1.prods);
+    //   fetch(`./php/getProduct.php`).then(res => res.json())
+    //                                 .then(data => {
+    //                                     // console.log(data);
+    //                                     data.forEach(d => {
+    //                                         if(d.prodNo === sessionId){
+    //                                             vm.prod = d;
+    //                                             // console.log(vm.prod);
+    //                                         }
+    //                                     })
+    //                                     // vm.prod = data;                                 
+    //                                 });
+    //                                                 // console.log(vm.prod);
+    //                                                 // console.log(vm.prod);
+    //                                                 // console.log(vm1.prods);
     </script>
+     
     <script src="./js/cart.js"></script>
     <script src="./js/quantity.js"></script>
 
