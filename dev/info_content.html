@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEALTH NEWS</title>
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/common/info_content.css">
     <script src="./js/header.js" defer></script>
     <script src="./js/cart.js" defer></script>
@@ -14,34 +14,34 @@
 <body>
     @@include('./layout/header.html')
     @@include('./layout/cart.html')
-    <div id="app">
+    <div id="infoContent">
         <div id="bookmark_box">
             <div>
-                <img src="../icon/checked.svg">
+                <img src="./icon/checked.svg">
                 <div>Added to favorites</div>
             </div>
         </div>
         <main>
-            <p class="title">{{infoTitle}}</p>
+            <p class="title">{{info.infoTitle}}</p>
             <div class="date">
-                <div>{{infoTime}}</div>
+                <div>{{info.infoTime}}</div>
                 <div id="bookmark" @click="info_edit(infoNo)">
                     <img class="bookmark" src="./img/bookmark-white.png">
                     <p>KEEP</p>
                 </div>
             </div>
-            <img class="infophoto1" :src="value.infoPhoto1" v-if="(infoPhoto1).slice(-3) == 'jpg'">
-            <video :src="value.infoPhoto1" width="1200" height="675" controls poster="./img/info_logo.png" id="infovideo1" class="infovideo1" v-else></video>
-            <p>{{infoContent1}}</p>
+            <img class="info.infoPhoto1" :src="info.infoPhoto1" v-if="(info.infoPhoto1).slice(-3) == 'jpg'">
+            <video :src="info.infoPhoto1" width="1200" height="675" controls poster="./img/info_logo.png" id="infovideo1" class="infovideo1" v-else></video>
+            <p>{{info.infoContent1}}</p>
             
             <section class="top">
-                <div><img :src="infoPhoto2"></div>
-                <p>{{infoContent2}}</p>
+                <div><img :src="info.infoPhoto2"></div>
+                <p>{{info.infoContent2}}</p>
             </section>
 
             <section class="bottom">
-                <div><img :src="infoPhoto3"></div>
-                <p>{{infoContent3}}</p>
+                <div><img :src="info.infoPhoto3"></div>
+                <p>{{info.infoContent3}}</p>
             </section>
             <div>
                 <a href="information.html">
@@ -49,36 +49,27 @@
                 </a>
             </div>
         </main>
-        <div class="bottom">
-            <h6>MORE FITNESS?</h6>  
-            @@include('./layout/moreproduct.html')
-        </div>
+    </div>
+    <div class="bottom">
+        <h6>MORE FITNESS?</h6>  
+        @@include('./layout/moreproduct.html')
     </div>
     @@include('./layout/footer.html')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
 <script>
     let vm = new Vue({
-        el: "#app",
-        data: {
-            infos: [],
+        el:"#infoContent",
+        data:{
+            info:[],
+            
         },
         methods: {
-            //呼叫php程式，取回相關資料，並用json()轉回一般陣列
-            get_info: async function () {
-                const res = await fetch('./php/getOneInfoData.php', {}).then(function (data) {
-                    return data.json();
-                });
-                // 取回res值後，呼叫另一隻函式
-                this.infos = res;
-            },
-        },
-        // template 渲染前 會先去執行以下函式
-        created() {
-            this.get_info();
-        },
-        mounted() {},        
+        }
     })
+
+
     // $(document).ready(function(){
     //     $('#bookmark').click(function(){
     //         $('#bookmark_box').css('display','block').animate({
@@ -96,11 +87,34 @@
     //     });
     // });
         // });
-    const infoNo = sessionStorage.getitem("infoNo");
-        fetch(`./php/getInfo.php?infoNo=${infoNo}`).then(res => res.json())
-        .then(data => {
-            vm.infos = data;
-        };
+    //資料庫
+    const infoNo = sessionStorage.getItem("infoNo");
+
+    fetch(`./php/allInfoData.php`).then(res => res.json())
+                              .then(data => {
+                                  // console.log(data);
+                                  data.forEach(d => {
+                                      if(d.infoNo === infoNo){
+                                          vm.info = d;
+                                          // console.log(vm.prod);
+                                      }
+                                  })
+                                  // vm.prod = data;                                 
+                              });
+                                              // console.log(vm.prod);
+                                              // console.log(vm.prod);
+                                              // console.log(vm1.prods);
+        // const infoNo = sessionStorage.getitem("infoNo");
+
+        // fetch(`./php/allInfoData.php`).then(res => res.json())
+        // .then(data => {
+        //     for(let i=0 ; i<data.length ; i++){
+        //         if(infoNo == data[i].infoNo){
+        //             // console.log(data[i]);
+        //             console.log(data[i]);
+        //         }
+        //     }
+        // })
 
 
 </script>

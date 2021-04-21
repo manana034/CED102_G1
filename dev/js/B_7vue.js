@@ -42,9 +42,9 @@ Vue.component('all-post', {
                 <td>{{value.mNo}}</td>
                 <td>{{value.postNo}}</td>
                 <td>
-                    <img :src="value.postPhoto">
+                    <img :src="value.postPhoto" width="200px">
                 </td>
-                <td>{{value.postContent}}</td>
+                <td v-html="value.postContent"></td>
                 <td>{{changetype(value.postRepFor)}}</td>
                 <td>{{value.postRepTime}}</td>
                 <td>

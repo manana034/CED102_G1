@@ -12,7 +12,7 @@
 
         $numberId = $per_info_data->fetchAll(PDO::FETCH_ASSOC);
         json_encode($numberId);
-        echo "Successfully deleted";
+        // echo "Successfully deleted";
     } catch (PDOException $e) {
         echo $e->getMessage(), "<br>";
         echo $e->getLine(), "<br>";
