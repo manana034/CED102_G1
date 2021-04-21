@@ -27,21 +27,21 @@
     @@include('./layout/header.html')
     @@include('./layout/cart.html')
     <div class="containor Cal_Dairy">
-        <div class = "l-aside Cal_Dairy" >
+        <div class = "l-aside Cal_Dairy" id="app7">
             <div class= "cal_aside">
                 <p class="aside_title">CURRENT STATE</p>
                 <div class="aside_inf">
                    <div class="person_inf">
                         <p>GENDER :</p>
-                        <p class="gender">Male</p>
+                        <p class="gender">{{gender[(memberInfo.mSex)-1]}}</p>
                    </div>
                    <div class="person_inf">
                         <p>HEIGHT(cm) :</p>
-                        <p class="hight">170</p>
+                        <p class="hight">{{memberInfo.mHeight}}</p>
                     </div>
                     <div class="person_inf">
                         <p>AGE :</p>
-                        <p class="age">20</p>
+                        <p class="age">{{age}}</p>
                     </div>
                 </div>
             </div>
@@ -49,21 +49,21 @@
                 <p class="aside_title">CURRENT WIGHT(KG)</p>
                 <div class="aside_inf">
                     <P class="aside_inf_title">WEIGHT(KG)</P>
-                    <P class="aside_inf_data">100</P>
+                    <P class="aside_inf_data">{{wieght[0].wWeight}}</P>
                 </div>  
             </div>
             <div class= cal_aside>
                 <p class="aside_title">GOAL WEIGHT</p>
                 <div class="aside_inf">
                     <P class="aside_inf_title">WEIGHT(KG)</P>
-                    <P class="aside_inf_data">80</P>
+                    <P class="aside_inf_data">{{memberInfo.mGoalW}}</P>
                 </div>   
             </div>
             <div class= cal_aside>
                 <p class="aside_title">YOUR BMI</p>
                 <div class="aside_inf">
                     <P class="aside_inf_title">CAL</P>
-                    <P class="aside_inf_data">2200</P>
+                    <P class="aside_inf_data">{{BMR}}</P>
                 </div>     
             </div>
             <div class="w-btn Cal_Dairy">
@@ -71,7 +71,8 @@
             </div>
         </div>
         <div class="center Cal_Dairy">
-            <div class="top_area">
+        
+            <div class="top_area" id="app8">
                 <div class="card CurGoal">
                     <div class="title_back"></div>
                     <p class="CurGoal_title">
@@ -82,21 +83,29 @@
                         <div class="rest_cal">
                             <p>REST CALORIS</p>
                             <div class="rest_cal_content">
-                                  
-                                <img clss="body_sch_mask" src="img/body_icon.png">
+                                 <div class="body_sch_mask_t">
+                                    <div class="body_sch_mask2">
+                                        <img src="./img/cal_body_icon.svg">
+                                     </div>   
+                                     <div class="body_sch_mask" v-bind:style="cal_sch">
+                                        <img src="./img/cal_body_icon2.svg">
+                                    </div>
+                                    <P>{{100-test}}%</P>
+                                 </div>
+                                <!-- <img class="body_sch_mask" src="img/body_icon.png"> -->
                                 <div class="rest_cal_inf">
-                                    <p class="rest_cal_data">1700</p>
+                                    <p class="rest_cal_data">{{BMR-caltal}}</p>
                                     <p class="rest_cal_unit">REST CAL</p>
-                                    <p class="daily_cal_data">2500</p>
+                                    <p class="daily_cal_data">{{BMR}}</p>
                                     <p class="daily_cal_unit">DAILY CAL</p>
                                 </div>
                             </div>
                         </div>
                         <div class="rest_day">
                             <p>REST DAY</p>
-                            <p>CURENT DATE  1992/10/18</p>
+                            <p>CURENT DATE  {{curent_year}}/{{curent_month}}/{{curent_date}}</p>
                             <div class="rest_day_item">
-                                <p class="rest_day_value">53</p>
+                                <p class="rest_day_value">{{time_rest}}</p>
                                 <p class="rest_day_unit">DAY</p>
                             </div>
                             <div class="sch_title">
@@ -104,11 +113,11 @@
                                 <p class="sch_end">END DATE</p>
                             </div>
                             <div class="sch">
-                                <div class="sch_now"></div>
+                                <div class="sch_now" v-bind:style="{width:sch_width}"></div>
                             </div>
                             <div class="sch_date">
-                                <p class="date_start">2020/03/21</p>
-                                <p class="date_end">2020/04/29</p>
+                                <p class="date_start">{{goal[0]}}</p>
+                                <p class="date_end">{{goal[1]}}</p>
                             </div>
                        
                         </div>
@@ -118,20 +127,21 @@
 
                 <div class="card report">
                     
-                        <div class="title_back"></div>
+                        <div class="title_back">
+                        </div>
+                        <div class="custom-select month_selecotor">
+                            <select>
+                                <option>This Month</option>
+                                <option>Last Month</option>
+                            </select>
+                        </div>
                         <p class="CurGoal_title">
                             <img src="img/chart_icon.svg">
                             REPORT
-                            <div class="custom-select">
-                                <select>
-                                    <option>This Month</option>
-                                    <option>Last Month</option>
-                                </select>
-                            </div>
                         </p>            
                   
                     <p class="report_title">
-                        compared to last week 2/8~2/14
+                        compared to last week {{compare_date_7[0]}}/{{compare_date_7[1]}}~{{compare_date[0]}}/{{compare_date[1]}}
                     </p>
                     <div class="chart_select">
                         <div class="chart_weight chart_selectors">
@@ -447,6 +457,7 @@
                    
                 </div>
             </div>
+     
             <div class="bot_area">
                 <div class="cal_input">
                     <div class="cal_input_select">
@@ -458,50 +469,36 @@
                         <div class="input_pages">
                             <div class="input_pages_data">
                                 <p class="input_pages_data_title">Fitness Start With What You Eat</p>
+                                <p class="input_pages_data_title">The Day Those You Took</p>
                                 <div class="daily_food_data">
-                                    <div class="daily_food_data_title">
-                                        <P>DATE</P>
+                                    <div class="daily_food_data_title data_title_selector">
                                         <P>MEAL</P>
                                         <P>NAME</P>
+                                        <P>QTY</P>
+                                        <P>CAL</P>
+                                        <P>EDIT</P>
+                                        <P>DEL</P>
+                                    </div>
+                                    <div class="daily_exercise_data_title data_title_selector">
+                                        <P></P>
+                                        <P>NAME</P>
+                                        <P>TIME(min)</P>
                                         <P>CAL</P>
                                         <P>EDIT</P>
                                         <P>DEL</P>
                                     </div>
                                     @@include('./CalDiary_fdrecord.html')
-                                    <!-- <div class="daily_food_data_context">
-                                        <P>3/30</P>
-                                        <P>Breakfast</P>
-                                        <P>Hamberger</P>
-                                        <P>200</P>
-                                        <img src="./img/rewrite_icon_y.svg">
-                                        <img src="./img/del_icon_y.svg">
-                                    </div>
-                                    <div class="daily_food_data_context">
-                                        <P>3/30</P>
-                                        <P>Breakfast</P>
-                                        <P>Hamberger</P>
-                                        <P>200</P>
-                                        <img src="./img/rewrite_icon_y.svg">
-                                        <img src="./img/del_icon_y.svg">
-                                    </div>
-                                    <div class="daily_food_data_context">
-                                        <P>3/30</P>
-                                        <P>Breakfast</P>
-                                        <P>Hamberger</P>
-                                        <P>200</P>
-                                        <img src="./img/rewrite_icon_y.svg">
-                                        <img src="./img/del_icon_y.svg">
-                                    </div> -->
+                                   
                                 </div>
                             </div>
                             <div class="input_pages_date">
-                                <p class="input_pages_data_title">Select The Day For Your Diary</p>
+                                <p class="input_pages_data_title2">Select The Day For Your Diary</p>
                                 <!-- <iframe src="calendar.html"></iframe> -->
                                 <div class="calendarI">@@include('./calendar.html')</div>
                                 <div class="fd_pop">@@include('./popout.html')</div>  
                             </div>
                         </div>
-                        <div class="input_pages">
+                        <!-- <div class="input_pages">
                             <div class="input_pages_data">
                                 <p class="input_pages_data_title">The Day Those You Took</p>
                                 <div class="daily_exercise_data">
@@ -513,29 +510,12 @@
                                         <P>EDIT</P>
                                         <P>DEL</P>
                                     </div>
-                                    <!-- <div class="daily_exercise_data_context">
-                                        <P>3/30</P>
-                                        <P>30 min</P>
-                                        <P>jogging</P>
-                                        <P>400</P>
-                                        <img src="./img/rewrite_icon_y.svg">
-                                        <img src="./img/del_icon_y.svg">
-                                    </div>
-                                    <div class="daily_exercise_data_context">
-                                        <P>3/30</P>
-                                        <P>15 min</P>
-                                        <P>swimming</P>
-                                        <P>660</P>
-                                        <img src="./img/rewrite_icon_y.svg">
-                                        <img src="./img/del_icon_y.svg">
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="input_pages_date">
                                 <p class="input_pages_data_title">Select The Day For Your Diary</p>
-                                <iframe src="calendar.html"></iframe>
                             </div>
-                        </div>    
+                        </div>     -->
                     </div>
                 </div>
                 <div class="advice_item">
@@ -568,7 +548,7 @@
     <div>
         @@include('./layout/footer.html')
     </div>
-
+    
     <script>
         $(".owl-carousel").owlCarousel({
           loop: true, // 循環播放// 外距 10px
@@ -599,6 +579,6 @@
           }
         });
       </script>
-  
+     <script src="./js/memberInfo.js"></script>
 </body>
 </html>

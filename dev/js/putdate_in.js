@@ -8,6 +8,7 @@ function changedate(){
     foodrecordV.fdrecordday=date;
     console.log(foodrecordV.fdrecordday);
     getfoodrecord();
+    getsportrecord();
 }
 function changedate2(){
     //更改圖像化日歷選擇日期位置
@@ -29,13 +30,13 @@ function changedate2(){
 
     foodrecordV.fdrecordday=calendarV.selecdateS;
     getfoodrecord();
+    getsportrecord();
 }
 // function changedate3(){
 //     foodrecordV.fdrecordday=date;
 //     console.log(foodrecordV.fdrecordday);
 //     getfoodrecord();
 // }
-
 
 
 
@@ -46,4 +47,13 @@ window.addEventListener('load',function(){
     inputfoodV.selecteddate= todaysend;
     inputfoodV.todaydatesave=todaysend;
     inputfoodV.datesave=todaysend;
+
+    // 將今天日期送到食物日至
+    foodrecordV.fdrecordday=todaysend;
+    getfoodrecord();
+    getsportrecord();
+    xhr.onload = function () {
+        getfoodrecord();
+        getsportrecord();
+    }
 })

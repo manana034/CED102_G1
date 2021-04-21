@@ -5,33 +5,77 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 <title>無標題文件</title>
 <style>
-    /* .daily_food_data_context{
-        display: grid;
-     grid-template-columns: 15% 20% 20% 15% 15% 15%;
+    .card.food_record_delcheck{
+        width: 330px;
+        position: fixed;
+        padding: 20px 20px;
+        z-index: 100;
+        left:calc(50% - 150px);
+        top:40%;
+        border: 1px solid #C9C9C9;
     }
-    .daily_food_data_context img{
-        width: 20px;
-        margin: 0 auto;
-        cursor: pointer;
-    } */
+    .card.food_record_delcheck p:nth-child(1){
+        font-size: 20px;
+        font-weight:bold;
+        color: #EAA565;
+        text-align: center;
+    }
+    .card.food_record_delcheck p:nth-child(2){
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .record_delcheck{
+        margin-top: 10px;
+        text-align: center;
+    }
+    .record_delcheck button{
+        width: 40px;
+    }
+    .record_delcheck button:hover{
+        background-color: #EAA565;
+    }
 </style>
 
 </head>
 
 <body>
 <div id="app3">
-  <!-- 會員id:<input type="text"id="mNo"/> -->
-  <!-- 日期:<input type="text"id="dtTime"/>
-  <input type="button"  onclick="getfoodrecord()"/> -->
-  <div v-for="(item,index) in fdrecord" class="daily_food_data_context">
+  <div v-for="(item,index) in fdrecord" class="daily_food_data_context" v-show="input_selector2[0]">
 
-      <p>{{item.dtTime}}</p>
-      <p>{{item.fdNo}}</p>
+      <!-- <p>{{item.dtTime}}</p> -->
+      <p>{{meal[item.dtPd - 1]}}</p>
+      <p>{{fdrecord[index].fdName}}</p>
+      <!-- <p>{{item.fdNo}}</p> -->
       <p>{{item.fdQty}}</p>
-      <p>{{item.spItemCal}}</p>
+      <p>{{item.dtItemCal}}</p>
       <img class="recordEdit" src="./img/rewrite_icon_y.svg" @click='addEdit(index)'>
-      <img class="recordDelet"src="./img/del_icon_y.svg">
+      <img class="recordDelet"src="./img/del_icon_y.svg" @click='delcheck(index)'>
+  </div>
 
+  <div v-for="(item,index) in sprecord" class="daily_food_data_context" v-show="input_selector2[1]">
+        <p></p>
+        <p>{{sprecord[index].spName}}</p>
+        <!-- <p>{{item.fdNo}}</p> -->
+        <p>{{item.spTimeSpan}}</p>
+        <p>{{item.spItemCal}}</p>
+        <img class="recordEdit" src="./img/rewrite_icon_y.svg" @click='addEdit(index)'>
+        <img class="recordDelet"src="./img/del_icon_y.svg" @click='delcheck(index)'>
+  </div>  
+
+
+  <!-- ======================刪除視窗 ==================-->
+  <div class="card food_record_delcheck" v-show="delchecksow">
+        <p>
+            You are going to delete a food record!<br> 
+        </p>
+        <p>
+            Are you sure you want delete this record?
+        </p>
+        <div class="record_delcheck">
+            <button class="w-btn" @click='delRecord'>YES</button>
+            <button class="w-btn" @click='delcheck(-1)'>NO</button>
+        </div>
   </div>
   <!-- 會員id:<input type="text"id="mNo"/>"
   日期:<input type="text"id="dtTime"/>
@@ -51,15 +95,32 @@
       el:"#app3",
       data() {
           return {
+            input_selector2:[true,false],
             fdrecord:[],
+            sprecord:[],
+            delchecksow:false,
             caltotal:'0',
-            fdrecordday:"2021-02-04"
+            caltotal:'0',
+            deletitem:-1,
+            fdrecordday:"2021-04-15",
+            meal:["Breakfast","Lunch","Dinner"],
+            foods:[],
+            sports:[]
           }
       },
       methods: {
         addEdit:function(e){
-            chageFdRecord(e);
+            chageFdRecord_show(e);
             openFdChange();
+        },
+        delcheck:function(e){
+            this.delchecksow=!this.delchecksow;
+            this.deletitem=e;
+        },
+        delRecord:function(){
+            delfoodrecord(this.deletitem);
+            this.delchecksow=!this.delchecksow;
+            this.deletitem=-1;
         }
       },
     })
@@ -70,15 +131,54 @@
         xhr.onload = function(){
             let prodRows = JSON.parse(xhr.responseText);
             foodrecordV.fdrecord = prodRows;
+
+            cal_diarr_memberInfo2.fdcaltal= 0;
+
             foodrecordV.caltotal= foodrecordV.fdrecord[0].dtCalTal;
             foodrecordchange.fdrecord = prodRows;
+            setTimeout(cal_diarr_memberInfo2.fdcaltal= foodrecordV.caltotal,500);
         }
+    
         // xhr.open("get", "./php/food_info.php", true);
         var url = "./php/food_info.php?mNo=" +  1 + "&dtTime=" +  foodrecordV.fdrecordday;
         xhr.open("Get", url, true);
         xhr.send(null);
+    }  
+</script>
+<script>
+    function  delfoodrecord(e){
+        let V=foodrecordV.fdrecord[e];
+        // alert(foodrecordV. fdrecord[e].dtRNo);
+        // alert(foodrecordV. fdrecord[e].fdNo);
+        let xhr = new XMLHttpRequest();
+        var url = "./php/delfoodrecord.php?dtRNo=" +  V.dtRNo + "&fdNo=" + V.fdNo;
+        xhr.onload = function(){
+            getfoodrecord();
+            // alert("Delete food record succes!");
+        }
+        xhr.open("Get", url, true);
+        xhr.send(null);
     }
-   
 </script>  
+<!-- ================運動紀錄讀取 ================-->
+<script>
+    function getsportrecord(){
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            let prodRows = JSON.parse(xhr.responseText);
+            foodrecordV.sprecord = prodRows;
+            cal_diarr_memberInfo2.spcaltal=0;
+
+            foodrecordV.caltotal2= foodrecordV.sprecord[0].spCalTal;
+            setTimeout(cal_diarr_memberInfo2.spcaltal=foodrecordV.sprecord[0].spCalTal,500);
+        }
+    
+        // xhr.open("get", "./php/food_info.php", true);
+        var url = "./php/sport_info.php?mNo=" +  1 + "&spTime=" +  foodrecordV.fdrecordday;
+        xhr.open("Get", url, true);
+        xhr.send(null);
+    }  
+</script>
+
 </body>
 </html>

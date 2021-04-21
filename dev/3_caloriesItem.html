@@ -1,11 +1,19 @@
 @@include("./layout/B_head.html");
 <title>Calories Item</title>
-
+<style>
+    body{
+        display:flex;
+    }
+    .calories3{
+        display:flex;
+    }
+</style>
 </head>
 <body>
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
+    <div class="calories3" id="calories3">
     <div class="main_food main">
         <div class="main_top">
             <div class="page">
@@ -52,11 +60,11 @@
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>5</td>
                     <td>Fried</td>
                     <td>麥香魚</td>
-                    <td>5555</td>
+                    <td>{{test}}</td>
                     <td>1</td>
                     <td>
                         <img class="edit" src="./icon/backend_edit.png">
@@ -64,15 +72,23 @@
                     <td>
                         <img class="delete" src="./icon/backend_trash.png">
                     </td>
+                </tr> -->
+                <tr v-for="(item,index) in foods">
+                    <td>{{foods[index].fdNo}}</td>
+                    <td>{{foods[index].fdType}}</td>
+                    <td>{{foods[index].fdName}}</td>
+                    <td>{{foods[index].fdCalPer}}</td>
+                    <td>{{foods[index].calRate}}</td>
+                    <td><img class="edit" src="./icon/backend_edit.png" @click="saveindex(index)"></td>
+                    <td><img class="delete" src="./icon/backend_trash.png" @click="saveindex(index)"></td>
                 </tr>
-                
 
             </table>
         </div>
     <!-- 確認刪除的燈箱 -->
         <div class="lightbox_delete_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>麥香雞</span> ?</div>
+                <div class="content">Do you want to <span>delete</span> <span>{{foods[fdindex].fdName}}</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
                     <button class="continus">Continus</button>
@@ -85,7 +101,7 @@
                 <h6>Add Calories Item</h6>                             
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="foodtype">
                         <option value="2">Rice</option>
                         <option value="3">Noodles</option>
                         <option value="4">Meat</option>
@@ -98,27 +114,27 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="foodname">
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="foodcal">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Rate</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="foodtype">
                         <div class="acc_tip">Please enter only numbers and decimal point.</div>
                     </div>
                 </div>   
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
+                    <button class="continusadd">Add</button>
                 </div>                                                                                                                 
             </div>
         </div>
@@ -132,7 +148,7 @@
                 </div>                             
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="foodtypeedit">
                         <option value="2">Rice</option>
                         <option value="3">Noodles</option>
                         <option value="4">Meat</option>
@@ -145,28 +161,31 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="foodeditsave[0].fdName"> 
+                        {{foods[fdindex].fdName}}
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="foodeditsave[0].fdCalPer">
+                        {{foods[fdindex].fdCalPer}}
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Rate</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="foodeditsave[0].calRate">
+                        {{foods[fdindex].calRate}}
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                     
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Edit</button>
+                    <button class="continusedit">Edit</button>
                 </div>                                                                                                                 
             </div>
         </div>
@@ -211,7 +230,7 @@
                   <th>EDIT</th>
                   <th>DELETE</th>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>1</td>
                     <td>Low</td>
                     <td>散步</td>
@@ -222,6 +241,14 @@
                     <td>
                         <img class="delete" src="./icon/backend_trash.png">
                     </td>
+                </tr> -->
+                <tr v-for="(item,index) in sports">
+                    <td>{{sports[index].spNo}}</td>
+                    <td>{{sports[index].spType}}</td>
+                    <td>{{sports[index].spName}}</td>
+                    <td>{{sports[index].spCalPer}}</td>
+                    <td><img class="edit" src="./icon/backend_edit.png"></td>
+                    <td><img class="delete" src="./icon/backend_trash.png"  @click="saveindex2(index)"></td>
                 </tr>
                 
 
@@ -230,7 +257,7 @@
     <!-- 確認刪除的燈箱 -->
         <div class="lightbox_delete_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>跑步</span> ?</div>
+                <div class="content">Do you want to <span>delete</span> <span>{{sports[spindex].spName}}</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
                     <button class="continus">Continus</button>
@@ -243,7 +270,7 @@
                 <h6>Add Calories Item</h6>                             
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="sporttype">
                         <option value="1">Low</option>
                         <option value="2">Medium</option>
                         <option value="3">High</option>
@@ -252,20 +279,20 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <input type="text" required="required" maxlength="10" class="acc_con" v-model="sportname">
                         <div class="acc_tip">Please enter within 10 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="4" class="acc_con">
+                        <input type="text" required="required" maxlength="4" class="acc_con" v-model="sportcal">
                         <div class="acc_tip">Please enter only numbers and decimal point.</div>
                     </div>
                 </div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
+                    <button class="continusadd">Add</button>
                 </div>                                                                                                                 
             </div>
         </div>
@@ -301,54 +328,87 @@
                 </div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Edit</button>
+                    <button class="continusedit">Edit</button>
                 </div>                                                                                                                 
             </div>
         </div>
     </div>
-
+</div>
 <script>
-    $(function(){
-        // 切換分頁
-        $('#exercise').click(function(){
-            $('.main_food').css('display','none');
-            $('.main_exercise').css('display','inline-flex');
-        });
-        $('#food').click(function(){
-            $('.main_exercise').css('display','none');
-            $('.main_food').css('display','inline-flex');
-        });
-        // 刪除 lightbox
-        $('img.delete').click(function(){
-            $('.lightbox_delete_black').css('display','block');
+    $(function setbtn(){
+
+        setTimeout(() => {
+            // 切換分頁
+            $('#exercise').on("click",function(){
+                calories_3.changepage1();
+                $('.main_food').css('display','none');
+                $('.main_exercise').css('display','inline-flex');
+            });
+            $('#food').click(function(){
+                calories_3.changepage2();
+                $('.main_exercise').css('display','none');
+                $('.main_food').css('display','inline-flex');
+            });
+            // 刪除 lightbox
+            $('img.delete').click(function(){
+                $('.lightbox_delete_black').css('display','block');
+            });
             $('.lightbox>div>button.cancel').click(function(){
                 $('.lightbox_delete_black').css('display','none');
             });
             $('.lightbox>div>button.continus').click(function(){
+                if(calories_3.page_check==0){
+                    foodsDel();
+                }
+                if(calories_3.page_check==1){
+                    sportsDel();
+                }
                 $('.lightbox_delete_black').css('display','none');
             });
-        });
-        // 新增 lightbox
-        $('.add>button').click(function(){
-            $('.lightbox_add_black').css('display','block');
+            // 新增 lightbox
+            $('.add>button').click(function(){
+                $('.lightbox_add_black').css('display','block');
+            });
             $('.lightbox>div>button.cancel').click(function(){
                 $('.lightbox_add_black').css('display','none');
-            });
-            $('.lightbox>div>button.continus').click(function(){
+             });
+            $('.lightbox>div>button.continusadd').click(function(){
+                if(calories_3.page_check==0){
+                    foodsAdd();
+                }
+                if(calories_3.page_check==1){
+                    sportsAdd();
+                }
                 $('.lightbox_add_black').css('display','none');
             });
-        });
-        // 修改 lightbox
-        $('img.edit').click(function(){
-            $('.lightbox_edit_black').css('display','block');
+            // 修改 lightbox
+            $('img.edit').click(function(){
+                $('.lightbox_edit_black').css('display','block');
+            }); 
             $('.lightbox>div>button.cancel').click(function(){
                 $('.lightbox_edit_black').css('display','none');
             });
-            $('.lightbox>div>button.continus').click(function(){
+            $('.lightbox>div>button.continusedit').click(function(){
+                if(calories_3.page_check==0){
+                    foodsEdit();
+                }
                 $('.lightbox_edit_black').css('display','none');
             });
-        });
+            
+              // tabla內的icon hover效果
+            // $('img.delete').hover(function(){
+            //     $(this).attr('src', './icon/backend_trashopen.png');
+            // },function(){
+            //     $(this).attr('src', './icon/backend_trash.png');
+            // });
+            // $('img.edit').hover(function(){
+            //     $(this).attr('src', './icon/backend_editing.png');
+            // },function(){
+            //     $(this).attr('src', './icon/backend_edit.png');
+            // });
+        }, 500);
     });
     </script>
+    <script src="js/3_calories_item.js"></script>
 </body>
 </html>
