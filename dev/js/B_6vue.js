@@ -1,14 +1,14 @@
 // CHATBOT LIST
-Vue.component('all-chat', {
+Vue.component('all-point', {
     data() {
         return {
-            chats: '',
+            point: '',
             lightbox_delete: false,
-            chat_edit_lightbox: false,
-            chat_add_lightbox: false,
-            lightbox_keyNo: '',
+            point_edit_lightbox: false,
+            point_add_lightbox: false,
+            lightbox_poNo: '',
             lightbox_text: '',
-            keyNo: '',
+            poNo: '',
         };
     },
     props: [],
@@ -18,7 +18,7 @@ Vue.component('all-chat', {
     <div class="main_top">
         <div class="search_bar">
             <div class="search-input">
-                <input type="search" placeholder="Enter No. Or Keyword">
+                <input type="search" placeholder="Enter No. Or Name">
                 <button>
                     <img src="./icon/magnifier_white.png">
                 </button>  
@@ -27,14 +27,13 @@ Vue.component('all-chat', {
                 <select name="sType">
                     <option value="0">ALL</option>
                     <option value="0">ALL</option>
-                    <option value="1">Calories Diary</option>
-                    <option value="2">Member</option>
-                    <option value="3">Order</option>
-                    <option value="4">Product</option>
+                    <option value="1">Sing-up</option>
+                    <option value="2">Login</option>
+                    <option value="3">Level</option>
                 </select>
             </div>
         </div>
-        <div class="add" @click="chat_add()">
+        <div class="add" @click="point_add()">
             <button>
                 <img src="./icon/add_white.png">
                 ADD
@@ -44,73 +43,82 @@ Vue.component('all-chat', {
     <div class="main_bottom">
         <table>
             <tr>
-                <th>No</th>
-                <th>Type</th>
-                <th>Keyword</th>
-                <th>Question</th>
-                <th>Answer</th>
-                <th>Edit</th>
-                <th>Delete</th>
+              <th>No</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Duration</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Points</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
-            <tr v-for="(value,key) in chats">
-                <td>{{value.keyNo}}</td>
-                <td>{{changetype(value.keyType)}}</td>
-                <td>{{value.keyW}}</td>
-                <td>{{value.keyQ}}</td>
-                <td>{{value.keyA}}</td>
+            <tr v-for="(value,key) in point">
+                <td>{{value.poNo}}</td>
+                <td>{{value.poName}}</td>
+                <td>{{changetype(value.poType)}}</td>
+                <td>{{changeDurtype(value.poDur)}}</td>
+                <td>{{value.startTime}}</td>
+                <td>{{value.endTime}}</td>
+                <td>{{value.points}}</td>
                 <td>
-                    <img class="edit" @click="chat_edit(value.keyNo)" src="./icon/backend_edit.png">
+                    <img class="edit" @click="point_edit(value.poNo)" src="./icon/backend_edit.png">
                 </td>
                 <td>
-                    <img class="delete" @click="lightbox_delete_show(value.keyNo)" src="./icon/backend_trash.png">
+                    <img class="delete" @click="lightbox_delete_show(value.poNo)" src="./icon/backend_trash.png">
                 </td>
             </tr>
         </table>
     </div>
-<!-- 確認 刪除 的燈箱 -->
-    <div class="lightbox_black" v-if="lightbox_delete">
-        <div class="lightbox">
-            <div class="content">Do you want to <span>delete</span> question no.<span>{{lightbox_keyNo}}</span> ?</div>
+<!-- 確認刪除的燈箱 -->
+    <div class="lightbox_delete_black" v-if="lightbox_delete">
+        <div class="lightbox" >
+            <div class="content">Do you want to <span>delete</span> <span>{{lightbox_poNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox_delete = false">Cancel</button>
-                <button class="continus" @click="delete_item(lightbox_keyNo)" >Delete</button>
+                <button class="continus" @click="delete_item(lightbox_poNo)" >Delete</button>
             </div>
         </div>
     </div>
-    <edit-chat v-if="chat_edit_lightbox" :keyNo="keyNo" @changelightbox="chateditlightbox()"></edit-chat>
-    <add-chat v-if="chat_add_lightbox"  @changelightbox="chataddlightbox()"></add-chat>   
+    <edit-point v-if="point_edit_lightbox" :keyNo="poNo" @changelightbox="chateditlightbox()"></edit-point>
+    <add-point v-if="point_add_lightbox"  @changelightbox="chataddlightbox()"></add-point>   
 </div>
   `,
     methods: {
         //呼叫php程式，取回相關資料，並用json()轉回一般陣列
-        get_chat: async function () {
-            const res = await fetch('./php/getChatData.php', {}).then(function (data) {
+        get_point: async function () {
+            const res = await fetch('./php/getPointData.php', {}).then(function (data) {
                 return data.json();
             });
             // 取回res值後，呼叫另一隻函式
-            this.chats = res;
+            this.point = res;
         },
         // 將分類數字轉為文字
-        changetype(keyType) {
-            if (keyType == 1) {
-                return 'Calories Diary';
-            } else if (keyType == 2) {
-                return 'Member';
-            } else if (keyType == 3) {
-                return 'Order';
-            } else if (keyType == 4) {
-                return 'Product';
+        changetype(poType) {
+            if (poType == 1) {
+                return 'Sing-up';
+            } else if (poType == 2) {
+                return 'Login';
+            } else if (poType == 3) {
+                return 'Level';
+            }
+        },
+        changeDurtype(poDur) {
+            if (poDur == 1) {
+                return 'Temporary';
+            } else if (poDur == 2) {
+                return 'Permanent';
             }
         },
         // ==*刪除的燈箱
         // 點擊刪除後，顯示燈箱 並帶入值
-        lightbox_delete_show: function (keyNo) {
+        lightbox_delete_show: function (poNo) {
             this.lightbox_delete = true;
-            this.lightbox_keyNo = keyNo;
+            this.lightbox_poNo = poNo;
         },
         // 點擊 確定刪除後 觸發 php程式。完成後 重新撈取一次資料
-        delete_item: async function (keyNo) {
-            const res = await fetch('./php/delChatData.php', {
+        delete_item: async function (poNo) {
+            const res = await fetch('./php/delPointData.php', {
                 method: 'POST',
                 mode: 'same-origin',
                 credentials: 'same-origin',
@@ -118,105 +126,118 @@ Vue.component('all-chat', {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    keyNo: keyNo,
+                    poNo: poNo,
                 }),
             });
             //關閉 狀態轉換燈箱
             this.lightbox_delete = false;
             //完成後 重新撈取一次資料
-            this.get_chat();
+            this.get_point();
         },
 
         // ==*編輯的燈箱
         //點擊編輯 開啟編輯燈箱
-        chat_edit(keyNo) {
-            this.chat_edit_lightbox = true;
-            this.keyNo = keyNo;
+        point_edit(poNo) {
+            this.point_edit_lightbox = true;
+            this.poNo = poNo;
         },
         //關閉編輯燈箱，同時重新渲染畫面
         chateditlightbox() {
-            this.chat_edit_lightbox = false;
-            setTimeout(this.get_chat, 100);
+            this.point_edit_lightbox = false;
+            setTimeout(this.get_point, 100);
         },
 
         // ==*新增的燈箱
         //點擊新增 開啟新增燈箱
         chat_add() {
-            this.chat_add_lightbox = true;
+            this.point_add_lightbox = true;
         },
         //關閉新增燈箱，同時重新渲染畫面
         chataddlightbox() {
-            this.chat_add_lightbox = false;
-            this.get_chat();
+            this.point_add_lightbox = false;
+            this.get_point();
         },
-
     },
     // template 渲染前 會先去執行以下函式
     created() {
-        this.get_chat();
+        this.get_point();
     },
     mounted() {},
 });
 
 
-// CHATBOT EDIT
-Vue.component('edit-chat', {
+// POINT EDIT
+Vue.component('edit-point', {
     data() {
         return {
-            keyNo: '',
-            keyType: '',
-            keyW: '',
-            keyQ: '',
-            keyA: '',
+            poNo: '',
+            poDur: '',
+            poType: '',
+            poName: '',
+            startTime: '',
+            endTime: '',
+            points: '',
             error_text1: '',
             error_text2: '',
             error_text3: '',
         };
     },
-    props: ['keyNo'],
+    props: ['poNo'],
 
     template: `
 <div class="lightbox_edit_black">
     <div class="lightbox" >                                        
-        <h6>Edit Question</h6>
+        <h6>Edit Point Activity</h6>
         <div>
             <div class="acc_title">No</div>
-            <div class="acc_acc_con">{{keyNo}}</div>
+            <div class="acc_acc_con">{{poNo}}</div>
+        </div>
+        <div>
+            <div class="acc_title">Name</div>
+            <div>
+                <input type="text" required="required" maxlength="20" class="acc_con" v-model="poName">
+                <div class="acc_tip">{{error_text1}}</div>
+            </div>
         </div>
         <div>
             <div class="acc_title">Type</div>
-            <select class="acc_con" v-model="keyType">
-                <option value="1">Calories Diary</option>
-                <option value="2">Member</option>
-                <option value="3">Order</option>
-                <option value="4">Product</option>
+            <select class="acc_con">
+                <option value="1">Sing-up</option>
+                <option value="2">Login</option>
+                <option value="3">Level</option>
             </select>
-        </div>                             
+        </div>
         <div>
-            <div class="acc_title">Keyword</div>
-            <div>
-                <input type="text" required="required" maxlength="10" class="acc_con" v-model="keyW">
-                <div class="acc_tip">{{error_text1}}</div>
-            </div>
-        </div>            
+            <div class="acc_title">Duration</div>
+            <select class="acc_con">
+                <option value="1">Permanent</option>
+                <option value="2">Temporary</option>
+            </select>
+        </div>
         <div>
-            <div class="acc_title">Question</div>
+            <div class="acc_title">Start date</div>
             <div>
-                <input type="text" required="required" maxlength="50" class="acc_con" v-model="keyQ"></textarea>
-                <div class="acc_tip">{{error_text2}}</div>
+                <input type="text" name="singledate" required="required" class="acc_con">
             </div>
         </div>
         <div>
-            <div class="acc_title">Answer</div>
+            <div class="acc_title">End date</div>
             <div>
-                <textarea rows="3" cols="60" required="required" maxlength="300" class="acc_con" v-model="keyA"></textarea>
-                <div class="acc_tip">{{error_text3}}</div>
+                <input type="text" name="singledate" class="acc_con">
+                <div class="acc_tip">Please enter only numbers and decimal point.</div>
             </div>
         </div>
         <div>
-            <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="edit_chat_func(keyNo,keyType,keyW,keyQ,keyA)">Edit</button>
-        </div>                                                                                                            
+            <div class="acc_title">Points</div>
+            <div>
+                <input type="text" required="required" class="acc_con">
+                <div class="acc_tip">Please enter only numbers.</div>
+            </div>
+        </div>
+        <div>
+            <button class="cancel">Cancel</button>
+            <button class="continus">Edit</button>
+        </div>                                                                                                                        
     </div>
 </div>
     `,
@@ -299,7 +320,7 @@ Vue.component('edit-chat', {
 });
 
 
-// CHATBOT ADD
+// POINT ADD
 Vue.component('add-chat', {
     data() {
         return {
@@ -317,48 +338,58 @@ Vue.component('add-chat', {
     props: [],
 
     template: `
-<div class="lightbox_add_black">
-    <div class="lightbox" >                                        
-        <h6>Add Question</h6>
+    <!-- 新增的燈箱 沒有No. -->
+    <div class="lightbox_add_black">
+        <div class="lightbox" >                                        
+            <h6>Add Point Activity</h6>                      
+            <div>
+                <div class="acc_title">Name</div>
+                <div>
+                    <input type="text" required="required" maxlength="20" class="acc_con">
+                    <div class="acc_tip">Please enter within 20 characters.</div>
+                </div>
+            </div>
             <div>
                 <div class="acc_title">Type</div>
+                <select class="acc_con">
+                    <option value="1">Sing-up</option>
+                    <option value="2">Login</option>
+                    <option value="3">Level</option>
+                </select>
+            </div>
+            <div>
+                <div class="acc_title">Duration</div>
+                <select class="acc_con">
+                    <option value="1">Permanent</option>
+                    <option value="2">Temporary</option>
+                </select>
+            </div>
+            <div>
+                <div class="acc_title">Start date</div>
                 <div>
-                    <select class="acc_con" v-model="keyType">
-                        <option value="1">Calories Diary</option>
-                        <option value="2">Member</option>
-                        <option value="3">Order</option>
-                        <option value="4">Product</option>
-                    </select>
-                    <div class="acc_tip">{{error_text}}</div>
+                    <input type="date" id="AAA" required="required" class="acc_con">
                 </div>
-            </div>                             
-        <div>
-            <div class="acc_title">Keyword</div>
-            <div>
-                <input type="text" required="required" maxlength="10" class="acc_con" v-model="keyW">
-                <div class="acc_tip">{{error_text1}}</div>
             </div>
-        </div>            
-        <div>
-            <div class="acc_title">Question</div>
             <div>
-                <input type="text" required="required" maxlength="50" class="acc_con" v-model="keyQ"></textarea>
-                <div class="acc_tip">{{error_text2}}</div>
+                <div class="acc_title">End date</div>
+                <div>
+                    <input type="date" class="acc_con">
+                    <div class="acc_tip">Please enter only numbers and decimal point.</div>
+                </div>
             </div>
+            <div>
+                <div class="acc_title">Points</div>
+                <div>
+                    <input type="text" required="required" class="acc_con">
+                    <div class="acc_tip">Please enter only numbers.</div>
+                </div>
+            </div>
+            <div>
+                <button class="cancel">Cancel</button>
+                <button class="continus">Add</button>
+            </div>                                                                                                                 
         </div>
-        <div>
-            <div class="acc_title">Answer</div>
-            <div>
-                <textarea rows="3" cols="60" required="required" maxlength="300" class="acc_con" v-model="keyA"></textarea>
-                <div class="acc_tip">{{error_text3}}</div>
-            </div>
-        </div>
-        <div>
-            <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="add_chat_func(keyType,keyW,keyQ,keyA)">Add</button>
-        </div>                                                                                                            
     </div>
-</div>
         `,
     methods: {
         //關燈箱
