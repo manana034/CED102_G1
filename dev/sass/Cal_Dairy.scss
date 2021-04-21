@@ -96,7 +96,7 @@ header .row.container .logo{
                     padding-bottom: 3px;
                 }
                 width: 100%;
-                border-bottom: 2px solid #DDDDDD;
+                // border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
                 color: #ffffff;
@@ -114,12 +114,26 @@ header .row.container .logo{
                     .rest_cal_content{
                         display: grid;
                         grid-template-columns: 55% 45%;
-                        img{
-                            margin: 20px 20px 10px 25px;
-                            width: 110px;
-                         
-                        }
-                       
+                        .body_sch_mask_t{
+                            p{
+                                position: absolute;
+                                top:210px;
+                                right: 84%;
+                                z-index: 90;
+                                color: #ffffff;
+                                font-size: 18px;
+                            }
+                            
+                            // clip-path:url(#clip-Artboard_3);
+                            // background-color: #65B5EA;
+                            .body_sch_mask,.body_sch_mask2{
+                                // background-color: #dddddd;
+                                position: absolute;
+                                top: 35%;
+                                left:5%
+                            }
+                        }    
+                        
                         .rest_cal_inf{
                             padding-right: 20px;
                             p{
@@ -223,6 +237,13 @@ header .row.container .logo{
                 background-color: #EAA565;
                 border-radius: 20px 20px 0px 0px;
             }
+            .month_selecotor{
+                width: 120px;
+                position: absolute;
+                 top: 15px;
+                right: 10px;
+              color: #ffffff;
+            }
             .CurGoal_title{
                 text-align: left;
                 select{
@@ -239,8 +260,8 @@ header .row.container .logo{
                     vertical-align: middle;
                     padding-bottom: 3px;
                 }
-                width: 100%;
-                border-bottom: 2px solid #DDDDDD;
+                width: 100px;
+                // border-bottom: 2px solid #DDDDDD;
                 vertical-align: middle;
                 font-weight: bold;
                 padding-bottom: 13px;
@@ -406,7 +427,7 @@ header .row.container .logo{
                     .input_pages_data:nth-child(1){
                         border-right: 2px solid #AAAAAA;
                     }
-                   .input_pages_data_title{
+                   .input_pages_data_title,.input_pages_data_title2{
                        margin: -15px 0px 0px calc(50% - 125px);
                        font-size: 16px;
                        text-align: left;

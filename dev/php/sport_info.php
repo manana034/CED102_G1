@@ -2,19 +2,18 @@
 try {
   require_once("../../connect_ced102g1.php");
     // $sql = "select * from dietrecord where mNo=:mNo AND date(dtTime)=:dtTime";
-    $sql = "select *,(select fdName from food where fdNo=b.fdNo) fdName from 
-            dietrecord a join dtritem b on a.dtRNo=b.dtRNo
-            where mNo=:mNo AND date(dtTime)=:dtTime
-            order by a.dtPd";
+    $sql = "select *,(select spName from sport where spNo=b.spNo) spName from 
+    sprecord a join spritem b on a.spRNo=b.spRNo
+    where mNo=:mNo AND date(spTime)=:spTime";
     $member = $pdo->prepare($sql);
     $member->bindValue(":mNo", $_GET["mNo"]);
-    $member->bindValue(":dtTime", $_GET["dtTime"]);
+    $member->bindValue(":spTime", $_GET["spTime"]);
     $member->execute();
     
   	$prodRows =  $member->fetchAll(PDO::FETCH_ASSOC);
     $result = $prodRows;
 	  echo json_encode($result);
 } catch (PDOException $e) {
-	
+	echo "error";
 }
 ?>

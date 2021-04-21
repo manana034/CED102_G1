@@ -15,6 +15,10 @@ function movePhp(){
     return src('./dev/php/*').pipe(dest('./dist/php'))
 }
 
+function movePostImg(){
+    return src('./dev/postImg/*').pipe(dest('./dist/postImg'))
+}
+
 function moveInfoImg(){
     return src('./dev/infoImg/*').pipe(dest('./dist/infoImg'))
 }

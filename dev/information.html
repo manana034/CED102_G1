@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/common/information.css">
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
+    <script src="./js/header_customSelect.js" defer></script>
+    
 </head>
 <body>
     @@include('./layout/header.html')
@@ -36,8 +38,8 @@
         </div>
     </div>
     <div class="main">
-        <div class="info_card" v-for="(value,key) in filteredinfos" :key="value.infoNo">
-            <a :href="infos.url">
+        <div class="info_card" v-for="(value,key) in filteredinfos" :key="value.infoNo" @click="getId(key)">
+            <a :href="value.url">
                 <div class="text">
                     <p class="title">{{value.infoTitle}}</p>
                     <p class="content">{{value.infoContent}}.</p>
@@ -117,6 +119,10 @@
                         })
                         return newregimen;
                     }
+                    this.infos.forEach(info => {
+                        info.url = `./info_content.html?infoNo=${vm.infos.length - info.infoNo + 1}`;
+                    })
+                    console.log(this.infos);
                     return this.infos;
                 }
             },
@@ -128,15 +134,15 @@
             }, 
         })
 
-        fetch("./php/getInfoNo.php").then(res => res.json())
-        .then(data => {
-            vm.infos = data;
-            for(let i=0 ; i<data.length ; i++){
-                let url = `./php/getInfoNo.php?infoNo=${data[i].infoNo}`;
-                vm.infos[i].url = url;
-                // console.log(vm.vm.infos[i].url);
-            }
-        });
+        // fetch("./php/getInfoNo.php").then(res => res.json())
+        // .then(data => {
+        //     vm.infos = data;
+        //     for(let i=0 ; i<data.length ; i++){
+        //         let url = `./php/getInfoNo.php?infoNo=${data[i].infoNo}`;
+        //         vm.infos[i].url = url;
+        //         // console.log(vm.vm.infos[i].url);
+        //     }
+        // });
 
     </script>
 </body>

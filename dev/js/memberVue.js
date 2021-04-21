@@ -103,7 +103,7 @@ const app = new Vue({
                                 const time = setTimeout(()=>{
                                     checkOrderAndFavList()
                                     clearTimeout(time)
-                                },50)
+                                },300)
                                 
                             }
                             xhr.open('post', 'php/getFavPosterData.php', true)
@@ -333,14 +333,6 @@ const app = new Vue({
                     const listBody = selectAll('.listBody tbody')
                     const listHead = selectAll('.listBody thead')
 
-                    //檢查list 是否有無值, thead 的黑線就會消失
-                    // const time = setTimeout(()=>{
-                    //
-
-                    //     clearTimeout(time)
-                    // },1000)
-
-                    //orderlist 的table
                     if (listBody[0].children.length == 0) {
                         listHead[0].setAttribute('style', 'border-bottom: none')
                         console.log('orderlist 沒有內容')

@@ -1,34 +1,21 @@
 <?php
 
+
 try{
 
     require_once("../../connect_ced102g1.php");
-    
-    $sql = "UPDATE weigth
-    set wWeight = :wWeight ,wDate = current_date()
-    where mNo =:mNo"; 
 
-    //更新-->生日/性別/身高/手機/照片/介紹
-    
-    $member = $pdo->prepare($sql);
-    $member->bindValue(":wWeight", $_GET["wWeight"]);
+    $sql = "INSERT into weigth(mNo, wDate , wWeight)
+    value (:mNo , current_date() , :wWeight);"; 
 
-    //要在誰身上修改
-    $member->bindValue(":mNo",$_GET["mNo"]);
+    $member = $pdo->prepare( $sql );
+    $member->bindValue(":wWeight", $_POST["weight"]);
+    //確保 路徑與其他的一致↑↑↑↑↑↑↑↑↑
 
-    $member->execute();
-    
+    $member->bindValue(":mNo",$_POST["mNo"]);
+    $member -> execute();
 
-    if($member->rowCount() != 0){
-		echo "異動成功";
-	}
-    // if( $member->rowCount() == 0 ){
-    //     echo "{}";
-    // }else{
-    //     $memRow = $member->fetch(PDO::FETCH_ASSOC);
-
-    //     echo json_encode($memRow);
-    // }
+    echo "更新成功";
 
 } catch(PDOException $e){
     echo $e->getMessage();
