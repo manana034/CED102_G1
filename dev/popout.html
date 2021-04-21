@@ -11,9 +11,9 @@
         /* .r-btn.add_fd_btn{
             
         } */
-        .add_fd_btn, .add_fd_btn_2{ 
+        /* .add_fd_btn, .add_fd_btn_2{ 
             background-color: #9F1600;
-        }
+        } */
         .fd_input_form{
             box-sizing: border-box!important;
             width:450px;
@@ -24,6 +24,7 @@
             top: -600px;
             left: calc( 50% - 400px);
             padding: 30px;
+            text-align: center;
         }
         .fd_input_date{
             display:flex;
@@ -150,46 +151,56 @@
 </head>
 <body>
     <div id="app2"> 
-        <button class="r-btn add_fd_btn" v-show="true" @click="open">Add Food</button>
+        <button class="r-btn add_fd_btn" v-show="true" @click="open">Add Record</button>
         <div class="card fd_input_form" v-show="!isShow">
             <div class="fd_input_date">
-               <p>Your Food Diary For :</p>
+               <p>Your Diary Date For :</p>
                <input type="date" class="bookdate" id="bookdate" v-model="selecteddate" @change="checkdate">
                <button @click="close"><img src="./img/del_icon.svg"></button>
             </div>
-            <div class="meal_select">
+            <div class="meal_select" v-show="input_selector[0]">
                 <img src="./img/cup_icon.svg">
-                <select>
+                <!-- <select>
                     <option>Breakfast</option>
                     <option>Lunch</option>
                     <option>Dinner</option>
+                </select> -->
+                <select v-model="mealtype_selected">
+                    <option  v-for="(item,index) in mealtype" v-bind:value="index">
+                        {{item}}
+                    </option>
                 </select>
             </div>
-            <div class="food_select_tilte">
+            <div class="food_select_tilte" v-show="input_selector[0]">
                 <span>FOOD</span>
                 <span>QTY</span>
                 <span>CAL</span>
             </div>
-            <div class="add_food_select">
+            <div class="food_select_tilte" v-show="input_selector[1]">
+                <span>SPORTS</span>
+                <span>TIME(min)</span>
+                <span>CAL</span>
+            </div>
+              <!-- ======================食物輸入欄位================ -->
+            <div class="add_food_select" v-show="input_selector[0]">
                 <select v-model="fruit">
-                    <!-- <option disabled value="0">Select Food</option> -->
                     <option 
                         v-for="list in foods" 
-                        v-bind:value="list.fdid" 
+                        v-bind:value="list.fdNo" 
                         >
-                        {{list.fdname}}
+                        {{list.fdName}}
                     </option>
                 </select>
                 <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                <span >{{foods[fruit-1].fdcal*newAdd_number}}</span>
+                <span >{{foods[foodmap.indexOf(fruit)].fdCalPer*newAdd_number}}</span>
                 <button @click='addNewList_1'><img src="./img/add_icon.svg"></button>
                 <!-- 動態新增項目 -->
             
                 <ul>
                     <li v-for='(list,index) in lists' v-bind:key='list.id'>
-                        <span> {{foods[list.food_id-1].fdname}}</span>
+                        <span> {{foods[foodmap.indexOf(list.food_id)].fdName}}</span>
                         <input v-model="list.number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                        <span>{{foods[list.food_id-1].fdcal*list.number}}</span>
+                        <span>{{foods[foodmap.indexOf(list.food_id)].fdCalPer*list.number}}</span>
                         <button v-on:click='lists.splice(index, 1)'>
                             <img src="./img/del_icon.svg">
                         </button>
@@ -197,7 +208,35 @@
                 </ul>
                 
             </div>
-            <button class="r-btn add_fd_btn_2">Add</button>
+            <!-- ======================運動輸入欄位================ -->
+            <div class="add_food_select" v-show="input_selector[1]">
+                <select v-model="fruit2">
+                    <option 
+                        v-for="list in sports" 
+                        v-bind:value="list.spNo" 
+                        >
+                        {{list.spName}}
+                    </option>
+                </select>
+                <input v-model="newAdd_number2" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
+                <span >{{sports[sportmap.indexOf(fruit2)].spCalPer*newAdd_number2}}</span>
+                <button @click='addNewList_2'><img src="./img/add_icon.svg"></button>
+                <!-- 動態新增項目 -->
+            
+                <ul>
+                    <li v-for='(list,index) in lists2' v-bind:key='list.id'>
+                        <span> {{sports[sportmap.indexOf(list.sport_id)].spName}}</span>
+                        <input v-model="list.number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
+                        <span>{{sports[sportmap.indexOf(list.sport_id)].spCalPer*list.number}}</span>
+                        <button v-on:click='lists2.splice(index, 1)'>
+                            <img src="./img/del_icon.svg">
+                        </button>
+                    </li>
+                </ul>
+                
+            </div>
+
+            <button class="r-btn add_fd_btn_2" @click="addRecord">Add</button>
         </div>
     </div>
     <script>
@@ -208,15 +247,23 @@
             todaydatesave:"",
             datesave:"",
             fruit: 1,
+            fruit2: 1,
+            foodmap:[],
+            sportmap:[],
             isShow: true,
             newAdd_number:'1',
+            newAdd_number2:'1',
             newAddText:'1',
             newAddCal:'1',
             newAdd_fdname:'',
+            input_selector:[true,false],
             lists:[],
+            lists2:[],
             nextTodoId: 0,
+            mealtype:["Breakfast","Lunch","Dinner"],
+            mealtype_selected:0,
             foods:[
-              { fdid:0,fdname:'Hamberger', fdcal:250}
+              { fdNO:0,fdname:'Hamberger', fdCalPer:250}
             //   { fdid:1,fdname:'Sandwich', fdcal:150},
             //   { fdid:2,fdname:'French fries', fdcal:180},
             //   { fdid:3,fdname:'Pasta', fdcal:220},
@@ -226,14 +273,21 @@
             //   { fdid:7,fdname:'Milk tea', fdcal:90},
             //   { fdid:8,fdname:'Cola', fdcal:120}
             ],
+            sports:[
+
+            ],
         },
         methods:{
-          
+            remove(){
+                this.lists=[];
+                this.fruit=foods[0].fdNo;
+            },
             close(){
-            this.isShow=! this.isShow
+                this.isShow=! this.isShow;
+                this.remove();
             },
             open(){
-            this.isShow=! this.isShow
+            this.isShow=! this.isShow;
             },
             checkdate:function(){
                 if(Date.parse(this.selecteddate) > Date.parse(this.todaydatesave)){
@@ -245,24 +299,50 @@
                 }
             },
             addNewList_1:function(){
-                this.lists.push({
-                    fdid:this.nextTodoId++,
-                    number:this.newAdd_number,
-                    food_id:this.fruit
-                })
-                this.newAdd_number='1'
+                let check=0;
+                for(let i=0;i<this.lists.length;i++){
+                    if(this.lists[i].food_id==this.fruit){
+                        check=check+1;
+                    }
+                }
+
+                if(check>0){
+                    alert("You already select this food!");
+                }else{
+                    this.lists.push({
+                        // fdNo:this.nextTodoId++,
+                        number:this.newAdd_number,
+                        food_id:this.fruit
+                    })
+                    this.newAdd_number='1'
+                }
             },
-            addNewList:function(){
-                this.lists.push({
-                    fdid:this.nextTodoId++,
-                    title:this.newAddText,
-                    fdcal:this.newAddCal
-                })
-                this.newAddText='1',
-                this.newAddCal='1'
+            addNewList_2:function(){
+                let check=0;
+                for(let i=0;i<this.lists2.length;i++){
+                    if(this.lists2[i].sport_id==this.fruit2){
+                        check=check+1;
+                    }
+                }
+
+                if(check>0){
+                    alert("You already select this sports!");
+                }else{
+                    this.lists2.push({
+                        // fdNo:this.nextTodoId++,
+                        number:this.newAdd_number2,
+                        sport_id:this.fruit2
+                    })
+                    this.newAdd_number2='1'
+                }
             },
-           
-               
+            addRecord:function(){
+                // console.log(this.lists[0].food_id);
+                // console.log(this.lists[0].number);
+                addRecord_send(this.datesave,this.mealtype_selected+1,this.lists);
+                this.close();
+                this.remove();
+            }      
         }    
     })
     </script>
@@ -274,14 +354,79 @@
                 // console.log(prodRows);
                 inputfoodV.foods = prodRows;
                 foodrecordchange.foods=prodRows;
+                foodrecordV.foods=prodRows;
+                inputfoodV.fruit=inputfoodV.foods[0].fdNo;
+                
+                //將食物號碼編位
+                // alert(inputfoodV.foods.length);
+                for(let i=0;i<=inputfoodV.foods.length;i++){
+                    inputfoodV.foodmap[i]=inputfoodV.foods[i].fdNo;
+                }
             }
             xhr.open("get", "./php/getMore2_JSON.php", true);
             xhr.send(null);
         }
+
+        function getProducts2(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                prodRows = JSON.parse(xhr.responseText);
+                // console.log(prodRows);
+                inputfoodV.sports = prodRows;
+                foodrecordV.sports = prodRows;
+                inputfoodV.fruit2=inputfoodV.sports[0].spNo;
+                 //將運動號碼編位
+                // alert(inputfoodV.foods.length);
+                for(let i=0;i<=inputfoodV.sports.length;i++){
+                    inputfoodV.sportmap[i]=inputfoodV.sports[i].spNo;
+                }
+            }
+            xhr.open("get", "./php/getSport.php", true);
+            xhr.send(null);
+        }
+
         window.addEventListener("load", function(){
             //-----------------使用ajax 回server端取回資料
             getProducts();
+            getProducts2();
         })
-    </script>   
+    </script> 
+    <script>
+         function  addRecord_send(date,meal,fdAdd){
+            let record_check=0;
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify(fdAdd);
+
+            for(let i=0;i<foodrecordV.fdrecord.length;i++){
+                if(meal == foodrecordV.fdrecord[i].dtPd){
+                    record_check=record_check+1;
+                    var dtrno=foodrecordV.fdrecord[i].dtRNo;
+                }
+            }//確認當天每餐是否重複輸入
+
+            if (record_check > 0){
+                var url = "./php/addfoodrecord_edit.php?"
+                        + "mNo="    +  1
+                        + "&dtRNo="  + dtrno
+                        + "&dtTime="+  date
+                        + "&dtPd=" +  meal
+                        + "&fd=" +  json
+            }else{
+                var url = "./php/addfoodrecord_new.php?"
+                        + "mNo="    +  1
+                        + "&dtTime="+  date
+                        + "&dtPd=" +  meal
+                        + "&fd=" +  json
+            }
+            xhr.open("GET", url, true);
+            xhr.send();
+
+
+            xhr.onload = function () {
+                getfoodrecord();
+            }
+            // alert(meal);
+         }
+    </script>  
 </body>
 </html>

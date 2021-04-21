@@ -17,11 +17,12 @@
             bottom: 300px;
             z-index: 100;
             padding: 10px 15px 10px 15px;
+            border: 1px solid #C9C9C9;
             text-align: center;
         }
         .inputarea{
             display: grid;
-            grid-template-columns: 40% 30% 30%;  
+            grid-template-columns: 35% 30% 30%;  
         }
         .foodchagepage span{
             padding: 4px;
@@ -69,15 +70,15 @@
                 <!-- <option disabled value="0">Select Food</option> -->
                 <option 
                     v-for="list in foods" 
-                    v-bind:value="list.fdid" 
+                    v-bind:value="list.fdNo" 
                     >
-                    {{list.fdname}}
+                    {{list.fdName}}
                 </option>
             </select>
             <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-            <span >{{foods[fruit-1].fdcal*newAdd_number}}</span>
+            <span >{{foods[fruit-1].fdCalPer*newAdd_number}}</span>
          </div>
-         <button class="r-btn editceck">Edit</button>
+         <button class="r-btn editceck" @click="FoodRecordeEdit">Edit</button>
     </div>
     <script>
         const foodrecordchange=new Vue({
@@ -86,26 +87,48 @@
                 return {
                     newAdd_number:1,
                     fruit:1,
-                    dateselected:'2021-04-05',
-                    foods:[{ fdid:0,fdname:'Hamberger', fdcal:250}],
+                    dateselected:'2021-04-20',
+                    foods:[{ fdNo:0,fdname:'Hamberger', fdcal:250}],
                     fdrecord:[],
-                    edititem:[]
+                    edititem:[],
+                    FoodChangeSave:0
                 }
             },
             methods: {
                 closeP:function(){
                     closeFdChange();
+                },
+                FoodRecordeEdit:function(){
+                    var sameItem=0;
+                    for(let i=0;i<this.fdrecord.length;i++){
+                        if(this.fdrecord[i].fdNo == this.fruit & i != this.FoodChangeSave){
+                            // closeFdChange();
+                            sameItem=sameItem+1;
+                        }
+                    }
+                    if(sameItem==0){
+                        chageFdRecord_edit();
+                        closeFdChange();
+                    }else{
+                        alert("This meal already have this food!");
+                    }
+                    // alert(this.fdrecord[this.FoodChangeSave].dtRNo);
+                    // alert(this.fruit);//食物id
+                    // alert(this.newAdd_number);//食物數量
+                    // alert(this.foods[this.fruit-1].fdcal*this.newAdd_number);//卡路里
                 }
             },
         })
         
     </script>
     <script>
-        function chageFdRecord(e){
+        function chageFdRecord_show(e){
             let fdr=foodrecordchange;
             fdr.edititem=fdr.fdrecord[e];
             fdr.newAdd_number=fdr.edititem.fdQty;
             fdr.fruit=fdr.edititem.fdNo;
+            fdr.FoodChangeSave=e;
+            // alert(fdr.FoodChangeSave);
         }
         function closeFdChange(){
             document.getElementById("app4").style.display="none";
@@ -114,6 +137,29 @@
             document.getElementById("app4").style.display="block";
         }
     </script>
-
+    <script>
+        function chageFdRecord_edit(){
+            let xhr = new XMLHttpRequest();
+            let V=foodrecordchange;
+           
+            // xhr.onload = function(){
+               
+            // }
+            var url = "./php/changefoodrecord.php?"
+                        + "dtRNo=" +  V.fdrecord[V.FoodChangeSave].dtRNo
+                        + "&fdNo1=" +  V.fdrecord[V.FoodChangeSave].fdNo
+                        + "&fdNo2=" +  V.fruit
+                        + "&fdQty=" +  V.newAdd_number;
+            xhr.open("GET", url, true);
+            xhr.send();
+            xhr.onload = function () {
+                getfoodrecord();
+            }
+            
+            getfoodrecord(),1000;
+            // setTimeout(getfoodrecord(),1500);
+            // setTimeout(getfoodrecord(),2000);
+        }
+    </script>
 </body>
 </html>
