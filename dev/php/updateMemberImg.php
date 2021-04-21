@@ -26,9 +26,10 @@ try{
 
 
 		if(copy( $from, $to) === true) {
-			$sql = "UPDATE member 
-            set mImg =:mImg
-            where mNo =:mNo"; 
+			$sql = "SET SQL_SAFE_UPDATES=0;
+			UPDATE member
+			set mImg =:mImg 
+			where mNo =:mNo"; 
 
 			$member = $pdo->prepare( $sql );
 			$member->bindValue(":mImg", "./memberImg/$fileName");
