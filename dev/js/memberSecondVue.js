@@ -165,7 +165,7 @@ Vue.component('person-info', {
                         </div>
 
                         <div>
-                            <h6 id="levelPointer">80</h6>
+                            <h6 id="levelPointer">0</h6>
                             /
                             <span>100</span>
                         </div>
@@ -891,6 +891,29 @@ Vue.component('login-signup', {
                 }, 50)
             }
 
+            //檢查 list 是不是空的 取消底線
+            function checkOrderAndFavList() {
+                const listBody = selectAll('.listBody tbody')
+                const listHead = selectAll('.listBody thead')
+
+                if (listBody[0].children.length == 0) {
+                    listHead[0].setAttribute('style', 'border-bottom: none')
+                    console.log('orderlist 沒有內容')
+                } else {
+                    listHead[0].removeAttribute('style')
+                    console.log('oderlist 有內容')
+                }
+
+                //favlist 的table
+                if (listBody[1].children.length == 0) {
+                    listHead[1].setAttribute('style', 'border-bottom: none')
+                    console.log('favlist 沒有內容')
+                } else {
+                    listHead[0].removeAttribute('style')
+                    console.log('favlist 有內容')
+                }
+            }
+
             getMemberData()
             //mNo 抓不到再從新抓一次
             getMnoMidMpsw()
@@ -903,13 +926,15 @@ Vue.component('login-signup', {
             getMOrderListData()
             getMOrderData()
             getMDailyCalData()
+            
 
             //登入 就叫child 執行檢查 是否存在某資料 執行另外動作
             const checkGoaltime = setTimeout(() => {
                 passValueVue.$emit('check-goalWeight')
                 passValueVue.$emit('check-goalTime')
+                checkOrderAndFavList()
                 clearTimeout(checkGoaltime)
-            }, 100)
+            }, 300)
             // passValueVue.$emit('check-goalWeight')
             // passValueVue.$emit('check-goalTime')
         },
