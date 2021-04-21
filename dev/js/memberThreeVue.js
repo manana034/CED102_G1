@@ -242,6 +242,7 @@ Vue.component('profile-body', {
                     let xhr = new XMLHttpRequest()
                     xhr.onload = function () {
                         console.log(xhr.responseText)
+                        console.log('這是新增的')
                     }
                     xhr.open('POST', 'php/updateMemberImg.php', true)
                     let data_info = new FormData(select('#profileForm'))
