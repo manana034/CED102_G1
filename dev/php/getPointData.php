@@ -1,10 +1,8 @@
 <?php
     try {
         require_once "../../connect_ced102g1.php";
-        $sql = "SELECT infoNo, infoType, infoTitle, DATE(infoTime) as infoTime, infoPhoto1, infoPhoto2, infoPhoto3, infoContent1, infoContent2, infoContent3, CONCAT(SUBSTR(infoContent1,1,100),'...') as infoContent, IF(infoPhoto1 LIKE '%mp4', 2, 1) AS infoLevel
-                    FROM information
-                    WHERE infoState = 1 
-                    ORDER BY infoNo";
+        $sql = "SELECT *
+                    FROM point";
         
         $per_info_data = $pdo->prepare($sql);
         $per_info_data->execute();

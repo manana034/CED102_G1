@@ -67,7 +67,7 @@ Vue.component('all-chat', {
             </tr>
         </table>
     </div>
-    <!-- 確認 刪除 的燈箱 -->
+<!-- 確認 刪除 的燈箱 -->
     <div class="lightbox_black" v-if="lightbox_delete">
         <div class="lightbox">
             <div class="content">Do you want to <span>delete</span> question no.<span>{{lightbox_keyNo}}</span> ?</div>
