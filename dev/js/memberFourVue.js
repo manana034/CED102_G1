@@ -339,8 +339,19 @@ Vue.component('bottom-info', {
             this.$store.commit('updataGoalWeight', '')
 
             //ajax 修改 table mGoalS mGoalE mGoalW 拿掉
-            //=========================================
-            //=========================================
+            function updateGoalTime_Weight() {
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    console.log(xhr.responseText)
+                }
+                xhr.open(
+                    'GET',
+                    `php/updateGoalTime_Weight.php?mNo=${getTmp_mNo}&mGoalW=null&mGoalS=null&mGoalE=null`
+                )
+                xhr.send(null)
+            }
+            updateGoalTime_Weight()
+
 
             // 將button 做切換 內容作變化
             setTimeout(() => {
@@ -348,26 +359,30 @@ Vue.component('bottom-info', {
             }, 100)
             passValueVue.$emit('clear-time')
         },
+
         //將 element 抓入當成value 寄出
         //讓 下一個compoent 一起處理
         createGoalBtn() {
+
+            const goalW = select('.goalWeight input').value
+
+
             if (this.mHeight && this.wWeight && this.getSex !== '--' && this.getAge !== '--') {
                 //傳到 memberThreeVue 進行動作
                 passValueVue.$emit('create-goal', this.goalWeightInput, this.checkGoalWeightState)
 
-                //button 變更成編輯
-                this.FBtnOpen = false
-                this.SBtnOpen = false
-                this.CBtnOpen = false
-                this.EBtnOpen = true
+                if (goalW){
+                    //button 變更成編輯
+                    this.FBtnOpen = false
+                    this.SBtnOpen = false
+                    this.CBtnOpen = false
+                    this.EBtnOpen = true
+                }
                 // this.editSaveButtonState()
             } else {
                 alert('請先填上、生日、性別、體重、身高等資訊')
             }
-            // console.log(this.getAge)
-            // console.log(this.getSex)
-            // console.log(this.wWeight)
-            // console.log(this.mHeight)
+
 
 
         },
@@ -390,7 +405,8 @@ Vue.component('bottom-info', {
             const label = select('.goalBody .goalWeight label')
             const input = label.children[0]
             const img = label.children[1]
-
+            let Vthis = this
+            
             if (input.value) {
                 this.FBtnOpen = false
                 this.CBtnOpen = false
@@ -398,8 +414,23 @@ Vue.component('bottom-info', {
                 this.EBtnOpen = true
 
                 this.$store.commit('updataGoalWeight', input.value)
-                console.log(input.value)
                 input.setAttribute('readonly', true)
+
+                //體重修改後 直接從Vuex 抓取
+                //修改table 修改體重 其他抓之前的
+                function updateGoalTime_Weight() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+                    }
+                    xhr.open(
+                        'GET',
+                        `php/updateGoalTime_Weight.php?mNo=${getTmp_mNo}&mGoalW=${Vthis.mGoalW}&mGoalS=${Vthis.mGoalS}&mGoalE=${Vthis.mGoalE}`
+                    )
+                    xhr.send(null)
+                }
+                updateGoalTime_Weight()
+
             } else {
                 alert('請輸入目標體重')
             }
@@ -408,7 +439,7 @@ Vue.component('bottom-info', {
 
     computed: {
         ...mapGetters(['getAge', 'getBMR', 'getSex', 'getCalPerDay']),
-        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE', 'dailySumCal']),
+        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE', 'dailySumCal','mGoalS']),
 
         setCalPercent() {
             const percent = this.dailySumCal / this.getCalPerDay

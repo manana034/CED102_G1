@@ -10,11 +10,17 @@ Vue.component('profile-body', {
             <div class="row-1">
                 <h4>edit profile</h4>
             </div>
-            <form class="row-2">
+            <form 
+                class="row-2"
+                id="profileForm">
+
+                <input name="mNo" :value="mNo" hidden>
+
                 <label class="protrait">
                     <input 
                         type="file" 
                         name="protraitImg"
+                        :value = "imgSrc"
                         @change="getImg"
                         hidden>
 
@@ -101,7 +107,7 @@ Vue.component('profile-body', {
                         type="text" 
                         name="phone"
                         :value="mPhone"
-                        maxlength="12">
+                        maxlength="10">
                 </label>
 
                 <label class="intro">
@@ -143,6 +149,9 @@ Vue.component('profile-body', {
             mIntroInput: '',
             mImgInput: '',
 
+            protraitImg: '',
+            imgSrc: '',
+
             // gender: '',
         }
     },
@@ -181,8 +190,10 @@ Vue.component('profile-body', {
             passValueVue.$emit('leave-profile')
         },
         saveProfile() {
-            const choiceSex = [...this.mSexinputs].filter((input) => input.checked == true)[0].value
-     
+            let choiceSex = [...this.mSexinputs].filter((input) => input.checked == true)[0]
+            //一開始先選 哪個為checked 如果沒有 直接.value 會報錯
+
+            choiceSex ? choiceSex.value : choiceSex
 
             if (
                 !this.bdayInput.value.trim() ||
@@ -195,26 +206,64 @@ Vue.component('profile-body', {
             } else {
                 this.$store.commit('updateBday', this.bdayInput.value)
                 this.$store.commit('updateSex', choiceSex)
-                this.$store.commit('updateWeight', this.wWeightInput.value)
+  
                 this.$store.commit('updateHeight', this.mHeightInput.value)
-                if (this.mMailInput.value.trim()) {
-                    this.$store.commit('updateMail', this.mMailInput.value)
-                }
-                if (this.mPhoneInput.value.trim()) {
-                    this.$store.commit('updatePhone', this.mPhoneInput.value)
-                }
-                if (this.mIntroInput.value.trim()) {
-                    this.$store.commit('updateIntro', this.mIntroInput.value)
-                }
-                if (this.mImgInput.src) {
-                    this.$store.commit('updateImg', this.mImgInput.src)
+
+                this.$store.commit('updateMail', this.mMailInput.value)
+                this.$store.commit('updatePhone', this.mPhoneInput.value)
+                this.$store.commit('updateIntro', this.mIntroInput.value)
+
+                this.$store.commit('updateImg', this.mImgInput.src)
+
+                function updateProfile() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+                    }
+                    xhr.open('POST', 'php/updateProfile.php', true)
+                    let data_info = new FormData(select('#profileForm'))
+                    xhr.send(data_info)
                 }
 
-                // fetch('php/')
+                function updataMWeight() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+                        if(xhr.responseText !== "更新成功"){
+                            alert('每天只能更新一次')
+                        }
+                    }
+                    xhr.open('POST', 'php/updateWeight.php', true)
+                    let data_info = new FormData(select('#profileForm'))
+                    xhr.send(data_info)
+                }
+
+                function updataMemberImg() {
+                    let xhr = new XMLHttpRequest()
+                    xhr.onload = function () {
+                        console.log(xhr.responseText)
+                    }
+                    xhr.open('POST', 'php/updateMemberImg.php', true)
+                    let data_info = new FormData(select('#profileForm'))
+                    xhr.send(data_info)
+                } 
+
+                //如果體重 Vuex的資料 跟 現場資料不一樣 
+                //才做更新
+                if (this.wWeight !== this.wWeightInput.value) {
+                    this.$store.commit('updateWeight', this.wWeightInput.value)
+                    updataMWeight()
+                }
+  
+ 
+
+                // updataMWeight()
+                updateProfile()
+                updataMemberImg()
+
                 passValueVue.$emit('leave-profile')
             }
         },
-  
     },
     mounted() {
         //針對 DOM input 限制格式
@@ -223,13 +272,13 @@ Vue.component('profile-body', {
             datePattern: ['Y', 'm', 'd'],
             delimiter: '-',
         })
-        new Cleave('.profileBody label.phone>input', {
-            blocks: [2, 4, 4],
-            // delimiter: '-',
-            //無法一起 使用
-            // phone: true, // 電話模式
-            // phoneRegionCode: 'tw', // 需仔入 taiwan 的cdn
-        })
+        // new Cleave('.profileBody label.phone>input', {
+        //     blocks: [2, 4, 4],
+        //     // delimiter: '-',
+        //     //無法一起 使用
+        //     // phone: true, // 電話模式
+        //     // phoneRegionCode: 'tw', // 需仔入 taiwan 的cdn
+        // })
         new Cleave('.profileBody label.height>input', {
             numeral: true,
             numeralIntegerScale: 3,
@@ -273,6 +322,7 @@ Vue.component('profile-body', {
             'mWriteD',
             'mTotal',
             'mName',
+            'mNo',
 
             'wWeight',
             'wDate',
@@ -688,6 +738,7 @@ Vue.component('goal-body', {
         passValueVue.$on('clear-time',()=>{
             this.checkGoalTimeState()
         })
+
         passValueVue.$on('create-goal', (inputEl, checkGoalWeightFun) => {
             const y = new Date().getFullYear()
             const m = new Date().getMonth() + 1
@@ -695,6 +746,20 @@ Vue.component('goal-body', {
 
             const now = `${y}-${m}-${d}` 
             const Vthis = this
+
+            //確認下面的if goaltime 才送出table
+            function updateGoalTime_Weight(){
+                
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function(){
+                    console.log(xhr.responseText)
+                }
+                xhr.open(
+                    'GET',
+                    `php/updateGoalTime_Weight.php?mNo=${getTmp_mNo}&mGoalW=${Vthis.mGoalW}&mGoalS=${Vthis.mGoalS}&mGoalE=${Vthis.mGoalE}`
+                )
+                xhr.send(null)
+            }
 
             if (this.goalTime || this.customEndDate) {
                 //兩個其中有值
@@ -719,14 +784,12 @@ Vue.component('goal-body', {
                         console.log(this.customEndDate)
                         this.$store.commit('updataGoalEnd', this.customEndDate)
                     }
-
+                    //傳目標體重的 value
                     Vthis.$store.commit('updataGoalWeight', inputEl.value)
 
-                    //ajax 修改 table的內容 mGoalS mGoalE mGoalW
-                    //=========================================
-                    //=========================================
+                    //將值送去給table
+                    updateGoalTime_Weight()
 
-                    // 將button 做切換 內容作變化
                 } else {
                     //inputEl沒有填值
                     alert('請輸入日期、體重')
@@ -746,11 +809,6 @@ Vue.component('goal-body', {
                 console.log('可以讓這裡執行 執行其他method 的function')
                 clearTimeout(time)
             }, 100)
-
-            
-            //將內容寫入table
-            
-
 
         })
     },
@@ -872,14 +930,11 @@ Vue.component('status-order', {
             }
         },
         checkList() {
-            const time = setTimeout(() => {
-                if (!this.orderStateListEl.children[0]) {
-                    this.orderStateLine.style.borderBottom = 'none'
-                } else {
-                    this.orderStateLine.removeAttribute('style')
-                }
-                clearTimeout(time)
-            }, 20)
+            if (!this.orderStateListEl.children[0]) {
+                this.orderStateLine.style.borderBottom = 'none'
+            } else {
+                this.orderStateLine.removeAttribute('style')
+            }
         },
     },
 
@@ -1013,14 +1068,11 @@ Vue.component('fav-poster', {
         },
 
         checkList() {
-            const time = setTimeout(() => {
-                if (!this.favListEl.children[0]) {
-                    this.favListLine.style.borderBottom = 'none'
-                } else {
-                    this.favListLine.removeAttribute('style')
-                }
-                clearTimeout(time)
-            }, 20)
+            if (!this.favListEl.children[0]) {
+                this.favListLine.style.borderBottom = 'none'
+            } else {
+                this.favListLine.removeAttribute('style')
+            }
         },
 
         toFavPost(target) {
@@ -2038,6 +2090,28 @@ Vue.component('sign-up', {
                     //如果沒資料就回傳0
                 }
 
+               function checkOrderAndFavList() {
+                   const listBody = selectAll('.listBody tbody')
+                   const listHead = selectAll('.listBody thead')
+
+                   if (listBody[0].children.length == 0) {
+                       listHead[0].setAttribute('style', 'border-bottom: none')
+                       console.log('orderlist 沒有內容')
+                   } else {
+                       listHead[0].removeAttribute('style')
+                       console.log('oderlist 有內容')
+                   }
+
+                   //favlist 的table
+                   if (listBody[1].children.length == 0) {
+                       listHead[1].setAttribute('style', 'border-bottom: none')
+                       console.log('favlist 沒有內容')
+                   } else {
+                       listHead[0].removeAttribute('style')
+                       console.log('favlist 有內容')
+                   }
+               }
+
                 getMemberData()
                 //自動登入 執行這段
                 getMnoMidMpsw()
@@ -2051,12 +2125,14 @@ Vue.component('sign-up', {
                 getMOrderData()
 
                 getMDailyCalData()
+                
 
                 const checkGoaltime = setTimeout(() => {
                     passValueVue.$emit('check-goalWeight')
                     passValueVue.$emit('check-goalTime')
+                    checkOrderAndFavList()
                     clearTimeout(checkGoaltime)
-                }, 100)
+                }, 300)
             }
         }
     },
