@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>HEALTH NEWS</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/information.css">
@@ -28,7 +28,7 @@
             <li :class="{'active': visibility == 'exercise'}" @click="visibility = 'exercise'">EXERCISE</li>
             <li :class="{'active': visibility == 'regimen'}" @click="visibility = 'regimen'">REGIMEN</li>
         </ul>
-        <div class="custom-select">
+        <div class="custom-select" @clik="filteredinfos">
             <select name="sType">
                 <option value="0">ALL</option>
                 <option value="1">FOOD</option>
@@ -42,7 +42,7 @@
             <a :href="value.url">
                 <div class="text">
                     <p class="title">{{value.infoTitle}}</p>
-                    <p class="content">{{value.infoContent}}.</p>
+                    <p class="content">{{value.infoContent}}</p>
                     <img class="arrow" src="./img/right-arrow.png">
                 </div>
                 <img class="infophoto1" :src="value.infoPhoto1" v-if="(value.infoPhoto1).slice(-3) == 'jpg'">
@@ -50,7 +50,7 @@
             </a>
         </div>
     </div>
-<div class="load">load more +</div>
+<!-- <div class="load">load more +</div> -->
 </div>
     @@include('./layout/footer.html')
 

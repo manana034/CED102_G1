@@ -85,7 +85,7 @@ Vue.component('all-info', {
             <div class="content">Do you want to <span>{{lightbox_text}}</span> article no.<span>{{lightbox_infoNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox = false">Cancel</button>
-                <button class="continus" @click="change_state(lightbox_infoNo,lightbox_state)" >Continus</button>
+                <button class="continue" @click="change_state(lightbox_infoNo,lightbox_state)" >Continue</button>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@ Vue.component('all-info', {
             <div class="content">Do you want to <span>delete</span> article no.<span>{{lightbox_infoNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox_delete = false">Cancel</button>
-                <button class="continus" @click="delete_item(lightbox_infoNo)" >Delete</button>
+                <button class="continue" @click="delete_item(lightbox_infoNo)" >Delete</button>
             </div>
         </div>
     </div>
@@ -302,7 +302,7 @@ Vue.component('edit-info', {
         </div>
         <div>
             <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="edit_info_func(infoType,infoTitle,infoPhoto1,
+            <button class="continue" @click="edit_info_func(infoType,infoTitle,infoPhoto1,
                 infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3)">Edit</button>
         </div>                                                                                                            
     </div>
@@ -506,7 +506,7 @@ Vue.component('add-info', {
         </div>
         <div>
             <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="add_info_func(infoType,infoTitle,infoPhoto1,
+            <button class="continue" @click="add_info_func(infoType,infoTitle,infoPhoto1,
                 infoPhoto2,infoPhoto3,infoContent1,infoContent2,infoContent3)">Add</button>
         </div>                                                                                                            
     </div>

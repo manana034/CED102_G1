@@ -13,7 +13,7 @@
         background-color: $green-d;
         border-radius: 0 70px 70px 0;
         height: 100%;
-		padding: 20px;
+		padding: 40px 20px 20px 20px;
 		align-content: space-around;
         width: 250px;
 		transition: all .5s;
@@ -92,16 +92,18 @@
     }
 }
 
-.main_food, .main_exercise, .main, .report, .member_management {
-    padding-left: 5%;
-    max-width: calc(95% - 250px);
+.main_food, .main_exercise, .main, .report, .member_management, .pointpage, #app {
+    padding-left: 50px;
+    width: calc(100% - 200px);
+    // width: 90%;
     position: absolute;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: column;
     div.main_top, .postpage, .messagepage, .memberpage, .levelpage {
+        min-height: 50px;
         div.page {
-            margin-bottom: 40px;
+            // margin-bottom: 40px;
             display: flex;
             width: 100%;
             div.food, div.member, div.post {
@@ -293,10 +295,12 @@
         display: none;
     }
     div.main_bottom {
-        max-height: 65vh;
+        // min-width: 100%;
+        max-height: 70vh;
         overflow: auto;
         table {
-            table-layout: fixed;
+            min-width: 85%;
+            // table-layout: fixed;
             border-radius: 10px;
             font-size: 16px;
             border-collapse: collapse;
@@ -308,13 +312,13 @@
                 color: $white;
                 padding: 10px;
                 font-family: NotoSans-B;
-                position:sticky;
+                position: sticky;
                 top:0;
                 z-index: 3;
                 vertical-align: middle;
             }
             tr {
-                text-align: center;
+                // text-align: center;
             }
             tr:nth-child(even) {
                 background: $gray1;
@@ -324,8 +328,8 @@
             }
             td {
                 vertical-align: middle;
-                max-width: 600px;
-                min-width: 100px;
+                // max-width: 600px;
+                // min-width: 100px;
                 padding: 5px 20px;
                 img {
                     max-width: 150px;    

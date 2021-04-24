@@ -72,9 +72,9 @@
                         Cancel
                     </button>
                     <button 
-                        class="continus"
-                        @click="delContinusBtn">
-                        Continus
+                        class="continue"
+                        @click="delContinueBtn">
+                        Delete
                     </button>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                     </button>
 
                     <button 
-                        class="continus"
+                        class="continue"
                         @click="AddCreateBox">
                         Add
                     </button>
@@ -193,7 +193,7 @@
                 this.delBox.style.display = "none"
                 this.beDeletedAdminNo = ''
             },
-            delContinusBtn(){
+            delContinueBtn(){
                 // alert(this.beDeletedAdminNo)
                 fetch('php/deleteAdmin.php',{
                     method: 'POST',

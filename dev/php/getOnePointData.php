@@ -5,15 +5,15 @@
         $content = trim(file_get_contents("php://input"));
         $decoded = json_decode($content, true);
 
-        $keyNo = $decoded["keyNo"];
+        $poNo = $decoded["poNo"];
 
         $sql = "SELECT *
-                FROM chatbot
-                WHERE keyNo = :keyNo
+                FROM point
+                WHERE poNo = :poNo
                 ";
 
         $per_info_data = $pdo->prepare($sql);
-        $per_info_data->bindValue(":keyNo", $keyNo);
+        $per_info_data->bindValue(":poNo", $poNo);
 
         $per_info_data->execute();
 

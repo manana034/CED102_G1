@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>CALORIES SEARCH</title>
     <link rel="stylesheet" href="./css/common/all.css">
     <link rel="stylesheet" href="./css/common/search.css">
@@ -51,15 +51,6 @@
                 </div>
 
                 <form id="search_bar_f" class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <div class="search-input">
-
-                        <input 
-                            type="search" 
-                            v-model="foodSearch" 
-                            placeholder="SEARCH WHAT YOU TOOK"
-                            @keyup="filterData">
-
-                    </div>
                     <div 
                         class="custom-select"
                         @click="typeSelect">
@@ -78,9 +69,18 @@
                             <option>CUSTOMIZED</option>
                         </select>
                     </div>
-                    <button class="nc-btn o-5" @click="selectFType ='search'">
+                    <div class="search-input">
+
+                        <input 
+                            type="search" 
+                            v-model="foodSearch" 
+                            placeholder="SEARCH WHAT YOU TOOK"
+                            @keyup="filterData">
+
+                    </div>
+                    <!-- <button class="nc-btn o-5" @click="selectFType ='search'">
                         <img src="./icon/search_magnifier.png">
-                    </button>  
+                    </button>   -->
                 </form>
                 
             </div>
@@ -143,15 +143,6 @@
                     </div>
                 </div>
                 <form id="search_bar_e" class="col-4 col-lg-2 col-md-2 col-sm-1">
-                    <div class="search-input">
-
-                        <input 
-                            type="search" 
-                            placeholder="SERACH"
-                            v-model="sportSearch"
-                            @input="filterData">
-
-                    </div>
                     <div 
                         class="custom-select" 
                         @click="typeSelect">
@@ -163,9 +154,18 @@
                             <option value="3">HIGH</option>
                         </select>
                     </div>
-                    <button class="nc-btn o-5">
+                    <div class="search-input">
+
+                        <input 
+                            type="search" 
+                            placeholder="SEARCH WHAT YOU DONE"
+                            v-model="sportSearch"
+                            @input="filterData">
+
+                    </div>
+                    <!-- <button class="nc-btn o-5">
                         <img src="./icon/search_magnifier.png" alt="">
-                    </button>  
+                    </button>   -->
                 </form>
                 
             </div>
@@ -190,7 +190,7 @@
                     </a>
 
                 </div>
-                <div class="load">load more +</div>
+                <!-- <div class="load">load more +</div> -->
             </div>
         </div>
 
