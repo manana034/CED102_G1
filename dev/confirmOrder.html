@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/confirmOrder.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
     <script src="./js/header.js" defer></script>
     <title>Confirm Order</title>
 </head>
 <body>
-    @@include('./layout/header.html')
-    @@include('./layout/cart.html')
-    <div class="cartall">
+    <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>  
+    <div class="cartall" id="app">
          <h5>MY CART</h5>
          <div class="steps">
              <p>1. CHECK ORDER</p>
@@ -80,6 +83,17 @@
      
     <script src="./js/cart.js"></script>
     <script src="./js/header_customSelect.js" defer></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                mounted(){
+                    fetch("./php/insertOrder.php").then(res => res.json())
+                                                    .then(data => console.log(data))
+                }
+            }
+        })
+    </script>
    
 </body>
 </html>

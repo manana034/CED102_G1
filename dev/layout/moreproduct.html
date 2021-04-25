@@ -2,27 +2,25 @@
 
 <section class="moreproduct" id="moreproduct">  
     <ul>
-        <li v-for="(more,index) in prods" class="prod1">
-            <a href="./product.html">   
-                <a v-bind:href="more.url" @click="prodInfo(index)">   
-                    <div class="bg" v-bind:style="more" v-if="parseFloat(more.calRate) > 1" style="backgroundColor:#bf4659">
-                        <img v-bind:src="more.prodpic1">
-                    </div>
-                    <div class="bg" v-bind:style="more" v-else-if="more.calRate < 1" style="backgroundColor:#2d6ca6">
-                        <img v-bind:src="more.prodpic1">
-                    </div>
-                    <div class="bg" v-bind:style="more" v-else-if="more.calRate = 1" style="backgroundColor:#f9c530">
-                        <img v-bind:src="more.prodpic1">
-                    </div>
+        <li v-for="(more,index) in prods" class="prod1">  
+            <a v-bind:href="more.url">   
+                <div class="bg" v-bind:style="more" v-if="parseFloat(more.calRate) > 1" style="backgroundColor:#bf4659">
+                    <img v-bind:src="more.prodpic1" @click.self="setId" :data-no="more.prodNo">
+                </div>
+                <div class="bg" v-bind:style="more" v-else-if="more.calRate < 1" style="backgroundColor:#2d6ca6">
+                    <img v-bind:src="more.prodpic1" @click.self="setId" :data-no="more.prodNo">
+                </div>
+                <div class="bg" v-bind:style="more" v-else-if="more.calRate = 1" style="backgroundColor:#f9c530">
+                    <img v-bind:src="more.prodpic1" @click.self="setId" :data-no="more.prodNo">
+                </div>
                 <div class="prodinfo">
-                    <p>{{more.fdName}}}</p>
+                    <p>{{more.fdName}}</p>
                     <!-- <p v-if="more.calRate > 1">  Get 150% Cal Plus</p>
                     <p v-else-if="more.calRate < 1">  Consume 50% Cal</p>
                     <p v-else> </p> -->
                     <p>NT${{more.price}}</p>       
                 </div>
-             </a>   
-            <button class="byn">BUY NOW</button>  
+            </a>   
         </li>
        <!-- <li class="prod2"> -->
             <!-- <a href="./product.html">
@@ -80,7 +78,13 @@
         el:"#moreproduct",
         data:{
             prods:[],
-
+        },
+        methods: {
+            setId(e){
+                // console.log("hi");
+                // console.log(e.target);
+                sessionStorage.setItem("no",e.target.dataset.no)
+            }
         }
     })
 
@@ -89,6 +93,7 @@
                                     .then(data => {
                                         console.log(data);
                                         data.forEach(d => {
+                                                d.url = `./product.html?id=${d.prodNo}`
                                                 vm1.prods.push(d);
                                                 // console.log(vm.prod);
                                         })

@@ -14,8 +14,10 @@
     <title>Payment detail</title>
 </head>
 <body>
-    @@include('./layout/header.html')
-    @@include('./layout/cart.html')
+  <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>  
     <div class="cartall" id="app">
          <h5>MY CART</h5>
 
@@ -192,13 +194,13 @@
              <a href="./mycart.html"> &lt; PREV</a>
              <button>NEXT</button>
         </div>
-    </div>
-    <div class="paybanner">
-        <div class="pay">
-                <h6>Are you sure?</h6>
-                <p>Do you really want to confirm the payment? This process cannot be undone.</p>
-                <button class="cancel">Cancel</button>
-                <button type="submit">Confirm</button> </a>
+        <div class="paybanner">
+            <div class="pay">
+                    <h6>Are you sure?</h6>
+                    <p>Do you really want to confirm the payment? This process cannot be undone.</p>
+                    <button class="cancel">Cancel</button>
+                    <a href="./confirmOrder.html" @click="insertData">Confirm</a>
+            </div>
         </div>
     </div>
 
@@ -214,10 +216,41 @@
             data: {
                 info:[]
             },
+            methods:{
+                insertData(){
+                    const county = document.querySelector(".county");
+                    const district = document.querySelector(".district");
+                    const address = document.querySelector("#address2");
+
+                    let url = "./php/insertOrder.php";
+                    let localProduct = localStorage.getItem("localProduct");
+                    let detail = localProduct;
+                    let data = {
+                        mNo: this.info.mNo,
+                        orderState: 1,
+                        usePoints: this.info.mPoints,
+                        total: sessionStorage.getItem("finalPrice"),
+                        orderer: this.info.mName,
+                        address: county.value + district.value + address.value,
+                        tel: this.info.mPhone,
+                        orderDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                        detail: JSON.parse(localProduct)
+                    }
+                    fetch(url, {
+                        method: "post",
+                        body: JSON.stringify(data),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then(res => res.text()).catch(error => console.log(error)).then(body => console.log(body))
+
+                    localStorage.removeItem('localProduct');
+                    sessionStorage.removeItem('finalPrice');
+                },
+            },
             mounted(){
                 //payment.html
                 //============================= credit card ===================================
-
                 window.onload = function () {
                     const name = document.getElementById('nm3');
                     const cardnumber = document.getElementById('cardnumber');
@@ -670,13 +703,13 @@
                         }
                         
                         
-                        const paybutton = document.querySelector(".pay button[type='submit']")
+                        // const paybutton = document.querySelector(".pay input[type='button']")
 
                         next.addEventListener("click",checkForm);
                     
-                        paybutton.addEventListener("click",function(){
-                            document.getElementById("myForm").submit();
-                    });
+                    //     paybutton.addEventListener("click",function(){
+                    //         document.getElementById("myForm").submit();
+                    // });
 
                     //會員資訊取得
                     
@@ -691,6 +724,7 @@
                             for(let i = 0 ; i < allMem.length ; i++){
                                 if(mNo == allMem[i].mNo){
                                     vThis.info = allMem[i]
+                                    console.log(vThis.info);
                                 }
                             }
                         }
