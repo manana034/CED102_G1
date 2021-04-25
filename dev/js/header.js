@@ -1,4 +1,5 @@
 let getTmp_mNo=null, getTmp_mId=null, getTmp_mPsw=null
+let app;//Vue
 // 如果session 以登入 將資料寫入memberID
 
 const select = (selector) => {
@@ -23,8 +24,7 @@ function checkLoggedin() {
             console.log('這是帳號' + getTmp_mId)
             console.log('這是密碼' + getTmp_mPsw)
             console.log('抓取 站存 成功')
-
-            // console.log(app)
+ 
         }
     }
     xhr.open('get', 'php/checkLoggedin.php', true)
@@ -52,34 +52,25 @@ const closeMenu = (elmnt) => {
     } else if (ta.matches('.menuBody')) {
         return
     } else {
-        menuBody.style.transform = 'translate(100%,0)'
+        menuBody.classList.remove('active')
     }
 }
 
 menuIcon.addEventListener('click', (e) => {
+    console.log(menuBody.className)
     e.stopPropagation()
-    const state = getComputedStyle(menuBody).transform
-    // console.log(state)
-
-    if (getComputedStyle(menuBody).display == 'none') {
-        menuBody.style.display = 'block'
-
-        const time = setTimeout(() => {
-            menuBody.style.transform = 'translate(0,0)'
-            clearTimeout(time)
-        })
-    } else if (state == 'matrix(1, 0, 0, 1, 0, 0)') {
-        menuBody.style.transform = 'translate(100%,0)'
+    if (menuBody.className == 'menuBody') {
+        menuBody.classList.add('active')
     } else {
-        menuBody.style.transform = 'translate(0,0)'
+        menuBody.classList.remove('active')
     }
-    console.log('work')
-})
-menuCIcon.addEventListener('click', () => {
-    menuBody.style.transform = 'translate(100%,0)'
 })
 
-document.addEventListener('click', closeMenu)
+menuCIcon.addEventListener('click', () => {
+    menuBody.classList.toggle('active')
+})
+
+document.addEventListener('click', closeMenu) 
 
 // -------------------------menu open↑↑↑↑↑↑↑↑↑↑↑↑
 
@@ -93,19 +84,22 @@ const phoneSearch = document.querySelector('.phoneSearch')
 const closeSearch = document.querySelector('#searchBar>.closeForm')
 
 phoneSearch.addEventListener('click', () => {
-    searchBody.style.display = 'inline-flex'
+    searchBody.classList.add('isOpened')
 })
 
 closeSearch.addEventListener('click', () => {
-    searchBody.style.display = 'none'
+    searchBody.classList.remove('isOpened')
 })
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth < 1200) {
-        searchBody.style.display = 'none'
-    } else {
-        searchBody.style.display = 'inline-flex'
-    }
-})
-
+// window.addEventListener('resize', () => {
+//     if (window.innerWidth < 1200) {
+//         // searchBody.style.display = 'none'
+//         // searchBody.removeAttribute('style')
+//         console.log('work')
+//     } else {
+//         if (searchBody.hasAttribute('style')){
+//             searchBody.removeAttribute('style')
+//         } 
+//     }
+// })
 

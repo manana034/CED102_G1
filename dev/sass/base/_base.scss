@@ -1,7 +1,12 @@
 
+html{
+    overflow-x: hidden;
+}
+
 body{
     background-color: $primary-l;
     transition: all 1s;
+    position: relative;
     overflow-x: hidden;
     @include textStyle("NotoSans-R",14px, $black,1px);
 

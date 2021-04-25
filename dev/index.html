@@ -19,9 +19,13 @@
         <!-- <script src="./js/"></script> -->
     </head>
     <body>
+        <div class="headerContainer">
+            @@include('./layout/header.html')
+            @@include('./layout/cart.html')
+        </div>
 
-        @@include('./layout/header.html')
-        @@include('./layout/cart.html')
+ 
+
 
         <div class="mainVision">
             <img src="./img/main_vision.jpg"/>
@@ -129,9 +133,7 @@
 
         <section class="postWall container">
             <div>
-                <div class="circle person">
-                    @@include('./layout/comment.html')
-                </div>
+                <div class="circle bg-rl"></div>
                 <div class="circle bg-gd"></div>
                 <div class="circle bg-p"></div>
                 <div class="circle bg-gd"></div>
@@ -188,25 +190,18 @@
                 <div class="circle bg-gl"></div>
             </div>
             <div class="col-5 card">
-                <h4>Share your report</h4>
-                <p>
-                    「上個月每天都有執行運動計畫，我要把成果分享給大家」<br>
-                    。分享一個月的紀錄報表<br>
-                    。把你努力運動的樣子分享給大家<br>
-                    。分享你的健康餐點
-                </p>
-                <div class="col-5">
-                    <button class="nc-btn">&lt;</button>
-
-                    <span>1</span>
-                    <span>/</span>
-                    <span>3</span>
-
-                    <button class="nc-btn">&gt;</button>
+                <h4>CALORIES DIAR</h4>
+                <P>
+                    記錄每一天所吃,所動的卡路里,並可以查看某天的卡路里紀錄,讓保持健康不再是難事!!
+                </P>
+                <div>
+                    <img src="./img/index_goalImage-02.png" class="tilt2 goalImage2">
+                    <img src="./img/index_goalImage-01.png" class="tilt2 goalImage1">
                 </div>
+                
             </div>
 
-            <div class="phone-comment">
+            <!-- <div class="phone-comment">
                 <div>
                     <div class="circle person"></div>
                     <div class="circle person main"></div>
@@ -215,7 +210,7 @@
                         @@include('./layout/comment.html')
                     </main>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <section class="product container">
@@ -228,13 +223,13 @@
                     </p>
                 </div>
 
-                <div>
+                <!-- <div>
                     <button class="nc-btn">&lt;</button>
                     <span>1</span>
                     <span>/</span>
                     <span>10</span>
                     <button class="nc-btn">&gt;</button>
-                </div>
+                </div> -->
             </div>
 
             <div class="bottom">
@@ -243,5 +238,7 @@
         </section>
 
         @@include('./layout/footer.html')
+        
+
     </body>
 </html>
