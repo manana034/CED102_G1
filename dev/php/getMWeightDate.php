@@ -7,7 +7,7 @@ try{
     WHERE mId=:memid 
     AND mPsw=:memPsw 
     AND ( now() - interval 8 week) < w.wDate 
-    ORDER BY w.wDate DESC";
+    ORDER BY w.wDate asc";
     
     $member = $pdo->prepare($sql);
 

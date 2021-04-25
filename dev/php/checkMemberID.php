@@ -14,7 +14,7 @@ try{
     if( $member->rowCount() == 0 ){
         echo "{}";
     }else{
-        $memRow = $member->fetchAll(PDO::FETCH_ASSOC);
+        $memRow = $member->fetch(PDO::FETCH_ASSOC);
         echo json_encode($memRow);
     }
 

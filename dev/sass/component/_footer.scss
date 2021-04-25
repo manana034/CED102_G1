@@ -4,24 +4,25 @@ footer{
     // border: 1px solid black;
     justify-content: center;
     border-top: 1px solid $gray4;
+    align-items: flex-start;
 
     >div{
         width: 100%;
         display: flex;
         justify-content: center;
         margin-top: $u-m*5;
+        align-items: flex-start;
         img{
             width: 60px;
         }
     }
     p{
         text-align: center;
-        font-size: 1px;
+        font-size: 12px; 
         margin-top: $u-m*3;
         margin-bottom: $u-m*5;
     }
 }
-
 
 @include rwd(1120px){
     footer{

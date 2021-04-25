@@ -1,8 +1,11 @@
  .cart{
      background-color:#889674;
      max-width: 400px;
-     height:100vh;
+
+     height: calc(100vh - 80px );
+     top: 80px;
      position: fixed;
+
      right:-100%;
      transition: all 1s;
      z-index: 15;
@@ -138,5 +141,8 @@
     .cart{
         max-width: 100%;
         width: 100%;
+
+        height: calc(100vh - 62px );
+        top: 62px;
     }
 }

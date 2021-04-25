@@ -1,0 +1,66 @@
+//放置base 的全部
+@import '../base/reset';
+@import '../base/var';
+@import '../base/mixin';
+@import '../base/base';
+@import '../base/grid';
+@import '../base/rwd';
+//不能抓 all.scss 文自路徑會跑掉
+
+
+//放置component
+@import '../component/header';
+@import '../component/footer';
+@import '../component/cart.scss';
+@import '../component/A_report.scss';
+@import '../component/loading.scss';
+
+
+input[readonly]{
+    border-bottom: none;
+    width: 100%;
+    margin: 15px 0;
+    text-align: center;
+}
+
+main#app{
+    width: 35%;
+    display: flex;
+    margin: 20vh auto;
+    padding: 0px 50px;
+
+    form{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 50px;
+
+        >button{
+            margin-bottom: 50px;
+        }
+
+        >h6{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+    
+        >label{
+            margin: 30px 0;
+            position: relative;
+            width: 100%;
+            p{
+                position: absolute;
+                top: -10px;
+                font-size: 14px;
+                text-transform: uppercase;
+                // margin: 5px 0;
+                transition: all .3s;
+            }
+            input{
+                width: 100%;
+            }
+        }
+    }
+}
+
