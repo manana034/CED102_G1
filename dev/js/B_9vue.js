@@ -57,7 +57,7 @@ Vue.component('all-chat', {
                 <td>{{changetype(value.keyType)}}</td>
                 <td>{{value.keyW}}</td>
                 <td>{{value.keyQ}}</td>
-                <td>{{value.keyA}}</td>
+                <td v-html="value.keyA"></td>
                 <td>
                     <img class="edit" @click="chat_edit(value.keyNo)" src="./icon/backend_edit.png">
                 </td>
@@ -73,7 +73,7 @@ Vue.component('all-chat', {
             <div class="content">Do you want to <span>delete</span> question no.<span>{{lightbox_keyNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox_delete = false">Cancel</button>
-                <button class="continus" @click="delete_item(lightbox_keyNo)" >Delete</button>
+                <button class="continue" @click="delete_item(lightbox_keyNo)" >Delete</button>
             </div>
         </div>
     </div>
@@ -151,6 +151,9 @@ Vue.component('all-chat', {
         },
 
     },
+    computed: {
+
+    },
     // template 渲染前 會先去執行以下函式
     created() {
         this.get_chat();
@@ -215,7 +218,7 @@ Vue.component('edit-chat', {
         </div>
         <div>
             <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="edit_chat_func(keyNo,keyType,keyW,keyQ,keyA)">Edit</button>
+            <button class="continue" @click="edit_chat_func(keyNo,keyType,keyW,keyQ,keyA)">Edit</button>
         </div>                                                                                                            
     </div>
 </div>
@@ -355,7 +358,7 @@ Vue.component('add-chat', {
         </div>
         <div>
             <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="add_chat_func(keyType,keyW,keyQ,keyA)">Add</button>
+            <button class="continue" @click="add_chat_func(keyType,keyW,keyQ,keyA)">Add</button>
         </div>                                                                                                            
     </div>
 </div>

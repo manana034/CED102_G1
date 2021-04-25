@@ -64,7 +64,7 @@ Vue.component('all-post', {
             <div class="content">Do you want to <span>{{lightbox_text}}</span>  post no.<span>{{lightbox_postNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox = false">Cancel</button>
-                <button class="continus" @click="change_state(lightbox_postNo,lightbox_state)">Continus</button>
+                <button class="continue" @click="change_state(lightbox_postNo,lightbox_state)">Continue</button>
             </div>
         </div>
     </div>
@@ -206,7 +206,7 @@ Vue.component('all-message', {
             <div class="content">Do you want to <span>{{lightbox_text}}</span>  message no.<span>{{lightbox_mesNo}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox = false">Cancel</button>
-                <button class="continus" @click="change_state(lightbox_mesNo,lightbox_state)">Continus</button>
+                <button class="continue" @click="change_state(lightbox_mesNo,lightbox_state)">Continue</button>
             </div>
         </div>
     </div>

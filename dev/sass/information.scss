@@ -18,15 +18,21 @@ div.banner {
         position: absolute;
         bottom: 35%;
         left: 7%;
+        @include rwd(768px) {
+            top: 30%;
+        }
+    }
+    @include rwd(768px) {
+        height: 300px;
     }
 }
 
 div.filter {
     margin: 50px;
     ul {
-        @include rwd(992px) {
-            display: none;
-        }
+        // @include rwd(992px) {
+        //     display: none;
+        // }
         margin: auto;
         max-width: 500px;
         display: flex;
@@ -38,6 +44,11 @@ div.filter {
             color: $black;
             padding: 5px 10px;
             border-radius: 20px;
+        }
+        li:nth-child(1) {
+            @include rwd(768px) {
+                display: none;
+            }
         }
         li:nth-child(2) {
             cursor: pointer;
@@ -73,10 +84,10 @@ div.filter {
     }
     .custom-select {
         display: none;
-        @include rwd(992px) {
-            display: block;
-            margin: auto;
-        }
+        // @include rwd(992px) {
+        //     display: block;
+        //     margin: auto;
+        // }
         justify-content: center;
         padding: 3px 0px;
         border: 1px solid $gray5;
@@ -159,37 +170,61 @@ div.main {
         .text{
             cursor: pointer;
             margin: auto;
-            height: 100%;
-            width: 300px;
+            height: auto;
+            max-width: 280px;
             // background-color: blue;
             position: absolute;
-            right: 0%;
-            top: 9%;
+            right: 1%;
+            top: 5%;
             display: block;
+            @include rwd(850px) {
+                top: 10px;
+                max-width: 220px;
+                @include rwd(576px) {
+                    max-width: 190px;
+                    right: 0%;
+                    top: 20%;
+                }
+            }
             .title {
                 margin: auto;
-                width: 250px;
+                max-width: 260px;
                 font-size: 20px;
                 font-weight: bold;
                 color: $black;
-                padding: 10px;
-                padding-left: 40px;
+                padding: 20px;
+                padding-left: 30px;
                 hyphens: none;
+                @include rwd(850px) {
+                    max-width: 240px;
+                    @include rwd(576px) {
+                        margin: auto;
+                    }
+                }
             }
             .content {
                 margin: auto;
-                width: 250px;
+                max-width: 200px;
                 font-size: 16px;
                 color: $black;
-                padding: 20px;
+                padding: 2%;
+                height: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include rwd(576px) {
+                    display: none;
+                }
             }
             .arrow {
                 width: 20px;
                 height: 20px;
                 position: absolute;
                 right: 20%;
-                bottom: 15%;
+                top: 220px;
                 transition: .4s;
+                @include rwd(576px) {
+                    top: 120px;
+                }
             }
             &:hover .arrow {
                 transform: translateX(50%);
@@ -212,7 +247,7 @@ div.main {
             width: 100%;
             display: block;
             outline: none;
-            //要改成播放時間!=0時是直的，偵測播放時間不是hover
+            height: auto;
             transition: 100s all;
             &:hover {
                 clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
@@ -229,9 +264,9 @@ div.main {
             @include rwd(768px) {
                 margin: 30px;
                 margin-right: 100px;
-            }
-            @include rwd(576px) {
-                margin: 30px 0;
+                @include rwd(576px) {
+                    margin: 30px 10px;
+                }
             }
         }
     }
@@ -245,7 +280,7 @@ div.main {
                 margin: 30px;
                 margin-left: 100px;
                 @include rwd(576px) {
-                    margin: 30px 0;
+                    margin: 30px 10px;
                 }
             }
         }

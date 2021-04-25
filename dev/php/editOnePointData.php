@@ -17,7 +17,7 @@
                     poName = :poName,
                     startTime = :startTime,
                     endTime = :endTime,
-                    points = :points,
+                    points = :points
                 WHERE poNo = :poNo
                 ";
         $per_info_data = $pdo->prepare($sql);

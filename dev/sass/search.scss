@@ -16,6 +16,9 @@ main {
             div.overflow_hidden {
                 height: 600px;
                 overflow: hidden;
+                @include rwd(576px) {
+                    height: 300px;
+                }
                 div.banner {
                     max-width: 1600px;
                     height: 3200px;
@@ -27,6 +30,9 @@ main {
                     animation-duration: 50s;
                     animation-timing-function: linear;
                     animation-iteration-count: infinite;
+                    @include rwd(576px) {
+                        animation-iteration-count: 0;
+                    }
                 }
             }
             div.tab_title {
@@ -37,6 +43,9 @@ main {
                 top: 30%;
                 left: 50%;
                 transform: translate(-50%, 0%);
+                @include rwd(576px) {
+                    top: 27px;
+                }
                 // background-color: cadetblue;
                 div.food {
                     color: $white;
@@ -48,6 +57,9 @@ main {
                     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                     display: inline-block;
                     margin: 10px;
+                    @include rwd(576px) {
+                        padding: 2% 6%;
+                    }
                 }
                 #exercise {
                     color: $black;
@@ -63,6 +75,9 @@ main {
                         color: $white;
                         background-color: $blue-d;
                         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                    }
+                    @include rwd(576px) {
+                        padding: 2% 4%;
                     }
                 }
             }
@@ -82,18 +97,35 @@ main {
                 max-width: 1200px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                 z-index: 3;
+                @include rwd(576px) {
+                    display: block;
+                    border-radius: 10px;
+                    padding: 10px;
+                    width: 95%;
+                }
                 .search-input{
                     width: 50%;
                     display: block;
                     flex-grow: 2; 
                     position: relative;
-                    border-right: 1px solid $gray5;
+                    background-image: url(../../icon/search_magnifier.png);
+                    background-position: 0% 50%;
+                    background-repeat: no-repeat;
+                    @include rwd(576px) {
+                        width: 100%;
+                        border-top: 1px solid $gray5;
+                        padding: 15px;
+                    }
                     input{
                         font-size: 24px;
-                        // background-color: pink;
                         width: 100%;
                         border: none;
                         outline: none;
+                        padding-left: 30px;
+                        @include rwd(576px) {
+                            font-size: 18px;
+                            padding-left: 15px;
+                        }
                     }
                 }
                     .custom-select { 
@@ -136,6 +168,9 @@ main {
                         padding: 3%;
                         // background-color: chocolate;
                         z-index: 10;
+                    }
+                    .select-selected {
+                        border-right: 1px solid $gray5;
                     }
                     /*style items (options):*/
                     .select-items {
@@ -180,6 +215,10 @@ main {
             text-align: center;
             @include rwd(768px) {
                 display: block;
+                @include rwd(576px) {
+                    padding: 0 10px;
+                    width: 75%;
+                }
             }
             > input[type="text"] {
                 font-size: 18px;
@@ -213,6 +252,9 @@ main {
             margin: 50px auto;
             max-width: 1200px;
             // background-color: blue;
+            @include rwd(576px) {
+                margin: 30px auto;
+            }
             div.result_number {
                 // background-color: coral;
                 padding: 20px;
@@ -233,8 +275,8 @@ main {
                 flex-wrap: wrap;
                 //  要改第5跟6要置左
                 justify-content: start;
-                @include rwd(1200px) {
-                    justify-content: center;
+                @include rwd(1180px) {
+                    justify-content: space-around;
                 }
                 div.cal_card {
                     align-content: wrap;
@@ -331,6 +373,9 @@ main {
             div.overflow_hidden {
                 height: 600px;
                 overflow: hidden;
+                @include rwd(576px) {
+                    height: 300px;
+                }
                 div.banner {
                     max-width: 1600px;
                     height: 3200px;
@@ -342,6 +387,9 @@ main {
                     animation-duration: 50s;
                     animation-timing-function: linear;
                     animation-iteration-count: infinite;
+                    @include rwd(576px) {
+                        animation-iteration-count: 0;
+                    }
                 }
             }
             div.tab_title {
@@ -352,6 +400,9 @@ main {
                 top: 30%;
                 left: 50%;
                 transform: translate(-50%, 0%);
+                @include rwd(576px) {
+                    top: 27px;
+                }
                 // background-color: cadetblue;
                 div.exercise {
                     color: $white;
@@ -362,6 +413,9 @@ main {
                     border-radius: 100px;
                     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                     display: inline-block;
+                    @include rwd(576px) {
+                        padding: 2% 4%;
+                    }
                 }
                 #food {
                     margin: 10px;
@@ -378,6 +432,9 @@ main {
                         color: $white;
                         background-color: $red-l;
                         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                    }
+                    @include rwd(576px) {
+                        padding: 2% 6%;
                     }
                 }
             }
@@ -397,18 +454,36 @@ main {
                 max-width: 1200px;
                 box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                 z-index: 3;
+                @include rwd(576px) {
+                    display: block;
+                    border-radius: 10px;
+                    padding: 10px;
+                    width: 95%;
+                }
                 .search-input{
                     width: 50%;
                     display: block;
                     flex-grow: 2; 
                     position: relative;
-                    border-right: 1px solid $gray5;
+                    background-image: url(../../icon/search_magnifier.png);
+                    background-position: 0% 50%;
+                    background-repeat: no-repeat;
+                    @include rwd(576px) {
+                        width: 100%;
+                        border-top: 1px solid $gray5;
+                        padding: 15px;
+                    }
                     input{
                         font-size: 24px;
                         // background-color: pink;
-                        width: 90%;
+                        width: 100%;
                         border: none;
                         outline: none;
+                        padding-left: 30px;
+                        @include rwd(576px) {
+                            font-size: 18px;
+                            padding-left: 15px;
+                        }
                     }
                 }
                     .custom-select { 
@@ -452,6 +527,9 @@ main {
                         // background-color: chocolate;
                         z-index: 99;
                     }
+                    .select-selected {
+                        border-right: 1px solid $gray5;
+                    }
                     /*style items (options):*/
                     .select-items {
                         top: 40px;
@@ -482,6 +560,9 @@ main {
             margin: 50px auto;
             max-width: 1200px;
             // background-color: blue;
+            @include rwd(576px) {
+                margin: 30px auto;
+            }
             div.result_number {
                 // background-color: coral;
                 padding: 20px;
@@ -502,6 +583,9 @@ main {
                 flex-wrap: wrap;
                 //  要改第9跟10要置左
                 justify-content: start;
+                @include rwd(1180px) {
+                    justify-content: space-around;
+                }
                 div.cal_card {
                     align-content: wrap;
                     margin: 17px 10px;

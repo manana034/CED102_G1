@@ -63,7 +63,7 @@ Vue.component('all-member', {
             <div class="content">Do you want to <span>{{lightbox_text}}</span> No.<span>{{lightbox_mNo}}</span> <span>{{lightbox_mName}}</span>?</div>
             <div>
                 <button class="cancel" @click="lightbox = false">Cancel</button>
-                <button class="continus" @click="change_state(lightbox_mNo,lightbox_state,lightbox_mName)">Continus</button>
+                <button class="continue" @click="change_state(lightbox_mNo,lightbox_state,lightbox_mName)">Continue</button>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@ Vue.component('all-member', {
             <div class="content">Do you want to <span>delete</span> No.<span>{{lightbox_mNo}}</span> <span>{{lightbox_mName}}</span> ?</div>
             <div>
                 <button class="cancel" @click="lightbox_delete = false">Cancel</button>
-                <button class="continus" @click="delete_item(lightbox_mNo)">Continus</button>
+                <button class="continue" @click="delete_item(lightbox_mNo)">Continue</button>
             </div>
         </div>
     </div>
@@ -284,7 +284,7 @@ Vue.component('edit-level', {
             </div>
             <div>
                 <button class="cancel" @click="changelightbox" >Cancel</button>
-                <button class="continus" @click="edit_level_func(mLevel,mWriteD,mTotal)">Edit</button>
+                <button class="continue" @click="edit_level_func(mLevel,mWriteD,mTotal)">Edit</button>
             </div>                                                                                                                        
         </div>
     </div>

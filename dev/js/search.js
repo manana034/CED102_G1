@@ -22,6 +22,9 @@ let vm = new Vue({
         FselectItems: null,
         SselectItems: null,
 
+        fdName: '',
+        fdCalPer: '',
+
     },
     methods: {
         toggleSearchBody() {
@@ -178,6 +181,24 @@ let vm = new Vue({
                         break
                 }
             }
+        },
+        addfood_func: async function (fdName,fdCalPer) {
+            const res = await fetch('./php/addFoodData.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fdName: fdName,
+                    fdCalPer: fdCalPer,
+                }),
+            }).then(function () {
+                console.log('in');
+            });
+            console.log('完成');
+
         },
 
         getId(key) {

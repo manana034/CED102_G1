@@ -242,10 +242,11 @@ Vue.component('profile-body', {
                     let xhr = new XMLHttpRequest()
                     xhr.onload = function () {
                         console.log(xhr.responseText)
+                        console.log('這是新增的')
                     }
                     xhr.open('POST', 'php/updateMemberImg.php', true)
                     let data_info = new FormData(select('#profileForm'))
-                    xhr.send(data_info)
+                    xhr.send(data_info) 
                 } 
 
                 //如果體重 Vuex的資料 跟 現場資料不一樣 

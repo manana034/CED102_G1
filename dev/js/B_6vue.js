@@ -14,14 +14,13 @@ Vue.component('all-point', {
 
     template: `
 <div class="main">
-    <div class="main_top">
-    </div>
+    <div class="main_top"></div>
     <div class="main_bottom">
         <table>
             <tr>
               <th>No</th>
-              <th>Name</th>
               <th>Type</th>
+              <th>Name</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Points</th>
@@ -29,8 +28,8 @@ Vue.component('all-point', {
             </tr>
             <tr v-for="(value,key) in point">
                 <td>{{value.poNo}}</td>
-                <td>{{value.poName}}</td>
                 <td>{{changetype(value.poType)}}</td>
+                <td>{{value.poName}}</td>
                 <td>{{value.startTime}}</td>
                 <td>{{value.endTime}}</td>
                 <td>{{value.points}}</td>
@@ -40,7 +39,7 @@ Vue.component('all-point', {
             </tr>
         </table>
     </div>
-    <edit-point v-if="point_edit_lightbox" :keyNo="poNo" @changelightbox="chateditlightbox()"></edit-point>
+    <edit-point v-if="point_edit_lightbox" :poNo="poNo" @changelightbox="chateditlightbox()"></edit-point>
 </div>
   `,
     methods: {
@@ -60,13 +59,6 @@ Vue.component('all-point', {
                 return 'Login';
             } else if (poType == 3) {
                 return 'Level';
-            }
-        },
-        changeDurtype(poDur) {
-            if (poDur == 1) {
-                return 'Temporary';
-            } else if (poDur == 2) {
-                return 'Permanent';
             }
         },
 
@@ -115,42 +107,42 @@ Vue.component('edit-point', {
             <div class="acc_acc_con">{{poNo}}</div>
         </div>
         <div>
-            <div class="acc_title">Name</div>
-            <div>
-                <input type="text" required="required" maxlength="20" class="acc_con" v-model="poName">
-                <div class="acc_tip">{{error_text1}}</div>
-            </div>
-        </div>
-        <div>
             <div class="acc_title">Type</div>
-            <select class="acc_con">
+            <select class="acc_con" v-model="poType">
                 <option value="1">Sing-up</option>
                 <option value="2">Login</option>
                 <option value="3">Level</option>
             </select>
         </div>
         <div>
+            <div class="acc_title">Name</div>
+            <div>
+                <input type="text" required="required" maxlength="30" class="acc_con" v-model="poName">
+                <div class="acc_tip">{{error_text1}}</div>
+            </div>
+        </div>
+        <div>
             <div class="acc_title">Start date</div>
             <div>
-                <input type="date" name="singledate" required="required" class="acc_con">
+                <input type="date" required="required" class="acc_con" v-model="startTime">
             </div>
         </div>
         <div>
             <div class="acc_title">End date</div>
             <div>
-                <input type="date" name="singledate" class="acc_con">
+                <input type="date" class="acc_con" v-model="endTime">
             </div>
         </div>
         <div>
             <div class="acc_title">Points</div>
             <div>
-                <input type="text" required="required" class="acc_con">
+                <input type="text" required="required" class="acc_con" v-model="points">
                 <div class="acc_tip">{{error_text2}}</div>
             </div>
         </div>
         <div>
             <button class="cancel" @click="changelightbox">Cancel</button>
-            <button class="continus" @click="edit_point_func(poNo,poName,poType,startTime,endTime,points)">Edit</button>
+            <button class="continue" @click="edit_point_func(poNo,poType,poName,startTime,endTime,points)">Edit</button>
         </div>                                                                                                                        
     </div>
 </div>
@@ -183,17 +175,17 @@ Vue.component('edit-point', {
         },
 
         //點擊 確認修改後將資料傳至DB
-        edit_point_func: async function (poNo,poName,poType,startTime,endTime,points) {
+        edit_point_func: async function (poNo,poType,poName,startTime,endTime,points) {
 
             //送出編輯前 確認欄位 是否符合規定
-            if (poName.length >= 1 && poName.length <= 20) {
-                console.log('名字')
+            if (poName.length >= 1 && poName.length <= 30) {
+                console.log('名字OK')
             } else {
-                this.error_text1 = 'Please enter within 20 characters.';
+                this.error_text1 = 'Please enter within 30 characters.';
                 return '';
             }
-            if (points.length >= 0) {
-                console.log('問題 OK') 
+            if (points.length >= 0 && points.replace(/\D/g, '') ) {
+                console.log('點數OK') 
             } else {
                 this.error_text2 = 'Please enter only numbers.';
                 return '';
@@ -208,8 +200,8 @@ Vue.component('edit-point', {
                 },
                 body: JSON.stringify({
                     poNo: poNo,
-                    poName: poName,
                     poType: poType,
+                    poName: poName,
                     startTime: startTime,
                     endTime: endTime,
                     points: points,

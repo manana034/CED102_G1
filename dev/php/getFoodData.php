@@ -1,7 +1,7 @@
 <?php 
 try {
 	require_once("../../connect_ced102g1.php");
-	$sql = "SELECT * FROM `food`
+	$sql = "SELECT * FROM food
 		WHERE !(fdType = 9 ) OR mNo=:mNo
 	";
 

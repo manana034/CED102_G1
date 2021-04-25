@@ -2,7 +2,7 @@
     try {
         require_once("../../connect_ced102g1.php");
 
-        $sql = "SELECT * FROM ft.admin ";
+        $sql = "SELECT * FROM admin ";
 
         $member = $pdo->prepare($sql);
         $member->execute();

@@ -6,11 +6,12 @@
 
 main { 
     margin: auto;
-    margin-top: 80px;
+    padding: 20px;
+    // margin-top: 20px;
     max-width: 1200px;
     // position: relative;
     .title {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
         color: $black;
         padding: 10px 0;
@@ -48,23 +49,27 @@ main {
     > p {
         padding: 40px;
         padding-top: 60px;
-        font-size: 16px;
-        letter-spacing: 2px;    
+        // font-size: 16px;
+        // letter-spacing: 2px;    
         line-height: 26px;
+        @include rwd(768px) {
+            padding-top: 20px;
+        }
     }
     section.top,section.bottom {
-        @include rwd(768px) {
-            display: block;
-        }
         margin: 70px auto;
         // background-color: blue;
         display: flex;
         justify-content: space-around;
         align-items: center;
+        @include rwd(768px) {
+            display: block;
+            margin: 20px auto;
+        }
         div {
             width: 40%;
             @include rwd(768px) {
-                width: 80%;
+                width: 90%;
                 margin: auto;
             }
         }
@@ -72,7 +77,7 @@ main {
             padding: 20px;
             width: 40%;
             @include rwd(768px) {
-                width: 80%;
+                width: 90%;
                 margin: auto;
             }
         }
@@ -80,7 +85,6 @@ main {
     section.bottom {
         flex-direction: row-reverse;
     }
-
         div {
             display: flex;
             justify-content: flex-end;
