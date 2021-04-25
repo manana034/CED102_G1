@@ -4,6 +4,7 @@
 @import './component/cart.scss';
 @import './component/moreproduct.scss';
 
+
 main { 
     margin: auto;
     padding: 20px;
@@ -20,7 +21,7 @@ main {
         display: flex;
         justify-content: space-between;
         font-size: 14px;
-        #bookmark {
+        div.bookmark {
             // position: absolute;
             display: flex;
             justify-content: flex-end;

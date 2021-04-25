@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="./css/common/information.css">
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
-    <script src="./js/header_customSelect.js" defer></script>
     <script src="./js/cart.js" defer></script>
-
+    <script src="./js/header_customSelect.js" defer></script> 
     
 </head>
 <body>
-    @@include('./layout/header.html')
+    <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>
 <div id="app">
     <div class="banner">
         <div class="banner_img">

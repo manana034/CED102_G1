@@ -24,6 +24,7 @@ let vm = new Vue({
 
         fdName: '',
         fdCalPer: '',
+        mNo: '',
 
     },
     methods: {
@@ -183,21 +184,27 @@ let vm = new Vue({
             }
         },
         addfood_func: async function (fdName,fdCalPer) {
-            const res = await fetch('./php/addFoodData.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fdName: fdName,
-                    fdCalPer: fdCalPer,
-                }),
-            }).then(function () {
-                console.log('in');
-            });
-            console.log('完成');
+            if(this.mNo == null){
+                window.alert("請登入會員");
+
+            }else {
+                const res = await fetch('./php/addFoodData.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        fdName: fdName,
+                        fdCalPer: fdCalPer,
+                    }),
+                }).then(function () {
+                    console.log('in');
+                });
+                window.alert("Your customized food has been added.");
+                console.log('完成');
+            }
 
         },
 
@@ -236,6 +243,11 @@ let vm = new Vue({
     },
     created() {},
     mounted() {
+        setTimeout(()=>{
+            console.log(getTmp_mNo)
+            this.mNo = getTmp_mNo
+        },500)
+        
         const getFoodData = () => {
             fetch(`php/getFoodData.php?mNo=${getTmp_mNo}`)
                 .then((res) => res.json())
