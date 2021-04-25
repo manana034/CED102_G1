@@ -5,7 +5,7 @@
 
 .banner{
     position: relative;
-    h4{
+    h5{
         color: white;
         position: absolute;
         transform: translateX(-50%);
@@ -13,6 +13,7 @@
         top: 60%;
         left:50%;
         font-weight: 900;
+        white-space: nowrap;
     }
 
     img{
@@ -33,11 +34,9 @@
         display:none;
         z-index: 1000;
         cursor: pointer;
-        position: sticky;
-        top: 100px;
     }
     .filterAll{
-       width: 30%;
+       width: 40%;
        min-width: 300px;
         // border: 1px solid red;
         margin: 0 auto;
@@ -456,7 +455,7 @@
     @include textStyle();
     width: 100px;
     cursor: pointer;
-    
+    // top:20px;
     select{
         display: none; /*hide original SELECT element:*/
     }
@@ -492,6 +491,7 @@
     // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     // cursor: pointer;
     user-select: none;
+    
   }
   
   /*style items (options):*/
@@ -516,6 +516,7 @@
 
 .sort{
     background-color:red;
+    top:30px;
 }
 
 
@@ -531,11 +532,13 @@
     .filterAll{
         // display: none; 
         top:50px;
-        left: 10%;
+        width:90%;
         color: white;
         position: relative;
         .choose{
             display: flex;
+            // border: 1px solid #000;
+            width: 80px;
             // border: 1px solid #000;
             background-color: #f4f1ec;  
             img{
@@ -545,7 +548,7 @@
         }
         .chooseall{
             display: none;
-            z-index: 100;
+            // z-index: 100;
             background-color: #f8c390;
             border-radius:15px 15px;
             padding: 20px;
@@ -593,7 +596,7 @@
         .sort{
             position:absolute;
             top: 10px;
-            z-index:1001 ;
+            z-index:0 ;
             // width: 30%;
  
         }

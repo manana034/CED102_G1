@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/common/mycart.css">
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js"></script>
     <script src="./js/header.js" defer></script>
     
     <title>My Cart</title>
@@ -16,11 +18,11 @@
     <div class="cartall">
          <h5>MY CART</h5>
          <div class="steps">
-             <p>1. CHECK ORDER</p>
+             <p>1. CHECK ORDER</p>  
              <p>2. PAYMENT</p>
              <p>3. CONFIRM ORDER</p>
          </div>
-         <div class="page1"> 
+         <div class="page1" id="app"> 
             <table class="orderinfo">
                 <tr>
                     <th>PRODUCT</th>
@@ -28,60 +30,216 @@
                     <th>PRICE</th>
                     <th>DELETE</th>
                 </tr>
-                <tr>
-                    <td class="order">
-                        <a href="./product.html">
-                            <!-- <div class="orderbg"> -->
-                                <img src="./productImg/prod1.png">
-                                <p>ALMONDS BAR</p>
-                            <!-- </div> -->
-                        </a>
-                    </td>
-                        <td>1</td> 
-                        <td>NT$250</td> 
-                        <td>&times;</td> 
-                    </tr>    
-                    <tr>
-                        <td class="order">
-                        <a href="./product.html">
-                            <!-- <div class="orderbg"> -->
-                                <img src="./productImg/prod1.png">
-                                <p>ALMONDS BAR</p>
-                            <!-- </div> -->
-                            </a>
-                        </td>
-                        <td>1</td> 
-                        <td>NT$250</td> 
-                        <td>&times;</td> 
-                    </tr>    
+                <tr is="orderlist" :order="item" v-for="item in myCart"></tr>
             </table>
             
             <div class="points">
-                <h6>POINTS:<span>200</span></h6>
+                <h6>POINTS:<span>{{points}}</span></h6>
                 <div class="apply">
-                    <button>APPLY!</button>
+                    <button @click="disabled" :data-state="btn_state">APPLY!</button>
                 </div>
             </div>
             <div class="subtotal">
                 <p>SUBTOTAL</p>
-                <p>NT$500</p>
+                <p>NT${{totalPrice}}</p>
                 <p>SHIPPING</p>
                 <p>NT$ 0 </p>
                 <p>POINTS</p>
-                <p>- NT$200</p>
+                <p>- NT${{finalPoints}}</p>
                 <div class="line"></div>
                 <h6>TOTAL</h6>
-                <h6>NT$300</h6>
+                <h6>NT${{finalTotal}}</h6>
             </div>
+            
+                <!-- back -->
+                     <div class="back">
+                         <a href="./shop.html"> &lt; CONTINUE SHOPPING</a>
+                         <a href="./payment.html" @click="record"><button>NEXT</button></a>
+                    </div>
         </div> 
-
-    <!-- back -->
-         <div class="back">
-             <a href="./shop.html"> &lt; CONTINUE SHOPPING</a>
-             <a href="./payment.html"><button>NEXT</button></a>
-        </div>
 </div>
     <script>
+        Vue.use(Vuex);
+
+        const mapState = Vuex.mapState
+        const mapMutations = Vuex.mapMutations
+        const mapActions = Vuex.mapActions
+        const mapGetters = Vuex.mapGetters
+
+        const store = new Vuex.Store({
+            state: {
+                totalPrice: 0,
+            },
+            mutations:{
+                updateAddPrice(state,payload){
+                    state.totalPrice += payload;
+                },
+                updateMinusPrice(state, payload){
+                    state.totalPrice -= payload;
+                },
+                all(state,payload){
+                    state.totalPrice = payload;
+                },
+            }
+        })
+
+        //元件
+        Vue.component("orderlist",{
+            props: ["order"],
+            template: `
+                        <tr>
+                        <td class="order">
+                            <a :href="order.url">     
+                                <img :src=order.src>
+                                <p>{{order.name}}</p>
+                            </a>
+                        </td>
+                        <td class="qtynum">
+                            <div class="btn_number">
+                                <span class="minus" @click="minus"> &minus; </span>
+                                <input type="number" name="quantity" id="quantity" v-model="verified" min="1" max="10">
+                                <span class="add" @click="add">  &plus; </span>
+                            </div>     
+                        </td>               
+                             
+                            <td>NT$ {{mainPrice}}</td>
+                            <td @click="remove">&times;</td> 
+                        </tr>
+                    `,
+            data() {
+                return{
+                    verified: this.order.value,
+                }
+            },
+            methods: {
+                add(){
+                    this.verified += 1;
+                    let local = JSON.parse(localStorage.getItem("localProduct"));
+                    for(let i = 0 ; i < local.length ; i++){
+                        if(this.order.name == local[i].name){
+                            local[i].value++;
+                            localStorage.setItem("localProduct",JSON.stringify(local));
+                        }
+                    }
+                    this.$store.commit("updateAddPrice", parseInt(this.order.price));
+                },
+                minus(){
+                    if(this.verified > 1){
+                        this.verified -= 1;
+                        let local = JSON.parse(localStorage.getItem("localProduct"));
+                        for(let i = 0 ; i < local.length ; i++){
+                            if(this.order.name == local[i].name){
+                                local[i].value--;
+                                localStorage.setItem("localProduct",JSON.stringify(local));
+                            }
+                    }
+                        this.$store.commit("updateMinusPrice", parseInt(this.order.price));
+                    }
+                },
+                remove(e){
+                    let local = JSON.parse(localStorage.getItem("localProduct"));
+                    for(let i = 0 ; i < local.length ; i++){
+                        if(this.order.name == local[i].name){
+                            local.splice(i,1)
+                            localStorage.setItem("localProduct",JSON.stringify(local));
+                            e.target.parentNode.remove();
+                        }
+                    }
+                },
+            },
+            computed:{
+                mainPrice(){
+                    return this.order.price * this.verified ;
+                },
+            }
+        })
+
+        //vue主體
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                myCart:[],
+                verified: 0,
+                points: 0,
+                btn_state: true
+            },
+            store,
+            methods:{
+                disabled(e){
+                    this.btn_state = !this.btn_state; 
+                },
+                record(){
+                    sessionStorage.setItem("finalPrice", this.finalTotal);
+                }
+            },
+            computed: {
+                ...mapState(['totalPrice']),
+                finalTotal(){
+                    vThis = this;
+                    if(!this.btn_state){
+                        return vThis.totalPrice -= vThis.points;
+                    }else{
+                        return vThis.totalPrice;
+                    }
+                },
+                finalPoints(){
+                    vThis = this;
+                    if(!this.btn_state){
+                        return vThis.points
+                    }else{
+                        return  0
+                    }
+                }
+            },
+            mounted() {
+                    const vThis = this ;
+
+                    function getMem(mNo){
+                        let xhr = new XMLHttpRequest()
+                        xhr.open('get', './php/getMemData.php', true)
+
+                        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                        xhr.send(null)
+                        xhr.onload = function(){
+                            let member = JSON.parse(xhr.responseText);
+                            for(let i = 0 ; i < member.length ; i++){
+                                if(mNo == member[i].mNo){
+                                    vThis.points = member[i].mPoints;
+                                    console.log(vThis.points);
+                                }
+                            }
+                        }
+                    }
+
+                    function getMember(){
+                        let xhr = new XMLHttpRequest()
+                        xhr.open('get', './php/checkLoggedin.php', true)
+
+                        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                        xhr.send(null)
+                        xhr.onload = function(){
+                            let member = JSON.parse(xhr.responseText);
+                            let mNo = member.mNo;
+                            getMem(mNo);
+                            
+                        }
+                    }
+
+                    
+                    let total = 0;
+                    function getLocal(){
+                        let product = JSON.parse(localStorage.getItem("localProduct")) 
+                        vThis.myCart = product;
+                        for(let i =0 ; i < product.length ; i++){
+                            total += product[i].value * product[i].price;
+                            // console.log(total);
+                            vThis.$store.commit('all', total);
+                        }
+                    }
+                    getLocal();
+                    getMember();
+                }
+        });
         const apply = document.querySelector('.apply button');
         
         apply.addEventListener('click', function(){
@@ -97,8 +255,9 @@
             
         
     </script>
-
     @@include('./layout/footer.html')
+
+ 
     <script src="./js/cart.js" defer></script>
     <script src="./js/header_customSelect.js" defer></script>
 </body>

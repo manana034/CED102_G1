@@ -7,7 +7,10 @@
      transition: all 1s;
      z-index: 15;
     //  display:none;
-    overflow-x: hidden;
+    ul{
+        height: 60vh;
+        overflow-x: hidden;
+    }
      *{
          color: white;
      }

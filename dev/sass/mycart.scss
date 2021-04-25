@@ -55,13 +55,30 @@
                 width: 25%;
                 padding-bottom: 20px;
             }
+            .qtynum{
+                *{
+                    display: inline-block;
+                    text-align: center;
+                    border-bottom: none;
+                }
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+                }
+
+                /* Firefox */
+                input[type=number] {
+                -moz-appearance: textfield;
+                }
+            }
             td{
                 // border: 1px solid #000;
                 vertical-align: middle;
                 text-align: center;
                 font-size: 14px;
                 padding : 20px;
-
+                
                 &:nth-child(2){
                     font-size: 16px;
                 }
@@ -174,10 +191,19 @@
 
 
 @media (max-width: 768px) {
+ 
     .cartall{
         display: flex;
         flex-wrap: wrap;
         // margin: 0 30px;
+        .page1{
+            .orderinfo{
+                margin:50px 50px 0 5px;
+            }
+            .points{
+                width:90%;
+            }
+        }
 
         .steps{
             margin: 0 30px;
@@ -185,5 +211,6 @@
         h5{
             width:100%;
         }
+        
     }
 }  
