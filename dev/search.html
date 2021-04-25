@@ -13,13 +13,16 @@
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <script src="./js/header.js" defer></script>
     <script src="./js/search.js" defer></script>
-    <script src="./js/header_customSelect.js" defer></script>
     <script src="./js/cart.js" defer></script>
+    <script src="./js/header_customSelect.js" defer></script>
 
 
 </head>
 <body>
-    @@include('./layout/header.html')
+    <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>
     <main id="app">
         <div 
             id="food_page" 
@@ -90,8 +93,8 @@
                 <input type="text" placeholder="FOOD NAME" v-model="fdName">
                 <input type="text" placeholder="CAL / PER SERVING" v-model="fdCalPer">
                 <div class="create">
-                    <button id="create">
-                        <img src="./icon/add_black.png" @click="addfood_func(fdName,fdCalPer)">
+                    <button id="create" @click="addfood_func(fdName,fdCalPer)">
+                        <img src="./icon/add_black.png">
                         CREATE
                     </button>  
                 </div>

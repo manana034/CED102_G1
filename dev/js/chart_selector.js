@@ -20,12 +20,16 @@ $(document).ready(function(){
         let divs3 = document.getElementsByClassName("data_title_selector");
         let divs4=inputfoodV;
         let divs5=foodrecordV;
+        let divs6=foodrecordchange
+
+
 
         for(let i=0;i<divs.length;i++){
             divs[i].style.display="none";
             divs3[i].style.display="none";
             divs4.input_selector[i]=false;
             divs5.input_selector2[i]=false;
+            divs6.input_selector[i]=false;
         }
         for(let i=0;i<divs2.length;i++){
           divs2[i].classList.remove("selected");
@@ -36,6 +40,7 @@ $(document).ready(function(){
 
          divs4.input_selector[$(this).index()]=true;
          divs5.input_selector2[$(this).index()]=true;
+         divs6.input_selector[$(this).index()]=true;
 
          setTimeout(getfoodrecord(),500);
          

@@ -8,6 +8,7 @@ byn.forEach(btn => btn.addEventListener("click", function(){
     cart.classList.add("opencart"); 
 }))
 gocart.addEventListener("click",function(){
+    console.log(cart)
     cart.classList.add("opencart");
 })
  

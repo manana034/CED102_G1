@@ -13,8 +13,10 @@
 
 </head>
 <body>
-    @@include('./layout/header.html')
-    @@include('./layout/cart.html')
+    <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>
     <div id="infoContent">
         <div class="lightbox_black" v-if="lightbox">
             <div class="content"><span>{{lightbox_text}}</span> this article.</div>
@@ -23,9 +25,13 @@
             <p class="title">{{info.infoTitle}}</p>
             <div class="date">
                 <div>{{info.infoTime}}</div>
-                <div id="bookmark">
-                    <img class="bookmark" src="./img/bookmark-white.png" @click="addFavourite">
-                    <p>KEEP</p>
+                <div class="bookmark added" v-if="">
+                    <img class="bookmark" src="./img/bookmark-black.png" @click="removeFavorite">
+                    <p>Cancel</p>
+                </div>
+                <div class="bookmark white" v-else>
+                    <img class="bookmark" src="./img/bookmark-white.png" @click="addFavorite">
+                    <p>Keep</p>
                 </div>
             </div>
             <img class="info.infoPhoto1" :src="info.infoPhoto1" v-if="(info.infoPhoto1).slice(-3) == 'jpg'">
@@ -61,61 +67,26 @@
         el:"#infoContent",
         data:{
             info: [],
-            // memData: [],
             
         },
         methods: {
-            // addFavourite: function (e) {
-            //         let heartClass = e.target.parentNode.className;
-            //         // console.log(heartClass);
-            //         let infoNo = e.target.id;
-            //         // console.log(e.target.id);
-            //         let xhr = new XMLHttpRequest();
-            //         xhr.onload = function () {
-            //             let memData = JSON.parse(xhr.responseText);
-            //             console.log(memData);
-            //             if (memData.mNo) {  // 如果有登入會員
-            //                 e.target.parentNode.classList.toggle('loved');
-            //                 if (heartClass == 'heart') {
-                                // alert('已加入收藏');
-                        //         $.ajax({
-                        //             method: 'GET',
-                        //             url: './php/addFavorite.php',
-                        //             type: 'json',
-                        //             data: `infoNo=${infoeNo}`,
-                        //         })
-                        //     } else {
-                        //         $.ajax({
-                        //             method: 'GET',
-                        //             url: './php/removeFavorite.php',
-                        //             data: `infoNo=${infoeNo}`,
-                        //         })
-                        //     }
-                        // } else {
-                            // 如果未登入，跳出提示燈箱
-                    //         alert('請登入會員');
-                    //     }
-                    // }
-                    //?????抓到session的會員嗎?
-                //     xhr.open('get', 'php/getLoginData.php', true);
-                //     xhr.send(null);
-                // },
-                // window.addEventListener('load', function () {
-                //取出收藏課程
-            //     function getlovedinfo() {
-            //         $.ajax({
-            //             method: 'GET',
-            //             url: './php/getFavPosterData.php',
-            //             type: 'json',
-            //             success: function (lovedCourse_load) {
-            //                 console.log(lovedCourse_load);
-            //             }
-            //         })
-            //     }
+            get_favo: async function () {
+                const res = await fetch('./php/getFavorite.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        infoNo: this.infoNo,
+                    }),
+                }).then(function (data) {
+                    return data.json();
+                });
+            },
 
-            //     getlovedinfo();
 
-            // });
         }
     })
 

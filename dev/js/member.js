@@ -290,12 +290,10 @@ signupChangBtn.addEventListener('click', () => {
 //------------------------------------------------------------
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 1200) {
-        signupBody.style.display = 'flex'
-        loginBody.style.display = 'flex'
-    } else {
-        signupBody.style.display = 'none'
-    }
+    if (window.innerWidth > 992) {
+        signupBody.removeAttribute('style')
+        loginBody.removeAttribute('style')
+    } 
 })
 
 //---- 當視窗 在resize 的時候

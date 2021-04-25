@@ -1233,7 +1233,8 @@ Vue.component('report-body', {
                             yAxes: [
                                 {
                                     ticks: {
-                                        beginAtZero: true,
+                                        suggestedMax: 1500,
+                                        suggestedMin: 500,
                                     },
                                 },
                             ],
@@ -1275,7 +1276,8 @@ Vue.component('report-body', {
                             yAxes: [
                                 {
                                     ticks: {
-                                        beginAtZero: true,
+                                        suggestedMax: 1500,
+                                        suggestedMin: 500,
                                     },
                                 },
                             ],
@@ -1418,7 +1420,8 @@ Vue.component('report-body', {
                             yAxes: [
                                 {
                                     ticks: {
-                                        beginAtZero: true,
+                                        suggestedMax: 120,
+                                        suggestedMin: 50,
                                     },
                                 },
                             ],
@@ -1466,7 +1469,8 @@ Vue.component('report-body', {
                             yAxes: [
                                 {
                                     ticks: {
-                                        beginAtZero: true,
+                                        suggestedMax: 120,
+                                        suggestedMin: 50,
                                     },
                                 },
                             ],
@@ -1517,7 +1521,8 @@ Vue.component('report-body', {
                                     yAxes: [
                                         {
                                             ticks: {
-                                                beginAtZero: true,
+                                                suggestedMax: 1500,
+                                                suggestedMin: 500,
                                             },
                                         },
                                     ],
@@ -1559,7 +1564,8 @@ Vue.component('report-body', {
                                     yAxes: [
                                         {
                                             ticks: {
-                                                beginAtZero: true,
+                                                suggestedMax: 1500,
+                                                suggestedMin: 500,
                                             },
                                         },
                                     ],
@@ -1680,7 +1686,8 @@ Vue.component('report-body', {
                                     yAxes: [
                                         {
                                             ticks: {
-                                                beginAtZero: true,
+                                                suggestedMax: 120,
+                                                suggestedMin: 50,
                                             },
                                         },
                                     ],
@@ -1727,7 +1734,8 @@ Vue.component('report-body', {
                                     yAxes: [
                                         {
                                             ticks: {
-                                                beginAtZero: true,
+                                                suggestedMax: 120,
+                                                suggestedMin: 50,
                                             },
                                         },
                                     ],
@@ -2068,7 +2076,6 @@ Vue.component('sign-up', {
                     let data_info = `memid=${mId}&memPsw=${mPsw}`
                     xhr.send(data_info)
                 }
-
                 //取得 當天攝取卡路里 資料
                 function getMDailyCalData() {
                     function formatDate(date) {
@@ -2090,28 +2097,26 @@ Vue.component('sign-up', {
                         )
                     //如果沒資料就回傳0
                 }
+                function checkOrderAndFavList() {
+                    const listBody = selectAll('.listBody tbody')
+                    const listHead = selectAll('.listBody thead')
+                    if (listBody[0].children.length == 0) {
+                        listHead[0].setAttribute('style', 'border-bottom: none')
+                        console.log('orderlist 沒有內容')
+                    } else {
+                        listHead[0].removeAttribute('style')
+                        console.log('oderlist 有內容')
+                    }
 
-               function checkOrderAndFavList() {
-                   const listBody = selectAll('.listBody tbody')
-                   const listHead = selectAll('.listBody thead')
-
-                   if (listBody[0].children.length == 0) {
-                       listHead[0].setAttribute('style', 'border-bottom: none')
-                       console.log('orderlist 沒有內容')
-                   } else {
-                       listHead[0].removeAttribute('style')
-                       console.log('oderlist 有內容')
-                   }
-
-                   //favlist 的table
-                   if (listBody[1].children.length == 0) {
-                       listHead[1].setAttribute('style', 'border-bottom: none')
-                       console.log('favlist 沒有內容')
-                   } else {
-                       listHead[0].removeAttribute('style')
-                       console.log('favlist 有內容')
-                   }
-               }
+                    //favlist 的table
+                    if (listBody[1].children.length == 0) {
+                        listHead[1].setAttribute('style', 'border-bottom: none')
+                        console.log('favlist 沒有內容')
+                    } else {
+                        listHead[0].removeAttribute('style')
+                        console.log('favlist 有內容')
+                    }
+                }
 
                 getMemberData()
                 //自動登入 執行這段
@@ -2133,7 +2138,7 @@ Vue.component('sign-up', {
                     passValueVue.$emit('check-goalTime')
                     checkOrderAndFavList()
                     clearTimeout(checkGoaltime)
-                }, 300)
+                }, 700)
             }
         }
     },
@@ -2253,6 +2258,20 @@ Vue.component('sign-up', {
                         const signUp_id = userid
                         const signUp_psd = psd
                         const signUp_mNo = res
+                        const signUp_mail = email
+                    
+
+                        function sendSignupMail(){
+                            let xhr = new XMLHttpRequest()
+                            xhr.onload = () => {
+                                console.log(xhr.responseText)
+                            }
+                            xhr.open('get', `php/signupMail.php?mail=${signUp_mail}`)
+                            xhr.send(null)
+                        }
+
+                        sendSignupMail()
+
                         console.log('signUp之後直接登入')
 
                         this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
