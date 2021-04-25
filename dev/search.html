@@ -25,7 +25,7 @@
             class="tab-inner" 
             v-show="isFoodState">
 
-            <div id="create_box">se
+            <!-- <div id="create_box">
                 <div>
                     <div><img src="./icon/checked.svg">Added to customized food</div>
                     <div>
@@ -33,7 +33,7 @@
                         <a href="Cal_Diary.html"><button id="continus_create">Record diary</button></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="top">
                 <div class="overflow_hidden">
                     <div class="banner"></div>
@@ -86,11 +86,11 @@
             </div>
             <div class="middle">
                 <div>Create You Own Food, Record It!</div>
-                <input type="text" placeholder="FOOD NAME">
-                <input type="text" placeholder="CAL / PER SERVING">
+                <input type="text" placeholder="FOOD NAME" v-model="fdName">
+                <input type="text" placeholder="CAL / PER SERVING" v-model="fdCalPer">
                 <div class="create">
                     <button id="create">
-                        <img src="./icon/add_black.png">
+                        <img src="./icon/add_black.png" @click="addfood_func(fdName,fdCalPer)">
                         CREATE
                     </button>  
                 </div>
