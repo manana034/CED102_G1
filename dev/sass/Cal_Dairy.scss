@@ -1,12 +1,64 @@
-
+@import './component/loading.scss';
 
 .containor.Cal_Dairy *{
     box-sizing: unset;
 }
+.loadingio-spinner-ripple-wu44vrvts1{
+    z-index: 200;
+}
+.coverall{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(50,50,50,0.6);
+    z-index: 50;
+} 
+.unlogin_alert{
+    display: none;
+    position: fixed;
+    top:30vh;
+    left:calc(50% - 200px);
+    width: 400px;
+    height: 200px;
+    z-index: 90;
+    text-align: center;
+    h6{
+        color: #dc7a6a;
+    }
+    p{
+        width: 100%;
+        margin:5px;
+        font-size: 14px;
+    }
+    button{
+        width: 30%;
+    }
+}
 .containor.Cal_Dairy{
+    width:100%;
+    overflow: hidden;
     margin-top: 0px;
     display: grid;
-    grid-template-columns: 18% 82%;
+    grid-template-columns: 18% 82%;   
+    .coverall2{
+        display: none;
+        position: fixed;
+        top:0;
+        width: 100%;
+        height:100vh;
+        z-index: 8;
+        background-color: #5d5c5b;
+    }
+    .coverall3{
+        // display: none;
+        position: fixed;
+        top:0;
+        width: 100%;
+        height:100vh;
+        z-index: 5;
+        background-color: #f4f1ec;
+    }
 //=============== Aside =============
 header .row.container .logo{
     text-align: left!important;
@@ -117,11 +169,11 @@ header .row.container .logo{
                         .body_sch_mask_t{
                             p{
                                 position: absolute;
-                                top:210px;
-                                right: 84%;
-                                z-index: 90;
-                                color: #ffffff;
-                                font-size: 18px;
+                                top:350px;
+                                left: 55px;
+                                z-index: 2;
+                                color: #EAA565;
+                                font-size: 25px;
                             }
                             
                             // clip-path:url(#clip-Artboard_3);
@@ -274,16 +326,16 @@ header .row.container .logo{
             .chart_select{
                 height: 80px;
                 display: grid;
-                grid-template-columns:110px 125px 180px;
+                grid-template-columns:110px 100px 120px;
                 // grid-template-columns: calc(11% + 40px) calc(15% + 40px) calc(18% + 80px);
                 .chart_weight,.chart_cal,.chart_excercie{
                     border: 1px solid #AAAAAA;
-                    height: 48px;
+                    height: 25px;
                     border-radius: 18px;
                     margin: 10px;
                     padding: 5px;
                     transition: 0.1s;
-                    // text-align: center;
+                    text-align: center;
                     p{
                         margin-left: 5px;
                     }
@@ -317,7 +369,12 @@ header .row.container .logo{
                     border: 1px solid #dddd;
                     width: 100%;
                     #chartdiv01,#chartdiv02,#chartdiv03{
-                        height: 200px;
+                        height: 220px;
+                        img{
+                           height:100%;
+                           width:200px;
+                           margin-left:30%;
+                        }
                     }
                 }
                 .report_charts:nth-child(2),.report_charts:nth-child(3){
@@ -397,12 +454,13 @@ header .row.container .logo{
                     display: grid;
                     grid-template-columns: 65% 35%;
                     height: 300px;
+                    width: 96%;
                     .daily_food_data_title,.daily_exercise_data_title{
-                        margin: 20px 20px 0px -5px;
+                        margin: 20px 20px 0px -10px;
                         padding: 5px;
                         border-bottom: 2px solid #dddddd;
                         display: grid;
-                        grid-template-columns: 15% 20% 20% 15% 15% 15%;
+                        grid-template-columns: 20% 25% 10% 15% 15% 15%;
                         P{
                             color: #AAAAAA;
                             text-align: center;
@@ -413,7 +471,7 @@ header .row.container .logo{
                         margin: 5px 20px 5px -5px;
                         padding: 5px;
                         display: grid;
-                        grid-template-columns: 15% 20% 20% 15% 15% 15%;
+                        grid-template-columns:20% 25% 10% 15% 15% 15%;
                         P{
                             color: #666666;
                             text-align: center;
@@ -426,6 +484,10 @@ header .row.container .logo{
                     }
                     .input_pages_data:nth-child(1){
                         border-right: 2px solid #AAAAAA;
+                        #app3{
+                            height: 180px;
+                            overflow:scroll;
+                        }
                     }
                    .input_pages_data_title,.input_pages_data_title2{
                        margin: -15px 0px 0px calc(50% - 125px);
@@ -434,7 +496,7 @@ header .row.container .logo{
                        color: #ffffff;
                    }
                     .calendarI{
-                        margin: 30px 0px 10px calc(50% - 115px);
+                        margin: 30px 0px 10px calc(50% - 90px);
                         transform: scale(1.1);
                         width:250px;
                         height: 250px;
@@ -459,7 +521,6 @@ header .row.container .logo{
                 width: 90%;
                 .advice_produt{
                     text-align: center;
-                    margin-top: 10px;
                     p{ 
                        margin-top: 10px;
                        font-size: 22px;
@@ -469,16 +530,65 @@ header .row.container .logo{
                    img{
                         width: 130px;
                         margin: 0 auto;
-                        margin-top: 10px;
+                        margin-top: 30px;
                         margin-bottom: 10px;
                         padding: 5px 10px 5px 10px; 
-                        border-radius: 50px;
-                        background-color: rgb(45, 108, 166);
+                        // background-color: rgb(45, 108, 166);
                         // height: 300px;
                     }
-                    .advice_produt_img2{
-                        background-color: rgb(191, 70, 89);
+                    .advice_produt_backgroud1{
+                        position: absolute;
+                        width:160px;
+                        height: 220px;
+                        top: 50px;
+                        left: calc(30% - 80px);
+                        z-index: -1;
+                        border-radius: 50px;
+                        background-color: rgb(45, 108, 166);
                     }
+                    .advice_produt_backgroud5{
+                        position: absolute;
+                        width:160px;
+                        height: 220px;
+                        top: 50px;
+                        left: calc(30% - 80px);
+                        z-index: -1;
+                        border-radius: 50px;
+                        background-color: rgb(66, 138, 180);
+                    }
+                    .advice_produt_backgroud2{
+                        position: absolute;
+                        width:160px;
+                        height: 220px;
+                        top: 50px;
+                        left: calc(30% - 80px);
+                        z-index: -1;
+                        border-radius: 50px;
+                        background-color: rgb(216, 122, 16);
+                    }
+                    .advice_produt_backgroud3{
+                        position: absolute;
+                        width:160px;
+                        height: 220px;
+                        top: 50px;
+                        left: calc(30% - 80px);
+                        z-index: -1;
+                        border-radius: 50px;
+                        background-color: rgb(206, 25, 137);
+                    }
+                    .advice_produt_backgroud4{
+                        position: absolute;
+                        width:160px;
+                        height: 220px;
+                        top: 50px;
+                        left: calc(30% - 80px);
+                        z-index: -1;
+                        border-radius: 50px;
+                        background-color: rgb(36, 146, 180);
+                    }
+                    // .advice_produt_img2{
+                    //     background-color: rgb(191, 70, 89);
+                    // }
                     // button{
                     //     margin-left: 35%;
                     // }
@@ -643,7 +753,7 @@ header .row.container .logo{
         }
     }
 }
-@media (max-width: 699px) and (min-width: 400px){
+@media (max-width: 699px) and (min-width: 200px){
     .containor.Cal_Dairy{
         grid-template-columns: 100%;
          .l-aside.Cal_Dairy{
@@ -679,10 +789,14 @@ header .row.container .logo{
                         }
                 }
                 .cal_input .card.cal_input_table{
-                    height: 550px;
+                    height: 600px;
                 }
             }
            
         }
     }
+    .containor.Cal_Dairy .center.Cal_Dairy .bot_area .cal_input .card.cal_input_table .input_pages .calendarI{
+        margin: 30px 0px 10px calc(40% - 90px);
+    }
+    
 }

@@ -85,8 +85,126 @@
             
         },
         methods: {
-          cart(){
-            cart.classList.add("opencart");
+          cart(e){
+            const displayArea = document.querySelector('.prod');
+                        const vthis = this;
+                        const cart = document.querySelector(".cart");
+                        cart.classList.add("opencart");
+                        let localProduct = JSON.parse(localStorage.getItem("localProduct")) || [];
+                        function display(){
+            
+                            function update(){
+                                localStorage.setItem('localProduct', JSON.stringify(localProduct));
+                            }
+                            //在購物車創造元素
+                            function displayProduct(product){
+                                displayArea.innerHTML += `
+                                                        <li class="prodcart" data-no="${product.no}">
+                                                        <p>${product.name}</p>
+                                                        <div class="cartimg">
+                                                            <img src="${product.src}"> 
+                                                        </div>
+                                                        <img class="trash" src="./img/trash.png">
+                                                        <div class="qty">
+                                                            <form>
+                                                                <label for="quantity">QUANTITY : </label>
+                                                                <div class="btn_number">
+                                                                    <span class="btn_minus"> &minus; </span>
+                                                                    <input type="number" value="${product.value}" min="1" max="10" class="quantity">
+                                                                    <span class="btn_add">  &plus; </span>
+                                                                </div>                    
+                                                            </form> 
+                                                            <p>NT$${product.price}</p>
+                                                            </div>
+                                                            </li>  
+                                                            `;
+                                                        }
+                            //更新localStorage資料
+                            function update(){
+                                localStorage.setItem('localProduct', JSON.stringify(localProduct));
+                            }
+                            //加入購物車的商品資料
+                            console.log(e.target.parentNode.children[1].children[1].children[1].value);
+                            let product = {
+                                name: vthis.prod.fdName,
+                                price : vthis.prod.price,
+                                src : vthis.prod.prodpic1,
+                                value: e.target.parentNode.children[1].children[1].children[1].value,
+                                no : parseInt(vthis.prod.prodNo),
+                            }
+
+                            //判斷是否為加入過的商品
+                            if(localProduct.length === 0){
+                                localProduct.push(product)
+                                displayProduct(product)
+                            }else{
+                                for(let i=0 ; i<localProduct.length ; i++){
+                                    if(localProduct[i].no === product.no){
+                                        // return 
+                                        // alert("已加入過購物車")
+                                        localProduct[i].value++;
+                                        displayArea.children[i].children[3].children[0].children[1].children[1].value = localProduct[i].value
+                                    }else if(localProduct[localProduct.length-1].no !== product.no){
+                                        localProduct.push(product)
+                                        displayProduct(product)
+                                        // console.log("object");
+                                    }
+                                }
+                            }
+                            update(product)
+                        }
+                        display()
+
+                    const btn_add = document.querySelectorAll(".btn_add");
+                    const btn_minus =document.querySelectorAll(".btn_minus");
+                    const quantity = document.querySelectorAll(".quantity");
+                    //按加號
+                    btn_add.forEach((add,index) => add.addEventListener("click",function(){
+                        quantity[index].stepUp(1);
+                        localProduct[index].value = quantity[index].value;
+                        quantity[index].setAttribute('value',localProduct[index].value);
+                        localStorage.setItem('localProduct', JSON.stringify(localProduct));
+                        total()
+                    }));
+                    //按減號
+                    btn_minus.forEach((minus,index) => minus.addEventListener("click",function(){
+                        quantity[index].stepDown(1);
+                        localProduct[index].value = quantity[index].value;
+                        quantity[index].setAttribute('value',localProduct[index].value);
+                        localStorage.setItem('localProduct', JSON.stringify(localProduct));
+                        total()
+                    }));
+                    //點按 X 刪除鍵
+                    displayArea.addEventListener('click', event =>{
+                        if(event.target.className !== 'trash') {return}
+                        const li = event.target.parentElement
+                        console.log(li);
+                        li.remove(); //刪除畫面裡購物車的東西
+
+                        //刪除localStorage裡的東西
+                        for(let i = 0; i <localProduct.length; i++){
+                            if(li.dataset.no == localProduct[i].no){
+                                // console.log("object");
+                                localProduct.splice(i,1);
+                                break;
+                            }
+                        }
+                        //更新localStorage
+                        total();
+                        localStorage.setItem('localProduct', JSON.stringify(localProduct));
+
+                    });
+                    //total
+                    function total(){
+                        let subtotal = 0;
+                        const total = document.querySelector(".allprice p span");
+                        for(let i =0; i<localProduct.length ; i++){
+                            let item = localProduct[i];
+                            subtotal += (item.price * item.value);
+                        }
+                        total.innerText = subtotal;
+                    }
+                    total()
           },
         },
         mounted() {
@@ -105,8 +223,8 @@
             xhr.open('GET',`php/getProduct.php?pNo=${sessionId}`)
             xhr.send(null)
         },
-    })
-
+    });
+    console.log(vm.prod);
 
 
     //   fetch(`./php/getProduct.php`).then(res => res.json())
@@ -124,6 +242,8 @@
     //                                                 // console.log(vm.prod);
     //                                                 // console.log(vm1.prods);
     </script>
+
+    
      
     <script src="./js/cart.js"></script>
     <script src="./js/quantity.js"></script>

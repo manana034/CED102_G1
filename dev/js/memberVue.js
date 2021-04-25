@@ -16,15 +16,21 @@ levelInfoClose.addEventListener('click',()=>{
 //能夠控制第一層 資料存放地---------------------------
 
 
-const app = new Vue({
+Vue.component('loading', VueLoading)
+
+
+app = new Vue({
     el: '#app',
     data: {
         openEditPerson: false,
 
         // showMyAcount: false,
         // showLoginSignup: true,
+        
+        //一開始就loading
+        isLoading: true,
     },
-    store,
+    store, 
     methods: {
         changeStauts(isOpen) {
             this.openEditPerson = isOpen
@@ -34,6 +40,7 @@ const app = new Vue({
         ...mapState(['loginBeforeAfter','eData']), 
     },
     mounted() {
+
         passValueVue.$on('leave-profile', () => {
             this.openEditPerson = !this.openEditPerson
         })
@@ -44,6 +51,7 @@ const app = new Vue({
         //reload 之後一段時間 就會看看 mid 有沒有被寫入
         //如果有就自動登入 沒有就要自己登入
         const timeCheckLoggedin = setTimeout(() => {
+            //如果已登入過 自動登入
             if (getTmp_mNo || getTmp_mId || getTmp_mPsw) {
                 console.log(getTmp_mNo)
                 console.log(getTmp_mId)
@@ -51,6 +59,7 @@ const app = new Vue({
 
                 //將登入畫面給取消掉 直接到主畫面
                 this.$store.commit('toggleLoginBeforeAfter')
+                // this.isLoading = false
 
                 let Vthis = this
                 function getMemberData() {
@@ -141,6 +150,12 @@ const app = new Vue({
                             }
                         }
                         updataMnoMidMpsw(xhr.responseText)
+                        
+                        //這裡取得內容就關閉loading
+                        // setTimeout(()=>{
+                            Vthis.isLoading = false
+                        // },1000)
+                        
                     }
                     xhr.open('post', 'php/getMnoMidMpsw.php', true)
                     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -216,7 +231,8 @@ const app = new Vue({
                                         yAxes: [
                                             {
                                                 ticks: {
-                                                    beginAtZero: true,
+                                                    suggestedMax: 1500,
+                                                    suggestedMin: 500,
                                                 },
                                             },
                                         ],
@@ -370,12 +386,14 @@ const app = new Vue({
                     passValueVue.$emit('check-goalWeight')
                     passValueVue.$emit('check-goalTime')
                     clearTimeout(checkGoaltime)
-                },100)
-       
+                },700)
+  
                 console.log('自動登入這裡 成功')
                 clearTimeout(timeCheckLoggedin)
+            } else {
+                this.isLoading = false
             }
-        },300)
+        },500)
     },
 })
 

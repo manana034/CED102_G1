@@ -16,42 +16,43 @@ const visionChange = () => {
     } else {
         body.style.backgroundColor = '#f4f1ec'
     } 
+
 }
 
 document.addEventListener('scroll',visionChange);
 
 
 
-const share = document.querySelector('.comment .share>button')
-const social = document.querySelector('.comment .social')
+// const share = document.querySelector('.comment .share>button')
+// const social = document.querySelector('.comment .social')
 
-share.addEventListener('click',(e)=>{
-    e.stopPropagation()
-    const state = getComputedStyle(social).display
-    // console.log(state)
-    if (state =="none"){
-        social.style.display = 'flex'
-    } else {
-        social.style.display = 'none'
-    }
+// share.addEventListener('click',(e)=>{
+//     e.stopPropagation()
+//     const state = getComputedStyle(social).display
+//     // console.log(state)
+//     if (state =="none"){
+//         social.style.display = 'flex'
+//     } else {
+//         social.style.display = 'none'
+//     }
     
-});
+// });
 
-const closeSocial = (e)=>{
-    // e.stopPropagation();
-    let ta = e.target
+// const closeSocial = (e)=>{
+//     // e.stopPropagation();
+//     let ta = e.target
 
-    if (ta.matches('.comment .share>button')) {
-        return
-    } else if (ta.matches('.comment .social') || ta.matches('.comment .social>button') || ta.matches('.comment .social>button>img')) {
-        return
-    } else {
-        social.style.display = 'none'
-    }
-}
+//     if (ta.matches('.comment .share>button')) {
+//         return
+//     } else if (ta.matches('.comment .social') || ta.matches('.comment .social>button') || ta.matches('.comment .social>button>img')) {
+//         return
+//     } else {
+//         social.style.display = 'none'
+//     }
+// }
 
 
-document.addEventListener('click', closeSocial)
+// document.addEventListener('click', closeSocial)
 
 
 
@@ -199,14 +200,80 @@ buttons.forEach(button=>{
 })
 
 
+
+
+const tilts2 = document.querySelectorAll('.tilt2')
+const circles = document.querySelectorAll('.circle')
+
 // 傾斜套件 tilt.js 動畫 css 要transform-style: preserve-3d(寫在最外層父母) 跟 transform: translateZ(--px)(寫在小孩)
 VanillaTilt.init(tilts, {
-    //options 寫在這裡
-    // reverse: true,
-    // maxTilt: 20,
     speed: 400,
     reset: false,
-    // perspective: 1000,
-    // scale: 1.1,
 })
+
+VanillaTilt.init(tilts2, {
+    speed: 400,
+    scale: 2,
+})
+
+
+tilts2.forEach((item)=>{
+    item.addEventListener('mouseover', (e) => {
+        console.log(e.target.className)
+        if (e.target.className == 'tilt2 goalImage2'){
+            circles.forEach((item) => {
+                item.style.backgroundColor = '#EAA565'
+            })
+        } else {
+            circles.forEach((item) => {
+                item.style.backgroundColor = '#95b17c'
+            })
+        }
+            
+    })
+    item.addEventListener('mouseleave',(e)=>{
+        circles.forEach((item) => {
+            item.removeAttribute('style')
+        })
+    })
+
+})
+
+
+
+function destroyTilt() {
+    var tiltElements = document.querySelectorAll(`.tilt`)
+    //偵測 window 是否在992以內 true 
+    var mq = window.matchMedia('(max-width: 992px)')
+    if (mq.matches) {
+        if(tiltElements[1].vanillaTilt){
+            for (var i = 0, len = tiltElements.length; i < len; i++) {
+                tiltElements[i].vanillaTilt.destroy()
+                tiltElements[i].removeAttribute('style')
+            }
+            tilts2.forEach((item)=>{
+                item.vanillaTilt.destroy()
+                item.removeAttribute('style')
+            })
+        }
+    } else {
+        if (!tiltElements[1].vanillaTilt){
+            VanillaTilt.init(tilts, {
+                speed: 400,
+                reset: false,
+            })
+            VanillaTilt.init(tilts2, {
+                speed: 400,
+                scale: 2,
+            })
+        }
+    }
+}
+//一開始呼叫來確認 是否要destoryed
+destroyTilt()
+
+window.addEventListener('resize',()=>{
+    destroyTilt()
+})
+
 

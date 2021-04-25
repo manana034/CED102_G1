@@ -10,7 +10,6 @@ byn.forEach(btn => btn.addEventListener("click", function(){
 gocart.addEventListener("click",function(){
     console.log(cart)
     cart.classList.add("opencart");
-
 })
  
 const proditem = document.querySelectorAll(".prod1");
@@ -21,7 +20,7 @@ proditem.forEach(p => p.addEventListener("click", function(e){
 
     // sessionStorage.setItem("no", this.dataset.no)
     sessionStorage.setItem('no',this.dataset.no)
-    console.log('work')
+    // console.log('work')
 
 }))   
  
@@ -85,7 +84,7 @@ function display(){
             for(let i=0 ; i<localProduct.length;i++){
                 if(this.parentNode.parentNode.parentNode.parentNode.children[0].innerText === localProduct[i].name){
                     let newValue = e.target.parentNode.children[1].value
-                    console.log(e.target.parentNode.children[1].value);
+                    // console.log(e.target.parentNode.children[1].value);
                     localProduct[i].value = newValue;
                     update();
                     total();
@@ -113,11 +112,11 @@ function display(){
             price: e.target.parentNode.children[0].children[1].children[2].children[0].innerText, //商品價錢
             value: 1 //商品數量
         }
-        displayProduct(product);
+        
         localProduct.push(product);
+        displayProduct(product);
         update(product);
         total();
-
     }))
     display.addEventListener("click", e => {
         if(e.target.className !== "trash"){ return } //如果點擊的不是trash這個class就不做動作

@@ -3,28 +3,42 @@ a {
     color: $gray5;
 }
 
+body{
+    >.headerContainer{
+        position: relative;
+        height: 80px;
+    }
+}
+
 header {
     // display: none;
     border-bottom: 1px solid $gray4;
+    // background-color: $primary-l;
     background-color: $primary-l;
     z-index: 10;
-    position: relative;
-    position: sticky;
+    position: fixed;
     top: 0;
+    
+    // position: relative;
+    width: 100%;
 
     > .menuBody {
-        display: none;
+        // display: none;
 
         height: 100vh;
         background-color: #889674;
+        // background-color: red;
+
         position: absolute;
         right: 0;
+
         padding: 50px;
         align-content: space-around;
         width: 400px;
         transform: translate(100%, 0);
         transition: all 0.5s;
-        z-index: 12; 
+        z-index: 15;
+        overflow-x: hidden;
 
         button {
             color: $white;
@@ -50,6 +64,10 @@ header {
             }
         }
     }
+    >.active{
+        transform: translate(0, 0); 
+        // right: 0;
+    }
     & > .row {
         display: flex;
         justify-content: space-between;
@@ -73,7 +91,7 @@ header {
                 display: inline-flex;
                 align-items: center;
                 border-bottom: 1px solid $gray5;
-
+                flex-wrap: nowrap;
                 justify-content: space-around;
                 // padding: 5px 0px;
                 .search-input {
@@ -252,7 +270,7 @@ header {
         > .row {
             padding: 10px;
             > .logo {
-                width: unset;
+                width: unset; 
             }
             > form#searchBar {
                 display: none;
@@ -280,6 +298,10 @@ header {
                 // }
             }
 
+            > form#searchBar.isOpened{
+                display: inline-flex; 
+            }
+
             // >:first-child{
             //   display: block;
             //   background-color: red;
@@ -305,5 +327,13 @@ header {
 
     header > .menuBody {
         width: 100%;
+    }
+}
+
+@include rwd(992px){
+    body{
+        >.headerContainer{
+            height: 62px;
+        }
     }
 }

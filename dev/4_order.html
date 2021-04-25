@@ -6,7 +6,7 @@
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="main">
+    <div class="main" id="app">  
         <div class="main_top">
             <div class="search_bar">
                 <div class="search-input">
@@ -40,27 +40,27 @@
                     <th>state</th>
                     <th>detail</th>
                 </tr>
-                <tr>
-                    <td>21</td>
-                    <td>1</td>
-                    <td>200</td>
-                    <td>$1800</td>
-                    <td>陳大胖</td>
-                    <td>0911222333</td>
-                    <td>桃園市中壢區復興路46號8樓</td>
-                    <td>2021-04-09 11:02</td>
+                <tr v-for="(order,index) in orders">
+                    <td>{{order.orderNo}}</td>
+                    <td>{{order.mNo}}</td>
+                    <td>{{order.usePoints}}</td>
+                    <td>{{order.total}}</td>
+                    <td>{{order.orderer}}</td>
+                    <td>{{order.tel}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.orderDate}}</td>
                     <td>
-                        <select class="Type" name="Type">
+                        <select class="Type" name="Type" @change="changestatetype">
                             <option value="1">Paid</option>
                             <option value="2">Shipped</option>
                             <option value="3">Cancelled</option>
                         </select>
                     </td>
                     <td>
-                        <button class="detail l-btn">Detail</button>
+                        <button class="detail l-btn" @click="detail(index)">Detail</button>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>20</td>
                     <td>5</td>
                     <td>0</td>
@@ -79,7 +79,7 @@
                     <td>
                         <button class="detail l-btn">Detail</button>
                     </td>
-                </tr>
+                </tr> -->
             </table>
         </div>
     <!-- 確認改狀態的燈箱 -->
@@ -88,7 +88,7 @@
                 <div class="content">Do you want to <span>ship</span> order no.<span>21</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
+                    <button class="Continue">Continue</button>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 <div class="close">
                     <img class="close" src="./icon/close.svg">
                 </div>
-                <div>Order No.<span>21</span>  Order Detail</div>
+                <div>Order No.<span>{{index+1}}</span>  Order Detail</div>
                 <table>
                     <tr>
                         <th>Product No</th>
@@ -106,23 +106,11 @@
                         <th>Quantity</th>
                         <th>Unit Price</th>
                     </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>ENERGY BALL</td>
-                        <td>5</td>
-                        <td>$200</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>APPLE BAR</td>
-                        <td>2</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>VEGGIE CRACKERS</td>
-                        <td>1</td>
-                        <td>$400</td>
+                    <tr v-for="order in list">
+                        <td>{{order.prodNo}}</td>
+                        <td>{{order.fdName}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>${{order.price}}</td>
                     </tr>
                 </table>
             </div>
@@ -130,25 +118,70 @@
     </div>
 
 <script>
-    $(function(){
-        // 改狀態的 lightbox
-        $('.Type').change(function(){
-            $('.lightbox_black').css('display','block');
-            $('.lightbox>div>button.cancel').click(function(){
-                $('.lightbox_black').css('display','none');
+    let vm = new Vue({
+                el: "#app",
+                data: {
+                    orders:[],
+                    list:[],
+                    index: 0,
+                },
+                methods:{
+                        // 改狀態的 lightbox
+                    changestatetype(postRevState) {
+                        // console.log(postRevState.target.value);
+                        if (postRevState.target.value == 1) {
+                            return 'Passed';
+                        } else if (postRevState.target.value == 3) {
+                            return 'Failed';
+                        }else{
+                            $('.lightbox_black').css('display','block');
+                            $('.lightbox>div>button.cancel').click(function(){
+                                $('.lightbox_black').css('display','none');
+                            });
+                            $('.lightbox>div>button.Continue').click(function(){
+                                $('.lightbox_black').css('display','none');
+                            })
+                        }
+                    },
+                        // 訂單明細的 lightbox
+                    detail(index){
+                            vThis = this;
+                            this.list = [];
+                            this.index = index ;
+                            function fetch(){
+                                let xhr = new XMLHttpRequest()
+                                xhr.open('get', './php/4_adminOrderlist.php', true)
+
+                                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                                xhr.send(null)
+                                xhr.onload = function(){
+                                    let orderlist = JSON.parse(xhr.responseText);
+                                    // vThis.list = orderlist ;
+                                    for(let i = 0 ; i < orderlist.length ; i++){
+                                        if(orderlist[i].orderNo == index+1){
+                                            arr.push(orderlist[i])
+                                        }
+                                        arr = vThis.list
+                                    }
+                                    vThis.list[0].index = index;
+                                    console.log(index);
+                                }
+                            }
+                            fetch()
+                            
+                            $('.lightbox_orderDetail_black').css('display','block');
+                            $('.lightbox>div>img.close').click(function(){
+                                $('.lightbox_orderDetail_black').css('display','none');
+                            });
+                    }
+                }
             });
-            $('.lightbox>div>button.continus').click(function(){
-                $('.lightbox_black').css('display','none');
-            });
-        });
-        // 訂單明細的 lightbox
-        $('.detail').click(function(){
-            $('.lightbox_orderDetail_black').css('display','block');
-            $('.lightbox>div>img.close').click(function(){
-                $('.lightbox_orderDetail_black').css('display','none');
-            });
-        });
-    });
+
+    fetch(`./php/4_adminOrder.php`).then(res => res.json())
+                        .then(data =>{
+                            vm.orders = data
+                            console.log(data);
+                        })
     </script>
 </body>
 </html>

@@ -41,7 +41,6 @@ function getProducts(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
         prodRows = JSON.parse(xhr.responseText);
-        // console.log(prodRows);
         calories_3.foods = prodRows;
     }
     xhr.open("get","./php/getMore2_JSON.php",true);
@@ -52,7 +51,6 @@ function getsports(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
         prodRows = JSON.parse(xhr.responseText);
-        // console.log(prodRows);
         calories_3.sports = prodRows;
     }
     xhr.open("get","./php/getSport.php",true);
@@ -72,9 +70,9 @@ function sportsDel(){
 function sportsEdit(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-     
+            getsports();
     }
-    let url="./php/getSport.php";
+    let url="./php/3_cal_sportsEdit.php?";
     xhr.open("get",url,true);
     xhr.send(null);
 }
@@ -82,8 +80,10 @@ function sportsEdit(){
 function sportsAdd(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-        getsports();
-        setTimeout(() => {setbtn();}, 500);
+            getsports();
+            $('img.delete').click(function(){
+                $('.lightbox_delete_black').css('display','block');
+            });
     }
     let v=calories_3;
     let url="./php/3_cal_sportsAdd.php?"
@@ -97,8 +97,7 @@ function sportsAdd(){
 function foodsDel(){
         let xhr = new XMLHttpRequest();
         xhr.onload = function(){
-            getProducts();
-            setTimeout(() => {setbtn();}, 500);
+                getProducts();
         }
         let url="./php/3_cal_foodsDel.php?"+"fdNo="+calories_3.foods[calories_3.fdindex].fdNo;
         xhr.open("get",url,true);
@@ -108,8 +107,7 @@ function foodsDel(){
 function foodsEdit(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-        getProducts();
-        console.log(xhr.responseText)
+            getProducts();
     }
     let v=calories_3;
     let url="./php/3_cal_foodsEdit.php?"
@@ -126,7 +124,9 @@ function foodsAdd(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
         getProducts();
-        setTimeout(() => {setbtn();}, 500);
+        $('img.delete').click(function(){
+            $('.lightbox_delete_black').css('display','block');
+        });
     }
     let v=calories_3;
     let url="./php/3_cal_foodsAdd.php?"+

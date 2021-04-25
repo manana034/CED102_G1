@@ -59,3 +59,22 @@ body{
 
     }
 }
+
+@include rwd(700px){
+    body{
+        background-size: contain;
+        >.crpyright{
+            width: 100%;
+        }
+        >.buttonforEntry{
+            flex-wrap: wrap;
+    
+           >a.p-btn{
+                 padding: 20px;
+                font-size: 24px;
+                margin: 10px;
+            }
+    
+        }
+    }
+}

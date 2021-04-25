@@ -12,6 +12,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" defer></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js" defer></script>
 
         <script src="./js/header.js" defer></script>
         <script src="./js/cart.js" defer></script>
@@ -62,11 +63,25 @@
 
         </section> 
 
-        @@include('./layout/header.html') 
-        @@include('./layout/cart.html')
-    
+        <div class="headerContainer">
+            @@include('./layout/header.html') 
+            @@include('./layout/cart.html')
+        </div>
 
+    
         <div id="app">
+            <!--  loading  -->
+            <loading :active.sync="isLoading">
+                <div class="loadingio-spinner-ripple-wu44vrvts1">
+                    <div class="ldio-2gn8nvj94zp">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </loading>
+            <!--  loading  --> 
+
+
             <main class="row myAccount"
                 v-show="!loginBeforeAfter">
 
@@ -76,7 +91,8 @@
                 
                 <!-- 自己發送自己要接收 並由parent  -->
                 <person-info
-                    @open-edit="changeStauts">
+                    @open-edit="changeStauts"
+                    @false-loading="isLoading = !isLoading">
                 </person-info>
     
                 <main-content></main-content>
@@ -87,6 +103,9 @@
     
             <login-signup
                 v-show="loginBeforeAfter"></login-signup>
+
+                       
+
         </div>
 
         @@include('./layout/footer.html')

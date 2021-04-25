@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <title>FT.</title>
+        <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+        <link rel="stylesheet" href="./css/page/resetPsw.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" defer></script>  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js" defer></script>
+
+        <script src="./js/header.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+
+        <script src="./js/resetPsw.js" defer></script>
+     
+        <script src="./js/header_customSelect.js" defer></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
+
+
+    </head>
+    <body>
+
+        @@include('./layout/header.html') 
+        @@include('./layout/cart.html')
+    
+        <main id="app" class="card">
+
+            <!-- <loading :active.sync="isLoading">
+                <div class="loadingio-spinner-ripple-wu44vrvts1">
+                    <div class="ldio-2gn8nvj94zp">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </loading> -->
+
+
+            <form id="resetPswForm">
+                <h6>RESET YOUR PASSWORD</h6>
+
+                <input 
+                    type="text" 
+                    name="name" 
+                    :value="mName" 
+                    readonly>
+
+                <input 
+                    type="text" 
+                    name="mail" 
+                    :value="mMail" 
+                    readonly>
+
+
+                <label class="psw">
+                    <p>NEW PASSWORD <span>*</span></p>
+                    <input 
+                        type="text" 
+                        name="psw" 
+                        v-model="mPsw"
+                        maxlength="10"
+                        @focus.stop="movePlaceholder($event,'focus')"
+                        @blur.stop="movePlaceholder($event,'blur')">
+                </label>
+
+                <label class="cfmPsw">
+                    <p>CONFIRM PASSWORD <span>*</span></p>
+                    <input 
+                        type="text"
+                        name="cfmPsw"
+                        v-model="mCfmPsw"
+                        maxlength="10"
+                        @focus.stop="movePlaceholder($event,'focus')"
+                        @blur.stop="movePlaceholder($event,'blur')">
+                </label>
+                
+                <button 
+                    type="button" 
+                    class="p-btn"
+                    @click="updatePsw">
+                    
+                    SUBMIT
+                </button>
+            </form>
+        
+
+        </main>
+
+        @@include('./layout/footer.html')
+    </body>
+</html>

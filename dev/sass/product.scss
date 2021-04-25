@@ -227,3 +227,25 @@ input[type=number] {
         }
     }
 }   
+
+//768
+@media (max-width: 768px){
+    .prodContent {
+
+        .prod_infoall{
+            justify-content: flex-start;
+            align-items: center;
+            width: 80%;
+            margin-left:0;
+            p{
+                margin-left: 0;
+            }
+         }
+         .prod1_pic{
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+

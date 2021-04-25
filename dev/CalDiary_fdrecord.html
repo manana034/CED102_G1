@@ -35,6 +35,11 @@
     .record_delcheck button:hover{
         background-color: #EAA565;
     }
+    @media (max-width: 699px) and (min-width: 200px){
+        .card.food_record_delcheck{
+            left:20px;
+        }
+    }
 </style>
 
 </head>
@@ -67,7 +72,7 @@
   <!-- ======================刪除視窗 ==================-->
   <div class="card food_record_delcheck" v-show="delchecksow">
         <p>
-            You are going to delete a food record!<br> 
+            You are going to delete a  record!<br> 
         </p>
         <p>
             Are you sure you want delete this record?
@@ -100,12 +105,11 @@
             sprecord:[],
             delchecksow:false,
             caltotal:'0',
-            caltotal:'0',
             deletitem:-1,
             fdrecordday:"2021-04-15",
             meal:["Breakfast","Lunch","Dinner"],
             foods:[],
-            sports:[]
+            sports:[],
           }
       },
       methods: {
@@ -118,7 +122,12 @@
             this.deletitem=e;
         },
         delRecord:function(){
-            delfoodrecord(this.deletitem);
+            if(this.input_selector2[0]){
+                delfoodrecord(this.deletitem);
+            }else{
+                delsportrecord(this.deletitem);
+            }
+                
             this.delchecksow=!this.delchecksow;
             this.deletitem=-1;
         }
@@ -127,22 +136,42 @@
 </script>
 <script>
     function getfoodrecord(){
-        let xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            let prodRows = JSON.parse(xhr.responseText);
-            foodrecordV.fdrecord = prodRows;
+        if(getTmp_mNo==null){
 
-            cal_diarr_memberInfo2.fdcaltal= 0;
+        }else{
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                let prodRows = JSON.parse(xhr.responseText);
+                foodrecordV.fdrecord = prodRows;
 
-            foodrecordV.caltotal= foodrecordV.fdrecord[0].dtCalTal;
-            foodrecordchange.fdrecord = prodRows;
-            setTimeout(cal_diarr_memberInfo2.fdcaltal= foodrecordV.caltotal,500);
+                cal_diarr_memberInfo2.fdcaltal= 0;
+
+                foodrecordV.caltotal= foodrecordV.fdrecord[0].dtCalTal;
+
+                foodrecordchange.fdrecord = prodRows;
+               
+                let v=cal_diarr_memberInfo2; 
+                for(let i=0;i<foodrecordV.fdrecord.length;i++){
+                    if(foodrecordV.fdrecord[i].dtPd==1){
+                        v.fdcaltal= foodrecordV.fdrecord[i].dtCalTal;
+                        // alert(v.fdcaltal);
+                    }
+                    if(foodrecordV.fdrecord[i].dtPd==2){
+                        v.fdcaltal2= foodrecordV.fdrecord[i].dtCalTal;
+                        // alert(v.fdcaltal2);
+                    }
+                    if(foodrecordV.fdrecord[i].dtPd==3){
+                       v.fdcaltal3= foodrecordV.fdrecord[i].dtCalTal;
+                    //    alert(v.fdcaltal3);
+                    }
+                }
+            }
+        
+            // xhr.open("get", "./php/food_info.php", true);
+            var url = "./php/food_info.php?mNo=" +  getTmp_mNo + "&dtTime=" +  foodrecordV.fdrecordday;
+            xhr.open("Get", url, true);
+            xhr.send(null);
         }
-    
-        // xhr.open("get", "./php/food_info.php", true);
-        var url = "./php/food_info.php?mNo=" +  1 + "&dtTime=" +  foodrecordV.fdrecordday;
-        xhr.open("Get", url, true);
-        xhr.send(null);
     }  
 </script>
 <script>
@@ -162,22 +191,41 @@
 </script>  
 <!-- ================運動紀錄讀取 ================-->
 <script>
-    function getsportrecord(){
-        let xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            let prodRows = JSON.parse(xhr.responseText);
-            foodrecordV.sprecord = prodRows;
-            cal_diarr_memberInfo2.spcaltal=0;
+        function getsportrecord(){
+            if(getTmp_mNo==null){
 
-            foodrecordV.caltotal2= foodrecordV.sprecord[0].spCalTal;
-            setTimeout(cal_diarr_memberInfo2.spcaltal=foodrecordV.sprecord[0].spCalTal,500);
+            }else{
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function(){
+                    let prodRows = JSON.parse(xhr.responseText);
+                    foodrecordV.sprecord = prodRows;
+                    cal_diarr_memberInfo2.spcaltal=0;
+
+                    foodrecordV.caltotal2= foodrecordV.sprecord[0].spCalTal;
+                    foodrecordchange.sprecord = prodRows;
+                    setTimeout(cal_diarr_memberInfo2.spcaltal=foodrecordV.sprecord[0].spCalTal,500);
+                }
+            
+                // xhr.open("get", "./php/food_info.php", true);
+                var url = "./php/sport_info.php?mNo=" +  getTmp_mNo + "&spTime=" +  foodrecordV.fdrecordday;
+                xhr.open("Get", url, true);
+                xhr.send(null);
+            }
+        }  
+        //刪除運動紀錄
+        function  delsportrecord(e){
+        let V=foodrecordV.sprecord[e];
+        // alert(foodrecordV. fdrecord[e].dtRNo);
+        // alert(foodrecordV. fdrecord[e].fdNo);
+        let xhr = new XMLHttpRequest();
+        var url = "./php/delsportrecord.php?spRNo=" +  V.spRNo + "&spNo=" + V.spNo;
+        xhr.onload = function(){
+            getsportrecord();
+            // alert("Delete food record succes!");
         }
-    
-        // xhr.open("get", "./php/food_info.php", true);
-        var url = "./php/sport_info.php?mNo=" +  1 + "&spTime=" +  foodrecordV.fdrecordday;
         xhr.open("Get", url, true);
         xhr.send(null);
-    }  
+    }
 </script>
 
 </body>

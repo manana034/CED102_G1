@@ -1,23 +1,23 @@
 //放置base 的全部
 @import '../base/reset';
 @import '../base/var';
-@import '../base/mixin';
-@import '../base/base';
+@import '../base/mixin';  
+@import '../base/base'; 
 @import '../base/grid';
 @import '../base/rwd';
 //不能抓 all.scss 文自路徑會跑掉
 
 //放置component
-@import '../component/header';
+@import '../component/header'; 
 @import '../component/footer';
 @import '../component/comment';
 @import '../component/cart.scss';
 @import '../component/moreproduct.scss';
-@import '../component//chatRobot.scss';
+@import '../component//chatRobot.scss';  
 
 
 
-@keyframes UpDown {
+@keyframes UpDown { 
     0% { top: -10px; }
     50% { top: 10px; }
     100% { top: -10px; }
@@ -99,6 +99,7 @@
         }
         .stepSlider {
             width: 100%;
+            height: 70vh;
             // border: 1px solid $black;
             background-color: $green-l;
             border-radius: 10px;
@@ -132,6 +133,7 @@
                         z-index: 1;
                         position: relative;
                         padding: 50px;
+                        
     
                         // tilt 寫在最外層
                         transform-style: preserve-3d;
@@ -328,6 +330,7 @@
         .circle {
             // background-color: $primary;
             @include circle(calc(calc(100% / 11) - 4vw));
+            transition: all .5s;
             margin: 2vw;
             position: relative;
             
@@ -339,7 +342,9 @@
             box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
         }
     }
+    
     & > :nth-child(2) {
+        margin: 0;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -352,23 +357,28 @@
         background-color: $primary-l;
 
         h4 {
-            // width: 100%;
-            text-transform: uppercase;
+            text-transform: uppercase; 
             margin: 50px 0;
         }
         p {
-            margin-bottom: 100px;
-        }
-        > :last-child {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 50px;
         }
+        >div{
+            display: flex;
+            align-items: flex-start;
+            >img{
+                width: calc( 50% - 20px );
+                object-fit: contain;
+                margin: 10px;
+                &:hover{
+                    z-index: 2;
+                }
+            }
+            
+        }
+
     }
 
-    >.phone-comment{
-        display: none;
-    }
 }
 
 .product {
@@ -382,12 +392,14 @@
             h3 {
                 text-transform: uppercase;
                 margin-bottom: 25px;
+                width: 100%;
             }
         }
         > :last-child {
-            width: 50%;
+            width: 100%;
             display: inline-flex;
-            justify-content: flex-end;
+            flex-wrap: wrap;
+            justify-content: flex-start;
             button {
                 margin: 0 20px;
             }
@@ -411,6 +423,7 @@
     }
     .mainVision{
         display: block;
+        position: absolute;
         // left: 15%;
         // top: 25%;
         img{
@@ -432,6 +445,8 @@
             >.stepSlider{
                 padding: 10px;
                 flex-wrap: wrap;
+                height: unset;
+                padding: 25px;
                 >:first-child{
                     width: 100%;
                     height: unset;
@@ -465,20 +480,24 @@
         }
     }
 
+    .scrollDown{
+        transform: translate(0, -45%);
+    }
+
 
 
     .postWall{
         flex-wrap: wrap;
-        >:first-child{
-            display: none;
-        }
+        // >:first-child{
+        //     display: none;
+        // }
         >:nth-child(2){
-            position: relative;
-            top:unset; 
-            left:unset; 
-            transform: unset;
-            max-width: unset;
-            flex: unset;
+            // position: relative;
+            // top:unset; 
+            // left:unset; 
+            // transform: unset;
+            // max-width: unset;
+            // flex: unset;
             p{
                 margin-bottom: 20px;
             }
@@ -536,11 +555,30 @@
 
 
         
-}
+} 
 
 @include rwd(700px){
-    .postWall >.phone-comment{
-
-        top: -35vw;
+    .postWall{
+        >:first-child{
+            display: none;
+        }
+        >:nth-child(2){
+            flex: none;
+            max-width: none;
+            position: unset;
+            top: unset;
+            left: unset;
+            transform: unset;
+            >:last-child{
+                margin-bottom: unset;
+                flex-wrap: wrap;
+            }
+            >div{
+                >img{
+                    width: 100%;
+                    margin: 10px 0px;
+                }
+            }
+        } 
     }
 }

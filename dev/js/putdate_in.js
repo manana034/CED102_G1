@@ -53,7 +53,11 @@ window.addEventListener('load',function(){
     getfoodrecord();
     getsportrecord();
     xhr.onload = function () {
-        getfoodrecord();
-        getsportrecord();
+        if(getTmp_mNo==null){
+
+        }else{
+            getfoodrecord();
+            getsportrecord();
+        }    
     }
 })

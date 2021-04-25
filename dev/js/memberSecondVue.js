@@ -401,7 +401,12 @@ Vue.component('login-signup', {
                             </label>
 
                             <div>
-                                <button class="nc-btn o-5" type="button">forget your password ?</button>
+                                <button 
+                                    class="nc-btn o-5" type="button"
+                                    @click="forgetPsw">
+
+                                    forget your password ?
+                                </button>
                             </div>
                             <div>
                                 <button 
@@ -597,7 +602,8 @@ Vue.component('login-signup', {
                             yAxes: [
                                 {
                                     ticks: {
-                                        beginAtZero: true,
+                                        suggestedMax: 1500,
+                                        suggestedMin: 500,
                                     },
                                 },
                             ],
@@ -634,6 +640,12 @@ Vue.component('login-signup', {
                 pswInput.value = ''
                 this.$store.commit('toggleLoginBeforeAfter')
             },
+
+
+            //給忘記密碼 使用的mail
+            mail: '',
+            name: '',
+            mNo: '',
         }
     },
     methods: {
@@ -663,10 +675,12 @@ Vue.component('login-signup', {
                 button.textContent = this.upperInfo.login[2]
             }
         },
+
         movePlaceholder(event, state) {
             const inputVal = event.target.value
             const placeholder = event.target.parentElement.children[0]
             const ta = event.target
+            let Vthis = this
 
             if (state == 'focus') {
                 //如果再focus 狀態 將會提升
@@ -676,7 +690,7 @@ Vue.component('login-signup', {
                 if (ta.name == 'userid') {
                     const span = select('.login .userid p>span')
 
-                    span.textContent = ""
+                    span.textContent = ''
                     span.removeAttribute('style')
                 }
             } else if (state == 'blur') {
@@ -688,33 +702,33 @@ Vue.component('login-signup', {
                     if (ta.name == 'userid') {
                         const span = select('.login .userid p>span')
                         fetch(`php/checkMemberID.php?memid=${inputVal}`)
-                        .then((res) => res.json())
-                        .then((res) => {
-                            // console.log(res.length)
-                            if (!res.length) {
-                                span.textContent = '帳號錯誤'
-                                span.setAttribute('style', 'color:red')
-                            } else {
-                                span.textContent = '正確'
-                                span.setAttribute('style', 'color: green')
-                            }
-                        })
+                            .then((res) => res.json())
+                            .then((res) => {
+                                if (!res.mNo) {
+                                    span.textContent = '帳號錯誤'
+                                    span.setAttribute('style', 'color:red')
+                                } else {
+                                    span.textContent = '正確'
+                                    span.setAttribute('style', 'color: green')
+
+                                    Vthis.mail = res.mMail
+                                    Vthis.name = res.mName
+                                    Vthis.mNo = res.mNo
+                                    console.log('填入帳號 確認信箱 就可以寄出信件'+Vthis.mail)
+                                }
+                            })
                     }
                 }
 
- 
-
-
-                    // let xhr = new XMLHttpRequest()
-                    // xhr.onload = function(){
-                    //     mid = JSON.parse(xhr.responseText)
-                    //     console.log(mid)
-                    // }
-                    // xhr.open('get', `php/checkMemberID.php?mId=${inputVal}`,true)
-                    // xhr.send(null)
-                
+                // let xhr = new XMLHttpRequest()
+                // xhr.onload = function(){
+                //     mid = JSON.parse(xhr.responseText)
+                //     console.log(mid)
+                // }
+                // xhr.open('get', `php/checkMemberID.php?mId=${inputVal}`,true)
+                // xhr.send(null)
             }
-        }, 
+        },
 
         loginMember() {
             const login_id = select('.login input[name="userid"]')
@@ -926,7 +940,6 @@ Vue.component('login-signup', {
             getMOrderListData()
             getMOrderData()
             getMDailyCalData()
-            
 
             //登入 就叫child 執行檢查 是否存在某資料 執行另外動作
             const checkGoaltime = setTimeout(() => {
@@ -934,9 +947,39 @@ Vue.component('login-signup', {
                 passValueVue.$emit('check-goalTime')
                 checkOrderAndFavList()
                 clearTimeout(checkGoaltime)
-            }, 300)
+                console.log('這裡檢查 目標 體重與時間')
+            }, 700)
             // passValueVue.$emit('check-goalWeight')
             // passValueVue.$emit('check-goalTime')
+        },
+
+        forgetPsw(){
+            const memberId = select('.login .userid input')
+            const span = select('.login .userid span')
+            let Vthis = this
+
+            if (memberId.value){
+                if (span.style.color == "green"){
+
+                    function forgetPswMail(){
+
+                        fetch(
+                            `php/sendForgetPswMail.php?mId=${memberId.value}&mMail=${Vthis.mail}&mName=${Vthis.name}&mNo=${Vthis.mNo}`
+                        )
+                            .then((res) => res.text())
+                            .then((res) => {
+                                console.log('可以用fetch來抓取text' + res)
+                            })
+                    }
+                    forgetPswMail()
+
+                    alert('已寄出 email 至您的信箱')
+                } else {
+                    alert('請輸入正確的帳號')
+                }
+            } else {
+                alert('請輸入正確的帳號')
+            }
         },
     },
     computed: {

@@ -1,3 +1,9 @@
+const choose = document.querySelector(".choose");
+const chooseAll = document.querySelector(".chooseall");
+choose.addEventListener("click", function(){
+    chooseAll.classList.toggle("chooseform");
+})
+
 const prod1 = document.querySelectorAll(".prod1");
 const form = document.querySelectorAll('.orange');
 form.forEach(f => f.addEventListener("click",function(e){
@@ -55,3 +61,32 @@ form.forEach(f => f.addEventListener("click",function(e){
         } 
     }
 }))
+
+//sort by filter 
+
+const sort = document.querySelector('.sort');
+const date = document.querySelectorAll(".prod1");
+
+sort.addEventListener('click', function(e){
+    // console.log(e.target.textContent)
+    switch(e.target.textContent){
+        case "POPULAR":
+            
+            break;
+        case "NEW ARRIVAL":  
+        // console.log([...date]);
+        [...date].sort((a,b)=>{
+                // console.log(a.dataset.date);
+                let latest = new Date(a.dataset.date);
+                let old = new Date(b.dataset.date);
+                return latest - old
+                // if (latest > old) {
+                //     return 1;
+                // } else if (latest < old) {
+                //     return -1;   
+                // }
+                // return 0;
+            })
+            break;
+    }
+})

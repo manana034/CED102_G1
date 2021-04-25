@@ -59,12 +59,13 @@
 
 <body>
     <div id="app4" class="card foodchagepage">
-        <div class=inputarea>
+        <!-- //食物修改 -->
+        <div class=inputarea  v-show="input_selector[0]">
             <span>Food Modify</span>
             <span>{{dateselected}}</span>
             <span @click="closeP"><img src="./img/del_icon.svg"></span>
-            <span>Food</span>
-            <span>QTY</span>
+            <span >Food</span>
+            <span >QTY</span>
             <span>Cal</span>
             <select v-model="fruit">
                 <!-- <option disabled value="0">Select Food</option> -->
@@ -78,20 +79,45 @@
             <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
             <span >{{foods[fruit-1].fdCalPer*newAdd_number}}</span>
          </div>
-         <button class="r-btn editceck" @click="FoodRecordeEdit">Edit</button>
+         <button class="r-btn editceck" @click="FoodRecordeEdit"  v-show="input_selector[0]">Edit</button>
+
+          <!-- //運動修改 -->
+          <div class=inputarea v-show="input_selector[1]">
+            <span>Food Modify</span>
+            <span>{{dateselected}}</span>
+            <span @click="closeP"><img src="./img/del_icon.svg"></span>
+            <span >Food</span>
+            <span >QTY</span>
+            <span>Cal</span>
+            <select v-model="fruit">
+                <option 
+                    v-for="list in sports" 
+                    v-bind:value="list.spNo" 
+                    >
+                    {{list.spName}}
+                </option>
+            </select>
+            <input v-model="newAdd_number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
+            <span >{{(sports[fruit-1].spCalPer*newAdd_number)*weight[0].wWeight}}</span>
+         </div>
+         <button class="r-btn editceck" @click="SportRecordeEdit" v-show="input_selector[1]">Edit</button>
     </div>
     <script>
         const foodrecordchange=new Vue({
             el:"#app4",
             data() {
                 return {
+                    input_selector:[true,false],
                     newAdd_number:1,
                     fruit:1,
                     dateselected:'2021-04-20',
                     foods:[{ fdNo:0,fdname:'Hamberger', fdcal:250}],
+                    sports:[{fdNo:0,fdname:'Hamberger', fdcal:250}],
                     fdrecord:[],
+                    sprecord:[],
                     edititem:[],
-                    FoodChangeSave:0
+                    FoodChangeSave:0,
+                    weight:[]
                 }
             },
             methods: {
@@ -116,6 +142,21 @@
                     // alert(this.fruit);//食物id
                     // alert(this.newAdd_number);//食物數量
                     // alert(this.foods[this.fruit-1].fdcal*this.newAdd_number);//卡路里
+                },
+                SportRecordeEdit:function(){
+                    var sameItem=0;
+                    for(let i=0;i<this.sprecord.length;i++){
+                        if(this.sprecord[i].spNo == this.fruit & i != this.FoodChangeSave){
+                            // closeFdChange();
+                            sameItem=sameItem+1;
+                        }
+                    }
+                    if(sameItem==0){
+                        chageSpRecord_edit();
+                        closeFdChange();
+                    }else{
+                        alert("Today  already have this sport!");
+                    }
                 }
             },
         })
@@ -124,12 +165,21 @@
     <script>
         function chageFdRecord_show(e){
             let fdr=foodrecordchange;
-            fdr.edititem=fdr.fdrecord[e];
-            fdr.newAdd_number=fdr.edititem.fdQty;
-            fdr.fruit=fdr.edititem.fdNo;
-            fdr.FoodChangeSave=e;
+            if(fdr.input_selector[0]){
+                fdr.edititem=fdr.fdrecord[e];
+                fdr.newAdd_number=fdr.edititem.fdQty;
+                fdr.fruit=fdr.edititem.fdNo;
+                fdr.FoodChangeSave=e;
+            }else{
+                fdr.edititem=fdr.sprecord[e];
+                fdr.newAdd_number=fdr.edititem.spTimeSpan;
+                fdr.fruit=fdr.edititem.spNo;
+                fdr.FoodChangeSave=e;
+            }    
+
             // alert(fdr.FoodChangeSave);
         }
+        
         function closeFdChange(){
             document.getElementById("app4").style.display="none";
         }
@@ -138,6 +188,7 @@
         }
     </script>
     <script>
+        //食物
         function chageFdRecord_edit(){
             let xhr = new XMLHttpRequest();
             let V=foodrecordchange;
@@ -154,6 +205,27 @@
             xhr.send();
             xhr.onload = function () {
                 getfoodrecord();
+            }
+            
+            getfoodrecord(),1000;
+            // setTimeout(getfoodrecord(),1500);
+            // setTimeout(getfoodrecord(),2000);
+        }
+        //運動
+        function chageSpRecord_edit(){
+            let xhr = new XMLHttpRequest();
+            let V=foodrecordchange;
+           
+           
+            var url = "./php/changesportrecord.php?"
+                        + "spRNo=" +  V.sprecord[V.FoodChangeSave].spRNo
+                        + "&spNo1=" +  V.sprecord[V.FoodChangeSave].spNo
+                        + "&spNo2=" +  V.fruit
+                        + "&spTimeSpan=" +  V.newAdd_number;
+            xhr.open("GET", url, true);
+            xhr.send();
+            xhr.onload = function () {
+                getsportrecord();
             }
             
             getfoodrecord(),1000;
