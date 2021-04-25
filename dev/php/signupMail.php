@@ -11,12 +11,12 @@ $mail = new PHPMailer(true);
     $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
     $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
     $mail->Port = 465; // set the SMTP port for the GMAIL server
-    $mail->Username = "fly795624abc@gmail.com"; // =====GMAIL username
-    $mail->Password = "yihuanre0221ar"; // =====GMAIL password
+    $mail->Username = "ftg12021@gmail.com"; // =====GMAIL username
+    $mail->Password = "AAAA1111"; // =====GMAIL password
 
 //Typical mail data
 $mail->AddAddress($memberMail);//寄給誰========
-$mail->SetFrom("fly795624abc@gmail.com");//從誰寄的========
+$mail->SetFrom("ftg12021@gmail.com");//從誰寄的========
 $mail->Subject = "您好!! 歡迎加入FT.";//========
 $mail->Body = "歡迎加入FT. 讓我們成為更健康的自己 http://localhost/G1_FT_web/dist/index.html";//========
 

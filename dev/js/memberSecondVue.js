@@ -947,7 +947,8 @@ Vue.component('login-signup', {
                 passValueVue.$emit('check-goalTime')
                 checkOrderAndFavList()
                 clearTimeout(checkGoaltime)
-            }, 300)
+                console.log('這裡檢查 目標 體重與時間')
+            }, 700)
             // passValueVue.$emit('check-goalWeight')
             // passValueVue.$emit('check-goalTime')
         },
