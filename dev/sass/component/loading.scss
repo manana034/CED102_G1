@@ -16,7 +16,7 @@
       height: 156px;
       opacity: 0;
     }
-}
+}  
 
 .vld-overlay{
     position: fixed;
@@ -40,20 +40,20 @@ animation: ldio-2gn8nvj94zp 1s cubic-bezier(0,0.2,0.8,1) infinite;
 border-color: #1d3f72
 }
 
-.ldio-2gn8nvj94zp div:nth-child(2) {
+.ldio-2gn8nvj94zp div:nth-child(2) { 
 border-color: #5699d2;
 animation-delay: -0.5s;
 }
 
-.loadingio-spinner-ripple-wu44vrvts1 {
+.loadingio-spinner-ripple-wu44vrvts1 { 
 width: 100vw;
 height: 100vh;
 display: inline-block;
 overflow: hidden;
-position: relative;
+position: relative; 
 
 /*  background 設定 none  */
-background-color: $primary-l;
+background-color: #f4f1ec;    
 }
 .ldio-2gn8nvj94zp {
 width: 50px;
