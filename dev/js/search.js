@@ -183,7 +183,6 @@ let vm = new Vue({
             }
         },
         addfood_func: async function (fdName,fdCalPer) {
-            if()
             const res = await fetch('./php/addFoodData.php', {
                 method: 'POST',
                 mode: 'same-origin',
