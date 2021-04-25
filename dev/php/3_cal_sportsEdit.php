@@ -1,10 +1,16 @@
 <?php 
 try{
     require_once("../../connect_ced102g1.php");
-    $sql=""
+    $sql="UPDATE sport set spName=:spName,
+                spCalPer=:spCalPer,
+                spType=:spType,
+                where spNo=:spNo";
     $member =  $pdo->prepare($sql);
 
-    $member->bindValue(":dtRNo",$_GET['dtRNo']);
+    $member->bindValue(":spName",$_GET['spName']);
+    $member->bindValue(":spCalPer",$_GET['spCalPer']);
+    $member->bindValue(":spType",$_GET['spType']);
+    $member->bindValue(":spNo",$_GET['spNo']);
     $member->execute();
 
 

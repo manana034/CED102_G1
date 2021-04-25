@@ -10,9 +10,13 @@ try {
     $member->bindValue(":spTime", $_GET["spTime"]);
     $member->execute();
     
-  	$prodRows =  $member->fetchAll(PDO::FETCH_ASSOC);
-    $result = $prodRows;
-	  echo json_encode($result);
+    // if(  $member->rowCount() == 0) { 
+    //   echo json_encode("error");
+    // }else{
+      $prodRows =  $member->fetchAll(PDO::FETCH_ASSOC);
+      $result = $prodRows;
+      echo json_encode($result);
+    
 } catch (PDOException $e) {
 	echo "error";
 }
