@@ -386,7 +386,7 @@ app = new Vue({
                     passValueVue.$emit('check-goalWeight')
                     passValueVue.$emit('check-goalTime')
                     clearTimeout(checkGoaltime)
-                },300)
+                },700)
   
                 console.log('自動登入這裡 成功')
                 clearTimeout(timeCheckLoggedin)

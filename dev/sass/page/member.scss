@@ -217,10 +217,10 @@ h1,h2,h3,h4,h5,h6,p,button{
 }
 
 
-.myAccount{
+.myAccount{ 
     display: flex;
     // display: none;
-
+    position: relative;
     flex-wrap: wrap;
     align-items: flex-start;
 
@@ -1225,6 +1225,7 @@ section.levelInfo{
                     >.goalBody{
                         padding: 25px 5px;
                         >.goal-row-3{
+                            justify-content: center;
                             >div{
                                 margin: 10px 0;
                             }
@@ -1271,7 +1272,15 @@ section.levelInfo{
         }
     }
 
- 
+    // .mainConainter{
+    //     .goalBody{
+    //         .goal-row-3{
+    //             justify-content: center;
+    //         }
+    //     }
+    // }
+    
+
   
 }
 

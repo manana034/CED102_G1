@@ -2138,7 +2138,7 @@ Vue.component('sign-up', {
                     passValueVue.$emit('check-goalTime')
                     checkOrderAndFavList()
                     clearTimeout(checkGoaltime)
-                }, 300)
+                }, 700)
             }
         }
     },
