@@ -335,7 +335,7 @@
     </div>
 </div>
 <script>
-    $(function setbtn(){
+    $(function setbt(){
 
         setTimeout(() => {
             // 切換分頁
@@ -359,9 +359,11 @@
             $('.lightbox>div>button.continus').click(function(){
                 if(calories_3.page_check==0){
                     foodsDel();
+                    getProducts();
                 }
                 if(calories_3.page_check==1){
                     sportsDel();
+                    getProducts();
                 }
                 $('.lightbox_delete_black').css('display','none');
             });
@@ -375,9 +377,11 @@
             $('.lightbox>div>button.continusadd').click(function(){
                 if(calories_3.page_check==0){
                     foodsAdd();
+                    getProducts();
                 }
                 if(calories_3.page_check==1){
                     sportsAdd();
+                    getProducts();
                 }
                 $('.lightbox_add_black').css('display','none');
             });
@@ -391,6 +395,11 @@
             $('.lightbox>div>button.continusedit').click(function(){
                 if(calories_3.page_check==0){
                     foodsEdit();
+                    getProducts();
+                }
+                if(calories_3.page_check==1){
+                    sportsEdit();
+                    getProducts();
                 }
                 $('.lightbox_edit_black').css('display','none');
             });

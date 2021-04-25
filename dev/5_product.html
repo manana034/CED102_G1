@@ -6,7 +6,7 @@
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="main">
+    <div class="main" id="product_5">
         <div class="main_top">
             <div class="search_bar">
                 <div class="search-input">
@@ -46,25 +46,25 @@
                   <th>Delete</th>
                   <th>State</th>
                 </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Energy bar</td>
-                    <td>APPLE BAR</td>
+                <tr v-for="(item,index) in product">
+                    <td>{{product[index].prodNo}}</td>
+                    <td>{{product[index].prodType}}</td>
+                    <td>{{product[index].fdName}}</td>
                     <td>
-                        <img src="./img/prod1.png">
+                        <img :src="imgs[index]">
                     </td>
-                    <td>110</td>
-                    <td>1.5</td>
-                    <td>$200</td>
+                    <td>{{product[index].fdCalPer}}</td>
+                    <td>{{product[index].calRate}}</td>
+                    <td>{{product[index].price}}</td>
                     <td>
-                        <img class="edit" src="./icon/backend_edit.png">
+                        <img class="edit" src="./icon/backend_edit.png" @click="changesellindex(index)">
                     </td>
                     <td>
-                        <img class="delete" src="./icon/backend_trash.png">
+                        <img class="delete" src="./icon/backend_trash.png"  @click="changesellindex(index)">
                     </td>
                     <td>  
-                        <div class="button">
-                            <input type="checkbox">
+                        <div class="button" @click="changesellindex(index)">
+                            <input type="checkbox" v-model="sell[index]">
                             <label></label>
                         </div>
                     </td>
@@ -74,20 +74,20 @@
         <!-- 確認 上架/下架 的燈箱 -->
         <div class="lightbox_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>start</span>selling <span>APPLE BAR</span> ?</div>
+                <div class="content">Do you want to  <span v-if="sell[sellindex]">stop</span>s<span v-else>start</span>elling <span>{{product[sellindex].fdName}}</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
+                    <button class="continus" @click="changeselect()">Continus</button>
                 </div>
             </div>
         </div>
         <!-- 確認刪除的燈箱 -->
         <div class="lightbox_delete_black">
             <div class="lightbox" >
-                <div class="content">Do you want to <span>delete</span> <span>APPLE BAR</span> ?</div>
+                <div class="content">Do you want to <span>delete</span> <span>{{product[sellindex].fdName}}</span> ?</div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Continus</button>
+                    <button class="continus" @click="delproduct()">Continus</button>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <h6>Add Product</h6>
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="Typesave2">
                         <option value="1">Cereal</option>
                         <option value="2">Crackers</option>
                         <option value="3">Energy bar</option>
@@ -106,35 +106,35 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="productadd[0]">
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="productadd[1]">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Rate</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="productadd[2]">
                         <div class="acc_tip">Please enter only numbers and decimal point.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Price</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <input type="text" required="required" maxlength="10" class="acc_con" v-model="productadd[3]">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>                
                 <div>
                     <div class="acc_title">Des</div>
                     <div>
-                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con"></textarea>
+                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con" v-model="productadd[4]"></textarea>
                         <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                 </div>
                 <div>
                     <button class="cancel">Cancel</button>
-                    <button class="continus">Add</button>
+                    <button class="continus" @click="addproduct()">Add</button>
                 </div>                                                                                                                 
             </div>
         </div>
@@ -175,7 +175,7 @@
                 </div>
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="Typesave">
                         <option value="1">Cereal</option>
                         <option value="2">Crackers</option>
                         <option value="3">Energy bar</option>
@@ -184,62 +184,66 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con">
+                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="producteditsave[0]" :placeholder="product[sellindex].fdName">
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con">
+                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="producteditsave[1]" :placeholder="product[sellindex].fdCalPer">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Rate</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con">
+                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="producteditsave[2]" :placeholder="product[sellindex].calRate">
                         <div class="acc_tip">Please enter only numbers and decimal point.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Price</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <input type="text" required="required" maxlength="10" class="acc_con" v-model="producteditsave[3]" :placeholder="product[sellindex].price">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>                
                 <div>
                     <div class="acc_title">Des</div>
                     <div>
-                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con"></textarea>
+                        <textarea rows="3" cols="50" required="required" maxlength="500" class="acc_con" v-model="producteditdes" :placeholder="product[sellindex].des">
+                        </textarea>
                         <div class="acc_tip">Please enter within 500 characters.</div>
                     </div>
                 </div>
-                <div>
-                    <div class="acc_title">Pic.1</div>
+                <form id="uploadphoto" action="5_productEdit.php"  method="post"> 
                     <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
+                        <div class="acc_title">Pic.1</div>
+                        <div>
+                            <input name="productImage1" type="file" accept=".jpg,.png" class="acc_con">
+                            <div class="acc_tip">Upload file is too large.</div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.2</div>
                     <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
+                        <div class="acc_title">Pic.2</div>
+                        <div>
+                            <input name="productImage2" type="file" accept=".jpg,.png" class="acc_con">
+                            <div class="acc_tip">Upload file is too large.</div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="acc_title">Pic.3</div>
                     <div>
-                        <input type="file" accept=".jpg,.png" class="acc_con">
-                        <div class="acc_tip">Upload file is too large.</div>
+                        <div class="acc_title">Pic.3</div>
+                        <div>
+                            <input name="productImage3" type="file" accept=".jpg,.png" class="acc_con">
+                            <div class="acc_tip">Upload file is too large.</div>
+                        </div>
                     </div>
-                </div>
+                </form>
+
                 <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="continus">Edit</button>
+                    <button class="cancel"  @click="cleanedit()">Cancel</button>
+                    <button class="continus" @click="productedit()">Edit</button>
                 </div>                                                                                                            
             </div>
         </div>
@@ -248,6 +252,7 @@
 <script>
     $(function(){
         // 確認 lightbox
+        setTimeout(() => {
         $('div.button>label').click(function(){
             $('.lightbox_black').css('display','block');
             $('.lightbox>div>button.cancel').click(function(){
@@ -290,7 +295,9 @@
                 $('.lightbox_edit_black').css('display','none');
             });
         });
+     }, 500);
     });
     </script>
+    <script src="js/5_product.js"></script>
 </body>
 </html>

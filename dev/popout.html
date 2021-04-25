@@ -147,6 +147,11 @@
          /* margin-left: 30%; */
          margin-top: 15px;
      }
+     @media (max-width: 699px) and (min-width: 200px){
+         .fd_input_form{
+             left:-145px;
+         }
+     }
     </style>
 </head>
 <body>
@@ -219,7 +224,7 @@
                     </option>
                 </select>
                 <input v-model="newAdd_number2" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                <span >{{sports[sportmap.indexOf(fruit2)].spCalPer*newAdd_number2}}</span>
+                <span >{{(sports[sportmap.indexOf(fruit2)].spCalPer*newAdd_number2)*weight[0].wWeight}}</span>
                 <button @click='addNewList_2'><img src="./img/add_icon.svg"></button>
                 <!-- 動態新增項目 -->
             
@@ -227,7 +232,7 @@
                     <li v-for='(list,index) in lists2' v-bind:key='list.id'>
                         <span> {{sports[sportmap.indexOf(list.sport_id)].spName}}</span>
                         <input v-model="list.number" oninput = "value=value.replace(/[^\d]/g,'')" placeholder=""/>
-                        <span>{{sports[sportmap.indexOf(list.sport_id)].spCalPer*list.number}}</span>
+                        <span>{{(sports[sportmap.indexOf(list.sport_id)].spCalPer*list.number)*weight[0].wWeight}}</span>
                         <button v-on:click='lists2.splice(index, 1)'>
                             <img src="./img/del_icon.svg">
                         </button>
@@ -236,7 +241,8 @@
                 
             </div>
 
-            <button class="r-btn add_fd_btn_2" @click="addRecord">Add</button>
+            <button class="r-btn add_fd_btn_2" @click="addRecord" v-show="input_selector[0]">Add</button>
+            <button class="r-btn add_fd_btn_2" @click="addRecord2" v-show="input_selector[1]">Add</button>
         </div>
     </div>
     <script>
@@ -276,6 +282,7 @@
             sports:[
 
             ],
+            weight:[]
         },
         methods:{
             remove(){
@@ -336,10 +343,15 @@
                     this.newAdd_number2='1'
                 }
             },
+            //將食物資料送入傳輸程式
             addRecord:function(){
-                // console.log(this.lists[0].food_id);
-                // console.log(this.lists[0].number);
                 addRecord_send(this.datesave,this.mealtype_selected+1,this.lists);
+                this.close();
+                this.remove();
+            },
+             //將運動資料送入傳輸程式
+             addRecord2:function(){
+                addRecord_send2(this.datesave,this.lists2);
                 this.close();
                 this.remove();
             }      
@@ -363,7 +375,7 @@
                     inputfoodV.foodmap[i]=inputfoodV.foods[i].fdNo;
                 }
             }
-            xhr.open("get", "./php/getMore2_JSON.php", true);
+            xhr.open("get","./php/getMore2_JSON.php", true);
             xhr.send(null);
         }
 
@@ -374,6 +386,7 @@
                 // console.log(prodRows);
                 inputfoodV.sports = prodRows;
                 foodrecordV.sports = prodRows;
+                foodrecordchange.sports=prodRows;
                 inputfoodV.fruit2=inputfoodV.sports[0].spNo;
                  //將運動號碼編位
                 // alert(inputfoodV.foods.length);
@@ -392,6 +405,7 @@
         })
     </script> 
     <script>
+        //新增食物紀錄
          function  addRecord_send(date,meal,fdAdd){
             let record_check=0;
             let xhr = new XMLHttpRequest();
@@ -406,14 +420,14 @@
 
             if (record_check > 0){
                 var url = "./php/addfoodrecord_edit.php?"
-                        + "mNo="    +  1
+                        + "mNo="    +  getTmp_mNo
                         + "&dtRNo="  + dtrno
                         + "&dtTime="+  date
                         + "&dtPd=" +  meal
                         + "&fd=" +  json
             }else{
                 var url = "./php/addfoodrecord_new.php?"
-                        + "mNo="    +  1
+                        + "mNo="    +  getTmp_mNo
                         + "&dtTime="+  date
                         + "&dtPd=" +  meal
                         + "&fd=" +  json
@@ -426,6 +440,38 @@
                 getfoodrecord();
             }
             // alert(meal);
+         }
+
+        //新增運動紀錄
+         function  addRecord_send2(date,spAdd){
+            let record_check=0;
+            let xhr = new XMLHttpRequest();
+            let json = JSON.stringify(spAdd);
+
+            for(let i=0;i<foodrecordV.sprecord.length;i++){
+                record_check=record_check+1;
+                var dtrno=foodrecordV.sprecord[i].spRNo;
+            }
+
+            if (record_check > 0){
+                var url = "./php/addsportrecord_edit.php?"
+                        + "mNo="    +  getTmp_mNo
+                        + "&spRNo="  + dtrno
+                        + "&spTime="+  date
+                        + "&sp=" +  json
+            }else{
+                var url = "./php/addsportrecord_new.php?"
+                        + "mNo="    +  getTmp_mNo
+                        + "&spTime="+  date
+                        + "&sp=" +  json
+            }
+            xhr.open("GET", url, true);
+            xhr.send();
+
+
+            xhr.onload = function () {
+                getsportrecord();
+            }
          }
     </script>  
 </body>

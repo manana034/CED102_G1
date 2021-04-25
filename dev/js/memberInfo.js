@@ -28,6 +28,8 @@ const  cal_diarr_memberInfo = new Vue({
         }
     }
 })
+
+
 const  cal_diarr_memberInfo2 = new Vue({
     el: '#app8',
     data: {
@@ -43,10 +45,12 @@ const  cal_diarr_memberInfo2 = new Vue({
         sch_width:0,
         spcaltal:0,
         fdcaltal:0,
+        fdcaltal2:0,
+        fdcaltal3:0,
         // cal_sch:{clip-path:inset(80% 0px 0px 0px)},
     },
     computed:{
-        caltal:function(){return parseInt(this.fdcaltal)-parseInt(this.spcaltal)},
+        caltal:function(){return parseInt(this.fdcaltal)+parseInt(this.fdcaltal2)+parseInt(this.fdcaltal3)-parseInt(this.spcaltal)},
         // cal_sch:function(){return 'clip-path:inset('+'50'+'%'+'0 0 0)'},
         test:function(){
             return parseInt(100-(this.caltal*100/this.BMR)).toString();},
@@ -66,7 +70,7 @@ const  cal_diarr_memberInfo2 = new Vue({
                 this.time_rest=0;
             }
 
-            let last7Days=new Date(today.setDate(today.getDate()-7));
+            let last7Days=new Date(today.setDate(today.getDate()-30));
             this.compare_date=[this.curent_month,this.curent_date];
             this.compare_date_7=[last7Days.getMonth()+1,last7Days.getDate()];
 
@@ -80,11 +84,10 @@ const  cal_diarr_memberInfo2 = new Vue({
 
 
 
-
 function cal_getmember(){
     let xhr = new XMLHttpRequest();
 
-    var url = "./php/cal_diary_memberInfo.php?" + "mNo=" + 1
+    var url = "./php/cal_diary_memberInfo.php?" + "mNo=" + getTmp_mNo;
     xhr.open("GET", url, true);
     xhr.send();
     
@@ -101,17 +104,31 @@ function cal_getmember(){
 function cal_getweight(){
     let xhr = new XMLHttpRequest();
 
-    var url = "./php/cal_diary_memberWieght.php?" + "mNo=" + 1
+    var url = "./php/cal_diary_memberWieght.php?" + "mNo=" + getTmp_mNo;
     xhr.open("GET", url, true);
     xhr.send();
     
     xhr.onload = function () {
        let prodRows = JSON.parse(xhr.responseText);
        cal_diarr_memberInfo.wieght=prodRows;
+       foodrecordchange.weight=prodRows;
+       inputfoodV.weight=prodRows;
+
+
+
        cal_diarr_memberInfo. cal_caculation();
     }
 }
 
 window.addEventListener('load',function(){
-    cal_getmember();
+    document.getElementById("coverall3").style.display='none';
+    if(getTmp_mNo==null){
+        // document.getElementById("coverall").style.display='block';
+        document.getElementById("coverall2").style.display='block';
+        document.getElementById("unlogin_alert").style.display='block';
+  
+    }else{
+        cal_getmember();
+        // alert(getTmp_mNo);
+    }
 })
