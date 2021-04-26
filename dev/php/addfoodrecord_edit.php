@@ -18,15 +18,15 @@ try{
 		$Items->execute();
 	}
   
+        $sql="UPDATE dietrecord
+        set dtCalTal=(select SUM(dtItemCal) from dtritem where dtRNo=:dtRNo)
+        *(1-(select count(b.calRate)-SUM(b.calRate) from food b join dtritem a on a.fdNo=b.fdNo where a.dtRNo=:dtRNo))
+        where dtRNo=:dtRNo";
     
-    $sql="UPDATE dietrecord
-    set dtCalTal=(select SUM(dtItemCal) from dtritem where dtRNo=:dtRNo)
-    where dtRNo=:dtRNo";
-
     $member =  $pdo->prepare($sql);
     $member->bindValue(":dtRNo",$_GET['dtRNo']);
-
     $member->execute();
+    
 
 }catch(PDOException $e){
     echo "error";

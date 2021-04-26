@@ -2,7 +2,8 @@
 try {
   require_once("../../connect_ced102g1.php");
     // $sql = "select * from dietrecord where mNo=:mNo AND date(dtTime)=:dtTime";
-    $sql = "select *,(select fdName from food where fdNo=b.fdNo) fdName from 
+    $sql = "select *,(select fdName from food where fdNo=b.fdNo) fdName,
+    (select calRate from food where fdNo=b.fdNo)*10 calRate from 
             dietrecord a join dtritem b on a.dtRNo=b.dtRNo
             where mNo=:mNo AND date(dtTime)=:dtTime
             order by a.dtPd";
