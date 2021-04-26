@@ -77,16 +77,17 @@ const store = new Vuex.Store({
             state.mSex = payload.mSex
             state.mWriteD = payload.mWriteD
             state.mTotal = payload.mTotal
-            state.mNo = payload.mNo 
+            state.mNo = payload.mNo
 
             state.wWeight = payload.wWeight
             state.wDate = payload.wDate
         },
 
-        updateMemberInfo(state,payload){
+        updateMemberInfo(state, payload) {
             state.mId = payload.mId
             state.mPsw = payload.mPsw
             state.mNo = payload.mNo
+            state.mMail = payload.mMail 
         },
 
         //編輯 個人資訊
@@ -119,13 +120,13 @@ const store = new Vuex.Store({
         },
 
         //變更goal的的資料
-        updataGoalStart(state,payload){
+        updataGoalStart(state, payload) {
             state.mGoalS = payload
         },
-        updataGoalEnd(state,payload){
+        updataGoalEnd(state, payload) {
             state.mGoalE = payload
         },
-        updataGoalWeight(state,payload){
+        updataGoalWeight(state, payload) {
             state.mGoalW = payload
         },
 
@@ -157,7 +158,7 @@ const store = new Vuex.Store({
         },
 
         //每天daily Cal 的資料
-        updataDailyCalData(state,payload){
+        updataDailyCalData(state, payload) {
             state.dailySumCal = payload
         },
 
@@ -165,11 +166,15 @@ const store = new Vuex.Store({
         toggleLoginBeforeAfter(state) {
             state.loginBeforeAfter = !state.loginBeforeAfter
         },
+
+        updataMPoints(state,payload){
+            state.mPoints = payload
+        }
     },
     actions: {},
     getters: {
         getAge: (state) => {
-            if (state.mBday){
+            if (state.mBday) {
                 const birth = Date.parse(state.mBday)
                 const y = 1000 * 60 * 60 * 24 * 365
                 const now = new Date()
@@ -178,14 +183,11 @@ const store = new Vuex.Store({
                 return age
             } else {
                 return '--'
-            }   
-
-           
+            }
         },
 
-
         getBMR: (state, getters) => {
-            if (state.wWeight && state.mHeight && getters.getAge !== '--'){
+            if (state.wWeight && state.mHeight && getters.getAge !== '--') {
                 const w = state.wWeight * 10
                 const h = state.mHeight * 6.25
                 const a = getters.getAge * 5 + 5
@@ -194,11 +196,9 @@ const store = new Vuex.Store({
             } else {
                 return '--'
             }
- 
         },
-        getSex: (state) =>{
-
-            if(state.mSex){
+        getSex: (state) => {
+            if (state.mSex) {
                 return state.mSex == '1' ? 'male' : 'female'
             } else {
                 return '--'
@@ -206,17 +206,16 @@ const store = new Vuex.Store({
             // return state.mSex == '1' ? 'male' : 'female'
         },
 
-        getCalPerDay: (state)=>{
-
+        getCalPerDay: (state) => {
             const time = Date.parse(state.mGoalE) - Date.parse(state.mGoalS)
-            const goalDuringDate = parseInt(time/ (1000*60*60*24))
+            const goalDuringDate = parseInt(time / (1000 * 60 * 60 * 24))
 
             if (goalDuringDate) {
                 return parseInt((state.mGoalW * 7700) / goalDuringDate)
-            } else {   
+            } else {
                 return '--'
             }
-        }
+        },
     },
 })
 

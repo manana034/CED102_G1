@@ -25,6 +25,7 @@ try{
         $_SESSION["mNo"] = $memRow["mNo"];
         $_SESSION["mId"] = $memRow["mId"];
         $_SESSION["mPsw"] = $memRow["mPsw"];
+        $_SESSION["mMail"] = $memRow["mMail"];  
 
         echo json_encode($memRow);
     }

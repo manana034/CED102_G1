@@ -16,7 +16,7 @@ levelInfoClose.addEventListener('click',()=>{
 //能夠控制第一層 資料存放地---------------------------
 
 
-Vue.component('loading', VueLoading)
+Vue.component('loading', VueLoading) 
 
 
 app = new Vue({
@@ -59,7 +59,6 @@ app = new Vue({
 
                 //將登入畫面給取消掉 直接到主畫面
                 this.$store.commit('toggleLoginBeforeAfter')
-                // this.isLoading = false
 
                 let Vthis = this
                 function getMemberData() {
@@ -112,7 +111,7 @@ app = new Vue({
                                 const time = setTimeout(()=>{
                                     checkOrderAndFavList()
                                     clearTimeout(time)
-                                },300)
+                                },500)
                                 
                             }
                             xhr.open('post', 'php/getFavPosterData.php', true)
@@ -393,7 +392,7 @@ app = new Vue({
             } else {
                 this.isLoading = false
             }
-        },500)
+        },1500)
     },
 })
 

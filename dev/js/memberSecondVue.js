@@ -505,6 +505,7 @@ Vue.component('login-signup', {
                         mNo: member.mNo,
                         mId: member.mId,
                         mPsw: member.mPsw,
+                        mMail: member.mMail,
                     })
                 }
             },
@@ -641,6 +642,30 @@ Vue.component('login-signup', {
                 this.$store.commit('toggleLoginBeforeAfter')
             },
 
+
+            //登入後取得points
+            getLoginPoints(mNo){
+                const updateMPoints =(points) =>{
+                    fetch(`php/updateMPoints.php?mNo=${mNo}&points=${points}`)
+                    .then(res=>res.text())
+                    .then(res=>{
+                        console.log(res)
+                        if(res == "天天登入贈送20點"){
+                            Vthis.$store.commit('updataMPoints', points)
+                            alert('天天登入贈送20點')
+                        } else {
+                            console.log('已登入過無法得到贈送點數')
+                        }
+                    })
+                }
+
+                fetch(`php/getLoginPoints.php?mNo=${mNo}`)
+                .then(res=>res.json())
+                .then(res=>{
+                    // console.log(res.points)
+                    updateMPoints(res.points)
+                })
+            },
 
             //給忘記密碼 使用的mail
             mail: '',
@@ -787,9 +812,13 @@ Vue.component('login-signup', {
             function getMnoMidMpsw() {
                 let xhr = new XMLHttpRequest()
                 xhr.onload = () => {
-                    Vthis.updataMnoMidMpsw(xhr.responseText)
-                    // console.log(xhr.responseText)
+
                     console.log('這裡寫入 php 的暫存區')
+                    Vthis.updataMnoMidMpsw(xhr.responseText)
+
+                    Vthis.getLoginPoints(JSON.parse(xhr.responseText).mNo)
+                    
+                    
                 }
                 xhr.open('post', 'php/getMnoMidMpsw.php', true)
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
@@ -889,7 +918,7 @@ Vue.component('login-signup', {
                         if (month.length < 2) month = '0' + month
                         if (day.length < 2) day = '0' + day
 
-                        return [year, month, day].join('-')
+                        return [year, month, day].join('-') 
                     }
                     console.log(login_mNo)
                     const now = formatDate(new Date())
@@ -948,7 +977,7 @@ Vue.component('login-signup', {
                 checkOrderAndFavList()
                 clearTimeout(checkGoaltime)
                 console.log('這裡檢查 目標 體重與時間')
-            }, 700)
+            }, 500)
             // passValueVue.$emit('check-goalWeight')
             // passValueVue.$emit('check-goalTime')
         },
