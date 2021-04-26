@@ -10,13 +10,16 @@
     
    ul{
        display: flex;
-       
+
        li {
            width: 18%;
            border-radius: 90px;
            margin-left: 100px;
            margin-top: 50px;
            justify-content: center;
+           &:nth-child(2n+2){
+            margin-top: 150px;
+        } 
 
            // border: 1px solid #000;
            a{

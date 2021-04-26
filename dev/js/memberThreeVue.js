@@ -242,7 +242,8 @@ Vue.component('profile-body', {
                     let xhr = new XMLHttpRequest()
                     xhr.onload = function () {
                         console.log(xhr.responseText)
-                        console.log('這是新增的')
+                        alert('圖片上傳成功')
+                        passValueVue.$emit('leave-profile')
                     }
                     xhr.open('POST', 'php/updateMemberImg.php', true)
                     let data_info = new FormData(select('#profileForm'))
@@ -253,7 +254,7 @@ Vue.component('profile-body', {
                 //才做更新
                 if (this.wWeight !== this.wWeightInput.value) {
                     this.$store.commit('updateWeight', this.wWeightInput.value)
-                    updataMWeight()
+                    updataMWeight() 
                 }
   
  
@@ -262,7 +263,8 @@ Vue.component('profile-body', {
                 updateProfile()
                 updataMemberImg()
 
-                passValueVue.$emit('leave-profile')
+                //讓上傳完 圖片才關掉
+                // passValueVue.$emit('leave-profile')
             }
         },
     },
@@ -734,7 +736,7 @@ Vue.component('goal-body', {
             const time = setTimeout(() => {
                 this.checkGoalTimeState()
                 clearTimeout(time)
-            }, 100)
+            }, 500)
         })
         passValueVue.$on('clear-time',()=>{
             this.checkGoalTimeState()
@@ -996,8 +998,8 @@ Vue.component('fav-poster', {
                         <tbody>
                             <tr v-for="(post,i) in filteredList">
                                 <td data-label="TYPE">
-                                    {{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Heath'}}
-                                </td>
+                                    {{post.infoType=='1'?'Food':post.infoType=='2'?'Exercise':'Regimen'}}
+                                </td>  
                                 
                                 <td data-label="NAME">
                                     {{post.infoTitle.slice(0,10)+'...'}}
@@ -1050,11 +1052,12 @@ Vue.component('fav-poster', {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    'infoNo': infoNo,
-                    'mNo': getTmp_mNo,
+                    infoNo: infoNo,
+                    mNo: getTmp_mNo,
                 }),
-            }).then(res => {console.log(res)})
-
+            }).then((res) => {
+                console.log(res)
+            })
         },
         toggleFavPoster() {
             const listBody = document.querySelector('.favPoster>.listBody')
@@ -2138,8 +2141,21 @@ Vue.component('sign-up', {
                     passValueVue.$emit('check-goalTime')
                     checkOrderAndFavList()
                     clearTimeout(checkGoaltime)
-                }, 700)
-            }
+                }, 500)
+            },
+
+            updateSignUpMPoints(mNo){
+                let Vthis = this
+                fetch(`php/updateSignupMPoints.php?mNo=${mNo}`)
+                .then(res=>res.text())
+                .then(res=>{
+                    console.log(res)
+                    if(res == "註冊免費送100點!!"){
+                        Vthis.$store.commit('updataMPoints',100)
+                        alert('註冊免費送100點!!')
+                    }
+                })
+            },
         }
     },
     methods: {
@@ -2242,7 +2258,7 @@ Vue.component('sign-up', {
             const mailSpan = select('.signup .email span').style.color
             const idSpan = select('.signup .userid span').style.color
             const psdSpan = select('.signup .psd span').style.color
-            const cfmSpan = select('.signup .cfmPsd span').style.color
+            const cfmSpan = select('.signup .cfmPsd span').style.color 
 
 
             //註冊成功 將直接登入
@@ -2260,7 +2276,6 @@ Vue.component('sign-up', {
                         const signUp_mNo = res
                         const signUp_mail = email
                     
-
                         function sendSignupMail(){
                             let xhr = new XMLHttpRequest()
                             xhr.onload = () => {
@@ -2273,8 +2288,8 @@ Vue.component('sign-up', {
                         sendSignupMail()
 
                         console.log('signUp之後直接登入')
-
                         this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
+                        this.updateSignUpMPoints(signUp_mNo)
 
                     })
                }

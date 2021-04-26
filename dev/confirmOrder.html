@@ -26,7 +26,7 @@
          <div class="orderall">
             <div class="confirmorder">
                 <h6>Thanks for your order!</h6>
-                <p>Your order number is <a href="./member.html">32898843</a>. </p>
+                <p>Your order number is <a href="./member.html">{{final[0].orderNo}}</a>. </p>
                 <p>Confirmation email has sent to your email: joywang0707@gmail.com.</p>
                 <p>We will deliver the goods within a period of 5–7 day. </p>
             </div>
@@ -38,40 +38,27 @@
                     <th>PRICE</th>
                     <th>DELETE</th>
                 </tr>
-                <tr>
+                <tr v-for="order in final">
                     <td class="order">
-                        <a href="./product.html">
-                                <img src="./productImg/prod1.png">
-                                <p>ALMONDS BAR</p>
+                        <a :href="'./product.html?id=' + order.prodNo" @click="setId" :data-no="order.prodNo">
+                            <img :src="order.prodPic1">
+                            <p>ALMONDS BAR</p>
                         </a>
                     </td>
-                        <td>1</td> 
-                        <td>NT$250</td> 
-                        <td>&times;</td> 
-                    </tr>    
-                    <tr>
-                        <td class="order">
-                        <a href="./product.html">
-                            <!-- <div class="orderbg"> -->
-                                <img src="./productImg/prod1.png">
-                                <p>ALMONDS BAR</p>
-                            <!-- </div> -->
-                            </a>
-                        </td>
-                        <td>1</td> 
-                        <td>NT$250</td> 
+                        <td>{{order.quantity}}</td> 
+                        <td>NT${{order.price}}</td> 
                         <td>&times;</td> 
                     </tr>    
             </table>
             
             <div class="subtotal">
                 <p>SUBTOTAL</p>
-                <p>NT$500</p>
+                <p>NT${{subtotal}}</p>
                 <p>SHIPPING</p>
                 <p>NT$ 0 </p>
                 <p>POINTS</p>
-                <p>- NT$200</p>
-                <h6>TOTAL : 300</h6>
+                <p>- NT${{final[0].usePoints}}</p>
+                <h6>TOTAL : {{final[0].total}}</h6>
             </div>
         </div>
 
@@ -87,10 +74,20 @@
         let vm = new Vue({
             el: "#app",
             data:{
-                mounted(){
-                    fetch("./php/insertOrder.php").then(res => res.json())
-                                                    .then(data => console.log(data))
+                final:[]
+            },
+            computed:{
+                subtotal(){
+                    return parseInt(this.final[0].total) + parseInt(this.final[0].usePoints);
                 }
+            },
+            methods:{
+                setId(e){
+                    sessionStorage.setItem("no", e.target.parentNode.dataset.no)
+                }
+            },
+            mounted(){
+                this.final = JSON.parse(sessionStorage.getItem("finalOrder"));
             }
         })
     </script>
