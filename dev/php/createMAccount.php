@@ -17,7 +17,7 @@ try{
 
     $last_id =$pdo->lastInsertId();
      
-
+    echo $last_id;
 
 } catch(PDOException $e){
     echo $e->getMessage();

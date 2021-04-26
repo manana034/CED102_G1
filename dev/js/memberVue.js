@@ -56,6 +56,7 @@ app = new Vue({
                 console.log(getTmp_mNo)
                 console.log(getTmp_mId)
                 console.log(getTmp_mPsw)
+                console.log(getTmp_mMail)
 
                 //將登入畫面給取消掉 直接到主畫面
                 this.$store.commit('toggleLoginBeforeAfter')
@@ -145,6 +146,7 @@ app = new Vue({
                                     mNo: member.mNo,
                                     mId: member.mId,
                                     mPsw: member.mPsw,
+                                    mMail: member.mMail
                                 })
                             }
                         }
