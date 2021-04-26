@@ -2279,12 +2279,21 @@ Vue.component('sign-up', {
                         const signUp_mail = email
                     
                         function sendSignupMail(){
-                            let xhr = new XMLHttpRequest()
-                            xhr.onload = () => {
-                                console.log(xhr.responseText)
+                            // let xhr = new XMLHttpRequest()
+                            // xhr.onload = () => {
+                            //     console.log(xhr.responseText)
+                            // }
+                            // xhr.open('get', `php/signupMail.php?mail=${signUp_mail}`)
+                            // xhr.send(null)
+
+                            let mailContent = {
+                                beSended: signUp_mail,
                             }
-                            xhr.open('get', `php/signupMail.php?mail=${signUp_mail}`)
-                            xhr.send(null)
+                            //輸入mail 的id 再輸入template id
+                            emailjs.send('service_vzgh5o7', 'template_4km5xjx', mailContent)
+                            .then(res => {
+                                console.log('成功'+res.status)
+                            })
                         }
 
                         sendSignupMail()
