@@ -351,7 +351,8 @@ Vue.component('account-body', {
                     
                     <input type="text" 
                         name="email" 
-                        :value="mMail">
+                        :value="mMail"
+                        readonly>
                 </label>
 
 
@@ -441,6 +442,7 @@ Vue.component('account-body', {
             //     //如果其中一個有值
             //     alert('密碼填寫完成')
             // } 
+
             passValueVue.$emit('leave-account')
         },
     },
@@ -656,7 +658,7 @@ Vue.component('goal-body', {
                 return 0
             } else {
                 const rest = Date.parse(this.mGoalE) - Date.parse(now)
-                return parseInt(rest / 1000 / 60 / 60 / 24)
+                return parseInt(rest / 1000 / 60 / 60 / 24) - 1
             }
         },
 
@@ -2269,7 +2271,7 @@ Vue.component('sign-up', {
                    alert('恭喜加入FT.')
 
                    fetch(`php/createMAccount.php?mName=${name}&mId=${userid}&mPsw=${psd}&mMail=${email}`)
-                   .then(res=>res.json())
+                   .then(res=>res.text())
                    .then(res=>{
                         const signUp_id = userid
                         const signUp_psd = psd

@@ -117,7 +117,7 @@ const resetPswModule = new Vue({
 
         function getRestMemberInfo() {
             const arr = new String(window.location.href).split('?mId=')
-
+            console.log(arr[1])
             if (arr.length < 2) {
                 console.log('不是用mail登入')
             } else {

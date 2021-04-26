@@ -451,9 +451,9 @@ Vue.component('login-signup', {
             //登入 將資料載入VueX
             checkMember(data) {
                 // const enter = document.querySelector('.logIn_signUp')
-
+ 
                 if (data === '{}') {
-                    alert('帳號密碼錯誤')
+                    alert('帳號密碼錯誤,或是該帳戶被停權')
                 } else {
                     let member = JSON.parse(data)
                     console.log(member)
@@ -729,6 +729,7 @@ Vue.component('login-signup', {
                         fetch(`php/checkMemberID.php?memid=${inputVal}`)
                             .then((res) => res.json())
                             .then((res) => {
+                                console.log(res)
                                 if (!res.mNo) {
                                     span.textContent = '帳號錯誤'
                                     span.setAttribute('style', 'color:red')
@@ -782,31 +783,6 @@ Vue.component('login-signup', {
                 xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
                 let data_info = `memid=${login_id.value}&memPsw=${login_psw.value}`
                 xhr.send(data_info)
-
-                // let data = new FormData();
-
-                // let payload = {
-                //     memid: login_id.value,
-                //     memPsw: login_psw.value,
-                // }
-                // data.append('json', encodeURI(JSON.stringify(payload)))
-
-                // fetch('./php/login.php', {
-                //     method: 'POST',
-                //     body: JSON.stringify({
-                //         memid: login_id.value,
-                //         memPsw: login_psw.value,
-                //     }),
-                //     headers: {
-                //         'Accept': 'application/json',
-                //         'Content-Type': 'application/x-www-form-urlencoded',
-                //     },
-                // })
-                // .then((res) => console.log(res.json()))
-                // .catch(err=> console.log(err))
-                // .then((res) => res.json())
-                // .then((res) => checkMember(res))
-                // .then((res) => console.log(res))
             }
 
             function getMnoMidMpsw() {

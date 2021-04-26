@@ -156,8 +156,8 @@ Vue.component('bottom-info', {
 
                     <div class="infoNum">
                         <div class="row-1">
-                            <p>{{dailySumCal}}</p>
-                            <span>took cal</span>
+                            <p>{{getRestCalPerDay}}</p>
+                            <span>rest cal</span>
                         </div>
                         <div class="hr"></div>
                         <div class="row-2">
@@ -344,14 +344,10 @@ Vue.component('bottom-info', {
                 xhr.onload = function () {
                     console.log(xhr.responseText)
                 }
-                xhr.open(
-                    'GET',
-                    `php/updateGoalTime_Weight.php?mNo=${getTmp_mNo}&mGoalW=null&mGoalS=null&mGoalE=null`
-                )
+                xhr.open('GET', `php/updateGoalTime_Weight.php?mNo=${getTmp_mNo}&mGoalW=null&mGoalS=null&mGoalE=null`)
                 xhr.send(null)
             }
-            updateGoalTime_Weight() 
-
+            updateGoalTime_Weight()
 
             // 將button 做切換 內容作變化
             setTimeout(() => {
@@ -363,15 +359,13 @@ Vue.component('bottom-info', {
         //將 element 抓入當成value 寄出
         //讓 下一個compoent 一起處理
         createGoalBtn() {
-
             const goalW = select('.goalWeight input').value
-
 
             if (this.mHeight && this.wWeight && this.getSex !== '--' && this.getAge !== '--') {
                 //傳到 memberThreeVue 進行動作
                 passValueVue.$emit('create-goal', this.goalWeightInput, this.checkGoalWeightState)
 
-                if (goalW){
+                if (goalW) {
                     //button 變更成編輯
                     this.FBtnOpen = false
                     this.SBtnOpen = false
@@ -382,9 +376,6 @@ Vue.component('bottom-info', {
             } else {
                 alert('請先填上、生日、性別、體重、身高等資訊')
             }
-
-
-
         },
 
         editGoalBtn() {
@@ -406,7 +397,7 @@ Vue.component('bottom-info', {
             const input = label.children[0]
             const img = label.children[1]
             let Vthis = this
-            
+
             if (input.value) {
                 this.FBtnOpen = false
                 this.CBtnOpen = false
@@ -430,7 +421,6 @@ Vue.component('bottom-info', {
                     xhr.send(null)
                 }
                 updateGoalTime_Weight()
-
             } else {
                 alert('請輸入目標體重')
             }
@@ -438,8 +428,9 @@ Vue.component('bottom-info', {
     },
 
     computed: {
-        ...mapGetters(['getAge', 'getBMR', 'getSex', 'getCalPerDay']),
-        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE', 'dailySumCal','mGoalS']),
+        ...mapGetters(['getAge', 'getBMR', 'getSex', 'getCalPerDay', 'getRestCalPerDay']),
+        ...mapState(['wWeight', 'mHeight', 'mGoalW', 'goalType', 'mGoalE', 'dailySumCal', 'mGoalS']),
+        // getCalPerDay - dailySumCal 就會等於 剩餘體重
 
         setCalPercent() {
             const percent = this.dailySumCal / this.getCalPerDay
