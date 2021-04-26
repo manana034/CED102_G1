@@ -46,7 +46,8 @@
 
 <body>
 <div id="app3">
-  <div v-for="(item,index) in fdrecord" class="daily_food_data_context" v-show="input_selector2[0]">
+  <div v-for="(item,index) in fdrecord" class="daily_food_data_context" v-show="input_selector2[0]"
+  :style="fdback[fdbackcheck[index]]">
 
       <!-- <p>{{item.dtTime}}</p> -->
       <p>{{meal[item.dtPd - 1]}}</p>
@@ -110,6 +111,8 @@
             meal:["Breakfast","Lunch","Dinner"],
             foods:[],
             sports:[],
+            fdback:["background-color:white ;","background-color: rgb(253 218 210);","background-color: rgb(210 240 253);"],
+            fdbackcheck:[0,1,0,2]
           }
       },
       methods: {
@@ -154,6 +157,15 @@
                
                 let v=cal_diarr_memberInfo2; 
                 for(let i=0;i<foodrecordV.fdrecord.length;i++){
+                    if(foodrecordV.fdrecord[i].calRate > 10){
+                        foodrecordV.fdbackcheck[i]=1;
+                    }else{
+                        foodrecordV.fdbackcheck[i]=0;
+                    }
+                    if(foodrecordV.fdrecord[i].calRate < 10){
+                        foodrecordV.fdbackcheck[i]=2;
+                    }
+                   
                     if(foodrecordV.fdrecord[i].dtPd==1){
                         v.fdcaltal=0;
                         v.fdcaltal= foodrecordV.fdrecord[i].dtCalTal;
