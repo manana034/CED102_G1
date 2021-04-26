@@ -27,7 +27,7 @@
             <div class="confirmorder">
                 <h6>Thanks for your order!</h6>
                 <p>Your order number is <a href="./member.html">{{final[0].orderNo}}</a>. </p>
-                <p>Confirmation email has sent to your email: joywang0707@gmail.com.</p>
+                <p>Confirmation email has sent to your email:{{email}}.</p>
                 <p>We will deliver the goods within a period of 5–7 day. </p>
             </div>
 
@@ -74,7 +74,8 @@
         let vm = new Vue({
             el: "#app",
             data:{
-                final:[]
+                final:[],
+                email:""
             },
             computed:{
                 subtotal(){
@@ -88,6 +89,25 @@
             },
             mounted(){
                 this.final = JSON.parse(sessionStorage.getItem("finalOrder"));
+                
+                function checkMem(){
+                    let vThis = this;
+                    let xhr = new XMLHttpRequest;
+                    xhr.onload = () => {
+                        //將獲取 id 或是 "{}"
+                        console.log(xhr.responseText)
+                        member = JSON.parse(xhr.responseText)
+                        if (member.mNo || member.mId || member.mPsw) {
+                            vThis.email = member.mMail;
+                            console.log(vThis.email);
+                        }else{
+                            console.log("notwork");
+                        }
+                    }
+                    xhr.open('get', './php/checkLoggedin.php', true)
+                    xhr.send(null)
+                }
+                checkMem();
             }
         })
     </script>

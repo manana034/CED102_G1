@@ -204,6 +204,7 @@
    .field-container input {
        -webkit-box-sizing: border-box;
        box-sizing: border-box;
+       width: 100%;
    }
    
    .field-container {
@@ -552,10 +553,10 @@
     top: 0;
     z-index:1000000;
     display: none;
+    left: 0;
      
     .pay{
        max-width: 500px;
-       height: 220px;
        border-radius: 15px;
        position: absolute;
        top: 50%;
@@ -591,6 +592,9 @@
     .cartall{
         display: flex;
         flex-wrap: wrap;
+        .paymentdetails{
+            width: 100%;
+        }
         .steps{
             margin: 0 30px;
         }
@@ -609,6 +613,13 @@
                     padding:10px;
                 }
             }
+        }
+        .form-container{
+            margin-top: 50px;
+        }
+        .back{
+            width: 100%;
+            justify-content: center;
         }  
      }               
 }

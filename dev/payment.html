@@ -194,16 +194,25 @@
              <a href="./mycart.html"> &lt; PREV</a>
              <button>NEXT</button>
         </div>
+
+        <div class="paybanner">
+            <div class="pay">
+                    <h6>Are you sure?</h6>
+                    <p>Do you really want to confirm the payment? This process cannot be undone.</p>
+                    <button class="cancel">Cancel</button>
+                    <button type="button" @click="insertData">Confirm</button>
+                    <!--  href="./confirmOrder.html" -->
+            </div>
+        </div>
     </div>
-    <div class="paybanner">
+    <!-- <div class="paybanner">
         <div class="pay">
                 <h6>Are you sure?</h6>
                 <p>Do you really want to confirm the payment? This process cannot be undone.</p>
                 <button class="cancel">Cancel</button>
                 <button type="button" @click="insertData">Confirm</button>
-                <!--  href="./confirmOrder.html" -->
         </div>
-    </div>
+    </div> -->
 
     @@include('./layout/footer.html')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
@@ -246,12 +255,15 @@
                     })
                     .then(res => res.text())
                     .then(res => { 
+                            console.log("object");
                             sessionStorage.setItem("finalOrder", res)
                             window.location.href = "./confirmOrder.html" 
                         });
 
                     // .catch(error => console.log(error))
                     // .then(body => console.log(body))
+
+                    console.log("work")
 
                     localStorage.removeItem('localProduct');
                     sessionStorage.removeItem('finalPrice');
@@ -749,6 +761,7 @@
                         member = JSON.parse(xhr.responseText)
                         if (member.mNo || member.mId || member.mPsw) {
                             checkMemInfo(member.mNo);
+                            clg 
                         }else{
                             console.log("notwork");
                         }

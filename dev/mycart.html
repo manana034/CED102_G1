@@ -119,7 +119,7 @@
                     let local = JSON.parse(localStorage.getItem("localProduct"));
                     for(let i = 0 ; i < local.length ; i++){
                         if(this.order.name == local[i].name){
-                            local[i].value++;
+                            local[i].value += 1;
                             localStorage.setItem("localProduct",JSON.stringify(local));
                         }
                     }
