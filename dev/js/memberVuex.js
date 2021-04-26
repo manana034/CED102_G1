@@ -187,15 +187,35 @@ const store = new Vuex.Store({
         },
 
         getBMR: (state, getters) => {
-            if (state.wWeight && state.mHeight && getters.getAge !== '--') {
-                const w = state.wWeight * 10
-                const h = state.mHeight * 6.25
-                const a = getters.getAge * 5 + 5
+            if (state.mSex == 1 ){
 
-                return parseInt(w + h - a)
-            } else {
-                return '--'
+                const BMR = parseInt(5 + (state.wWeight * 13.7) + (state.mHeight * 5) - (6.8 * getters.getAge))
+
+                if (BMR) {
+                    return parseInt((BMR * 100) / 70)
+                } else {
+                    return '--';
+                }
+            } else if (state.mSex == 2 ) {
+
+                const BMR = parseInt(655 + (state.wWeight * 9.6) + (state.mHeight * 1.8) - (4.7 * getters.getAge))
+
+                if(BMR){
+                    return parseInt((BMR * 100) / 70)
+                } else {
+                    return '--';
+                }
             }
+
+                // if (state.wWeight && state.mHeight && getters.getAge !== '--') {
+                //     const w = state.wWeight * 10
+                //     const h = state.mHeight * 6.25
+                //     const a = getters.getAge * 5 + 5
+
+                //     return parseInt(w + h - a)
+                // } else {
+                //     return '--'
+                // }
         },
         getSex: (state) => {
             if (state.mSex) {
@@ -203,19 +223,33 @@ const store = new Vuex.Store({
             } else {
                 return '--'
             }
-            // return state.mSex == '1' ? 'male' : 'female'
         },
 
-        getCalPerDay: (state) => {
-            const time = Date.parse(state.mGoalE) - Date.parse(state.mGoalS)
+        //取得目前 假如沒有減重 的平均 
+        getCalPerDay: (state,getters) => {
+
+            const time = Date.parse(state.mGoalE) - Date.parse(new Date())
             const goalDuringDate = parseInt(time / (1000 * 60 * 60 * 24))
 
             if (goalDuringDate) {
-                return parseInt((state.mGoalW * 7700) / goalDuringDate)
+                return getters.getBMR +  parseInt(((state.mGoalW - state.wWeight)  * 7700) / goalDuringDate)
             } else {
                 return '--'
             }
         },
+
+
+        getRestCalPerDay: (state,getters) =>{
+            const restCal = getters.getCalPerDay - state.dailySumCal
+            if(restCal){
+                return restCal
+            } else{
+                return '--'
+            }
+             
+        }
+
+
     },
 })
 
