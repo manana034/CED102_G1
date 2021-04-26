@@ -309,7 +309,7 @@ Vue.component('bottom-info', {
             const time = setTimeout(() => {
                 this.checkGoalWeightState()
                 clearTimeout(time)
-            }, 100)
+            }, 500)
         })
     },
     methods: {
@@ -350,13 +350,13 @@ Vue.component('bottom-info', {
                 )
                 xhr.send(null)
             }
-            updateGoalTime_Weight()
+            updateGoalTime_Weight() 
 
 
             // 將button 做切換 內容作變化
             setTimeout(() => {
                 this.checkGoalWeightState()
-            }, 100)
+            }, 300)
             passValueVue.$emit('clear-time')
         },
 
