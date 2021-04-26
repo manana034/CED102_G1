@@ -27,7 +27,7 @@
             <div class="confirmorder">
                 <h6>Thanks for your order!</h6>
                 <p>Your order number is <a href="./member.html">{{final[0].orderNo}}</a>. </p>
-                <p>Confirmation email has sent to your email:{{email}}.</p>
+                <p>Confirmation email has sent to your email:<span> {{email}}</span>.</p>
                 <p>We will deliver the goods within a period of 5–7 day. </p>
             </div>
 
@@ -36,7 +36,7 @@
                     <th>PRODUCT</th>
                     <th>QTY</th>
                     <th>PRICE</th>
-                    <th>DELETE</th>
+                    <!-- <th>DELETE</th> -->
                 </tr>
                 <tr v-for="order in final">
                     <td class="order">
@@ -47,7 +47,7 @@
                     </td>
                         <td>{{order.quantity}}</td> 
                         <td>NT${{order.price}}</td> 
-                        <td>&times;</td> 
+                        <!-- <td>&times;</td>  -->
                     </tr>    
             </table>
             

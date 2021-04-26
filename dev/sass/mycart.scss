@@ -233,6 +233,10 @@
                                         
                         &:nth-child(2){
                             font-size: 14px;
+                            .btn_number{
+                                display: flex;
+                                justify-content: center;
+                            }
                         }
                         &:nth-child(3){
                             font-size: 14px;
@@ -241,6 +245,10 @@
                             font-size: 16px;
                             cursor: pointer;
                         }
+                     }
+                     .qtynum{
+                         width: 80%;
+                         margin: 0 auto;
                      }
         }
                 .points{

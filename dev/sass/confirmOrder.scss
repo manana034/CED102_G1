@@ -45,6 +45,12 @@
     //order
     .orderall{ 
         background-color: white;
+        .confirmorder{ 
+            span{
+                text-decoration: underline;
+                color:#EAA565;
+            }
+        }
         .orderinfo{
             
             // border: 1px solid #000;
