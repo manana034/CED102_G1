@@ -75,7 +75,7 @@
             el: "#app",
             data:{
                 final:[],
-                email:""
+                email:"1"
             },
             computed:{
                 subtotal(){
@@ -89,17 +89,17 @@
             },
             mounted(){
                 this.final = JSON.parse(sessionStorage.getItem("finalOrder"));
-                
+                let vThis = this;
                 function checkMem(){
-                    let vThis = this;
                     let xhr = new XMLHttpRequest;
                     xhr.onload = () => {
                         //將獲取 id 或是 "{}"
                         console.log(xhr.responseText)
                         member = JSON.parse(xhr.responseText)
+                        console.log('這裡測試')
+                        console.log(vThis.email)
                         if (member.mNo || member.mId || member.mPsw) {
                             vThis.email = member.mMail;
-                            console.log(vThis.email);
                         }else{
                             console.log("notwork");
                         }

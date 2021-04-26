@@ -231,7 +231,6 @@ input[type=number] {
 //768
 @media (max-width: 768px){
     .prodContent {
-
         .prod_infoall{
             justify-content: flex-start;
             align-items: center;
@@ -244,6 +243,16 @@ input[type=number] {
          .prod1_pic{
             img{
                 width: 100%;
+            }
+        }
+        .productDetail{
+            .prod1Info{
+                margin-left: 15px;
+                form{
+                    #quantity{
+                        margin: 0;
+                    }
+                }
             }
         }
     }

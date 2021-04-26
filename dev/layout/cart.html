@@ -30,6 +30,25 @@
         <p>TOTAL : NT$ <span>250</span></p>
     </div>
     <div class="checkout">
-        <a href="./mycart.html"><button>CHECK OUT</button></a>
+        <p><button>CHECK OUT</button></p>
     </div>
 </div>
+<script>
+    function checkMem(){
+                    let xhr = new XMLHttpRequest;
+                    xhr.onload = () => {
+                        //將獲取 id 或是 "{}"
+                        console.log(xhr.responseText)
+                        member = JSON.parse(xhr.responseText)
+                        if (member.mNo || member.mId || member.mPsw) {
+                            window.location.href = "./mycart.html"
+                        }else{
+                            window.location = "./member.html"
+                        }
+                    }
+                    xhr.open('get', './php/checkLoggedin.php', true)
+                    xhr.send(null)
+                }
+    const checkout = document.querySelector(".checkout")
+    checkout.addEventListener("click",checkMem);
+</script>
