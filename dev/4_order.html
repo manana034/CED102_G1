@@ -50,11 +50,12 @@
                     <td>{{order.address}}</td>
                     <td>{{order.orderDate}}</td>
                     <td>
-                        <select class="Type" name="Type" @change="changestatetype">
+                        <select class="Type" name="Type" v-model="order.orderState" @change="changestatetype">
                             <option value="1">Paid</option>
                             <option value="2">Shipped</option>
                             <option value="3">Cancelled</option>
                         </select>
+                        <!-- <span v-else>{{changetype(order.orderState)}}</span> -->
                     </td>
                     <td>
                         <button class="detail l-btn" @click="detail(index)">Detail</button>
@@ -127,11 +128,11 @@
                 },
                 methods:{
                         // 改狀態的 lightbox
-                    changestatetype(postRevState) {
+                    changestatetype(orderState) {
                         // console.log(postRevState.target.value);
-                        if (postRevState.target.value == 1) {
+                        if (orderState.target.value == 1) {
                             return 'Passed';
-                        } else if (postRevState.target.value == 3) {
+                        } else if (orderState.target.value == 3) {
                             return 'Failed';
                         }else{
                             $('.lightbox_black').css('display','block');
@@ -182,6 +183,7 @@
                             vm.orders = data
                             console.log(data);
                         })
+    $(`li:nth-child(4)`).attr('class', 'on');
     </script>
 </body>
 </html>

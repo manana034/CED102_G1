@@ -1,11 +1,8 @@
 @@include("./layout/B_head.html");
 <title>Calories Item</title>
 <style>
-    body{
-        display:flex;
-    }
     .calories3{
-        display:flex;
+        display: inline-block;
     }
 </style>
 </head>
@@ -13,8 +10,8 @@
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="calories3" id="calories3"> 
-    <div class="main_food main">
+    <div class="calories3 main" id="calories3"> 
+    <div class="main_food">
         <div class="main_top">
             <div class="page">
                 <div class="food">FOOD</div>
@@ -26,20 +23,6 @@
                     <button>
                         <img src="./icon/magnifier_white.png">
                     </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">All</option>
-                        <option value="0">All</option>
-                        <option value="1">FT. Shop</option>
-                        <option value="2">Rice</option>
-                        <option value="3">Noodles</option>
-                        <option value="4">Meat</option>
-                        <option value="5">Fruit & Veg</option>
-                        <option value="6">Fried</option>
-                        <option value="7">Dessert</option>
-                        <option value="8">Drink</option>
-                    </select>
                 </div>
             </div>
             <div class="add">
@@ -144,7 +127,7 @@
                 <h6>Edit Calories Item</h6>
                 <div>
                     <div class="acc_title">No</div>
-                    <div class="acc_con">111</div>
+                    <div class="acc_con">{{foods[fdindex].fdNo}}</div>
                 </div>                             
                 <div>
                     <div class="acc_title">Type</div>
@@ -202,15 +185,6 @@
                     <button>
                         <img src="./icon/magnifier_white.png">
                     </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">All</option>
-                        <option value="0">All</option>
-                        <option value="1">Low</option>
-                        <option value="2">Medium</option>
-                        <option value="3">High</option>
-                    </select>
                 </div>
             </div>
             <div class="add">
@@ -302,7 +276,7 @@
                 <h6>Edit Calories Item</h6>
                 <div>
                     <div class="acc_title">No</div>
-                    <div class="acc_con">11</div>
+                    <div class="acc_con">{{sports[spindex].spNo}}</div>
                 </div>                             
                 <div>
                     <div class="acc_title">Type</div>
@@ -417,6 +391,7 @@
             // });
         }, 500);
     });
+    $(`li:nth-child(3)`).attr('class', 'on');
     </script>
     <script src="js/3_calories_item.js"></script>
 </body>
