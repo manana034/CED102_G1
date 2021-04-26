@@ -228,7 +228,7 @@ const store = new Vuex.Store({
         //取得目前 假如沒有減重 的平均 
         getCalPerDay: (state,getters) => {
 
-            const time = Date.parse(state.mGoalE) - Date.parse(new Date())
+            const time = Date.parse(state.mGoalE) - Date.parse(state.mGoalS)
             const goalDuringDate = parseInt(time / (1000 * 60 * 60 * 24))
 
             if (goalDuringDate) {

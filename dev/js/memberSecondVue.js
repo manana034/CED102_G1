@@ -448,7 +448,7 @@ Vue.component('login-signup', {
                 ],
             },
 
-            //登入 將資料載入VueX
+            //登入 將資料載入VueX 
             checkMember(data) {
                 // const enter = document.querySelector('.logIn_signUp')
  
@@ -645,6 +645,7 @@ Vue.component('login-signup', {
 
             //登入後取得points
             getLoginPoints(mNo){
+                let Vthis = this
                 const updateMPoints =(points) =>{
                     fetch(`php/updateMPoints.php?mNo=${mNo}&points=${points}`)
                     .then(res=>res.text())
@@ -967,14 +968,22 @@ Vue.component('login-signup', {
                 if (span.style.color == "green"){
 
                     function forgetPswMail(){
-
-                        fetch(
-                            `php/sendForgetPswMail.php?mId=${memberId.value}&mMail=${Vthis.mail}&mName=${Vthis.name}&mNo=${Vthis.mNo}`
-                        )
-                            .then((res) => res.text())
-                            .then((res) => {
-                                console.log('可以用fetch來抓取text' + res)
-                            })
+                        // fetch(
+                        //     `php/sendForgetPswMail.php?mId=${memberId.value}&mMail=${Vthis.mail}&mName=${Vthis.name}&mNo=${Vthis.mNo}`
+                        // )
+                        // .then((res) => res.text())
+                        // .then((res) => {
+                        //     console.log('可以用fetch來抓取text' + res)
+                        // })
+                        let mailContent = {
+                            mId: memberId.value,
+                            beSended: Vthis.mail,
+                            name: Vthis.name,
+                        }
+                        //輸入mail 的id 再輸入template id
+                        emailjs.send('service_vzgh5o7', 'template_bkomf6k', mailContent).then((res) => {
+                            console.log('成功' + res.status)
+                        })
                     }
                     forgetPswMail()
 
