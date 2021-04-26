@@ -145,6 +145,8 @@
                 foodrecordV.fdrecord = prodRows;
 
                 cal_diarr_memberInfo2.fdcaltal= 0;
+                cal_diarr_memberInfo2.fdcaltal2= 0;
+                cal_diarr_memberInfo2.fdcaltal3= 0;
 
                 foodrecordV.caltotal= foodrecordV.fdrecord[0].dtCalTal;
 
@@ -153,14 +155,17 @@
                 let v=cal_diarr_memberInfo2; 
                 for(let i=0;i<foodrecordV.fdrecord.length;i++){
                     if(foodrecordV.fdrecord[i].dtPd==1){
+                        v.fdcaltal=0;
                         v.fdcaltal= foodrecordV.fdrecord[i].dtCalTal;
                         // alert(v.fdcaltal);
                     }
                     if(foodrecordV.fdrecord[i].dtPd==2){
+                        v.fdcaltal2=0;
                         v.fdcaltal2= foodrecordV.fdrecord[i].dtCalTal;
                         // alert(v.fdcaltal2);
                     }
                     if(foodrecordV.fdrecord[i].dtPd==3){
+                        v.fdcaltal3=0;
                        v.fdcaltal3= foodrecordV.fdrecord[i].dtCalTal;
                     //    alert(v.fdcaltal3);
                     }
