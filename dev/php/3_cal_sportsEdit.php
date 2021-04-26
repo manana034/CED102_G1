@@ -3,7 +3,7 @@ try{
     require_once("../../connect_ced102g1.php");
     $sql="UPDATE sport set spName=:spName,
                 spCalPer=:spCalPer,
-                spType=:spType,
+                spType=:spType
                 where spNo=:spNo";
     $member =  $pdo->prepare($sql);
 

@@ -1,11 +1,8 @@
 @@include("./layout/B_head.html");
 <title>Calories Item</title>
 <style>
-    body{
-        display:flex;
-    }
     .calories3{
-        display:flex;
+        display: inline-block;
     }
 </style>
 </head>
@@ -13,8 +10,8 @@
     <!-- 側邊欄 -->
     @@include('./layout/B_aside.html')
     <!-- 右邊主欄 -->
-    <div class="calories3" id="calories3"> 
-    <div class="main_food main">
+    <div class="calories3 main" id="calories3"> 
+    <div class="main_food">
         <div class="main_top">
             <div class="page">
                 <div class="food">FOOD</div>
@@ -26,20 +23,6 @@
                     <button>
                         <img src="./icon/magnifier_white.png">
                     </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">All</option>
-                        <option value="0">All</option>
-                        <option value="1">FT. Shop</option>
-                        <option value="2">Rice</option>
-                        <option value="3">Noodles</option>
-                        <option value="4">Meat</option>
-                        <option value="5">Fruit & Veg</option>
-                        <option value="6">Fried</option>
-                        <option value="7">Dessert</option>
-                        <option value="8">Drink</option>
-                    </select>
                 </div>
             </div>
             <div class="add">
@@ -144,7 +127,7 @@
                 <h6>Edit Calories Item</h6>
                 <div>
                     <div class="acc_title">No</div>
-                    <div class="acc_con">111</div>
+                    <div class="acc_con">{{foods[fdindex].fdNo}}</div>
                 </div>                             
                 <div>
                     <div class="acc_title">Type</div>
@@ -161,24 +144,24 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="foodeditsave[0].fdName"> 
-                        {{foods[fdindex].fdName}}
+                        <input type="text" required="required" maxlength="20" class="acc_con" v-model="foodeditsave[0].fdName"
+                        :placeholder="foods[fdindex].fdName"> 
                         <div class="acc_tip">Please enter within 20 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="foodeditsave[0].fdCalPer">
-                        {{foods[fdindex].fdCalPer}}
+                        <input type="text" required="required" maxlength="5" class="acc_con" v-model="foodeditsave[0].fdCalPer"
+                        :placeholder="foods[fdindex].fdCalPer">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Rate</div>
                     <div>
-                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="foodeditsave[0].calRate">
-                        {{foods[fdindex].calRate}}
+                        <input type="text" required="required" maxlength="3" class="acc_con" v-model="foodeditsave[0].calRate"
+                        :placeholder="foods[fdindex].calRate">
                         <div class="acc_tip">Please enter only numbers.</div>
                     </div>
                 </div>
@@ -202,15 +185,6 @@
                     <button>
                         <img src="./icon/magnifier_white.png">
                     </button>  
-                </div>
-                <div class="custom-select">
-                    <select name="sType">
-                        <option value="0">All</option>
-                        <option value="0">All</option>
-                        <option value="1">Low</option>
-                        <option value="2">Medium</option>
-                        <option value="3">High</option>
-                    </select>
                 </div>
             </div>
             <div class="add">
@@ -247,7 +221,7 @@
                     <td>{{sports[index].spType}}</td>
                     <td>{{sports[index].spName}}</td>
                     <td>{{sports[index].spCalPer}}</td>
-                    <td><img class="edit" src="./icon/backend_edit.png"></td>
+                    <td><img class="edit" src="./icon/backend_edit.png" @click="saveindex2(index)"></td>
                     <td><img class="delete" src="./icon/backend_trash.png"  @click="saveindex2(index)"></td>
                 </tr>
                 
@@ -302,11 +276,11 @@
                 <h6>Edit Calories Item</h6>
                 <div>
                     <div class="acc_title">No</div>
-                    <div class="acc_con">11</div>
+                    <div class="acc_con">{{sports[spindex].spNo}}</div>
                 </div>                             
                 <div>
                     <div class="acc_title">Type</div>
-                    <select class="acc_con">
+                    <select class="acc_con" v-model="sporttype">
                         <option value="1">Low</option>
                         <option value="2">Medium</option>
                         <option value="3">High</option>
@@ -315,14 +289,16 @@
                 <div>
                     <div class="acc_title">Name</div>
                     <div>
-                        <input type="text" required="required" maxlength="10" class="acc_con">
+                        <input type="text" required="required" maxlength="10" class="acc_con" v-model="sporteditsave[0]" 
+                         :placeholder="sports[spindex].spName">
                         <div class="acc_tip">Please enter within 10 characters.</div>
                     </div>
                 </div>
                 <div>
                     <div class="acc_title">Calories</div>
                     <div>
-                        <input type="text" required="required" maxlength="4" class="acc_con">
+                        <input type="text" required="required" maxlength="4" class="acc_con" v-model="sporteditsave[1]"
+                        :placeholder="sports[spindex].spCalPer">
                         <div class="acc_tip">Please enter only numbers and decimal point.</div>
                     </div>
                 </div>
@@ -399,7 +375,7 @@
                 }
                 if(calories_3.page_check==1){
                     sportsEdit();
-                    getProducts();
+                    getsports();
                 }
                 $('.lightbox_edit_black').css('display','none');
             });
@@ -417,6 +393,7 @@
             // });
         }, 500);
     });
+    $(`li:nth-child(3)`).attr('class', 'on');
     </script>
     <script src="js/3_calories_item.js"></script>
 </body>

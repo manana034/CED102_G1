@@ -7,14 +7,15 @@ const  calories_3 = new Vue({
         spindex:0,
         fdindex:0,
         foodtype:2,
+        sporttype:1,
         foodname:"",
         foodcal:0,
         foodrate:1,
-        sporttype:1,
         sportname:"",
         sportcal:1,
         page_check:0,
-        foodeditsave:[{fdName:"",fdCalPer:0,calRate:1}]
+        foodeditsave:[{fdName:"",fdCalPer:0,calRate:1}],
+        sporteditsave:[]
     },
     computed:{
         foodtypeedit(){
@@ -24,9 +25,16 @@ const  calories_3 = new Vue({
     methods:{
         saveindex:function(e){
             this.fdindex=e;
+            this.foodeditsave[0].fdName=this.foods[e].fdName;
+            this.foodeditsave[0].fdCalPer=this.foods[e].fdCalPer;
+            this.foodeditsave[0].calRate=this.foods[e].calRate;
         },
         saveindex2:function(e){
             this.spindex=e;
+            this.sporteditsave[0]=this.sports[e].spName;
+            this.sporteditsave[1]=this.sports[e].spCalPer;
+            this.sporteditsave[2]=this.sports[e].spNo;
+            this.sporttype=this.sports[e].spType;
         },
         changepage1(){
             this.page_check=1;
@@ -72,7 +80,12 @@ function sportsEdit(){
     xhr.onload = function(){
             getsports();
     }
-    let url="./php/3_cal_sportsEdit.php?";
+    let v=calories_3;
+    let url="./php/3_cal_sportsEdit.php?"
+            +"spType="+v.sporttype
+            +"&spCalPer="+v.sporteditsave[1]
+            +"&spName="+decodeURIComponent(v.sporteditsave[0])
+            +"&spNo="+v.sporteditsave[2];
     xhr.open("get",url,true);
     xhr.send(null);
 }

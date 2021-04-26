@@ -14,7 +14,14 @@ Vue.component('all-point', {
 
     template: `
 <div class="main">
-    <div class="main_top"></div>
+    <div class="main_top">
+        <div class="add">
+            <button @click="info_add()">
+                <img src="./icon/add_white.png">
+                ADD
+            </button>
+        </div>
+    </div>
     <div class="main_bottom">
         <table>
             <tr>

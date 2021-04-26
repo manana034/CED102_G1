@@ -1,6 +1,6 @@
-let getTmp_mNo=null, getTmp_mId=null, getTmp_mPsw=null
+let getTmp_mNo=null, getTmp_mId=null, getTmp_mPsw=null , getTmp_mMail=null
 let app;//Vue
-// 如果session 以登入 將資料寫入memberID
+// 如果session 以登入 將資料寫入memberID 
 
 const select = (selector) => {
     return document.querySelector(selector)
@@ -19,13 +19,16 @@ function checkLoggedin() {
             getTmp_mNo = member.mNo
             getTmp_mId = member.mId
             getTmp_mPsw = member.mPsw
+            getTmp_mMail = member.mMail
 
             console.log('這是編號' + getTmp_mNo)
             console.log('這是帳號' + getTmp_mId)
             console.log('這是密碼' + getTmp_mPsw)
+            console.log('這是信箱' + getTmp_mMail)
             console.log('抓取 站存 成功')
  
         }
+
     }
     xhr.open('get', 'php/checkLoggedin.php', true)
     xhr.send(null)
