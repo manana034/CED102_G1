@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>CALORIES DIARY</title>
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/common/all.css">
@@ -47,8 +47,10 @@
             ok
         </button><a>
     </div>
-    @@include('./layout/header.html')
-    @@include('./layout/cart.html')
+    <div class="headerContainer">
+        @@include('./layout/header.html')
+        @@include('./layout/cart.html')
+    </div>
     <div class="containor Cal_Dairy">
         <div class="coverall2" id="coverall2"></div>
         <div class="coverall3" id="coverall3"></div>
@@ -91,9 +93,9 @@
                     <P class="aside_inf_data">{{BMR}}</P>
                 </div>     
             </div>
-            <div class="w-btn Cal_Dairy">
+            <!-- <div class="w-btn Cal_Dairy">
                 Edit
-            </div>
+            </div> -->
         </div>
         <div class="center Cal_Dairy">
         
@@ -166,38 +168,30 @@
                         </p>            
                   
                     <p class="report_title">
-                        compared by month {{compare_date_7[0]}}/{{compare_date_7[1]}}~{{compare_date[0]}}/{{compare_date[1]}}
+                        compared by month
+                         <!-- {{compare_date_7[0]}}/{{compare_date_7[1]}}~{{compare_date[0]}}/{{compare_date[1]}} -->
                     </p>
-                    <div class="chart_select">
+                    <div class="chart_select" style="display: none;">
                         <div class="chart_weight chart_selectors">
                             <p></p>
                             <div class="chart_data">
                                 <p>weight</p>
-                                <!-- <img src="img/down_icon.png">
-                                <p class="w_persan">1%</p> -->
                             </div>
                         </div>
-                        <div class="chart_cal chart_selectors">
+                        <div class="chart_cal chart_selectors"  style="display: none;">
                             <p>Cal</p>
                             <div class="chart_data">
-                                <!-- <p>{{caltal}}</p> -->
-                                <!-- <img src="img/down_icon.png">
-                                <p class="cal_persan">2%</p> -->
                             </div>
                         </div>
-                        <div class="chart_excercie chart_selectors">
+                        <div class="chart_excercie chart_selectors"  style="display: none;">
                             <p>Exercise</p>
                             <div class="chart_data">
-                                <!-- <p>1 hr 30 min</p> -->
-                                <!-- <img src="img/up_icon.png">
-                                <p class="ex_persan">1%</p> -->
                             </div>
                         </div>
                     </div>
                     <div class="report_chart">
-                        <div class="report_charts">
+                        <!-- <div class="report_charts">
                             <div id="chartdiv01">
-                                <img src="./img/cal_demo3.jpg">
                             </div>
                         </div>
                         <div class="report_charts">
@@ -209,9 +203,14 @@
                             <div id="chartdiv03">
                                 <img src="./img/cal_demo1.jpg">
                             </div>
+                        </div> -->
+                        <iframe src="test0425.html"  style="width: 100%;height:300px;"  frameborder="0"></iframe>
+                        <div class="report_chart_info">
+                    
+                  
                         </div>
+
                     </div>
-                   
                 </div>
             </div>
      
@@ -351,7 +350,15 @@
                 nav: false,
                items: 2// 螢幕大小為 600~1000 顯示 3 個項目
              },
-            1000: {
+             700: {
+                nav: false,
+               items: 3// 螢幕大小為 600~1000 顯示 3 個項目
+             },
+            1090: {
+                nav: false,
+              items: 1 // 螢幕大小為 1000 以上 顯示 5 個項目
+            },
+            1400: {
                 nav: false,
               items: 1 // 螢幕大小為 1000 以上 顯示 5 個項目
             },

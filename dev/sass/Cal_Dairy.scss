@@ -124,7 +124,7 @@ header .row.container .logo{
     .top_area{
         display: grid;
         margin-top: 10px;
-        grid-template-columns: 49% 49%;
+        grid-template-columns: 60% 35%;
         .card.CurGoal{
             padding: 20px;
             width: 92%;
@@ -170,7 +170,7 @@ header .row.container .logo{
                             p{
                                 position: absolute;
                                 top:350px;
-                                left: 55px;
+                                left: 75px;
                                 z-index: 2;
                                 color: #EAA565;
                                 font-size: 25px;
@@ -627,15 +627,21 @@ header .row.container .logo{
     }
 }
 @media (max-width: 1499px) and (min-width: 1300px){
+
+
      .containor.Cal_Dairy{
-          .l-aside.Cal_Dairy{
-            height: 1300px;
-        }  
+        grid-template-columns: 100%;
+        .l-aside.Cal_Dairy{
+         display: none;
+      }  
         .center.Cal_Dairy{
             .top_area{
                     grid-template-columns: 100%;
                     .card.report{
                         margin-top: 20px;
+                        .report_chart{
+                            width: 50%!important;
+                        }
                     }
                    .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
                         padding-right: 60%;
@@ -650,6 +656,7 @@ header .row.container .logo{
             
         }
     }
+    
 }
 @media (max-width: 1299px) and (min-width: 1100px){
     .containor.Cal_Dairy{
@@ -662,6 +669,9 @@ header .row.container .logo{
                    grid-template-columns: 100%;
                    .card.report{
                        margin-top: 20px;
+                       .report_chart{
+                        width: 50%!important;
+                    }
                    }
                   .card.CurGoal .CurGoal_content .rest_day .sch_title .sch_start {
                        padding-right: 65%;
@@ -752,6 +762,9 @@ header .row.container .logo{
            
         }
     }
+    // .containor.Cal_Dairy .center.Cal_Dairy .bot_area .cal_input .card.cal_input_table .input_pages .input_pages_data{
+    //     border: 2px solid #AAAAAA;
+    // }
 }
 @media (max-width: 699px) and (min-width: 200px){
     .containor.Cal_Dairy{
@@ -797,6 +810,9 @@ header .row.container .logo{
     }
     .containor.Cal_Dairy .center.Cal_Dairy .bot_area .cal_input .card.cal_input_table .input_pages .calendarI{
         margin: 30px 0px 10px calc(40% - 90px);
+    }
+    .containor.Cal_Dairy .center.Cal_Dairy .top_area .card.CurGoal .CurGoal_content .rest_cal .rest_cal_content .body_sch_mask_t p{
+        left:10%;
     }
     
 }

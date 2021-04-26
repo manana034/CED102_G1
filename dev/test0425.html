@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <title>FT.</title>
+        <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+        <link rel="stylesheet" href="./css/page/member.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" defer></script>  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js" defer></script>
+
+        <script src="./js/header.js" defer></script>
+        <script src="./js/cart.js" defer></script>
+
+        <script src="./js/memberVuex.js" defer></script>
+        <script src="./js/memberFourVue.js" defer></script>
+        <script src="./js/memberThreeVue.js" defer></script>
+        <script src="./js/memberSecondVue.js" defer></script> 
+        <script src="./js/memberVue.js" defer></script>
+        <script src="./js/member.js" defer></script>
+        <script src="./js/header_customSelect.js" defer></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
+        <style>
+           @media (max-width: 2000px) and (min-width: 100px){ 
+            body{
+                background-color: white!important;
+            }
+            .headerContainer{
+                display: none;
+            }
+            .personInfo,.personConainer,.container,.points,.reportBtn{
+                display: none!important;
+            }
+           .row.myAccount{
+            display: unset;
+           }
+           .myAccount > .secondContainer > .r-aside{
+               height: unset;
+               width: 320px!important;
+               height: 200px;
+               margin-left:-110%;
+               margin-top: -100px;
+               overflow: unset;
+               background-color: unset;
+               /* box-shadow: rgb(0 0 0 / 30%) -3px 3px 5px 2px; */
+
+           }
+           .myAccount > .secondContainer > .label{
+            display: none!important;
+           }
+           .rePortBtns{
+               position: absolute;
+               left:95% ;
+               top:50px;
+           }
+        }
+
+        </style>
+    </head>
+    <body>
+
+        <section class="levelInfo">
+            <div class="bg"></div>
+            <div class="infoBody">
+                <button class="nc-btn">
+                    <img src="./icon/close.svg">
+                </button>
+                <div class="content">
+                    <div>
+                        <div>level 1.</div>
+                        <div>Lorem ipsum dong elit. Sit ducimus optio in voluptatibus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa ex</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 2.</div>
+                        <div>Lorem ipsum dolor sit abus at error unde, inventore ipsum a ullam quam molestiae, eius quas vero minima architecto. Odio cumque iusto earum impedit ipsa</div>
+                    </div>
+    
+                    <div class="hr"></div>
+    
+                    <div>
+                        <div>level 3.</div>
+                        <div>Lorem ipsum dolor sit amet conas, possimus, fugiat quo tempore nobis, omnis iure?</div>
+                    </div>
+                </div>
+     
+            </div>
+
+
+        </section> 
+
+        <div class="headerContainer">
+            @@include('./layout/header.html') 
+            @@include('./layout/cart.html')
+        </div>
+
+    
+        <div id="app">
+            <!--  loading  -->
+            <loading :active.sync="isLoading">
+                <div class="loadingio-spinner-ripple-wu44vrvts1">
+                    <div class="ldio-2gn8nvj94zp">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </loading>
+            <!--  loading  --> 
+
+
+            <main class="row myAccount"
+                v-show="!loginBeforeAfter">
+
+                <edit-person 
+                    v-show="openEditPerson">
+                </edit-person>
+                
+                <!-- 自己發送自己要接收 並由parent  -->
+                <person-info
+                    @open-edit="changeStauts"
+                    @false-loading="isLoading = !isLoading">
+                </person-info>
+    
+                <main-content></main-content>
+    
+                <second-info></second-info>
+    
+            </main>
+    
+            <login-signup
+                v-show="loginBeforeAfter"></login-signup>
+
+                       
+
+        </div>
+
+        @@include('./layout/footer.html')
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" >
+            <clipPath id="svgPath">
+                <path
+                    d="M-7145.3-6315.064v-36.465h-3.1v36.389c-.184,5.09-3.564,7.771-7.307,7.771-3.721,0-6.977-2.709-6.977-7.852l.26-71.687H-7165v27.115a6.275,6.275,0,0,1-1.65,4.727,5.456,5.456,0,0,1-3.926,1.654,5.394,5.394,0,0,1-3.926-1.654,6.229,6.229,0,0,1-1.654-4.727v-31.4a14.915,14.915,0,0,1,3.563-9.918,13.192,13.192,0,0,1,10.076-4.646h9.221v-4.1a11.684,11.684,0,0,1-5.3-9.768,11.731,11.731,0,0,1,11.752-11.7,11.731,11.731,0,0,1,11.752,11.7,11.529,11.529,0,0,1-3.436,8.264,11.663,11.663,0,0,1-1.768,1.469v4.139h9.361a13.124,13.124,0,0,1,10.074,4.674,14.866,14.866,0,0,1,3.564,9.891v31.4a6.126,6.126,0,0,1-1.709,4.727,5.682,5.682,0,0,1-4,1.6,5.678,5.678,0,0,1-4-1.6,6.122,6.122,0,0,1-1.7-4.727v-27.115h-2.326v71.688c0,5.088-3.461,7.852-7.182,7.852C-7141.678-6307.369-7145.01-6309.769-7145.3-6315.064Z"
+                    transform="translate(7186.143 6432.456)"
+                />
+            </clipPath>
+        </svg>
+        
+    </body>
+</html>
