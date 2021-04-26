@@ -31,19 +31,15 @@
             $prod_detail->execute();
         }
 
-        $sql = 'select o.orderNo, o.usePoints, o.total, ol.prodNo, ol.quantity, ol.price, p.prodPic1
+        $sql = "select o.orderNo, o.usePoints, o.total, ol.prodNo, ol.quantity, ol.price, p.prodPic1, f.fdName
                 from orderlist ol join orders o on ol.orderNo = o.orderNo
                                     join product p on ol.prodNo = p.prodNo
-                                    where o.orderNo > $o.orderNo';
+                                    join food f on p.fdNo = f.fdNo
+                                    where o.orderNo = $lastId";
         
         $order = $pdo->query($sql);
         $orderRow = $order->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($orderRow);
-
-        $output = array(
-            "message" => "data inserted"
-        );
-        echo json_encode($output);
 
         }catch(PDOException $e){
             echo $e->getMessage();

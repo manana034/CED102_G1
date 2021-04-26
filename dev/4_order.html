@@ -40,7 +40,7 @@
                     <th>state</th>
                     <th>detail</th>
                 </tr>
-                <tr v-for="(order,index) in orders">
+                <tr v-for="(order,index) in orders" :data-no="index+1">
                     <td>{{order.orderNo}}</td>
                     <td>{{order.mNo}}</td>
                     <td>{{order.usePoints}}</td>
@@ -50,7 +50,7 @@
                     <td>{{order.address}}</td>
                     <td>{{order.orderDate}}</td>
                     <td>
-                        <select class="Type" name="Type" @change="changestatetype">
+                        <select class="Type" name="Type" @change.stop="insertData" :value="order.orderState">
                             <option value="1">Paid</option>
                             <option value="2">Shipped</option>
                             <option value="3">Cancelled</option>
@@ -81,16 +81,6 @@
                     </td>
                 </tr> -->
             </table>
-        </div>
-    <!-- 確認改狀態的燈箱 -->
-        <div class="lightbox_black">
-            <div class="lightbox" >
-                <div class="content">Do you want to <span>ship</span> order no.<span>21</span> ?</div>
-                <div>
-                    <button class="cancel">Cancel</button>
-                    <button class="Continue">Continue</button>
-                </div>
-            </div>
         </div>
     <!-- 訂單明細的燈箱 -->
         <div class="lightbox_orderDetail_black">
@@ -126,22 +116,16 @@
                     index: 0,
                 },
                 methods:{
-                        // 改狀態的 lightbox
-                    changestatetype(postRevState) {
-                        // console.log(postRevState.target.value);
-                        if (postRevState.target.value == 1) {
-                            return 'Passed';
-                        } else if (postRevState.target.value == 3) {
-                            return 'Failed';
-                        }else{
-                            $('.lightbox_black').css('display','block');
-                            $('.lightbox>div>button.cancel').click(function(){
-                                $('.lightbox_black').css('display','none');
-                            });
-                            $('.lightbox>div>button.Continue').click(function(){
-                                $('.lightbox_black').css('display','none');
-                            })
-                        }
+                    insertData(e){
+                        console.log('wrok')
+                        let url = `./php/changeState.php?state=${e.target.value}&No=${e.target.parentNode.parentNode.dataset.no}`
+                        fetch(url)
+                        .then(res => res.text())
+                        .then(res => {
+                            console.log(res)
+                        })
+                            // .catch(error => console.log(error))
+                            // .then(body => console.log(body))
                     },
                         // 訂單明細的 lightbox
                     detail(index){
@@ -167,6 +151,7 @@
                                     console.log(index);
                                 }
                             }
+
                             fetch()
                             
                             $('.lightbox_orderDetail_black').css('display','block');

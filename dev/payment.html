@@ -194,13 +194,14 @@
              <a href="./mycart.html"> &lt; PREV</a>
              <button>NEXT</button>
         </div>
-        <div class="paybanner">
-            <div class="pay">
-                    <h6>Are you sure?</h6>
-                    <p>Do you really want to confirm the payment? This process cannot be undone.</p>
-                    <button class="cancel">Cancel</button>
-                    <a href="./confirmOrder.html" @click="insertData">Confirm</a>
-            </div>
+    </div>
+    <div class="paybanner">
+        <div class="pay">
+                <h6>Are you sure?</h6>
+                <p>Do you really want to confirm the payment? This process cannot be undone.</p>
+                <button class="cancel">Cancel</button>
+                <button type="button" @click="insertData">Confirm</button>
+                <!--  href="./confirmOrder.html" -->
         </div>
     </div>
 
@@ -242,7 +243,15 @@
                         headers: new Headers({
                             'Content-Type': 'application/json'
                         })
-                    }).then(res => res.text()).catch(error => console.log(error)).then(body => console.log(body))
+                    })
+                    .then(res => res.text())
+                    .then(res => { 
+                            sessionStorage.setItem("finalOrder", res)
+                            window.location.href = "./confirmOrder.html" 
+                        });
+
+                    // .catch(error => console.log(error))
+                    // .then(body => console.log(body))
 
                     localStorage.removeItem('localProduct');
                     sessionStorage.removeItem('finalPrice');
@@ -595,7 +604,7 @@
                             //手機驗證
                             const arr1 = pn2.value.split("");
                             if(arr1.indexOf("0") !== 0 && arr.indexOf("9") !== 1 && pn2.value !== ""){
-                                window.alert("手機號碼要09開頭")
+                                window.alert("手機號碼要09開頭");
                                 e.preventDefault();
                                 return
                             }
