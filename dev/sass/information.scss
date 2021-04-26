@@ -17,10 +17,10 @@ div.banner {
         text-shadow: 2px 2px rgba(0, 0, 0 ,.3);
         color: $white;
         position: absolute;
-        bottom: 35%;
+        top: 400px;
         left: 7%;
         @include rwd(768px) {
-            top: 30%;
+            top: 200px;
         }
     }
     @include rwd(768px) {
