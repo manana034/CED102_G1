@@ -15,7 +15,11 @@ const  calories_3 = new Vue({
         sportcal:1,
         page_check:0,
         foodeditsave:[{fdName:"",fdCalPer:0,calRate:1}],
+<<<<<<< HEAD
         sporteditsave:[]
+=======
+        sporteditsave:[{fdName:"",fdCalPer:0,calRate:1}]
+>>>>>>> dev
     },
     computed:{
         foodtypeedit(){

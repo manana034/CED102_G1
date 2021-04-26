@@ -1,6 +1,6 @@
 <div id="chatRobot">
     <img src="./img/logo.png" />
-    <div class="card chatRoomBody bodynone">
+    <div class="card chatRoomBody bodynone" id="chatRoomBody">
         <div>
             <p>FT. CHAT ROOM</p>
             <button class="nc-btn">
@@ -8,17 +8,16 @@
             </button>
         </div>
 
-        <div class="boxinner">
+        <div class="boxinner" v-for="">
+            <div class="visitor">
+                <div class="message">
+                    <p>好餓好餓QQ</p>
+                </div>
+            </div>
             <div class="admin">
                 <img src="./img/logo.png" />
                 <div class="message">
                     <p>今天很適合控制飲食的一天, 如果 有甚麼疑問可以問我</p>
-                </div>
-            </div>
-
-            <div class="visitor">
-                <div class="message">
-                    <p>好餓好餓QQ</p>
                 </div>
             </div>
         </div>
