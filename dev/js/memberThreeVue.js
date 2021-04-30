@@ -2222,8 +2222,9 @@ Vue.component('sign-up', {
                     fetch(`php/checkMemberID.php?memid=${inputVal}`)
                         .then((res) => res.json())
                         .then((res) => {
-                            // console.log(res.length)
-                            if (!res.length) {
+                            // console.log(res)
+                            // console.log(res.mNo)
+                            if (!res.mNo) {
                                 span.textContent = '* 可以使用該帳號'
                                 span.setAttribute('style', 'color:green')
                             } else {
