@@ -2,6 +2,9 @@
 const passValueVue = new Vue()
 
 
+
+
+
 const mapState = Vuex.mapState
 const mapMutations = Vuex.mapMutations
 const mapActions = Vuex.mapActions

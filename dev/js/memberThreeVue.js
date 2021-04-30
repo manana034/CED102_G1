@@ -192,13 +192,15 @@ Vue.component('profile-body', {
         saveProfile() {
             let choiceSex = [...this.mSexinputs].filter((input) => input.checked == true)[0]
             //一開始先選 哪個為checked 如果沒有 直接.value 會報錯
+            console.log(choiceSex)
 
-            choiceSex ? choiceSex.value : choiceSex
+            choiceSex = choiceSex ? choiceSex.value : choiceSex
 
+            console.log(choiceSex)
             if (
                 !this.bdayInput.value.trim() ||
                 !this.wWeightInput.value.trim() ||
-                !this.mHeightInput.value.trim() ||
+                !this.mHeightInput.value.trim() || 
                 !choiceSex
             ) {
                 //如果其中沒有值
@@ -206,7 +208,7 @@ Vue.component('profile-body', {
             } else {
                 this.$store.commit('updateBday', this.bdayInput.value)
                 this.$store.commit('updateSex', choiceSex)
-  
+
                 this.$store.commit('updateHeight', this.mHeightInput.value)
 
                 this.$store.commit('updateMail', this.mMailInput.value)
@@ -242,8 +244,6 @@ Vue.component('profile-body', {
                     let xhr = new XMLHttpRequest()
                     xhr.onload = function () {
                         console.log(xhr.responseText)
-                        alert('圖片上傳成功')
-                        passValueVue.$emit('leave-profile')
                     }
                     xhr.open('POST', 'php/updateMemberImg.php', true)
                     let data_info = new FormData(select('#profileForm'))
@@ -256,7 +256,7 @@ Vue.component('profile-body', {
                     this.$store.commit('updateWeight', this.wWeightInput.value)
                     updataMWeight() 
                 }
-  
+
  
 
                 // updataMWeight()
@@ -265,6 +265,7 @@ Vue.component('profile-body', {
 
                 //讓上傳完 圖片才關掉
                 // passValueVue.$emit('leave-profile')
+                passValueVue.$emit('leave-profile')
             }
         },
     },
@@ -460,6 +461,8 @@ Vue.component('account-body', {
 Vue.component('goal-body', {
     template: `
         <form class="card goalBody">
+
+
             <div class="goal-row-1">
                 <p>start Date</p>
                 <div class="dateLine">
@@ -569,10 +572,11 @@ Vue.component('goal-body', {
             goalTime: '',
             customEndDate: '',
 
-
             //以下為 function
             checkGoalTimeState: null,
             resetTimeBar: null,
+
+            isLoading: true,
         }
     },
     methods: {
@@ -628,7 +632,6 @@ Vue.component('goal-body', {
         },
 
         setCurrentTimeBar() {
-
             const s = Date.parse(this.mGoalS)
             const e = Date.parse(this.mGoalE)
             const now = Date.parse(new Date())
@@ -658,7 +661,7 @@ Vue.component('goal-body', {
                 return 0
             } else {
                 const rest = Date.parse(this.mGoalE) - Date.parse(now)
-                return parseInt(rest / 1000 / 60 / 60 / 24) - 1
+                return parseInt(rest / 1000 / 60 / 60 / 24) 
             }
         },
 
@@ -687,9 +690,9 @@ Vue.component('goal-body', {
         const currentDate = formatDate(new Date()) //目前日期
         const maxDate = getMaxDate(currentDate)
 
-        const nd = new Date(Date.parse(currentDate)+(1000*60*60*24*30))
+        const nd = new Date(Date.parse(currentDate) + 1000 * 60 * 60 * 24 * 30)
         const y = nd.getFullYear()
-        const m = nd.getMonth()+1
+        const m = nd.getMonth() + 1
         const d = nd.getDate()
         const minDate = `${y}-${m}-${d}`
 
@@ -711,7 +714,7 @@ Vue.component('goal-body', {
         })
 
         //將全域變數帶入
-        this.checkGoalTimeState = ()=>{
+        this.checkGoalTimeState = () => {
             console.log('確認是否傳到這')
 
             const durationTime = select('.durationTime')
@@ -725,13 +728,11 @@ Vue.component('goal-body', {
                 durationTime.style.display = 'none'
                 customDate.style.display = 'none'
                 restDay.removeAttribute('style')
-            } else {  
+            } else {
                 durationTime.removeAttribute('style')
                 customDate.removeAttribute('style')
                 restDay.style.display = 'none'
-                
             }
-
         }
 
         passValueVue.$on('check-goalTime', () => {
@@ -740,7 +741,7 @@ Vue.component('goal-body', {
                 clearTimeout(time)
             }, 500)
         })
-        passValueVue.$on('clear-time',()=>{
+        passValueVue.$on('clear-time', () => {
             this.checkGoalTimeState()
         })
 
@@ -749,14 +750,13 @@ Vue.component('goal-body', {
             const m = new Date().getMonth() + 1
             const d = new Date().getDate()
 
-            const now = `${y}-${m}-${d}` 
+            const now = `${y}-${m}-${d}`
             const Vthis = this
 
             //確認下面的if goaltime 才送出table
-            function updateGoalTime_Weight(){
-                
+            function updateGoalTime_Weight() {
                 let xhr = new XMLHttpRequest()
-                xhr.onload = function(){
+                xhr.onload = function () {
                     console.log(xhr.responseText)
                 }
                 xhr.open(
@@ -794,7 +794,6 @@ Vue.component('goal-body', {
 
                     //將值送去給table
                     updateGoalTime_Weight()
-
                 } else {
                     //inputEl沒有填值
                     alert('請輸入日期、體重')
@@ -814,7 +813,6 @@ Vue.component('goal-body', {
                 console.log('可以讓這裡執行 執行其他method 的function')
                 clearTimeout(time)
             }, 100)
-
         })
     },
 })
@@ -1913,6 +1911,7 @@ Vue.component('sign-up', {
                                     mNo: member.mNo,
                                     mId: member.mId,
                                     mPsw: member.mPsw,
+                                    mMail: member.mMail
                                 })
                             }
                         }
@@ -2265,26 +2264,20 @@ Vue.component('sign-up', {
 
             //註冊成功 將直接登入
             if (name&&email&&userid&&psd&&cfmPsd) {
-               if(mailSpan=='red'|| idSpan=='red'||psdSpan=='red'||cfmSpan=='red'){
-                   alert('請輸入正確格式') 
-               } else {
-                   alert('恭喜加入FT.')
+                if(mailSpan=='red'|| idSpan=='red'||psdSpan=='red'||cfmSpan=='red'){
+                    alert('請輸入正確格式') 
+                } else {
+                    alert('恭喜加入FT.')
 
-                   fetch(`php/createMAccount.php?mName=${name}&mId=${userid}&mPsw=${psd}&mMail=${email}`)
-                   .then(res=>res.text())
-                   .then(res=>{
-                        const signUp_id = userid
-                        const signUp_psd = psd
-                        const signUp_mNo = res
-                        const signUp_mail = email
+                    fetch(`php/createMAccount.php?mName=${name}&mId=${userid}&mPsw=${psd}&mMail=${email}`)
+                    .then(res=>res.text())
+                    .then(res=>{
+                            const signUp_id = userid
+                            const signUp_psd = psd
+                            const signUp_mNo = res
+                            const signUp_mail = email
                     
                         function sendSignupMail(){
-                            // let xhr = new XMLHttpRequest()
-                            // xhr.onload = () => {
-                            //     console.log(xhr.responseText)
-                            // }
-                            // xhr.open('get', `php/signupMail.php?mail=${signUp_mail}`)
-                            // xhr.send(null)
 
                             let mailContent = {
                                 beSended: signUp_mail,
@@ -2299,15 +2292,22 @@ Vue.component('sign-up', {
                         sendSignupMail()
 
                         console.log('signUp之後直接登入')
-                        this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
-                        this.updateSignUpMPoints(signUp_mNo)
+
+                        const time = setTimeout(()=>{
+
+                            this.signUpLogin(signUp_id, signUp_psd, signUp_mNo)
+                            this.updateSignUpMPoints(signUp_mNo)
+                            clearTimeout(time) 
+                        },1000) 
+
 
                     })
-               }
+                }
+
             } else{
                 alert('請填寫帳戶資料')
             }
- 
+    
         },
     },
 })

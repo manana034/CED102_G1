@@ -267,20 +267,20 @@ Vue.component('person-info', {
 //在中間主要 目標訂單資訊區
 Vue.component('main-content', {
     template: `
-     <div class="col-7 col-lg-8 col-md-6 col-sm-4 mainConainter">
-                <div class="container">
-                    <div class="goal">
-                        <h6>your goal</h6>
+        <div class="col-7 col-lg-8 col-md-6 col-sm-4 mainConainter">
+            <div class="container">
+                <div class="goal">
+                    <h6>your goal</h6>
 
-                        <goal-body></goal-body>
+                    <goal-body></goal-body>
 
-                    </div>
-
-                    <status-order></status-order>
-
-                    <fav-poster></fav-poster>
                 </div>
+
+                <status-order></status-order>
+
+                <fav-poster></fav-poster>
             </div>
+        </div>
     `,
 })
 
